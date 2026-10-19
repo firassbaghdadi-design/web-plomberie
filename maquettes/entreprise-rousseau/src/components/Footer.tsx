@@ -16,6 +16,14 @@ export function Footer() {
           <a href={`tel:${business.phoneTel}`} className="font-semibold text-paper underline underline-offset-4">
             {business.phoneDisplay}
           </a>
+          {business.email ? (
+            <>
+              <br />
+              <a href={`mailto:${business.email}`} className="underline underline-offset-4">
+                {business.email}
+              </a>
+            </>
+          ) : null}
         </address>
         <p className="text-sm leading-7">
           {business.legalName}

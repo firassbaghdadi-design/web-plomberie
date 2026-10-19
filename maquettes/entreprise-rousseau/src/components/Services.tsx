@@ -9,7 +9,7 @@ export function Services() {
           Quels services propose un plombier chauffagiste à Paris 14e ?
         </h2>
         <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-          Un plombier chauffagiste répare et installe les réseaux d'eau, les appareils sanitaires et le chauffage. Entreprise Rousseau couvre trois métiers : la plomberie et le dépannage, le chauffage avec l'entretien des chaudières gaz, et l'aménagement de salles de bains.
+          Un plombier chauffagiste répare et installe les réseaux d'eau, les appareils sanitaires et le chauffage. Entreprise Rousseau couvre trois métiers : la plomberie et le dépannage, le chauffage, et l'aménagement de salles de bains.
         </p>
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {services.map((service, index) => (

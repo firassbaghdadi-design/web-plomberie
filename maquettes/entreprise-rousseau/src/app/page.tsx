@@ -33,6 +33,7 @@ const graph = {
       legalName: business.legalName,
       url: `${SITE_URL}/`,
       telephone: business.phoneTel,
+      ...(business.email ? { email: business.email } : {}),
       foundingDate: business.foundingYear,
       description: homeDescription,
       address: {

@@ -22,7 +22,7 @@ Toutes les données de l'entreprise sont dans `src/lib/site.ts`. Un bloc dont la
 | Mobile | 99 | 100 | 100 | 100 |
 | Desktop | 100 | 100 | 100 | 100 |
 
-CLS 0, aucun débordement horizontal à 360, 390, 768 et 1280 px.
+La performance mobile varie de 90 à 99 d'une mesure à l'autre selon la charge de la machine (TBT instable) ; les trois autres scores restent à 100. CLS 0, aucun débordement horizontal à 360, 390, 768 et 1280 px.
 
 ## Bible SEO / GEO / AEO : ce qui est appliqué
 
@@ -41,15 +41,18 @@ Aucune preuve inventée : pas d'avis, de note, de prix, de délai, de certificat
 
 | Donnée | Source | Statut |
 |---|---|---|
-| Adresse 100 rue de la Tombe Issoire, 75014 | sites officiels (via moteur de recherche) | à confirmer (un annuaire cite le n° 85) |
-| Téléphone 01 46 61 88 55 | site officiel (via moteur de recherche) | à confirmer (un annuaire cite le 01 45 38 91 91) |
-| Fondée en 1948 | registre cité dans le brief | à confirmer (un site de l'entreprise dit « depuis 1945 ») |
+| Adresse 100 rue de la Tombe Issoire, 75014 | site officiel et annuaires | cohérent (un annuaire cite le n° 85) |
+| Téléphone 01 45 38 91 91, e-mail contact@entreprise-rousseau.fr | site officiel (via moteur de recherche) | à confirmer ; un avis Trustpilot d'il y a ~2 ans dit ce numéro injoignable ; le 01 46 61 88 55 est celui du site Sandrin-Rousseau (Bourg-la-Reine) |
+| Depuis 1945 (« plus de 80 ans ») | sites de l'entreprise | à confirmer ; le registre indiqué dans le brief donne 1948 (probablement l'immatriculation) |
 | SIREN 552 034 704 | dérivé d'un SIRET d'annuaire | à confirmer sur Sirene |
-| Astreinte 7j/7, contrats d'entretien chaudières gaz | site du showroom salles de bains | à confirmer |
-| Établissements Bourg-la-Reine, Châtillon | annuaire Verif | à confirmer |
+| Établissements Bourg-la-Reine, Châtillon (showroom) | annuaires et sites Sandrin-Rousseau | à confirmer |
 | Services, déroulé d'intervention | rédigés à partir des sites trouvés | à valider |
 
-Manquent aussi : logo, couleurs et typographies réels, photos publiées par l'entreprise, avis Google (note, nombre, lien d'avis), horaires, e-mail, coordonnées GPS.
+Retirés faute de source pour l'entité du 14e : astreinte 7j/7 et contrats d'entretien de chaudières gaz (annoncés seulement par le site Sandrin-Rousseau de Bourg-la-Reine). Horaires non affichés : les annuaires divergent (lundi-vendredi, fin à 17h30 ou 18h).
+
+Manquent aussi : logo, couleurs et typographies réels, photos publiées par l'entreprise, avis Google (note, nombre, lien d'avis), horaires, coordonnées GPS.
+
+À noter pour l'audit : l'entreprise semble aussi avoir un site Wix (`rousseau-sas.wixsite.com`) et plusieurs sites aux marques voisines (entreprise-rousseau.fr, sandrin-rousseau.com, cuisine-rousseau.fr) : présence éclatée, argument de refonte et d'unification.
 
 ## À faire avant l'envoi au prospect
 

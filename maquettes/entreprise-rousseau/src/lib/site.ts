@@ -12,11 +12,11 @@ export const business = {
   name: "Entreprise Rousseau",
   legalName: "ENTREPRISE ROUSSEAU",
   tagline: "Plomberie, chauffage et salles de bains à Paris 14e",
-  foundingYear: "1948",
+  foundingYear: "1945",
   siren: "552 034 704",
-  phoneDisplay: "01 46 61 88 55",
-  phoneTel: "+33146618855",
-  email: null as string | null,
+  phoneDisplay: "01 45 38 91 91",
+  phoneTel: "+33145389191",
+  email: "contact@entreprise-rousseau.fr",
   address: {
     street: "100 rue de la Tombe Issoire",
     postalCode: "75014",
@@ -40,9 +40,9 @@ export const services = [
   },
   {
     id: "chauffage",
-    title: "Chauffage et chaudières gaz",
-    text: "Installation, dépannage et contrats d'entretien de chaudières gaz, pour garder une installation sûre et un hiver sans panne.",
-    schemaName: "Chauffage et entretien de chaudières gaz",
+    title: "Chauffage",
+    text: "Installation, réparation et dépannage de chauffage, pour garder une installation sûre et un hiver sans panne.",
+    schemaName: "Chauffage",
   },
   {
     id: "salles-de-bains",
@@ -82,15 +82,15 @@ export const reflexes = [
 export const faq = [
   {
     q: "Quel plombier appeler en urgence à Paris 14e ?",
-    a: `Pour une fuite d'eau ou une panne de chauffage à Paris 14e, appelez directement Entreprise Rousseau au ${business.phoneDisplay}. Une astreinte plomberie est assurée 7 jours sur 7. En attendant l'intervention, fermez l'arrivée d'eau au compteur et coupez l'électricité si l'eau approche d'un appareil.`,
+    a: `Pour une fuite d'eau ou une panne de chauffage à Paris 14e, appelez directement Entreprise Rousseau au ${business.phoneDisplay}. En attendant l'intervention, fermez l'arrivée d'eau au compteur et coupez l'électricité si l'eau approche d'un appareil.`,
   },
   {
     q: "Comment reconnaître une entreprise de plomberie fiable à Paris ?",
     a: `Vérifiez qu'elle affiche une adresse physique réelle, un numéro SIREN et qu'elle remet un devis avant les travaux. Entreprise Rousseau est installée au ${business.address.street}, ${business.address.postalCode} ${business.address.city}, et son numéro SIREN est le ${business.siren}.`,
   },
   {
-    q: "Proposez-vous l'entretien de chaudière gaz ?",
-    a: "Oui, des contrats d'entretien de chaudières gaz sont proposés. L'entretien annuel d'une chaudière gaz est obligatoire en France : il garantit la sécurité de l'installation et limite le risque de panne en plein hiver.",
+    q: "Intervenez-vous sur les installations de chauffage ?",
+    a: "Oui. Entreprise Rousseau installe, répare et dépanne les installations de chauffage. Pour une chaudière gaz, l'entretien annuel est obligatoire en France : il garantit la sécurité de l'installation et limite le risque de panne en plein hiver.",
   },
   {
     q: "Réalisez-vous la rénovation de salles de bains ?",
@@ -102,4 +102,4 @@ export const faq = [
   },
 ] as const;
 
-export const shortAnswer = `Entreprise Rousseau est une entreprise familiale de plomberie, chauffage et salles de bains installée rue de la Tombe Issoire, à Paris 14e, depuis ${business.foundingYear}. Elle intervient pour les dépannages, l'entretien de chaudières gaz et l'aménagement de salles de bains. Pour une urgence, appelez le ${business.phoneDisplay}.`;
+export const shortAnswer = `Entreprise Rousseau est une entreprise familiale de plomberie, chauffage et salles de bains installée rue de la Tombe Issoire, à Paris 14e, depuis ${business.foundingYear}. Elle intervient pour les dépannages de plomberie, le chauffage et l'aménagement de salles de bains. Pour une urgence, appelez le ${business.phoneDisplay}.`;

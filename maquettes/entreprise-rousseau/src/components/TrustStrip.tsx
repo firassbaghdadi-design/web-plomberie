@@ -2,7 +2,7 @@ import { business } from "@/lib/site";
 
 const items = [
   { big: business.foundingYear, label: "Entreprise familiale installée à Paris" },
-  { big: "7j/7", label: "Astreinte plomberie" },
+  { big: "3 métiers", label: "Plomberie, chauffage, salles de bains" },
   { big: "Paris 14e", label: business.address.street },
   { big: business.siren, label: "Numéro SIREN" },
 ];

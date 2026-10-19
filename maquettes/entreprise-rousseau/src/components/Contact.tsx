@@ -32,6 +32,11 @@ export function Contact() {
             <PhoneIcon className="h-7 w-7 shrink-0" />
             {business.phoneDisplay}
           </a>
+          {business.email ? (
+            <a href={`mailto:${business.email}`} data-track="generate_lead" className="mt-4 block text-ink-soft underline underline-offset-4 hover:text-copper-dark">
+              {business.email}
+            </a>
+          ) : null}
           <p className="mt-5 flex gap-3 text-ink-soft">
             <PinIcon className="mt-1 h-5 w-5 shrink-0 text-copper-dark" />
             <span>
