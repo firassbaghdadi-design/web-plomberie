@@ -5,7 +5,7 @@ Projet de prospection B2B : repérer des entreprises de plomberie établies (Îl
 ## Structure du dépôt
 
 - `recherche-marche/` — analyse du marché plombiers IDF (densité, concurrence par département), vivier de cibles.
-- `prospection/` — méthode et grille de scoring, fiches des cibles, classement.
+- `prospection/` — méthode et grille de scoring, fiches des cibles, classement, process par prospect, plan d'action.
 - `offre/` — offre commerciale et grille tarifaire (3 niveaux).
 - `outreach/` — modèles d'email de prospection et séquence de relance.
 - `vitrine/` — (à venir) site personnel de web designer avec réalisations, dont la future maquette pilote.
