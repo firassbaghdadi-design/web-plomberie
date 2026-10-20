@@ -1,25 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import Script from "next/script";
 import { Suspense } from "react";
+import "@fontsource/questrial/400.css";
+import "@fontsource-variable/roboto/index.css";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { GA_ID, INDEXABLE, SITE_URL, business } from "@/lib/site";
 import { homeDescription, homeTitle, robots } from "@/lib/metadata";
-
-const display = localFont({
-  src: "../fonts/questrial-latin-400-normal.woff2",
-  variable: "--font-display",
-  weight: "400",
-  display: "swap",
-});
-
-const sans = localFont({
-  src: "../fonts/roboto-latin-wght-normal.woff2",
-  variable: "--font-sans",
-  weight: "100 900",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -44,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${display.variable} ${sans.variable}`}>
+    <html lang="fr">
       <body>
         {children}
         <Suspense fallback={null}>

@@ -11,8 +11,8 @@ const config: Config = {
         line: "#D5E3EA",
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["Questrial", "system-ui", "sans-serif"],
+        sans: ["'Roboto Variable'", "Roboto", "system-ui", "sans-serif"],
       },
     },
   },
