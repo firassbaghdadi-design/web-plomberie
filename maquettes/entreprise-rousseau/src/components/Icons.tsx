@@ -14,3 +14,21 @@ export function PinIcon({ className = "h-5 w-5" }: { className?: string }) {
     </svg>
   );
 }
+
+export function StarIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.3l6.9-1Z" />
+    </svg>
+  );
+}
+
+export function Stars({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <span className="inline-flex gap-0.5 text-brand-dark" aria-hidden="true">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <StarIcon key={i} className={className} />
+      ))}
+    </span>
+  );
+}

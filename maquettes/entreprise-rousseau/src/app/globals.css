@@ -13,20 +13,19 @@
     scroll-padding-top: 5rem;
   }
   body {
-    @apply bg-paper font-sans text-ink antialiased;
+    @apply bg-paper font-sans text-ink-soft antialiased;
     font-size: 1.0625rem;
-    line-height: 1.65;
+    line-height: 1.7;
   }
   h1,
   h2,
   h3 {
-    @apply font-display text-ink;
+    @apply font-display font-normal text-ink;
     text-wrap: balance;
   }
   :focus-visible {
-    outline: 3px solid #a9481f;
+    outline: 3px solid #26718c;
     outline-offset: 3px;
-    border-radius: 4px;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -44,15 +43,15 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-colors;
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm px-6 py-3 text-base font-medium transition-colors;
   }
   .btn-primary {
-    @apply btn bg-copper text-white hover:bg-copper-dark;
+    @apply btn bg-brand-dark text-white hover:bg-ink;
   }
   .btn-ghost {
-    @apply btn border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-paper-deep;
+    @apply btn border border-ink/30 bg-transparent text-ink hover:border-ink hover:bg-paper-deep;
   }
   .eyebrow {
-    @apply text-sm font-semibold uppercase tracking-[0.14em] text-copper-dark;
+    @apply text-sm font-medium uppercase tracking-[0.16em] text-brand-dark;
   }
 }

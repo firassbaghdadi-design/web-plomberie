@@ -8,16 +8,16 @@ import { GA_ID, INDEXABLE, SITE_URL, business } from "@/lib/site";
 import { homeDescription, homeTitle, robots } from "@/lib/metadata";
 
 const display = localFont({
-  src: "../fonts/fraunces-latin-wght-normal.woff2",
+  src: "../fonts/questrial-latin-400-normal.woff2",
   variable: "--font-display",
-  weight: "100 900",
+  weight: "400",
   display: "swap",
 });
 
 const sans = localFont({
-  src: "../fonts/instrument-sans-latin-wght-normal.woff2",
+  src: "../fonts/roboto-latin-wght-normal.woff2",
   variable: "--font-sans",
-  weight: "400 700",
+  weight: "100 900",
   display: "swap",
 });
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#12263A",
+  themeColor: "#0F3A4E",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

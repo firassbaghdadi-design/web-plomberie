@@ -1,1 +1,8 @@
-[]
+[
+  { "from": "/salles-de-bains-douches", "to": "/#salles-de-bains" },
+  { "from": "/nos-services-plomberie", "to": "/#plomberie" },
+  { "from": "/nos-services-chauffage", "to": "/#chauffage" },
+  { "from": "/nous-contacter-ou-envoyer-un-message-sur-formulaire", "to": "/#contact" },
+  { "from": "/salle-de-bains", "to": "/#salles-de-bains" },
+  { "from": "/page-bains-et-douches", "to": "/#salles-de-bains" }
+]

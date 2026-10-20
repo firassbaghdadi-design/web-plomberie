@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MockupBanner } from "@/components/MockupBanner";
 import { Process } from "@/components/Process";
 import { Reflexes } from "@/components/Reflexes";
+import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { StickyCall } from "@/components/StickyCall";
 import { TrustStrip } from "@/components/TrustStrip";
@@ -33,8 +34,15 @@ const graph = {
       legalName: business.legalName,
       url: `${SITE_URL}/`,
       telephone: business.phoneTel,
-      ...(business.email ? { email: business.email } : {}),
-      foundingDate: business.foundingYear,
+      email: business.email,
+      hasMap: business.mapsUrl,
+      geo: { "@type": "GeoCoordinates", latitude: business.geo.lat, longitude: business.geo.lng },
+      openingHoursSpecification: business.hours.map((slot) => ({
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: slot.opens,
+        closes: slot.closes,
+      })),
       description: homeDescription,
       address: {
         "@type": "PostalAddress",
@@ -45,7 +53,7 @@ const graph = {
       },
       areaServed: [
         { "@type": "City", name: "Paris" },
-        ...business.establishments.map((name) => ({ "@type": "City", name })),
+        { "@type": "AdministrativeArea", name: "Île-de-France" },
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
@@ -55,17 +63,6 @@ const graph = {
           itemOffered: { "@type": "Service", name: service.schemaName, provider: { "@id": businessId } },
         })),
       },
-      ...(business.reviews
-        ? {
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: business.reviews.rating,
-              ratingCount: business.reviews.count,
-              bestRating: 5,
-              worstRating: 1,
-            },
-          }
-        : {}),
     },
     {
       "@type": "WebSite",
@@ -114,6 +111,7 @@ export default function Home() {
         <Hero />
         <TrustStrip />
         <Services />
+        <Reviews />
         <Reflexes />
         <Process />
         <Contact />

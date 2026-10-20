@@ -15,17 +15,17 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#12263A",
-          color: "#FAF6F0",
+          background: "#0F3A4E",
+          color: "#FFFFFF",
           padding: 72,
         }}
       >
-        <div style={{ fontSize: 30, letterSpacing: 6, textTransform: "uppercase", color: "#E9C7B3" }}>
-          {`Depuis ${business.foundingYear} · Paris 14e`}
+        <div style={{ fontSize: 30, letterSpacing: 6, textTransform: "uppercase", color: "#9FD3E6" }}>
+          Plus de 80 ans · Paris 14e
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.05 }}>Plombier à Paris 14e</div>
-          <div style={{ fontSize: 44, color: "#E9C7B3" }}>{business.name}</div>
+          <div style={{ fontSize: 44, color: "#9FD3E6" }}>{business.name}</div>
         </div>
         <div style={{ fontSize: 34 }}>{`Plomberie · Chauffage · Salles de bains — ${business.phoneDisplay}`}</div>
       </div>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { INDEXABLE, SITE_URL, business } from "./site";
+import { INDEXABLE, SITE_URL, business, googleReviews } from "./site";
 
 export const homeTitle = `Plombier chauffagiste Paris 14e | ${business.name}`;
 
-export const homeDescription = `Plombier chauffagiste à Paris 14e depuis ${business.foundingYear} : dépannage de fuites, chauffage, salles de bains. Entreprise familiale. Appelez le ${business.phoneDisplay} pour un devis.`;
+export const homeDescription = `Plombier chauffagiste à Paris 14e depuis plus de 80 ans : dépannage, chaudières, salles de bains et douches. Noté ${googleReviews.rating.toString().replace(".", ",")}/5 sur Google. Appelez le ${business.phoneDisplay}.`;
 
 export const robots: Metadata["robots"] = INDEXABLE
   ? { index: true, follow: true }

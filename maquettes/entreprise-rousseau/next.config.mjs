@@ -8,7 +8,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async redirects() {
-    return redirects.map(({ from, to }) => ({ source: from, destination: to, permanent: true }));
+    return redirects.map(({ from, to }) => ({ source: from, destination: to, statusCode: 301 }));
   },
   async headers() {
     const security = [

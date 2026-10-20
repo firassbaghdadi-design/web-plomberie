@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { business } from "@/lib/site";
+import { business, images } from "@/lib/site";
 import { PhoneIcon } from "./Icons";
 
 const links = [
   { href: "#services", label: "Services" },
+  { href: "#avis", label: "Avis" },
   { href: "#fuite", label: "Fuite d'eau" },
-  { href: "#methode", label: "Méthode" },
   { href: "#contact", label: "Contact" },
   { href: "#questions", label: "Questions" },
 ];
@@ -13,17 +13,15 @@ const links = [
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="container-x flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex flex-col leading-none">
-          <span className="font-display text-xl font-semibold tracking-tight sm:text-2xl">{business.name}</span>
-          <span className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-copper-dark">
-            Depuis {business.foundingYear}
-          </span>
+      <div className="container-x flex h-[72px] items-center justify-between gap-4">
+        <Link href="/" className="flex h-12 items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={images.logo} alt={business.name} width={220} height={48} className="h-12 w-[220px] object-contain object-left" referrerPolicy="no-referrer" />
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden items-center gap-7 text-[0.95rem] font-medium lg:flex">
+        <nav aria-label="Navigation principale" className="hidden items-center gap-8 text-[0.95rem] font-medium text-ink lg:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="py-2 hover:text-copper-dark">
+            <a key={link.href} href={link.href} className="py-2 hover:text-brand-dark">
               {link.label}
             </a>
           ))}
@@ -35,15 +33,15 @@ export function Header() {
             {business.phoneDisplay}
           </a>
           <details className="group relative lg:hidden">
-            <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-ink/25 [&::-webkit-details-marker]:hidden">
+            <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-sm border border-ink/30 [&::-webkit-details-marker]:hidden">
               <span className="sr-only">Menu</span>
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="h-6 w-6 text-ink" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                 <path d="M4 7h16M4 12h16M4 17h16" />
               </svg>
             </summary>
-            <nav aria-label="Navigation mobile" className="absolute right-0 top-14 w-64 rounded-xl border border-line bg-paper p-2 shadow-lg">
+            <nav aria-label="Navigation mobile" className="absolute right-0 top-14 w-64 border border-line bg-paper p-2 shadow-lg">
               {links.map((link) => (
-                <a key={link.href} href={link.href} className="block rounded-lg px-4 py-3 font-medium hover:bg-paper-deep">
+                <a key={link.href} href={link.href} className="block px-4 py-3 font-medium text-ink hover:bg-paper-deep">
                   {link.label}
                 </a>
               ))}
