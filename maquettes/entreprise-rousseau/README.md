@@ -61,3 +61,9 @@ Manquent aussi : logo, couleurs et typographies réels, photos publiées par l'e
 3. Brancher les avis Google réels (`business.reviews`, `business.googleReviewUrl`) ; le JSON-LD `aggregateRating` s'ajoute alors automatiquement.
 4. Remplacer la palette et les typographies par celles de l'entreprise (`tailwind.config.ts`, `src/app/layout.tsx`).
 5. Déployer en privé (Vercel avec protection par mot de passe), jamais en public.
+
+## Déploiement actuel
+
+Déployé le 20/10/2026 sur le compte Vercel `firass.baghdadi@gmail.com` (projet `entreprise-rousseau-maquette`, production, Next.js, Node 22) par envoi direct des fichiers, sans dépôt Git lié. Protection « Vercel Authentication » sur tous les déploiements (connexion Vercel requise) et `noindex` : le lien reste privé. Pour le partager avec le prospect : Settings, Deployment Protection, ajouter un mot de passe ou un lien de partage.
+
+Logo et photos sont chargés depuis le CDN du site actuel (Webador) ; à télécharger et héberger avant une mise en production réelle.
