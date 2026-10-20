@@ -36,14 +36,11 @@ export const businessNode = {
   },
   openingHoursSpecification: business.hours.map((slot) => ({
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    dayOfWeek: slot.days,
     opens: slot.opens,
     closes: slot.closes,
   })),
-  areaServed: [
-    { "@type": "City", name: "Paris" },
-    { "@type": "AdministrativeArea", name: "Île-de-France" },
-  ],
+  areaServed: business.areaServed.map((a) => ({ "@type": a.type, name: a.name })),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Services de plomberie, chauffage et salles de bains",
@@ -109,7 +106,7 @@ export function serviceNode(name: string, path: string, description: string) {
     description,
     url: `${SITE_URL}${path}`,
     provider: { "@id": businessId },
-    areaServed: { "@type": "AdministrativeArea", name: "Paris et région parisienne" },
+    areaServed: { "@type": "AdministrativeArea", name: business.area },
   };
 }
 

@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --c-ink: 6 40 58;
+  --c-ink-2: 11 58 82;
+  --c-ink-soft: 74 90 99;
+  --c-paper-deep: 242 250 253;
+  --c-brand: 76 170 201;
+  --c-brand-dark: 38 113 140;
+  --c-brand-light: 159 211 230;
+  --c-brand-tint: 220 239 246;
+  --c-amber: 255 176 32;
+  --c-amber-dark: 245 158 11;
+  --c-line: 213 227 234;
+  --c-ocean-end: 15 74 102;
+}
+/* Sandrin-Rousseau : palette propre (bleu nuit et corail), même base typographique */
+html[data-brand="sandrin"] {
+  --c-ink: 14 34 56;
+  --c-ink-2: 20 52 82;
+  --c-ink-soft: 74 88 104;
+  --c-paper-deep: 244 248 252;
+  --c-brand: 58 134 184;
+  --c-brand-dark: 31 95 140;
+  --c-brand-light: 169 205 230;
+  --c-brand-tint: 226 238 247;
+  --c-amber: 255 138 91;
+  --c-amber-dark: 245 117 66;
+  --c-line: 214 224 234;
+  --c-ocean-end: 24 70 108;
+}
+
 @layer base {
   html,
   body {
@@ -26,7 +56,7 @@
     letter-spacing: -0.015em;
   }
   :focus-visible {
-    outline: 3px solid #ffb020;
+    outline: 3px solid rgb(var(--c-amber));
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -40,7 +70,7 @@
     @apply relative inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-7 py-3 text-base font-medium transition duration-300;
   }
   .btn-amber {
-    @apply btn bg-amber text-ink shadow-[0_10px_30px_-10px_rgba(255,176,32,0.9)] hover:-translate-y-0.5 hover:bg-amber-dark;
+    @apply btn bg-amber text-ink shadow-[0_10px_30px_-10px_rgb(var(--c-amber)/0.9)] hover:-translate-y-0.5 hover:bg-amber-dark;
   }
   .btn-dark {
     @apply btn bg-ink text-white hover:-translate-y-0.5 hover:bg-ink-2;
@@ -98,7 +128,7 @@
   z-index: 80;
   height: 3px;
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, #4caac9, #ffb020);
+  background: linear-gradient(90deg, rgb(var(--c-brand)), rgb(var(--c-amber)));
   transform: scaleX(0);
 }
 @supports (animation-timeline: scroll()) {
@@ -117,7 +147,7 @@
 .site-header {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid #d5e3ea;
+  border-bottom: 1px solid rgb(var(--c-line));
   transition: background 0.35s, border-color 0.35s, color 0.35s;
 }
 html[data-top="1"] .site-header {
@@ -134,7 +164,7 @@ html[data-top="1"] .site-header .logo-chip {
 }
 .nav-link {
   position: relative;
-  color: #06283a;
+  color: rgb(var(--c-ink));
 }
 .nav-link::after {
   content: "";
@@ -143,7 +173,7 @@ html[data-top="1"] .site-header .logo-chip {
   right: 0;
   bottom: -4px;
   height: 2px;
-  background: #ffb020;
+  background: rgb(var(--c-amber));
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -156,9 +186,9 @@ html[data-top="1"] .site-header .logo-chip {
 /* ---------- Hero : eau, vagues, bulles ---------- */
 .ocean {
   background:
-    radial-gradient(60% 80% at 85% 10%, rgba(76, 170, 201, 0.55), transparent 60%),
-    radial-gradient(50% 60% at 10% 90%, rgba(38, 113, 140, 0.6), transparent 60%),
-    linear-gradient(160deg, #06283a 0%, #0b3a52 55%, #0f4a66 100%);
+    radial-gradient(60% 80% at 85% 10%, rgb(var(--c-brand) / 0.55), transparent 60%),
+    radial-gradient(50% 60% at 10% 90%, rgb(var(--c-brand-dark) / 0.6), transparent 60%),
+    linear-gradient(160deg, rgb(var(--c-ink)) 0%, rgb(var(--c-ink-2)) 55%, rgb(var(--c-ocean-end)) 100%);
 }
 .wave-layer {
   position: absolute;
@@ -282,7 +312,7 @@ html.js-motion [data-reveal].is-in {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: #ffb020;
+  background: rgb(var(--c-amber));
   z-index: -1;
   animation: pulse-ring 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
 }
@@ -324,7 +354,7 @@ html.js-motion [data-reveal].is-in {
   transform: translateX(6px);
 }
 .outline-num {
-  -webkit-text-stroke: 1.5px rgba(38, 113, 140, 0.45);
+  -webkit-text-stroke: 1.5px rgb(var(--c-brand-dark) / 0.45);
   color: transparent;
 }
 

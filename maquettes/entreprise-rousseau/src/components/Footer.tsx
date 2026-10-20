@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { business, nav, sister } from "@/lib/site";
+import { business, copy, nav, sister } from "@/lib/site";
 import { Logo } from "./Photo";
 import { PinIcon } from "./Icons";
 
@@ -9,9 +9,9 @@ export function Footer() {
       <div className="container-x grid gap-12 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <div className="inline-block rounded-xl bg-white px-3 py-2">
-            <Logo id="logoRousseau" alt={business.name} className="h-11 w-auto" width={200} height={44} />
+            <Logo id={business.logo} alt={business.name} className="h-11 w-auto" width={200} height={44} />
           </div>
-          <p className="mt-5 max-w-xs text-sm leading-7">{business.tagline}. Depuis plus de 80 ans, partenaire de confiance des particuliers, des professionnels et des syndics de copropriété.</p>
+          <p className="mt-5 max-w-xs text-sm leading-7">{business.tagline}. {copy.common.footerBlurb}</p>
         </div>
         <nav aria-label="Plan du site">
           <p className="font-display text-lg text-white">Le site</p>
@@ -46,7 +46,11 @@ export function Footer() {
           </p>
         </address>
         <address className="text-sm not-italic leading-7">
-          <p className="font-display text-lg text-white">{sister.name}</p>
+          <p className="font-display text-lg text-white">
+            <a href={sister.url} className="hover:text-amber">
+              {sister.name}
+            </a>
+          </p>
           <p className="mt-4 flex gap-2">
             <PinIcon className="mt-1 h-4 w-4 shrink-0 text-brand-light" />
             <span>
@@ -67,7 +71,7 @@ export function Footer() {
         </address>
       </div>
       <div className="container-x mt-14 border-t border-white/10 pt-6 text-xs text-white/55">
-        {business.legalName} · SIREN {business.siren} · {business.address.street}, {business.address.postalCode} {business.address.city}
+        {business.legalName}, SAS · SIREN {business.siren}{business.name !== "Entreprise Rousseau" ? ` · enseigne ${business.name}` : ""} · {business.address.street}, {business.address.postalCode} {business.address.city}
       </div>
     </footer>
   );

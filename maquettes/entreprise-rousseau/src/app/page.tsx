@@ -6,15 +6,14 @@ import { Kinetic } from "@/components/Kinetic";
 import { Bubbles, Waves } from "@/components/Ocean";
 import { Logo, Photo } from "@/components/Photo";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
-import { PATHS, business, reviews, services, shortAnswer, sister } from "@/lib/site";
+import { PATHS, business, copy, reviews, services, shortAnswer, sister } from "@/lib/site";
 
-const title = `Plombier chauffagiste Paris 14e | ${business.name}`;
-const description = `Plombier chauffagiste à Paris 14e depuis plus de 80 ans : dépannage, chaudières, salles de bains et douches. Noté ${reviews.ratingText}/5 sur Google. Appelez le ${business.phoneDisplay}.`;
+const { title, description } = copy.home;
+const c = copy.home;
 
 export const metadata = pageMeta({ title, description, path: "/" });
 
 const icons = { plumbing: DropIcon, heating: FlameIcon, bathrooms: ShowerIcon } as const;
-const ticker = ["Urgences", "Remplacement de sanitaires", "Dépannages", "Chaudières à condensation", "Entretien de chaudières", "Radiateurs", "Robinets thermostatiques", "Salles de bains", "Douches", "Syndics de copropriété"];
 
 export default function Home() {
   return (
@@ -24,12 +23,12 @@ export default function Home() {
         <div className="container-x relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="eyebrow-light fade-up" style={{ ["--delay" as string]: "0.05s" }}>
-              Plomberie · Chauffage · Salles de bains
+              {c.eyebrow}
             </p>
             <h1 id="titre-principal" className="mt-5 text-[2.7rem] leading-[1.03] !text-white sm:text-6xl lg:text-[4.3rem]">
-              <Kinetic text="Plombier à Paris 14e," />
+              <Kinetic text={c.h1a} />
               <span className="block text-brand-light">
-                <Kinetic text="Entreprise Rousseau" />
+                <Kinetic text={c.h1b} />
               </span>
             </h1>
             <p className="lead reponse-bref fade-up mt-7 max-w-xl !text-white/85" style={{ ["--delay" as string]: "0.3s" }}>
@@ -57,19 +56,19 @@ export default function Home() {
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="parallax" style={{ ["--depth" as string]: -16 }}>
               <div data-tilt className="float-slow relative aspect-[5/6] overflow-hidden rounded-[2.2rem] border border-white/20 shadow-glow">
-                <Photo id="heroShower" alt="Salle de douche" sizes="(min-width:1024px) 45vw, 92vw" priority />
+                <Photo id={c.heroPhoto} alt={c.heroPhotoAlt} sizes="(min-width:1024px) 45vw, 92vw" priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
               </div>
             </div>
             <div className="parallax absolute -bottom-10 -left-4 w-[46%] sm:-left-12" style={{ ["--depth" as string]: 22 }}>
               <div className="float-slower relative aspect-square overflow-hidden rounded-[1.6rem] border-4 border-white shadow-lift">
-                <Photo id="bathRenov" alt="Salle de bains" sizes="22vw" />
+                <Photo id={c.secondPhoto} alt={c.secondPhotoAlt} sizes="22vw" />
               </div>
             </div>
             <div className="parallax absolute -right-2 top-8 sm:-right-8" style={{ ["--depth" as string]: 30 }}>
               <div className="float-slow rounded-2xl border border-white/25 bg-white/15 px-5 py-4 backdrop-blur-md">
-                <p className="font-display text-3xl text-white">+ de 80 ans</p>
-                <p className="mt-1 text-xs text-white/80">à Paris et en région parisienne</p>
+                <p className="font-display text-3xl text-white">{c.badgeTop}</p>
+                <p className="mt-1 text-xs text-white/80">{c.badgeBottom}</p>
               </div>
             </div>
           </div>
@@ -79,7 +78,7 @@ export default function Home() {
 
       <div className="overflow-hidden border-b border-line bg-white py-5" aria-hidden="true">
         <div className="ticker font-display text-xl text-ink/80">
-          {[...ticker, ...ticker].map((t, i) => (
+          {[...c.ticker, ...c.ticker].map((t, i) => (
             <span key={i} className="flex items-center gap-10 whitespace-nowrap">
               {t}
               <span className="h-2 w-2 rounded-full bg-amber" />
@@ -91,14 +90,15 @@ export default function Home() {
       <section aria-labelledby="titre-bienvenue" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div data-reveal="left">
-            <p className="eyebrow">Bienvenue</p>
+            <p className="eyebrow">{c.welcomeEyebrow}</p>
             <h2 id="titre-bienvenue" className="mt-3 text-4xl sm:text-6xl">
-              Depuis plus de 80 ans, vos partenaires de confiance.
+              {c.welcomeTitle}
             </h2>
           </div>
           <div data-reveal="right" className="space-y-5 text-lg">
-            <p>Depuis plus de 80 ans, nos entreprises sont vos partenaires de confiance pour tous vos besoins en plomberie, chauffage et salles de bains. Forts de notre expertise sur Paris et la région parisienne, nous nous engageons à vous offrir des solutions de qualité, durables et sur-mesure.</p>
-            <p>Nous maîtrisons l'art de la plomberie, du chauffage et de la création de salles de bains. Nous vous accompagnons de la conception à la réalisation, en assurant un travail soigné et conforme à vos attentes. Votre satisfaction est notre priorité.</p>
+            {c.welcome.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </section>
@@ -144,7 +144,7 @@ export default function Home() {
             <div>
               <p className="eyebrow">Salles de bains et douches</p>
               <h2 id="titre-galerie" className="mt-3 text-4xl sm:text-5xl">
-                Une salle de bains qui vous ressemble.
+                {c.galleryTitle}
               </h2>
             </div>
             <Link href={PATHS.bathrooms} className="arrow-link inline-flex items-center gap-2 font-medium text-brand-dark hover:text-ink">
@@ -153,15 +153,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid auto-rows-[200px] grid-cols-2 gap-4 sm:auto-rows-[240px] lg:grid-cols-4">
-            {[
-              { id: "bathInstall", alt: "Salle de douche", cls: "col-span-2 row-span-2" },
-              { id: "showerWide", alt: "Douche", cls: "" },
-              { id: "bathAdvice", alt: "Salle de bains", cls: "" },
-              { id: "bathWide", alt: "Salle de bains", cls: "col-span-2" },
-              { id: "showerWide2", alt: "Douche", cls: "col-span-2 lg:col-span-4" },
-            ].map((p, i) => (
+            {c.gallery.map((p, i) => (
               <div key={p.id} data-reveal="zoom" style={{ ["--d" as string]: `${i * 90}ms` }} className={`card-photo relative overflow-hidden rounded-3xl shadow-lift ${p.cls}`}>
-                <Photo id={p.id as never} alt={p.alt} sizes="(min-width:1024px) 40vw, 50vw" />
+                <Photo id={p.id} alt={p.alt} sizes="(min-width:1024px) 40vw, 50vw" />
               </div>
             ))}
           </div>
@@ -171,49 +165,61 @@ export default function Home() {
       <section aria-labelledby="titre-adresses" className="section bg-paper-deep">
         <div className="container-x">
           <p className="eyebrow" data-reveal>
-            Deux adresses
+            {c.agencyEyebrow}
           </p>
           <h2 id="titre-adresses" className="mt-3 max-w-3xl text-4xl sm:text-5xl" data-reveal>
-            Une même exigence, à Paris 14e et à Bourg-la-Reine.
+            {c.agencyTitle}
           </h2>
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {[
-              { logo: "logoRousseau" as const, name: business.name, street: business.address.street, zip: `${business.address.postalCode} ${business.address.city}`, tel: business.phoneDisplay, telHref: business.phoneTel, mail: business.email, hours: business.hoursText, photo: "storefrontRousseau" as const },
-              { logo: "logoSandrin" as const, name: sister.name, street: sister.street, zip: `${sister.postalCode} ${sister.city}`, tel: sister.phoneDisplay, telHref: sister.phoneTel, mail: sister.email, hours: sister.hoursText, photo: "storefrontSandrin" as const },
-            ].map((a, i) => (
-              <article key={a.name} data-reveal style={{ ["--d" as string]: `${i * 120}ms` }} className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift">
-                <div className="card-photo relative aspect-[16/8] bg-brand-tint">
-                  <Photo id={a.photo} alt={`Devanture ${a.name}`} sizes="(min-width:1024px) 45vw, 92vw" />
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+            <article data-reveal className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift">
+              <div className="card-photo relative aspect-[16/8] bg-brand-tint">
+                <Photo id={business.storefront} alt={`Devanture ${business.name}`} sizes="(min-width:1024px) 55vw, 92vw" />
+              </div>
+              <div className="p-7 sm:p-9">
+                <Logo id={business.logo} alt={business.name} className="h-12 w-auto" width={200} height={48} />
+                <p className="mt-5 flex gap-3">
+                  <PinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-dark" />
+                  <span>
+                    {business.address.street}, {business.address.postalCode} {business.address.city}
+                  </span>
+                </p>
+                <p className="mt-2 flex gap-3 text-sm">
+                  <ClockIcon className="mt-0.5 h-5 w-5 shrink-0 text-brand-dark" />
+                  <span>{business.hoursText}</span>
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={`tel:${business.phoneTel}`} className="btn-dark">
+                    <PhoneIcon /> {business.phoneDisplay}
+                  </a>
+                  <a href={`mailto:${business.email}`} className="btn-ghost">
+                    {business.email}
+                  </a>
                 </div>
-                <div className="p-7 sm:p-9">
-                  <Logo id={a.logo} alt={a.name} className="h-12 w-auto" width={200} height={48} />
-                  <p className="mt-5 flex gap-3">
-                    <PinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-dark" />
-                    <span>
-                      {a.street}, {a.zip}
-                    </span>
-                  </p>
-                  <p className="mt-2 flex gap-3 text-sm">
-                    <ClockIcon className="mt-0.5 h-5 w-5 shrink-0 text-brand-dark" />
-                    <span>{a.hours}</span>
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <a href={`tel:${a.telHref}`} className="btn-dark">
-                      <PhoneIcon /> {a.tel}
-                    </a>
-                    <a href={`mailto:${a.mail}`} className="btn-ghost">
-                      {a.mail}
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
+              </div>
+            </article>
+            <aside data-reveal style={{ ["--d" as string]: "120ms" }} className="flex flex-col justify-between rounded-[2rem] border border-line bg-white p-7 shadow-lift sm:p-9">
+              <div>
+                <p className="eyebrow">Notre autre adresse</p>
+                <h3 className="mt-3 text-3xl">{sister.name}</h3>
+                <p className="mt-4 flex gap-3">
+                  <PinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-dark" />
+                  <span>
+                    {sister.street}, {sister.postalCode} {sister.city}
+                  </span>
+                </p>
+                <p className="mt-3 text-sm">{sister.hoursText}</p>
+              </div>
+              <a href={sister.url} className="arrow-link mt-8 inline-flex items-center gap-2 font-medium text-brand-dark hover:text-ink">
+                Voir le site de {sister.name}
+                <ArrowIcon className="h-4 w-4" />
+              </a>
+            </aside>
           </div>
         </div>
       </section>
 
-      <FaqList keyName="home" title="Vos questions sur la plomberie à Paris" />
-      <CtaBand />
+      <FaqList keyName="home" title={c.faqTitle} />
+      <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path: "/" }), breadcrumbNode([{ name: "Accueil", path: "/" }]), faqNode("home")]} />
     </>
   );

@@ -1,6 +1,17 @@
-# Maquette — Entreprise Rousseau (Paris 14e)
+# Maquettes — Entreprise Rousseau (Paris 14e) et Sandrin-Rousseau (Bourg-la-Reine)
 
-Refonte multi-pages du site d'Entreprise Rousseau (Next.js 14, App Router, TypeScript, Tailwind). Maquette privée : `noindex` et `Disallow: /` par défaut.
+Refonte multi-pages (Next.js 14, App Router, TypeScript, Tailwind). Maquettes privées : `noindex` et `Disallow: /` par défaut.
+
+## Deux sites, une seule base de code
+
+Entreprise Rousseau (siège, Paris 14e) et Sandrin-Rousseau (établissement secondaire, 116 avenue du Général Leclerc, Bourg-la-Reine) sont une seule société (SIREN 552 034 704, SAS) avec deux adresses. Aujourd'hui, `sandrin.fr` renvoie vers `entreprise-rousseau.fr` : Bourg-la-Reine n'a aucun site propre, donc aucune visibilité locale. La refonte donne à chaque établissement son site, son domaine, son téléphone, son e-mail, sa fiche Google et ses textes (aucun contenu dupliqué).
+
+| Variable de build | Site | Domaine canonique |
+|---|---|---|
+| `NEXT_PUBLIC_BRAND` absente (ou `rousseau`) | Entreprise Rousseau | `www.entreprise-rousseau.fr` |
+| `NEXT_PUBLIC_BRAND=sandrin` | Sandrin-Rousseau | `www.sandrin.fr` |
+
+Les textes de chaque marque sont dans `src/lib/brands/` (`rousseau.ts`, `sandrin.ts`), la palette dans `src/app/globals.css` (`html[data-brand="sandrin"]`). Les deux sites gardent les mêmes URL que l'ancien site. Deux projets Vercel, un par marque, déployés depuis le même dépôt (répertoire racine `maquettes/entreprise-rousseau`). La palette Sandrin est une proposition : à ajuster sur le logo une fois celui-ci consultable.
 
 ## Pages et URL (identiques au site actuel)
 

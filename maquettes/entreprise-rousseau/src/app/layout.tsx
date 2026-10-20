@@ -11,22 +11,22 @@ import { JsonLd } from "@/components/JsonLd";
 import { MockupBadge } from "@/components/MockupBadge";
 import { Motion } from "@/components/Motion";
 import { StickyCall } from "@/components/StickyCall";
-import { GA_ID, INDEXABLE, SITE_URL, business } from "@/lib/site";
+import { GA_ID, INDEXABLE, SITE_URL, brand, business, copy } from "@/lib/site";
 import { businessNode, websiteNode } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: `Plombier chauffagiste Paris 14e | ${business.name}`, template: `%s | ${business.name}` },
+  title: { default: copy.home.title, template: `%s | ${business.name}` },
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#06283A" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: brand.theme.themeColor };
 
 const early = "document.documentElement.classList.add('js-motion');document.documentElement.dataset.top=window.scrollY<24?'1':'0';";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-brand={brand.id}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: early }} />
       </head>

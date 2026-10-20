@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Bubbles } from "@/components/Ocean";
-import { PATHS, business } from "@/lib/site";
+import { PATHS, business, copy } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Page introuvable", robots: { index: false, follow: false } };
 
@@ -11,7 +11,7 @@ export default function NotFound() {
       <Bubbles />
       <div className="container-x relative py-32">
         <p className="eyebrow-light">Erreur 404</p>
-        <h1 className="mt-4 max-w-3xl text-5xl !text-white sm:text-7xl">Cette page a pris l'eau.</h1>
+        <h1 className="mt-4 max-w-3xl text-5xl !text-white sm:text-7xl">{copy.common.notFoundTitle}</h1>
         <p className="lead mt-6 max-w-xl !text-white/85">Le lien est peut-être ancien. Retrouvez nos services ou appelez-nous directement, nous vous répondons.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/" className="btn-amber">

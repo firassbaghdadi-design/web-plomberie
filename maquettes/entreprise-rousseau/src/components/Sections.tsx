@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { business, faqs, PATHS, reflexes, reviews, steps } from "@/lib/site";
+import { business, copy, emergency, faqs, PATHS, reflexes, reviews, steps } from "@/lib/site";
 import { ArrowIcon, PhoneIcon, Stars } from "./Icons";
 import { Bubbles, Waves } from "./Ocean";
 import { Kinetic } from "./Kinetic";
@@ -103,10 +103,10 @@ export function FeatureRows({ items, accent, contactType }: { items: readonly { 
 
 export function Stats() {
   const stats = [
-    { n: 80, suffix: "+", label: "ans d'expérience à Paris", decimals: 0 },
+    { n: copy.stats.yearsNumber, suffix: "+", label: copy.stats.years, decimals: 0 },
     { n: reviews.rating, suffix: "/5", label: "note moyenne sur Google", decimals: 1 },
     { n: reviews.count, suffix: "", label: "avis clients Google", decimals: 0 },
-    { n: 3, suffix: "", label: "métiers : plomberie, chauffage, salles de bains", decimals: 0 },
+    { n: 3, suffix: "", label: copy.stats.trades, decimals: 0 },
   ];
   return (
     <section aria-label="Chiffres clés" className="relative overflow-hidden bg-ink py-16 text-white">
@@ -152,7 +152,7 @@ export function ReviewsMarquee() {
           <div data-reveal>
             <p className="eyebrow">Avis clients</p>
             <h2 id="titre-avis" className="mt-3 text-4xl sm:text-6xl">
-              Ils nous ont fait confiance.
+              {copy.common.reviewsTitle}
             </h2>
           </div>
           <div data-reveal style={{ ["--d" as string]: "100ms" }} className="flex flex-wrap items-center gap-5 lg:justify-end">
@@ -167,8 +167,8 @@ export function ReviewsMarquee() {
         </div>
       </div>
       <div className="mt-12 space-y-5">
-        {row(quotes.slice(0, 4), false, "85s")}
-        {row(quotes.slice(4), true, "95s")}
+        {row(quotes.slice(0, Math.ceil(quotes.length / 2)), false, "85s")}
+        {row(quotes.slice(Math.ceil(quotes.length / 2)), true, "95s")}
       </div>
       <div className="container-x mt-10 flex flex-wrap items-center gap-3">
         <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
@@ -191,10 +191,10 @@ export function Process() {
           Notre méthode
         </p>
         <h2 id="titre-methode" data-reveal className="mt-3 max-w-3xl text-4xl sm:text-6xl">
-          Comment se déroule une intervention ?
+          {copy.common.processTitle}
         </h2>
         <p data-reveal className="lead mt-5 max-w-2xl">
-          Un appel, une évaluation sur place, un devis accepté avant les travaux, puis l'intervention et sa facture détaillée.
+          {copy.common.processLead}
         </p>
         <ol className="relative mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <span className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-brand via-brand-light to-transparent lg:block" aria-hidden="true" />
@@ -219,9 +219,9 @@ export function Emergency() {
         <div data-reveal="left">
           <p className="eyebrow-light">Urgence</p>
           <h2 id="titre-fuite" className="mt-3 text-4xl !text-white sm:text-5xl">
-            Que faire en cas de fuite d'eau avant l'arrivée du plombier ?
+            {emergency.title}
           </h2>
-          <p className="lead mt-5 !text-white/85">Coupez l'arrivée d'eau, mettez hors tension les appareils proches de l'eau, limitez les dégâts, puis appelez un plombier. Ces gestes réduisent les dégâts en quelques minutes.</p>
+          <p className="lead mt-5 !text-white/85">{emergency.lead}</p>
           <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber pulse mt-8">
             <PhoneIcon />
             Appeler le {business.phoneDisplay}
@@ -268,7 +268,7 @@ export function FaqList({ keyName, title = "Vos questions" }: { keyName: keyof t
   );
 }
 
-export function CtaBand({ title = "Un problème, un projet ? Parlons-en.", text = "Décrivez votre demande : nous vous répondons directement." }: { title?: string; text?: string }) {
+export function CtaBand({ title = copy.home.ctaTitle, text = copy.home.ctaText }: { title?: string; text?: string }) {
   return (
     <section aria-labelledby="titre-cta" className="relative overflow-hidden bg-ink py-20 text-white sm:py-28">
       <div className="ocean absolute inset-0" aria-hidden="true" />

@@ -12,7 +12,7 @@ export function Header() {
     <header className="site-header fixed inset-x-0 top-0 z-50">
       <div className="container-x flex h-[76px] items-center justify-between gap-4">
         <Link href="/" className="logo-chip flex items-center" aria-label={`${business.name}, accueil`}>
-          <Logo id="logoRousseau" alt={business.name} className="h-11 w-auto max-w-[200px] object-contain" width={200} height={44} />
+          <Logo id={business.logo} alt={business.name} className="h-11 w-auto max-w-[200px] object-contain" width={200} height={44} />
         </Link>
 
         <nav aria-label="Navigation principale" className="hidden items-center gap-8 text-[0.95rem] font-medium xl:flex">

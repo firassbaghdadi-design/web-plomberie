@@ -6,20 +6,17 @@ import { Kinetic } from "@/components/Kinetic";
 import { Breadcrumb } from "@/components/Sections";
 import { Logo, Photo } from "@/components/Photo";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
-import { PATHS, business, requestTypes, sister } from "@/lib/site";
+import { PATHS, business, copy, requestTypes, sister } from "@/lib/site";
 
-const title = "Contact et devis plombier Paris 14e | Entreprise Rousseau";
-const description = "Contactez Entreprise Rousseau, plombier chauffagiste à Paris 14e : téléphone, e-mail, horaires et formulaire de devis pour plomberie, chauffage ou salle de bains.";
+const c = copy.contact;
+const { title, description } = c;
 const path = PATHS.contact;
 
 export const metadata = pageMeta({ title, description, path });
 
 export default function Page({ searchParams }: { searchParams: { demande?: string } }) {
   const type = requestTypes.some((t) => t.value === searchParams.demande) ? (searchParams.demande as string) : "plomberie";
-  const cards = [
-    { logo: "logoRousseau" as const, photo: "storefrontRousseau" as const, name: business.name, street: business.address.street, zip: `${business.address.postalCode} ${business.address.city}`, tel: business.phoneDisplay, telHref: business.phoneTel, mail: business.email, hours: `Bureau ouvert au public : ${business.hoursText.toLowerCase()}.` },
-    { logo: "logoSandrin" as const, photo: "storefrontSandrin" as const, name: sister.name, street: sister.street, zip: `${sister.postalCode} ${sister.city}`, tel: sister.phoneDisplay, telHref: sister.phoneTel, mail: sister.email, hours: `Bureau ouvert au public : ${sister.hoursText.toLowerCase()}.` },
-  ];
+  const own = { logo: business.logo, photo: business.storefront, name: business.name, street: business.address.street, zip: `${business.address.postalCode} ${business.address.city}`, tel: business.phoneDisplay, telHref: business.phoneTel, mail: business.email, hours: `Bureau ouvert au public : ${business.hoursText.toLowerCase()}.` };
   return (
     <>
       <section data-stage className="ocean relative overflow-hidden pb-36 pt-36 text-white sm:pt-44" aria-labelledby="titre-page">
@@ -27,10 +24,10 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
         <div className="container-x relative">
           <Breadcrumb items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
           <h1 id="titre-page" className="mt-6 max-w-4xl text-[2.6rem] leading-[1.05] !text-white sm:text-6xl">
-            <Kinetic text="Nous contacter ou envoyer un message" />
+            <Kinetic text={c.h1} />
           </h1>
           <p className="lead fade-up mt-6 max-w-2xl !text-white/85" style={{ ["--delay" as string]: "0.3s" }}>
-            Appelez-nous, écrivez-nous ou remplissez le formulaire : votre demande arrive directement dans la boîte e-mail de l'entreprise.
+            {c.lead}
           </p>
           <div className="fade-up mt-8 flex flex-wrap gap-3" style={{ ["--delay" as string]: "0.45s" }}>
             <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber pulse">
@@ -55,7 +52,7 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
             <ContactForm defaultType={type} />
           </div>
           <div className="space-y-6" data-reveal="right">
-            {cards.map((c) => (
+            {[own].map((c) => (
               <article key={c.name} className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift">
                 <div className="card-photo relative aspect-[16/7] bg-brand-tint">
                   <Photo id={c.photo} alt={`Devanture ${c.name}`} sizes="(min-width:1024px) 40vw, 92vw" />
@@ -86,8 +83,14 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
               </article>
             ))}
             <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full">
-              Itinéraire vers Paris 14e<span className="sr-only"> (nouvel onglet)</span>
+              {copy.contact.routeLabel}<span className="sr-only"> (nouvel onglet)</span>
             </a>
+            <p className="rounded-2xl bg-paper-deep p-5 text-sm">
+              {sister.name} · {sister.street}, {sister.postalCode} {sister.city} ·{" "}
+              <a href={sister.url} className="font-medium text-brand-dark underline underline-offset-4 hover:text-ink">
+                voir son site
+              </a>
+            </p>
           </div>
         </div>
       </section>
