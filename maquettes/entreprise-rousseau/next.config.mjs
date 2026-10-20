@@ -7,6 +7,7 @@ const indexable = process.env.NEXT_PUBLIC_INDEXABLE === "true";
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  images: { formats: ["image/avif", "image/webp"] },
   async redirects() {
     return redirects.map(({ from, to }) => ({ source: from, destination: to, statusCode: 301 }));
   },

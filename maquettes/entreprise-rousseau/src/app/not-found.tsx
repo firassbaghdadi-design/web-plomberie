@@ -1,25 +1,30 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { business } from "@/lib/site";
+import { Bubbles } from "@/components/Ocean";
+import { PATHS, business } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Page introuvable", robots: { index: false, follow: false } };
 
 export default function NotFound() {
   return (
-    <main id="contenu" className="container-x flex min-h-screen flex-col items-start justify-center gap-6 py-24">
-      <p className="eyebrow">Erreur 404</p>
-      <h1 className="text-4xl sm:text-5xl">Cette page n'existe pas (ou plus).</h1>
-      <p className="max-w-xl text-ink-soft">
-        Le lien est peut-être ancien. Revenez à l'accueil ou appelez-nous directement, nous vous répondons.
-      </p>
-      <div className="flex flex-wrap gap-3">
-        <Link href="/" className="btn-primary">
-          Retour à l'accueil
-        </Link>
-        <a href={`tel:${business.phoneTel}`} className="btn-ghost">
-          Appeler le {business.phoneDisplay}
-        </a>
+    <section className="ocean relative flex min-h-screen items-center overflow-hidden text-white">
+      <Bubbles />
+      <div className="container-x relative py-32">
+        <p className="eyebrow-light">Erreur 404</p>
+        <h1 className="mt-4 max-w-3xl text-5xl !text-white sm:text-7xl">Cette page a pris l'eau.</h1>
+        <p className="lead mt-6 max-w-xl !text-white/85">Le lien est peut-être ancien. Retrouvez nos services ou appelez-nous directement, nous vous répondons.</p>
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link href="/" className="btn-amber">
+            Retour à l'accueil
+          </Link>
+          <Link href={PATHS.plumbing} className="btn-ghost-light">
+            Nos services plomberie
+          </Link>
+          <a href={`tel:${business.phoneTel}`} className="btn-ghost-light">
+            {business.phoneDisplay}
+          </a>
+        </div>
       </div>
-    </main>
+    </section>
   );
 }

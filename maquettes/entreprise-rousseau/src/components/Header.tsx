@@ -1,49 +1,45 @@
+"use client";
+
 import Link from "next/link";
-import { business, images } from "@/lib/site";
+import { usePathname } from "next/navigation";
+import { business, nav } from "@/lib/site";
+import { Logo } from "./Photo";
 import { PhoneIcon } from "./Icons";
 
-const links = [
-  { href: "#services", label: "Services" },
-  { href: "#avis", label: "Avis" },
-  { href: "#fuite", label: "Fuite d'eau" },
-  { href: "#contact", label: "Contact" },
-  { href: "#questions", label: "Questions" },
-];
-
 export function Header() {
+  const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="container-x flex h-[72px] items-center justify-between gap-4">
-        <Link href="/" className="flex h-12 items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={images.logo} alt={business.name} width={220} height={48} className="h-12 w-[220px] object-contain object-left" referrerPolicy="no-referrer" />
+    <header className="site-header fixed inset-x-0 top-0 z-50">
+      <div className="container-x flex h-[76px] items-center justify-between gap-4">
+        <Link href="/" className="logo-chip flex items-center" aria-label={`${business.name}, accueil`}>
+          <Logo id="logoRousseau" alt={business.name} className="h-11 w-auto max-w-[200px] object-contain" width={200} height={44} />
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden items-center gap-8 text-[0.95rem] font-medium text-ink lg:flex">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} className="py-2 hover:text-brand-dark">
-              {link.label}
-            </a>
+        <nav aria-label="Navigation principale" className="hidden items-center gap-8 text-[0.95rem] font-medium xl:flex">
+          {nav.map((item) => (
+            <Link key={item.href} href={item.href} className="nav-link py-2" aria-current={pathname === item.href ? "page" : undefined}>
+              {item.label}
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-primary !min-h-[44px] !px-4 !py-2 max-sm:hidden">
+          <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber pulse !min-h-[46px] !px-5 !py-2 max-sm:hidden">
             <PhoneIcon />
             {business.phoneDisplay}
           </a>
-          <details className="group relative lg:hidden">
-            <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-sm border border-ink/30 [&::-webkit-details-marker]:hidden">
+          <details className="group relative xl:hidden">
+            <summary className="menu-btn flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-current text-ink">
               <span className="sr-only">Menu</span>
-              <svg viewBox="0 0 24 24" className="h-6 w-6 text-ink" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                 <path d="M4 7h16M4 12h16M4 17h16" />
               </svg>
             </summary>
-            <nav aria-label="Navigation mobile" className="absolute right-0 top-14 w-64 border border-line bg-paper p-2 shadow-lg">
-              {links.map((link) => (
-                <a key={link.href} href={link.href} className="block px-4 py-3 font-medium text-ink hover:bg-paper-deep">
-                  {link.label}
-                </a>
+            <nav aria-label="Navigation mobile" className="absolute right-0 top-14 w-72 rounded-2xl border border-line bg-white p-2 shadow-lift">
+              {nav.map((item) => (
+                <Link key={item.href} href={item.href} className="block rounded-xl px-4 py-3 font-medium text-ink hover:bg-paper-deep" aria-current={pathname === item.href ? "page" : undefined}>
+                  {item.label}
+                </Link>
               ))}
             </nav>
           </details>

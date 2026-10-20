@@ -35,7 +35,7 @@ export function Analytics() {
       });
       if (changed) window.history.replaceState(null, "", `${path}?${next.toString()}`);
     } catch {
-      /* storage indisponible : on ignore */
+      /* stockage indisponible */
     }
   }, [path, params]);
 
