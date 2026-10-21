@@ -34,7 +34,7 @@ La discrétion s'obtient donc avec une structure (micro-entreprise ou société)
 ## Ce qu'il faut mettre en place avant le premier contact (dans l'ordre)
 
 1. **Entité juridique** : micro-entreprise ou société, avec adresse professionnelle ou domiciliation. Sans elle, pas de devis ni de facture possibles.
-2. **Nom d'agence** libre de droits : vérifier sur la base de l'INPI et sur le registre des entreprises, puis réserver le domaine.
+2. **Nom d'agence** : **Atelier Truelle** retenu (voir `marque/atelier-truelle/identite.md`). Vérifications faites : aucune marque ni société du même nom, domaines `ateliertruelle.fr` et `.com` libres. Reste à réserver le domaine.
 3. **Domaine et boîte e-mail** professionnels (par exemple `contact@[agence].fr`) avec SPF, DKIM et DMARC configurés, pour que les e-mails n'arrivent pas en indésirables.
 4. **Numéro de téléphone professionnel** dédié, avec messagerie au nom de l'agence.
 5. **Site d'agence réécrit** : une page d'accueil claire pour les plombiers et chauffagistes, une page offres avec les 3 niveaux, une page « comment ça se passe », mentions légales complètes, formulaire et téléphone. Références : les maquettes Rousseau et Sandrin-Rousseau, présentées comme des maquettes de démonstration, avec accord de l'entreprise si on les nomme.
@@ -57,7 +57,7 @@ Sans téléphone ni visite, le taux de réponse sera plus faible sur des dirigea
 ## Décisions à prendre
 
 1. Statut : micro-entreprise ou société ? Domiciliation ?
-2. Nom d'agence : choisir un nom neuf (3 propositions à valider auprès de l'INPI).
+2. Nom d'agence : tranché, **Atelier Truelle** (à confirmer par une recherche d'antériorités complète avant dépôt de marque).
 3. Appel téléphonique assumé sous un prénom, ou délégué ?
 4. Maquettes : lien libre non devinable, ou mot de passe ?
 
