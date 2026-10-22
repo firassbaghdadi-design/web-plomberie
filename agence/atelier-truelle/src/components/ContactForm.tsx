@@ -66,7 +66,7 @@ export function ContactForm({ defaultType = "maquette", email }: { defaultType?:
   return (
     <form onSubmit={onSubmit} noValidate className="card">
       <h2 className="text-3xl sm:text-4xl">Écrivez-nous</h2>
-      <p className="mt-2">Dites-nous qui vous êtes : nous préparons la maquette et revenons vers vous.</p>
+      <p className="mt-2">Dites-nous qui vous êtes : nous revenons vers vous par e-mail.</p>
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>
@@ -105,6 +105,12 @@ export function ContactForm({ defaultType = "maquette", email }: { defaultType?:
             Téléphone <span className="font-normal text-zinc-dark">(facultatif)</span>
           </label>
           <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className={field} />
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="trade" className={label}>
+            Votre métier <span className="font-normal text-zinc-dark">(facultatif)</span>
+          </label>
+          <input id="trade" name="trade" placeholder="Plombier, électricien, couvreur…" className={field} />
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="siteUrl" className={label}>

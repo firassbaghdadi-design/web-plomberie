@@ -3,21 +3,21 @@ import { CtaBand, PageHeader } from "@/components/Sections";
 import { breadcrumbNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
 import { PATHS, method } from "@/lib/site";
 
-const title = "Méthode de refonte de site pour artisans | Atelier Truelle";
-const description = "Audit, maquette privée, reprise des contenus, redirections : comment Atelier Truelle refait le site d'un artisan sans perdre son référencement ni ses pages.";
+const title = "Notre méthode de travail pour le bâtiment | Atelier Truelle";
+const description = "Audit, maquette privée, reprise des contenus, redirections et mesure : comment Atelier Truelle développe votre visibilité sans perdre votre référencement.";
 const path = PATHS.method;
-const intro = "Atelier Truelle refait le site d'une entreprise du bâtiment en sept étapes : audit de l'existant, maquette privée, reprise des contenus, construction pensée pour le téléphone, référencement, mise en ligne avec redirections et suivi. Vous voyez la maquette avant tout devis.";
+const intro = "Atelier Truelle travaille en sept étapes : audit de l'existant, maquette privée, reprise des contenus, construction pensée pour le téléphone, référencement, mise en ligne avec redirections, puis mesure et amélioration. Vous voyez la maquette avant tout devis et décidez à chaque étape.";
 
 export const metadata = pageMeta({ title, description, path });
 
 export default function Page() {
   return (
     <>
-      <PageHeader eyebrow="Notre méthode" title="Comment nous refaisons le site d'une entreprise du bâtiment." lead="Sept étapes, du premier regard sur votre site à son suivi dans le temps. Rien n'est caché, et vous décidez à chaque étape." crumbs={[{ name: "Accueil", href: "/" }, { name: "Méthode" }]} />
+      <PageHeader eyebrow="Notre méthode" title="Comment nous développons la visibilité d'une entreprise du bâtiment." lead="Sept étapes, du premier regard sur votre site à son suivi dans le temps. Rien n'est caché, et vous décidez à chaque étape." crumbs={[{ name: "Accueil", href: "/" }, { name: "Méthode" }]} />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
           <h2 id="titre-intro" data-reveal className="text-3xl sm:text-4xl">
-            Que comprend concrètement une refonte ?
+            Comment travaille Atelier Truelle ?
           </h2>
           <p data-reveal className="reponse-bref mt-6 text-lg">
             {intro}
@@ -42,7 +42,7 @@ export default function Page() {
         </div>
       </section>
       <CtaBand title="Commençons par la maquette." text="Elle ne vous coûte rien et ne vous engage à rien." />
-      <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Méthode", path }]), serviceNode("Refonte de site web pour artisans du bâtiment", path, intro)]} />
+      <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Méthode", path }]), serviceNode("Marketing digital pour entreprises du bâtiment", path, intro)]} />
     </>
   );
 }

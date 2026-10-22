@@ -10,13 +10,13 @@ export default function NotFound() {
       <div className="container-x py-24">
         <p className="eyebrow">Erreur 404</p>
         <h1 className="mt-4 max-w-3xl text-5xl sm:text-7xl">Cette page n'existe pas (ou plus).</h1>
-        <p className="mt-6 max-w-xl text-lg">Le lien est peut-être ancien. Retrouvez nos offres ou écrivez-nous.</p>
+        <p className="mt-6 max-w-xl text-lg">Le lien est peut-être ancien. Retrouvez nos services ou écrivez-nous.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/" className="btn-primary">
             Retour à l'accueil
           </Link>
-          <Link href={PATHS.offers} className="btn-ghost">
-            Nos offres
+          <Link href={PATHS.services} className="btn-ghost">
+            Nos services
           </Link>
         </div>
       </div>

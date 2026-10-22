@@ -29,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-terre-action focus:px-5 focus:py-3 focus:font-bold focus:text-white">
           Aller au contenu
         </a>
+        <div className="progress" aria-hidden="true" />
         <Header />
         <main id="contenu">{children}</main>
         <Footer />

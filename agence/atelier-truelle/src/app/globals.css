@@ -138,3 +138,74 @@ input[type="range"].compare::-moz-range-thumb {
   background: #b24630;
   border: 4px solid #fbf8f2;
 }
+
+/* ---------- Défilement horizontal ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .orbit-ring {
+    animation: spin 60s linear infinite;
+  }
+  .orbit-item {
+    animation: spin-back 60s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes spin-back {
+    to {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+  .word {
+    animation: word-up 0.8s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes word-up {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  .progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 80;
+    height: 3px;
+    background: linear-gradient(90deg, #c8553d, #8f3624);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+  @supports (animation-timeline: scroll()) {
+    .progress {
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+  @keyframes progress-grow {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+.service-card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 34px 60px -30px rgba(31, 42, 48, 0.5);
+}

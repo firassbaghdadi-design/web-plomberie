@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PATHS, faqs } from "@/lib/site";
+import { PATHS, type Faq } from "@/lib/site";
 import { ArrowIcon } from "./Icons";
 
 export function Breadcrumb({ items }: { items: { name: string; href?: string }[] }) {
@@ -42,7 +42,7 @@ export function PageHeader({ eyebrow, title, lead, crumbs }: { eyebrow: string; 
   );
 }
 
-export function FaqList({ title = "Vos questions" }: { title?: string }) {
+export function FaqList({ items, title = "Vos questions" }: { items: readonly Faq[]; title?: string }) {
   return (
     <section id="questions" aria-labelledby="titre-faq" className="section">
       <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
@@ -53,7 +53,7 @@ export function FaqList({ title = "Vos questions" }: { title?: string }) {
           </h2>
         </div>
         <div className="divide-y divide-line border-y border-line" data-reveal style={{ ["--d" as string]: "100ms" }}>
-          {faqs.map((item) => (
+          {items.map((item) => (
             <details key={item.q} className="group py-6">
               <summary className="flex min-h-[48px] cursor-pointer items-center justify-between gap-6 font-display text-xl font-bold text-ardoise">
                 {item.q}
@@ -70,7 +70,7 @@ export function FaqList({ title = "Vos questions" }: { title?: string }) {
   );
 }
 
-export function CtaBand({ title = "Voir votre site, avant de décider.", text = "Dites-nous quelle est votre entreprise : nous préparons une maquette gratuite avec votre logo et vos couleurs." }: { title?: string; text?: string }) {
+export function CtaBand({ title = "Voyez le résultat, avant de décider.", text = "Dites-nous quelle est votre entreprise : nous préparons une maquette gratuite avec votre logo et vos couleurs, sans engagement." }: { title?: string; text?: string }) {
   return (
     <section aria-labelledby="titre-cta" className="bg-ardoise py-20 text-platre sm:py-28">
       <div className="container-x text-center">
@@ -85,8 +85,8 @@ export function CtaBand({ title = "Voir votre site, avant de décider.", text = 
             Recevoir une maquette gratuite
             <ArrowIcon />
           </Link>
-          <Link href={PATHS.offers} className="btn !border-2 border-platre/30 !px-9 !py-4 text-lg text-platre hover:bg-platre/10">
-            Voir les offres
+          <Link href={PATHS.services} className="btn !border-2 border-platre/30 !px-9 !py-4 text-lg text-platre hover:bg-platre/10">
+            Voir nos services
           </Link>
         </div>
       </div>

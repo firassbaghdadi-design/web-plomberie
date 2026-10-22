@@ -14,7 +14,7 @@ export function Header() {
         <Link href="/" aria-label="Atelier Truelle, accueil" className="trowel-wiggle">
           <Logo />
         </Link>
-        <nav aria-label="Navigation principale" className="hidden items-center gap-8 font-display text-[0.95rem] font-bold md:flex">
+        <nav aria-label="Navigation principale" className="hidden items-center gap-7 font-display text-[0.95rem] font-bold lg:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="py-2 text-ardoise decoration-terre-action decoration-2 underline-offset-8 hover:underline aria-[current=page]:underline" aria-current={pathname === item.href ? "page" : undefined}>
               {item.label}
@@ -23,7 +23,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           {agency.phoneTel ? (
-            <a href={`tel:${agency.phoneTel}`} className="btn-ghost !min-h-[46px] !px-5 !py-2 max-lg:hidden">
+            <a href={`tel:${agency.phoneTel}`} className="btn-ghost !min-h-[46px] !px-5 !py-2 max-xl:hidden">
               <PhoneIcon className="h-4 w-4" />
               {agency.phoneDisplay}
             </a>
@@ -31,7 +31,7 @@ export function Header() {
           <Link href={`${PATHS.contact}?sujet=maquette`} className="btn-primary !min-h-[46px] !px-5 !py-2 max-sm:hidden">
             Maquette gratuite
           </Link>
-          <details className="relative md:hidden">
+          <details className="relative lg:hidden">
             <summary className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border-2 border-ardoise/20 text-ardoise">
               <span className="sr-only">Menu</span>
               <MenuIcon />

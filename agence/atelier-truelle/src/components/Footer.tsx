@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { PATHS, agency, nav } from "@/lib/site";
+import { PATHS, agency, nav, services } from "@/lib/site";
 import { legal, TODO } from "@/lib/legal";
 import { Logo } from "./Logo";
 
 export function Footer() {
   return (
     <footer className="bg-ardoise pb-10 pt-16 text-platre/75">
-      <div className="container-x grid gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div className="container-x grid gap-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <Logo light />
-          <p className="mt-5 max-w-sm text-sm leading-7">{agency.tagline}. Nous refaisons le site de votre entreprise à votre image et nous vous le montrons avant que vous décidiez quoi que ce soit.</p>
+          <p className="mt-5 max-w-sm text-sm leading-7">{agency.tagline}. Un seul interlocuteur pour votre site, votre référencement, votre fiche Google, votre publicité et le suivi de vos demandes.</p>
         </div>
         <nav aria-label="Plan du site">
           <p className="font-display text-lg font-bold text-platre">Le site</p>
@@ -18,6 +18,18 @@ export function Footer() {
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-platre hover:underline">
                   {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Services" className="text-sm">
+          <p className="font-display text-lg font-bold text-platre">Services</p>
+          <ul className="mt-4 space-y-2">
+            {services.map((s) => (
+              <li key={s.slug}>
+                <Link href={`${PATHS.services}/${s.slug}`} className="hover:text-platre hover:underline">
+                  {s.name}
                 </Link>
               </li>
             ))}

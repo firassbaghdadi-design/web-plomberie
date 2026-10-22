@@ -15,7 +15,7 @@ export default function Page({ searchParams }: { searchParams: { sujet?: string 
   const type = requestTypes.some((t) => t.value === searchParams.sujet) ? (searchParams.sujet as string) : "maquette";
   return (
     <>
-      <PageHeader eyebrow="Contact" title="Recevoir une maquette gratuite de votre site." lead="Indiquez votre entreprise et, si vous en avez un, l'adresse de votre site actuel. Nous préparons la maquette et revenons vers vous par e-mail." crumbs={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
+      <PageHeader eyebrow="Contact" title="Parlons de votre visibilité en ligne." lead="Indiquez votre entreprise et, si vous en avez un, l'adresse de votre site actuel. Nous préparons une maquette gratuite ou un premier point sur votre visibilité, et revenons vers vous par e-mail." crumbs={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
       <section className="section pt-12 sm:pt-16" aria-labelledby="titre-form">
         <h2 id="titre-form" className="sr-only">
           Formulaire de contact
@@ -46,8 +46,8 @@ export default function Page({ searchParams }: { searchParams: { sujet?: string 
               <h3 className="text-2xl">Et ensuite ?</h3>
               <ol className="mt-4 list-decimal space-y-2 pl-5">
                 <li>Nous regardons votre site et votre fiche Google.</li>
-                <li>Nous préparons une maquette privée à votre charte.</li>
-                <li>Nous vous envoyons le lien, sans engagement.</li>
+                <li>Nous préparons une maquette privée à votre charte, ou un premier point sur votre visibilité.</li>
+                <li>Nous vous répondons par e-mail, sans engagement.</li>
               </ol>
             </div>
           </aside>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { INDEXABLE, LAST_UPDATED, SITE_URL, agency, faqs } from "./site";
+import { INDEXABLE, LAST_UPDATED, SITE_URL, agency, type Faq } from "./site";
 
 type PageInput = { title: string; description: string; path: string };
 
@@ -23,11 +23,11 @@ export const organisationNode = {
   name: agency.name,
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/logo.svg`,
-  description: "Agence web qui refait les sites des plombiers, chauffagistes et artisans du bâtiment.",
+  description: "Agence web et de marketing digital spécialisée dans les entreprises du bâtiment : site web, référencement local, fiche Google et avis, publicité en ligne, suivi des demandes.",
   email: agency.email,
   ...(agency.phoneTel ? { telephone: agency.phoneTel } : {}),
   areaServed: { "@type": "AdministrativeArea", name: agency.area },
-  knowsAbout: ["Création de site web", "Référencement local", "Fiche d'établissement Google", "Plomberie", "Chauffage"],
+  knowsAbout: ["Création de site web", "Référencement local", "Fiche d'établissement Google", "Publicité en ligne", "Marketing digital", "Plomberie", "Chauffage", "Électricité", "Couverture"],
 };
 
 export const websiteNode = {
@@ -67,10 +67,12 @@ export function webPageNode({ title, description, path }: PageInput) {
   };
 }
 
-export const faqNode = {
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
-};
+export function faqNode(items: readonly Faq[]) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
+  };
+}
 
 export function serviceNode(name: string, path: string, description: string) {
   return { "@type": "Service", name, description, url: `${SITE_URL}${path}`, provider: { "@id": orgId }, areaServed: { "@type": "AdministrativeArea", name: agency.area } };

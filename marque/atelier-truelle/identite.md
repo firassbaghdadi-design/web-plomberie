@@ -3,7 +3,7 @@
 ## Le choix
 
 **Nom : Atelier Truelle**
-**Signature : « Sites web pour plombiers et artisans du bâtiment. »**
+**Signature : « Agence web et marketing digital pour le bâtiment. »**
 **Adresse web : `ateliertruelle.fr`** (libre au 21/10/2026). Le `.com` correspondant est aussi libre.
 
 **Pourquoi ce nom**
@@ -70,7 +70,7 @@ La terre cuite sur plâtre n'est pas assez contrastée pour du texte courant : r
 
 ## Phrase de présentation (site et e-mails)
 
-> Atelier Truelle conçoit des sites web pour les plombiers, chauffagistes et artisans du bâtiment. Nous reprenons votre logo, vos couleurs et vos adresses de pages, nous modernisons le reste, et nous vous montrons le résultat avant que vous décidiez quoi que ce soit.
+> Atelier Truelle est une agence de marketing digital spécialisée dans le bâtiment : site web, référencement local, fiche Google et avis, publicité en ligne et suivi des demandes. Nous vous montrons une maquette avant que vous décidiez quoi que ce soit.
 
 ## Signature d'e-mail (modèle)
 

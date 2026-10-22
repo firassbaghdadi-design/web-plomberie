@@ -36,6 +36,7 @@ export async function POST(request: Request) {
   const email = clean(body.email, 160);
   const phone = clean(body.phone, 40);
   const siteUrl = clean(body.siteUrl, 200);
+  const trade = clean(body.trade, 120);
   const message = clean(body.message, 4000);
   const type = clean(body.type, 40);
   const typeLabel = requestTypes.find((t) => t.value === type)?.label ?? "Autre demande";
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
     ["Demande", typeLabel],
     ["Nom", name],
     ["Entreprise", company || "non renseignée"],
+    ["Métier", trade || "non renseigné"],
     ["E-mail", email],
     ["Téléphone", phone || "non renseigné"],
     ["Site actuel", siteUrl || "non renseigné"],
