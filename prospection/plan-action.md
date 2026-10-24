@@ -21,3 +21,10 @@
 ## Prochaine étape immédiate
 
 Maquette pilote sur la cible n°1 du classement (voir `prospects-paris-plomberie.md`), qui servira de référence (template de composants réutilisables) pour les 9 suivantes.
+
+## Avancement (24 octobre 2026)
+
+- Agence : site Atelier Truelle en ligne en privé (https://atelier-truelle.vercel.app), sans prix, positionné « agence web et marketing digital pour le bâtiment ».
+- Maquettes terminées : Entreprise Rousseau, Sandrin-Rousseau, et **Gaz Flash** (cible n°1 du classement) : https://gaz-flash-maquette.vercel.app (`maquettes/gaz-flash/`, voir son README pour les points à valider).
+- Prochaine cible du classement : Somsou-Pons, puis Seragaz.
+- Bloqué tant que le statut d'entreprise n'existe pas : aucun envoi, aucun domaine acheté.
