@@ -244,47 +244,69 @@ html.skip-curtain .curtain {
   top: 0;
   z-index: 110;
   display: none;
-  height: 14px;
-  width: 14px;
-  margin: -7px 0 0 -7px;
-  border-radius: 999px;
-  background: var(--terre);
+  width: 0;
+  height: 0;
   pointer-events: none;
-  transition: width 0.35s var(--out), height 0.35s var(--out), margin 0.35s var(--out), background 0.35s;
-  will-change: transform;
 }
+/* la pointe de la lame (17,10 sur 64) tombe exactement sur le point de la souris : 50 px => (13,8) */
+.cursor svg {
+  position: absolute;
+  left: -13px;
+  top: -8px;
+  overflow: visible;
+  transform-origin: 13px 8px;
+  transition: transform 0.35s var(--out);
+}
+.cursor svg path,
+.cursor svg rect {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 4.5;
+  transition: fill 0.3s;
+}
+.cursor .c-blade { fill: var(--noir); }
+.cursor .c-neck { fill: none; stroke: var(--noir); stroke-width: 3.4; paint-order: normal; }
+.cursor .c-grip { fill: var(--terre); }
 .cursor span {
-  font-size: 0.78rem;
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: var(--terre-action);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: #fff;
   opacity: 0;
-  transition: opacity 0.25s;
+  transform: translate3d(-6px, -4px, 0) scale(0.9);
+  transition: opacity 0.25s, transform 0.35s var(--out);
 }
-.cursor.is-link {
-  width: 92px;
-  height: 92px;
-  margin: -46px 0 0 -46px;
+.cursor.is-link svg {
+  transform: scale(1.18) rotate(-8deg);
 }
+.cursor.is-link .c-blade { fill: var(--terre); }
 .cursor.is-link span {
   opacity: 1;
+  transform: none;
 }
-.cursor.is-plain {
-  width: 48px;
-  height: 48px;
-  margin: -24px 0 0 -24px;
-  background: rgba(200, 85, 61, 0.35);
+.cursor.is-down svg {
+  transform: scale(0.88) rotate(6deg);
 }
 @media (hover: hover) and (pointer: fine) {
   html.has-cursor .cursor {
-    display: grid;
-    place-items: center;
+    display: block;
   }
-  html.has-cursor a,
-  html.has-cursor button,
-  html.has-cursor summary {
-    cursor: none;
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+  html.has-cursor input,
+  html.has-cursor textarea,
+  html.has-cursor select {
+    cursor: text !important;
   }
 }
 
