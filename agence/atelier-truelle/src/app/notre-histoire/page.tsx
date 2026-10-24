@@ -50,7 +50,7 @@ export default function Page() {
 
             <section data-reveal aria-labelledby="h-choix">
               <h2 id="h-choix" className="text-3xl sm:text-4xl">Ce que nous avons décidé</h2>
-              <p className="mt-5">Faire l'inverse. Plutôt que de vous demander de nous croire, nous refaisons votre page d'accueil avec votre logo, vos couleurs et vos photos, et nous vous l'envoyons par un lien privé. Vous la regardez à votre rythme. Si elle vous plaît, nous en parlons. Sinon, nous la supprimons et nous ne vous relançons pas.</p>
+              <p className="mt-5">Faire l'inverse. Plutôt que de vous demander de nous croire, nous refaisons votre page d'accueil avec votre logo, vos couleurs et vos photos, et nous vous l'envoyons par un lien privé. Vous la regardez à votre rythme. Si elle ne vous plaît pas tout à fait, nous la modifions selon vos goûts, sans rien payer, jusqu'à ce que nous soyons d'accord sur la version que vous voulez. Le devis ne se signe qu'ensuite.</p>
               <p className="mt-5">Cela nous coûte du temps. C'est voulu : nous pensons qu'une entreprise sérieuse peut se permettre de montrer son travail avant de demander quoi que ce soit.</p>
             </section>
 

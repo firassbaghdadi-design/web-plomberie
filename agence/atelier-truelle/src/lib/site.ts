@@ -74,7 +74,7 @@ export const services: Service[] = [
     gets: ["Un site que vos clients lisent sans zoomer", "Des pages rapides et accessibles", "Une base saine pour le référencement", "Un site qui peut évoluer avec votre activité"],
     faq: [
       { q: "Vais-je perdre mon référencement en changeant de site ?", a: "Non, c'est ce que nous évitons. Nous conservons vos adresses de pages et, quand une adresse doit changer, nous mettons en place une redirection permanente vers la nouvelle page." },
-      { q: "Puis-je voir le site avant de m'engager ?", a: "Oui. Nous préparons une maquette privée de votre page d'accueil avec votre logo et vos couleurs. Elle est gratuite, sans engagement, et supprimée si elle ne vous convient pas." },
+      { q: "Puis-je voir le site avant de m'engager ?", a: "Oui. Nous préparons une maquette privée de votre page d'accueil avec votre logo et vos couleurs. Elle est gratuite et sans engagement. Si elle ne vous convient pas, nous la modifions selon vos goûts, sans rien payer, jusqu'à ce que vous soyez d'accord sur la version, avant la signature du devis." },
       { q: "Reprenez-vous mes textes et mes photos ?", a: "Oui. Nous reprenons vos contenus et vos photos de chantier. Nous n'ajoutons ni prix, ni certification, ni chiffre que vous ne nous avez pas confirmés." },
     ],
   },
@@ -235,7 +235,7 @@ export const trades: Trade[] = [
 export const steps = [
   { title: "On écoute, on regarde", text: "Avant de proposer quoi que ce soit, nous regardons votre site, votre fiche Google, vos avis, ce que font les autres artisans de votre secteur. Puis nous vous écoutons : ce que vous aimez dans votre métier, les chantiers que vous voudriez faire plus souvent.", photo: "telephone", note: "d'abord, on vous écoute" },
   { title: "On construit, sans rien vous demander", text: "Nous refaisons votre page d'accueil avec votre logo, vos couleurs, vos textes et vos photos. Vos adresses de pages restent les mêmes pour ne rien perdre sur Google. Vous recevez un lien privé que personne d'autre ne voit.", photo: "atelier", note: "puis on se met au travail" },
-  { title: "Vous regardez, puis vous décidez", text: "Si ça vous plaît, nous en parlons et vous recevez un devis écrit avant que le moindre travail commence. Si ça ne vous plaît pas, nous supprimons la maquette et nous ne vous relançons pas.", photo: "tablette", note: "et c'est vous qui choisissez" },
+  { title: "Vous regardez, puis vous décidez", text: "Si ça vous plaît, nous en parlons et vous recevez un devis écrit avant que le moindre travail commence. Si ça ne vous plaît pas, nous la modifions selon vos goûts, sans rien payer. L'objectif : nous mettre d'accord sur la version que vous voulez avant la signature du devis.", photo: "tablette", note: "et c'est vous qui choisissez" },
 ] as const;
 
 export const method = [
@@ -254,7 +254,7 @@ export const commitments = [
   "Nous ne publions rien (photo, avis, logo) sans votre accord.",
   "Vous recevez un devis écrit avant le début de tout travail. Ce qui est dans le devis est ce que vous payez.",
   "Votre site, votre nom de domaine, vos comptes et vos contenus restent à vous.",
-  "La maquette est gratuite. Si elle ne vous plaît pas, nous la supprimons et nous ne vous relançons pas.",
+  "La maquette est gratuite. Si elle ne vous plaît pas, nous la modifions et l'améliorons selon vos goûts, sans rien payer, avant que vous ne signiez le devis.",
 ] as const;
 
 export const owned = ["Votre nom de domaine", "Votre fiche Google", "Vos comptes publicitaires", "Vos textes, vos photos et votre logo"] as const;
@@ -262,7 +262,7 @@ export const owned = ["Votre nom de domaine", "Votre fiche Google", "Vos comptes
 export const homeFaqs: Faq[] = [
   { q: "Comment savoir que vous n'êtes pas des arnaqueurs ?", a: "Vous avez raison de poser la question, beaucoup d'artisans ont déjà été démarchés par des vendeurs de « première place sur Google ». Voici ce qui vous protège : la maquette est gratuite et vous la voyez avant de payer quoi que ce soit, vous recevez un devis écrit avant le début de tout travail, et notre identité légale (nom, SIREN, adresse) figure dans les mentions légales : vous pouvez la vérifier sur l'annuaire officiel des entreprises." },
   { q: "Combien ça coûte ?", a: "Nous ne publions pas de tarif, parce qu'un site, une fiche Google, une campagne ou l'ensemble ne représentent pas le même travail. Après un premier échange et la maquette, vous recevez un devis écrit et clair. Vous n'avez rien à payer avant." },
-  { q: "Que se passe-t-il si la maquette ne me plaît pas ?", a: "Rien. Elle est gratuite et sans engagement. Si elle ne vous convient pas, nous la supprimons et nous ne vous recontactons pas à ce sujet." },
+  { q: "Que se passe-t-il si la maquette ne me plaît pas ?", a: "Nous la modifions selon vos goûts et nous l'améliorons, sans rien payer. L'objectif est de nous mettre d'accord sur la version que vous voulez avant la signature du devis. Si, après cela, elle ne vous convient toujours pas, nous la supprimons et nous ne vous relançons pas." },
   { q: "Vais-je perdre mon référencement actuel en changeant de site ?", a: "Non, c'est ce que nous évitons en priorité. Nous gardons vos adresses de pages et, quand une adresse doit changer, une redirection permanente envoie vos visiteurs et Google vers la bonne page." },
   { q: "Pouvez-vous me garantir la première place sur Google ?", a: "Non, et méfiez-vous de ceux qui le font. Nous travaillons ce qui dépend de votre site et de votre fiche Google : rapidité, affichage sur téléphone, pages par métier, questions fréquentes, avis de vos vrais clients." },
   { q: "Êtes-vous une grosse agence ?", a: "Non, nous sommes un atelier. Vous parlez à la même personne du début à la fin, qui connaît votre dossier et qui vous répond." },
