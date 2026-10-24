@@ -76,10 +76,10 @@ export default function Home() {
             <div className="inner" data-speed="0.07"><Photo id="truelle" sizes="(min-width:1024px) 30vw, 45vw" priority /></div>
           </div>
           <div className="collage-img col-span-7 mt-16 aspect-[4/5] sm:col-span-5 sm:mt-28" data-reveal="clip" style={{ ["--d" as string]: "150ms" }}>
-            <div className="inner" data-speed="0.14"><Photo id="techniciens" sizes="(min-width:1024px) 38vw, 60vw" /></div>
+            <div className="inner" data-speed="0.14"><Photo id="chantier2" sizes="(min-width:1024px) 38vw, 60vw" /></div>
           </div>
           <div className="collage-img col-span-5 col-start-2 mt-2 aspect-[3/4] sm:col-span-3 sm:col-start-auto sm:mt-10" data-reveal="clip" style={{ ["--d" as string]: "300ms" }}>
-            <div className="inner" data-speed="0.1"><Photo id="plombiere" sizes="(min-width:1024px) 22vw, 45vw" /></div>
+            <div className="inner" data-speed="0.1"><Photo id="casque" sizes="(min-width:1024px) 22vw, 45vw" /></div>
           </div>
         </div>
       </section>
