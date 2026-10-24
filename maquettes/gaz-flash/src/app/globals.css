@@ -1,0 +1,398 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f6f0e3;
+  --paper-2: #ede4d0;
+  --paper-3: #e2d6bb;
+  --sheet: #fffcf4;
+  --ink: #2c353d;
+  --ink-2: #1b2229;
+  --soft: #505b64;
+  --red: #e4342b;
+  --red-btn: #c9261d;
+  --red-dark: #9e1b14;
+  --rule: rgb(44 53 61 / 0.22);
+  --tape: rgb(224 196 116 / 0.62);
+}
+
+html {
+  overflow-x: clip;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .2 0 0 0 0 .24 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: "Open Sans Variable", "Open Sans", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces Variable", Georgia, serif;
+  font-optical-sizing: auto;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+h1 {
+  font-weight: 650;
+  font-size: clamp(2.15rem, 5.6vw, 3.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+h2 {
+  font-weight: 620;
+  font-size: clamp(1.7rem, 3.6vw, 2.45rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+p {
+  text-wrap: pretty;
+}
+a {
+  text-underline-offset: 4px;
+}
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer base {
+  /* Une grille sans colonnes déclarées ne doit jamais dépasser de l'écran (tableaux, longs mots). */
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1120px] px-5 sm:px-8;
+  }
+  .hand {
+    font-family: Caveat, "Segoe Print", cursive;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .label {
+    @apply font-label text-[0.95rem] font-semibold uppercase tracking-[0.16em];
+  }
+  .btn {
+    @apply inline-flex min-h-[50px] items-center justify-center gap-2.5 whitespace-nowrap border-2 border-ink bg-red-btn px-6 py-2.5 font-label text-[1.2rem] font-bold uppercase tracking-[0.08em] text-white no-underline;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .btn-ghost {
+    @apply bg-paper-sheet text-ink;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-2 font-semibold text-red-dark underline decoration-red/40 hover:decoration-red-dark;
+  }
+
+  /* ----- texte courant ----- */
+  .prose-gf > * + * {
+    @apply mt-5;
+  }
+  .prose-gf h2 {
+    @apply mt-12;
+  }
+  .prose-gf h3 {
+    @apply mt-8;
+  }
+  .prose-gf h2 + *,
+  .prose-gf h3 + * {
+    @apply mt-3;
+  }
+  .prose-gf a {
+    @apply font-semibold text-red-dark underline decoration-red/40 hover:decoration-red-dark;
+  }
+  .prose-gf ul {
+    @apply space-y-2.5;
+  }
+  .prose-gf ul > li {
+    @apply relative pl-6;
+  }
+  .prose-gf ul > li::before {
+    content: "";
+    @apply absolute left-0 top-[0.72em] h-[2px] w-3.5 bg-red;
+  }
+  .prose-gf ol {
+    counter-reset: step;
+    @apply space-y-4;
+  }
+  .prose-gf ol > li {
+    counter-increment: step;
+    @apply relative pl-12;
+  }
+  .prose-gf ol > li::before {
+    content: counter(step);
+    @apply absolute left-0 top-[-0.1em] font-display text-[2rem] font-semibold leading-none text-red;
+  }
+  .prose-gf strong {
+    @apply font-semibold text-ink-2;
+  }
+
+  /* ----- l'en bref : un mot épinglé ----- */
+  .brief {
+    position: relative;
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-left: 6px solid var(--red);
+    padding: 1.1rem 1.25rem 1.2rem 1.4rem;
+    box-shadow: 5px 6px 0 rgb(44 53 61 / 0.1);
+  }
+  .brief .tag {
+    display: block;
+    margin-bottom: 0.15rem;
+    font-family: Caveat, cursive;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--red-btn);
+  }
+  .brief p {
+    font-size: 1.06rem;
+  }
+
+  /* ----- photos collées ----- */
+  .polaroid {
+    position: relative;
+    background: #fff;
+    padding: 10px 10px 12px;
+    border: 1px solid rgb(44 53 61 / 0.14);
+    box-shadow: 0 14px 24px -14px rgb(27 34 41 / 0.55);
+    transform: rotate(var(--r, 0deg));
+  }
+  .polaroid::before {
+    content: "";
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    width: 86px;
+    height: 24px;
+    margin-left: -43px;
+    background: var(--tape);
+    transform: rotate(-2.5deg);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+  }
+  .polaroid figcaption {
+    padding-top: 0.55rem;
+    font-family: Caveat, cursive;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+    text-align: center;
+  }
+  .frame {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--paper-3);
+    background-image: repeating-linear-gradient(135deg, transparent 0 9px, rgb(44 53 61 / 0.07) 9px 10px);
+  }
+
+  /* ----- affichette collée à la porte ----- */
+  .affiche {
+    position: relative;
+    background: var(--sheet);
+    border: 1px solid rgb(44 53 61 / 0.18);
+    padding: 1.4rem 1.4rem 1.5rem;
+    box-shadow: 0 16px 26px -18px rgb(27 34 41 / 0.6);
+    transform: rotate(var(--r, 0deg));
+  }
+  .affiche::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 78px;
+    height: 22px;
+    margin-left: -39px;
+    background: var(--tape);
+    transform: rotate(2deg);
+  }
+  .affiche.red {
+    border: 3px solid var(--red);
+    outline: 1px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  /* ----- ardoise ----- */
+  .slate {
+    position: relative;
+    background: #2c353d;
+    color: #f4efe3;
+    border: 9px solid #b99b72;
+    box-shadow: inset 0 0 28px rgb(0 0 0 / 0.4), 0 16px 26px -16px rgb(27 34 41 / 0.6);
+    padding: 1.15rem 1.3rem 1.3rem;
+  }
+  .slate .chalk {
+    font-family: Caveat, cursive;
+    font-weight: 600;
+    line-height: 1.12;
+  }
+
+  /* ----- étiquette de tarif ----- */
+  .ticket {
+    position: relative;
+    background: var(--sheet);
+    border: 1px solid rgb(44 53 61 / 0.25);
+    padding: 1.2rem 1.3rem 1.3rem 1.8rem;
+    box-shadow: 4px 5px 0 rgb(44 53 61 / 0.12);
+    clip-path: polygon(0 0, calc(100% - 0px) 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+  .ticket::before {
+    content: "";
+    position: absolute;
+    left: 0.65rem;
+    top: 1.1rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: inset 1px 1px 2px rgb(0 0 0 / 0.35);
+  }
+  .ticket::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 0;
+    border-top: 5px solid var(--red);
+    pointer-events: none;
+  }
+  .price {
+    white-space: nowrap;
+    font-family: "Fraunces Variable", Georgia, serif;
+    font-weight: 650;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--ink-2);
+    font-variant-numeric: lining-nums;
+  }
+
+  /* ----- tampon ----- */
+  .stamp {
+    display: inline-block;
+    border: 3px double var(--red-btn);
+    color: var(--red-btn);
+    padding: 0.2rem 0.75rem 0.15rem;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    mix-blend-mode: multiply;
+    background: rgb(255 252 244 / 0.55);
+  }
+
+  /* ----- liste ligne par ligne (carte du jour) ----- */
+  .ruled > li {
+    border-bottom: 1.5px dashed var(--rule);
+  }
+  .ruled > li:first-child {
+    border-top: 1.5px dashed var(--rule);
+  }
+
+  /* ----- FAQ ----- */
+  .faq-item {
+    border-bottom: 1.5px dashed var(--rule);
+  }
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-family: "Fraunces Variable", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: var(--ink-2);
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary::after {
+    content: "+";
+    flex: none;
+    font-family: Caveat, cursive;
+    font-size: 2rem;
+    line-height: 0.8;
+    color: var(--red-btn);
+  }
+  .faq-item[open] summary::after {
+    content: "–";
+  }
+  .faq-item p {
+    padding: 0 2rem 1.2rem 0;
+    color: var(--soft);
+  }
+}
+
+/* ----- en-tête ----- */
+.nav-link {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.35rem 0;
+  border-bottom: 3px solid transparent;
+}
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  border-bottom-color: var(--red);
+}
+.has-menu .menu {
+  display: none;
+}
+.has-menu:hover .menu,
+.has-menu:focus-within .menu {
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .btn {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}

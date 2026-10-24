@@ -1,0 +1,32 @@
+{
+  "name": "gaz-flash-maquette",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "node scripts/fetch-photos.mjs",
+    "fetch-photos": "node scripts/fetch-photos.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs http://localhost:3000"
+  },
+  "dependencies": {
+    "next": "14.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/open-sans": "^5.2.0",
+    "@fontsource/barlow-condensed": "^5.2.0",
+    "@fontsource/caveat": "^5.3.0",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.31",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
+}
