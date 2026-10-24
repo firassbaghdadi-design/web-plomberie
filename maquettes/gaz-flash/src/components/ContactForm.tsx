@@ -2,13 +2,12 @@
 
 import { useRef, useState } from "react";
 import { business, requestTypes } from "@/lib/site";
-import { CheckIcon } from "./Icons";
 
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"name" | "phone" | "email" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-[3px] border border-line bg-white px-4 py-3.5 text-coal outline-none transition focus:border-flame focus:ring-4 focus:ring-flame/20";
-const label = "block text-sm font-semibold text-coal";
+const field = "mt-1.5 w-full border-2 border-ink/70 bg-white px-4 py-3 text-ink outline-none focus:border-red-btn focus:ring-4 focus:ring-red/20";
+const label = "block text-[0.95rem] font-semibold text-ink-2";
 
 export function ContactForm({ defaultType = "depannage" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -51,23 +50,21 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[4px] border border-flame/30 bg-flame-tint p-10 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-coal text-white">
-          <CheckIcon className="h-8 w-8" />
-        </span>
-        <h2 className="mt-6 text-4xl">Demande bien reçue.</h2>
-        <p className="mt-3">Merci, votre message est arrivé dans la boîte de l'entreprise. Pour une urgence, appelez le {business.phoneDisplay}.</p>
+      <div role="status" className="affiche red text-center">
+        <p className="hand text-[2.2rem] text-red-btn">Bien reçu, merci !</p>
+        <h2 className="mt-1">Votre demande est arrivée.</h2>
+        <p className="mt-3">Votre message est dans la boîte de l'entreprise. Pour une urgence, appelez le {business.phoneDisplay}.</p>
       </div>
     );
   }
 
-  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1.5 text-sm text-[#b42318]">{errors[key]}</p> : null);
+  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1 text-sm font-semibold text-[#b42318]">{errors[key]}</p> : null);
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="card border-t-[6px] border-t-flame p-6 shadow-lift sm:p-10">
-      <h2 className="text-4xl">Envoyer une demande</h2>
-      <p className="mt-2 text-coal-soft">Votre message arrive directement dans la boîte e-mail de l'entreprise.</p>
+    <form onSubmit={onSubmit} noValidate aria-labelledby="form-title" className="border-[3px] border-ink bg-paper-sheet p-6 shadow-[7px_8px_0_rgb(44_53_61/0.16)] sm:p-9">
+      <h2 id="form-title">Écrire à l'entreprise</h2>
+      <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de l'entreprise. Pour une panne, le téléphone reste le plus rapide.</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -89,7 +86,7 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
           {err("phone")}
         </div>
         <div>
-          <label htmlFor="email" className={label}>E-mail <span className="font-normal text-coal-soft">(facultatif)</span></label>
+          <label htmlFor="email" className={label}>E-mail <span className="font-normal text-ink-soft">(facultatif)</span></label>
           <input id="email" name="email" type="email" autoComplete="email" className={field} {...aria("email")} />
           {err("email")}
         </div>
@@ -116,12 +113,12 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
       </div>
 
       {status === "error" ? (
-        <p role="alert" className="mt-6 rounded-[3px] border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#b42318]">
+        <p role="alert" className="mt-6 border-2 border-[#b42318]/50 bg-[#fef3f2] p-4 text-sm text-[#b42318]">
           {serverMessage} Vous pouvez aussi appeler le <a className="font-semibold underline" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a> ou écrire à <a className="font-semibold underline" href={`mailto:${business.email}`}>{business.email}</a>.
         </p>
       ) : null}
 
-      <button type="submit" disabled={status === "sending"} className="btn btn-flame mt-8 w-full disabled:opacity-60 sm:w-auto">
+      <button type="submit" disabled={status === "sending"} className="btn mt-8 w-full disabled:opacity-60 sm:w-auto">
         {status === "sending" ? "Envoi en cours…" : "Envoyer ma demande"}
       </button>
     </form>

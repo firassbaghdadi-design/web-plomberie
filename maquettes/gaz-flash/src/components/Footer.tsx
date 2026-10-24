@@ -1,82 +1,84 @@
 import Link from "next/link";
-import { PATHS, business, nav } from "@/lib/site";
+import { PATHS, business, pageInfo, google } from "@/lib/site";
 import { Logo } from "./Photo";
-import { PhoneIcon, PinIcon, ClockIcon, MailIcon } from "./Icons";
+
+const col = "mt-3 space-y-1.5 text-[0.96rem]";
+const link = "text-paper-sheet/85 no-underline hover:text-white hover:underline";
 
 export function Footer() {
   const { legal, address } = business;
   return (
-    <footer className="relative mt-24 bg-coal-2 pb-24 text-white/80 lg:pb-0">
-      <div className="h-[6px] bg-gradient-to-r from-flame via-ember to-flame" />
-      <div className="container-x grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="mt-24 bg-ink-2 pb-24 text-paper-sheet/85 lg:pb-0">
+      <div className="h-2 bg-red" />
+      <div className="wrap grid gap-10 py-14 md:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <div>
-          <Link href="/" className="inline-block rounded-[3px] bg-white px-3 py-1.5" aria-label={`${business.name}, accueil`}>
+          <Link href="/" className="inline-block bg-paper-sheet px-3 py-2" aria-label={`${business.name}, accueil`}>
             <Logo id="logo" alt={business.name} className="h-10 w-auto" width={126} height={40} />
           </Link>
-          <p className="mt-6 max-w-sm text-[0.97rem] leading-relaxed">
-            Chauffagiste à Paris 18e depuis 1965. Entretien, dépannage, installation et ramonage au gaz à Paris et en petite couronne.
+          <p className="hand mt-4 text-[1.5rem] text-white">Une maison du quartier, depuis 1965.</p>
+          <address className="mt-3 not-italic leading-relaxed">
+            {address.street}
+            <br />
+            {address.postalCode} {address.city}
+          </address>
+          <p className="mt-2">
+            <a href={`tel:${business.phoneTel}`} className="font-display text-2xl font-semibold text-white no-underline">
+              {business.phoneDisplay}
+            </a>
           </p>
-          <ul className="mt-6 space-y-3 text-[0.97rem]">
-            <li className="flex gap-3">
-              <PinIcon className="mt-1 h-5 w-5 shrink-0 text-ember" />
-              <span>
-                {address.street}
-                <br />
-                {address.postalCode} {address.city}
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <PhoneIcon className="mt-1 h-5 w-5 shrink-0 text-ember" />
-              <a href={`tel:${business.phoneTel}`} className="font-semibold text-white hover:text-ember">
-                {business.phoneDisplay}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <MailIcon className="mt-1 h-5 w-5 shrink-0 text-ember" />
-              <a href={`mailto:${business.email}`} className="break-all hover:text-ember">
-                {business.email}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <ClockIcon className="mt-1 h-5 w-5 shrink-0 text-ember" />
-              <span>{business.hoursLabel}</span>
-            </li>
-          </ul>
+          <p className="mt-2 text-[0.93rem]">{business.hoursLabel}</p>
+          <p className="mt-2 text-[0.93rem]">
+            <a href={`mailto:${business.email}`} className={`${link} break-all`}>
+              {business.email}
+            </a>
+          </p>
         </div>
 
-        <nav aria-label="Pages du site">
-          <p className="font-display text-2xl font-bold uppercase tracking-wider text-white">Le site</p>
-          <ul className="mt-4 space-y-2">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="hover:text-ember">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+        <nav aria-label="Services">
+          <p className="label text-white">Services</p>
+          <ul className={col}>
+            <li><Link className={link} href={PATHS.maintenance}>Entretien de chaudière</Link></li>
+            <li><Link className={link} href={PATHS.repair}>Dépannage</Link></li>
+            <li><Link className={link} href={PATHS.install}>Installation</Link></li>
+            <li><Link className={link} href={PATHS.sweep}>Ramonage</Link></li>
+            <li><Link className={link} href={PATHS.prices}>Nos tarifs</Link></li>
+            <li><Link className={link} href={PATHS.installs}>Installations par gamme</Link></li>
           </ul>
         </nav>
 
-        <nav aria-label="Services">
-          <p className="font-display text-2xl font-bold uppercase tracking-wider text-white">Nos services</p>
-          <ul className="mt-4 space-y-2">
-            <li><Link href={PATHS.maintenance} className="hover:text-ember">Entretien de chaudière</Link></li>
-            <li><Link href={PATHS.repair} className="hover:text-ember">Dépannage</Link></li>
-            <li><Link href={PATHS.install} className="hover:text-ember">Installation</Link></li>
-            <li><Link href={PATHS.sweep} className="hover:text-ember">Ramonage</Link></li>
-            <li><Link href={PATHS.prices} className="hover:text-ember">Nos tarifs</Link></li>
+        <nav aria-label="Guides et repères">
+          <p className="label text-white">Près de chez vous</p>
+          <ul className={col}>
+            <li><Link className={link} href={PATHS.paris18}>{pageInfo(PATHS.paris18).name}</Link></li>
+            <li><Link className={link} href={PATHS.zones}>{pageInfo(PATHS.zones).name}</Link></li>
+            <li><Link className={link} href={PATHS.repairGuide}>{pageInfo(PATHS.repairGuide).name}</Link></li>
+            <li><Link className={link} href={PATHS.maintenanceGuide}>{pageInfo(PATHS.maintenanceGuide).name}</Link></li>
+            <li><Link className={link} href={PATHS.brands}>Marques</Link></li>
+            <li><Link className={link} href={PATHS.faq}>Questions fréquentes</Link></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="L'entreprise">
+          <p className="label text-white">La maison</p>
+          <ul className={col}>
+            <li><Link className={link} href={PATHS.company}>L'entreprise</Link></li>
+            <li><Link className={link} href={PATHS.contact}>Contact</Link></li>
+            <li>
+              <a className={link} href={google.url} target="_blank" rel="noopener noreferrer">
+                Fiche Google ({google.ratingLabel}/5)
+              </a>
+            </li>
+            <li><Link className={link} href={PATHS.legal}>Mentions légales</Link></li>
+            <li><Link className={link} href={PATHS.privacy}>Données personnelles</Link></li>
           </ul>
         </nav>
       </div>
-      <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-3 py-6 text-sm text-white/60 md:flex-row md:justify-between">
+      <div className="border-t border-white/15">
+        <div className="wrap py-5 text-[0.85rem] text-white/65">
           <p>
-            {business.legalName} · {legal.form} au capital de {legal.capital} · {legal.rcs} · SIRET {legal.siret}
+            {business.legalName} · {legal.form} au capital de {legal.capital} · {legal.rcs} · SIRET {legal.siret} · TVA intracommunautaire {legal.vat}
           </p>
-          <p className="flex gap-5">
-            <Link href={PATHS.legal} className="hover:text-white">Mentions légales</Link>
-            <Link href={PATHS.privacy} className="hover:text-white">Données personnelles</Link>
-          </p>
+          <p className="mt-1">Photos : © Fotolia, © Gazflash.</p>
         </div>
       </div>
     </footer>

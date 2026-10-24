@@ -1,249 +1,181 @@
 import Link from "next/link";
-import { Burner } from "@/components/Burner";
-import { CtaBand, Faq, ServiceCard } from "@/components/Sections";
+import { Brief, CallStrip, Eyebrow, Faq, GoogleReviews, HoursSlate, Stamp, Ticket } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
-import { Kinetic } from "@/components/Kinetic";
-import { Logo, Photo } from "@/components/Photo";
-import { ArrowIcon, CheckIcon, ClockIcon, PhoneIcon, PinIcon, StarIcon } from "@/components/Icons";
-import { PATHS, YEARS, brandLogos, business, priceGroups, ranges, reasons, reviews, services, shortAnswer } from "@/lib/site";
+import { Frame, Logo, Polaroid } from "@/components/Photo";
+import { ZoneMap } from "@/components/Sketches";
+import { ArrowIcon, PhoneIcon } from "@/components/Icons";
+import { PATHS, brandLogos, business, pageInfo, priceGroups, ranges, services, sweepPrice } from "@/lib/site";
 import { faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
-const title = "Chauffagiste à Paris 18e depuis 1965 : entretien | Gaz Flash";
-const description =
-  "Gaz Flash entretient, dépanne et installe chaudières, chauffe-eau et régulations gaz à Paris et en petite couronne. Professionnel du Gaz, RGE, tarifs affichés.";
-
-export const metadata = pageMeta({ title, description, path: PATHS.home });
-
-const trust = ["Professionnel du Gaz", "Qualibat RGE", "Installations garanties 2 ans (pièces)", "Tarifs d'entretien affichés"];
+const info = pageInfo(PATHS.home);
+export const metadata = pageMeta(PATHS.home);
 
 export default function HomePage() {
-  const loopedBrands = [...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos];
-
+  const chaudiere = priceGroups[0];
   return (
     <>
-      <section className="hero diagonal-bottom pb-32 pt-32 sm:pb-40 sm:pt-40" data-stage="">
-        <div className="slash" aria-hidden="true" />
-        <span className="since" aria-hidden="true">{`1965`}</span>
-        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.25fr_0.75fr]">
+      <section className="wrap pt-10 sm:pt-14">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div>
-            <p className="eyebrow !text-ember" data-reveal="">Chauffagiste · Paris 18e · depuis 1965</p>
-            <h1 className="h-hero mt-5">
-              <Kinetic text="Votre chauffage au gaz," />
-              <br />
-              <span className="text-ember">
-                <Kinetic text="entretenu, dépanné, installé." />
-              </span>
-            </h1>
-            <p className="reponse-bref mt-7 max-w-xl text-lg text-white/85 sm:text-xl" data-reveal="">
-              {shortAnswer}
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row" data-reveal="">
-              <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-flame pulse">
+            <Eyebrow>7 rue Sainte-Isaure, Paris 18e</Eyebrow>
+            <h1 className="mt-1 max-w-[18ch] sm:max-w-[20ch]">{info.h1}</h1>
+            <div className="mt-6 max-w-[60ch]">
+              <Brief text={info.brief} />
+            </div>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn">
                 <PhoneIcon />
                 {business.phoneDisplay}
               </a>
-              <Link href={PATHS.contact} className="btn btn-line text-white">
-                Demander un devis
-                <ArrowIcon />
+              <Link href={PATHS.contact} className="link-arrow text-[1.05rem]">
+                ou écrivez-nous <ArrowIcon className="h-4 w-4" />
               </Link>
             </div>
-            <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/75" data-reveal="">
-              <li className="flex items-center gap-2"><ClockIcon className="h-5 w-5 text-ember" />Lundi au vendredi · 8 h – 12 h 30 · 13 h 30 – 17 h</li>
-              <li className="flex items-center gap-2"><PinIcon className="h-5 w-5 text-ember" />Paris, 93, 92, 94</li>
-            </ul>
           </div>
-          <div className="mx-auto aspect-square w-full max-w-[460px]" aria-hidden="false">
-            <Burner />
+
+          <div className="relative mx-auto w-full max-w-[470px] pb-4 lg:pb-24">
+            <Polaroid id="heroTeam" alt="Illustration : une solution de chauffage clé en main" caption="Gaz Flash, Paris 18e" ratio="4 / 3" sizes="(min-width:1024px) 470px, 90vw" rotate={2} priority />
+            <Stamp className="absolute -left-1 top-6 sm:-left-5">Depuis 1965</Stamp>
+            <div className="relative z-10 mt-8 max-w-[300px] lg:absolute lg:-bottom-6 lg:-left-12 lg:mt-0 lg:w-[270px]" style={{ transform: "rotate(-1.5deg)" }}>
+              <HoursSlate />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="relative z-10 -mt-14 sm:-mt-16" aria-label="Garanties et certifications">
-        <div className="container-x">
-          <ul className="grid gap-px overflow-hidden rounded-[4px] bg-line shadow-lift sm:grid-cols-2 lg:grid-cols-4" data-reveal="">
-            {trust.map((item) => (
-              <li key={item} className="flex items-center gap-3 bg-white px-5 py-5 font-semibold">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-flame-btn text-white">
-                  <CheckIcon className="h-4 w-4" />
-                </span>
-                {item}
+      <section className="wrap mt-24" aria-labelledby="carte">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]">
+          <div>
+            <Eyebrow>La carte de la maison</Eyebrow>
+            <h2 id="carte" className="mt-1">Ce qu'on fait pour votre chauffage</h2>
+            <p className="mt-4 text-ink-soft">Quatre métiers, un seul numéro de téléphone. Chacun a sa page, avec les détails et, quand ils sont affichés, les prix.</p>
+          </div>
+          <ul className="ruled">
+            {Object.values(services).map((service) => (
+              <li key={service.key}>
+                <Link href={service.path} className="group grid grid-cols-[96px_minmax(0,1fr)] items-center gap-4 py-4 no-underline sm:grid-cols-[150px_minmax(0,1fr)_auto] sm:gap-6">
+                  <Frame id={service.image} alt={`Illustration : ${service.title.toLowerCase()}`} ratio="3 / 2" sizes="150px" />
+                  <div>
+                    <h3 className="text-ink-2 underline decoration-red/50 underline-offset-4 group-hover:decoration-red">{service.title}</h3>
+                    <p className="hand text-[1.3rem] text-red-btn">{service.line}</p>
+                    <p className="mt-1 hidden text-[0.95rem] text-ink-soft sm:block">{service.short}</p>
+                  </div>
+                  <ArrowIcon className="hidden h-6 w-6 text-red-btn transition-transform group-hover:translate-x-1 sm:block" />
+                </Link>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="container-x pt-24" aria-labelledby="services-title">
-        <div className="flex flex-wrap items-end justify-between gap-6" data-reveal="">
-          <div>
-            <p className="eyebrow">Nos services</p>
-            <h2 id="services-title" className="h-section mt-3 max-w-2xl">Un seul interlocuteur, de la visite annuelle à la pose</h2>
-          </div>
-          <Link href={PATHS.services} className="inline-flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wider text-flame-dark">
-            Tous nos services <ArrowIcon />
-          </Link>
-        </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {Object.values(services).map((service, index) => (
-            <ServiceCard key={service.key} service={service} index={index} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-28 bg-coal-2 py-24 text-white diagonal-both" aria-labelledby="chiffres-title">
-        <h2 id="chiffres-title" className="sr-only">Gaz Flash en quelques repères</h2>
-        <div className="container-x grid gap-10 text-center sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { value: YEARS, suffix: " ans", label: "d'activité dans le chauffage, depuis 1965", decimals: 0 },
-            { value: 4, suffix: "", label: "territoires couverts : Paris, 93, 92 et 94", decimals: 0 },
-            { value: 2, suffix: " ans", label: "de garantie sur les pièces des installations", decimals: 0 },
-            { value: business.googleRating.value, suffix: "/5", label: `sur Google, d'après ${business.googleRating.count} avis`, decimals: 1 },
-          ].map((stat) => (
-            <div key={stat.label} data-reveal="">
-              <p className="font-display text-7xl font-extrabold leading-none text-ember sm:text-8xl">
-                <span data-count={stat.value} data-decimals={stat.decimals} data-suffix={stat.suffix}>
-                  {String(stat.value).replace(".", ",")}
-                  {stat.suffix}
-                </span>
-              </p>
-              <p className="mx-auto mt-3 max-w-[16rem] text-white/75">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container-x pt-24" aria-labelledby="tarifs-title">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div data-reveal="left">
-            <p className="eyebrow">Des tarifs affichés</p>
-            <h2 id="tarifs-title" className="h-section mt-3">Vous savez ce que vous payez avant d'appeler</h2>
-            <p className="mt-6 text-lg text-coal-soft">
-              Entretien annuel de chaudière, forfait révision sans engagement, ramonage : les prix TTC sont publiés, avec la différence entre Paris 18e et le reste de Paris et de la petite couronne. Le contrat d'entretien inclut tous les dépannages en main-d'œuvre et déplacement, hors pièces.
+      <section className="wrap mt-24" aria-labelledby="tarifs">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:items-center">
+          <div className="prose-gf">
+            <Eyebrow>Les prix, noir sur blanc</Eyebrow>
+            <h2 id="tarifs" className="!mt-1">Un entretien dont le prix est affiché</h2>
+            <p>
+              Pour l'entretien de la chaudière, on ne vous fait pas deviner. Les tarifs sont publiés en TTC, avec un prix pour le 18e et un prix pour le reste de Paris et de la petite couronne.
             </p>
-            <Link href={PATHS.prices} className="btn btn-dark mt-8">
-              Voir tous les tarifs <ArrowIcon />
-            </Link>
+            <p>
+              Le <strong>forfait révision</strong> n'engage à rien : une visite, une attestation. Le <strong>contrat annuel</strong> ajoute tous les dépannages (main-d'œuvre et déplacement, hors pièces) et une intervention prioritaire en cas de panne.
+            </p>
+            <p>
+              <Link href={PATHS.prices}>Voir tous les tarifs d'entretien et de ramonage</Link>
+            </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2" data-reveal="">
-            <div className="card border-t-[6px] border-t-flame p-7">
-              <p className="font-display text-xl font-semibold uppercase tracking-wider text-coal-soft">Chaudière · forfait révision</p>
-              <p className="mt-2 font-display text-7xl font-extrabold leading-none text-coal">
-                {priceGroups[0].review.paris18}<small className="ml-1 font-sans text-sm font-semibold text-coal-soft">TTC</small>
-              </p>
-              <p className="mt-3 text-sm text-coal-soft">Paris 18e, sans engagement, attestation remise. {priceGroups[0].review.other} TTC ailleurs à Paris et en petite couronne.</p>
-            </div>
-            <div className="card border-t-[6px] border-t-coal bg-coal-2 p-7 text-white">
-              <p className="font-display text-xl font-semibold uppercase tracking-wider text-white/70">Chaudière · contrat annuel</p>
-              <p className="mt-2 font-display text-7xl font-extrabold leading-none text-ember">
-                {priceGroups[0].contract.paris18}<small className="ml-1 font-sans text-sm font-semibold text-white/70">TTC</small>
-              </p>
-              <p className="mt-3 text-sm text-white/75">Paris 18e, dépannages inclus (hors pièces), intervention prioritaire. {priceGroups[0].contract.other} TTC ailleurs.</p>
+          <Ticket
+            className="mx-auto w-full max-w-[420px] lg:rotate-[1.2deg]"
+            title="Chaudière · Paris 18e"
+            rows={[
+              { label: "Forfait révision, sans engagement", price: chaudiere.review.paris18 },
+              { label: "Contrat d'entretien annuel", price: chaudiere.contract.paris18 },
+              { label: "Ramonage du conduit gaz, avec l'entretien", price: sweepPrice },
+            ]}
+            note="Autres arrondissements et petite couronne : 150 € et 170 €."
+          />
+        </div>
+      </section>
+
+      <section className="wrap mt-24" aria-labelledby="maison">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center">
+          <Polaroid id="heroTrust" alt="Illustration : une équipe fiable, la maintenance des appareils depuis 1965" caption="Une équipe fiable" ratio="4 / 3" sizes="(min-width:1024px) 440px, 90vw" rotate={-2} className="mx-auto w-full max-w-[440px]" />
+          <div className="prose-gf">
+            <Eyebrow>Depuis 1965</Eyebrow>
+            <h2 id="maison" className="!mt-1">Une maison du 18e, rue Sainte-Isaure</h2>
+            <p>
+              Gaz Flash s'occupe de chauffage au gaz depuis 1965. L'entreprise est installée rue Sainte-Isaure, dans le 18e arrondissement, et dessert Paris et trois départements de la petite couronne. Elle se présente comme spécialisée dans le chauffage depuis plus de cinquante ans, et reconnue par les plus grandes marques.
+            </p>
+            <p>
+              Ce qu'elle promet, elle l'écrit : une prestation de qualité dans le cadre des contrats de maintenance, des conseils adaptés à votre besoin, des installations garanties 2 ans pour les pièces, une intervention rapide et efficace selon votre contrat.
+            </p>
+            <div className="flex flex-wrap items-center gap-5 pt-1">
+              <Logo id="certPdg" alt="Logo Professionnel du Gaz" className="h-14 w-auto" width={120} height={56} />
+              <Logo id="certQualibat" alt="Logo Qualibat RGE" className="h-14 w-auto" width={120} height={56} />
+              <Link href={PATHS.company} className="link-arrow">
+                Faire connaissance <ArrowIcon className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="container-x pt-28" aria-labelledby="raisons-title">
-        <div data-reveal="">
-          <p className="eyebrow">Pourquoi Gaz Flash</p>
-          <h2 id="raisons-title" className="h-section mt-3 max-w-3xl">Six raisons de nous confier votre chauffage</h2>
+      <GoogleReviews />
+
+      <section className="wrap mt-24" aria-labelledby="remplacer">
+        <div className="max-w-[60ch]">
+          <Eyebrow>Un chauffage à remplacer ?</Eyebrow>
+          <h2 id="remplacer" className="mt-1">Quatre familles d'appareils, après un diagnostic</h2>
+          <p className="mt-3 text-ink-soft">Avant de choisir un modèle, Gaz Flash réalise un diagnostic et vous conseille la solution la plus adaptée dans sa gamme, économe en énergie et compatible avec votre budget.</p>
         </div>
-        <ol className="mt-12 grid gap-x-10 gap-y-9 md:grid-cols-2 lg:grid-cols-3">
-          {reasons.map((reason, index) => (
-            <li key={reason.title} className="relative border-t-2 border-coal pt-5" data-reveal="" style={{ ["--d" as string]: index % 3 }}>
-              <span className="font-display text-6xl font-extrabold leading-none text-flame/90">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className="mt-2 text-3xl uppercase">{reason.title}</h3>
-              <p className="mt-2 text-coal-soft">{reason.text}</p>
+        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-9 md:grid-cols-6">
+          {ranges.map((range, index) => (
+            <Link
+              key={range.path}
+              href={range.path}
+              className={`group block no-underline ${index === 2 ? "col-span-2 md:col-span-3" : index === 0 ? "md:col-span-2" : index === 1 ? "md:col-span-1 md:mt-8" : "md:col-span-2"}`}
+            >
+              <Frame id={range.image} alt={`Illustration : ${range.title.toLowerCase()}`} ratio={index === 2 ? "16 / 9" : "4 / 3"} sizes="(min-width:768px) 40vw, 90vw" />
+              <p className="mt-2 flex items-baseline gap-2">
+                <span className="hand text-[1.7rem] text-red-btn">{range.letter}</span>
+                <span className="font-display text-[1.15rem] font-semibold text-ink-2 underline decoration-red/50 underline-offset-4 group-hover:decoration-red">{range.title}</span>
+              </p>
+            </Link>
+          ))}
+        </div>
+        <ul className="mt-10 flex flex-wrap items-center gap-4">
+          {brandLogos.map((brand) => (
+            <li key={brand.id} className="flex h-16 w-32 items-center justify-center border border-ink/20 bg-white px-3">
+              <Logo id={brand.id} alt={brand.name} className="max-h-10 w-auto max-w-full object-contain" width={120} height={40} />
             </li>
           ))}
-        </ol>
-      </section>
-
-      <section className="mt-28 overflow-hidden bg-cream-deep py-20" aria-labelledby="marques-title">
-        <div className="container-x" data-reveal="">
-          <p className="eyebrow">Constructeurs</p>
-          <h2 id="marques-title" className="h-section mt-3 max-w-3xl">Des marques que nous connaissons de l'intérieur</h2>
-        </div>
-        <div className="marquee relative mt-12 overflow-hidden" aria-hidden="true">
-          <div className="marquee-track items-center gap-6 pl-6">
-            {loopedBrands.map((brand, index) => (
-              <div key={`${brand.id}-${index}`} className="flex h-28 w-64 shrink-0 items-center justify-center rounded-[4px] border border-line bg-white px-8">
-                <Logo id={brand.id} alt="" className="max-h-16 w-auto max-w-full object-contain" width={180} height={64} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className="container-x mt-8 text-sm text-coal-soft">Frisquet, Chaffoteaux, Saunier Duval, ELM Leblanc, De Dietrich : marques présentées sur le site de l'entreprise. Styx pour les accumulateurs à gaz.</p>
-      </section>
-
-      <section className="container-x pt-24" aria-labelledby="gammes-title">
-        <div className="flex flex-wrap items-end justify-between gap-6" data-reveal="">
-          <div>
-            <p className="eyebrow">Installations</p>
-            <h2 id="gammes-title" className="h-section mt-3 max-w-2xl">Quatre gammes, un diagnostic pour choisir la bonne</h2>
-          </div>
-          <Link href={PATHS.installs} className="inline-flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wider text-flame-dark">
-            Voir les installations <ArrowIcon />
-          </Link>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {ranges.map((range, index) => (
-            <Link key={range.path} href={range.path} className="lift zoom group relative isolate flex min-h-[300px] items-end overflow-hidden rounded-[4px] text-white" data-reveal="" style={{ ["--d" as string]: index % 2 }}>
-              <Photo id={range.image} alt="" sizes="(min-width:768px) 560px, 100vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-coal-2 via-coal-2/60 to-coal-2/10" />
-              <div className="relative p-7">
-                <span className="font-display text-xl font-bold tracking-widest text-ember">{range.letter}</span>
-                <h3 className="text-4xl uppercase">{range.title}</h3>
-                <p className="mt-2 max-w-md text-[0.95rem] text-white/80">{range.products.map((p) => p.brand).join(" · ")}</p>
-              </div>
+          <li>
+            <Link href={PATHS.brands} className="link-arrow">
+              Les marques et leurs modèles <ArrowIcon className="h-4 w-4" />
             </Link>
-          ))}
-        </div>
+          </li>
+        </ul>
       </section>
 
-      <section className="container-x pt-28" aria-labelledby="avis-title">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.4fr]">
-          <div data-reveal="">
-            <p className="eyebrow">Avis Google</p>
-            <h2 id="avis-title" className="h-section mt-3">Ce que disent nos clients</h2>
-            <p className="mt-6 flex items-center gap-4">
-              <span className="font-display text-6xl font-extrabold leading-none text-coal">{String(business.googleRating.value).replace(".", ",")}</span>
-              <span>
-                <span className="flex text-ember" aria-hidden="true">
-                  {Array.from({ length: 4 }, (_, i) => <StarIcon key={i} className="h-5 w-5" />)}
-                </span>
-                <span className="text-sm text-coal-soft">sur 5, d'après {business.googleRating.count} avis Google</span>
-              </span>
+      <section className="wrap mt-24" aria-labelledby="zone">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+          <div className="prose-gf">
+            <Eyebrow>Là où on intervient</Eyebrow>
+            <h2 id="zone" className="!mt-1">Paris, et les trois départements voisins</h2>
+            <p>
+              Gaz Flash intervient à Paris, en Seine-Saint-Denis (93), dans les Hauts-de-Seine (92) et dans le Val-de-Marne (94). Les tarifs d'entretien font la différence entre le 18e, où se trouve l'entreprise, et tout le reste.
             </p>
-            <a href={business.mapsUrl} rel="noopener noreferrer" target="_blank" className="mt-5 inline-flex items-center gap-2 font-semibold text-flame-dark underline underline-offset-4">
-              Lire tous les avis sur Google <ArrowIcon className="h-4 w-4" />
-            </a>
+            <ul>
+              <li><Link href={PATHS.paris18}>Chauffagiste dans le 18e arrondissement</Link>, le quartier de la maison</li>
+              <li><Link href={PATHS.zones}>La zone d'intervention en détail</Link>, avec les tarifs par zone</li>
+            </ul>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {reviews.map((review, index) => (
-              <figure key={review.author} className="card flex flex-col p-6" data-reveal="" style={{ ["--d" as string]: index }}>
-                <div className="flex text-ember" aria-label="5 étoiles sur 5">
-                  {Array.from({ length: 5 }, (_, i) => <StarIcon key={i} className="h-4 w-4" />)}
-                </div>
-                <blockquote className="mt-3 flex-1 text-[0.97rem]">« {review.text} »</blockquote>
-                <figcaption className="mt-4 text-sm text-coal-soft">
-                  <strong className="text-coal">{review.author}</strong> · avis Google · {review.when.toLowerCase()}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <ZoneMap />
         </div>
       </section>
 
-      <div className="pt-28">
-        <Faq keyName="home" />
-      </div>
-
-      <div className="pt-28">
-        <CtaBand />
-      </div>
-
-      <JsonLd nodes={[webPageNode({ title, description, path: PATHS.home }), faqNode("home")]} />
+      <Faq keyName="home" title="Les questions qu'on nous pose le plus" />
+      <CallStrip />
+      <JsonLd nodes={[webPageNode(PATHS.home), faqNode("home")]} />
     </>
   );
 }

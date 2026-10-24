@@ -1,96 +1,112 @@
 import Link from "next/link";
-import { CtaBand, PageHero } from "@/components/Sections";
+import { CallStrip, Faq, GoogleReviews, PageHead, Page, PhoneNote, SeeAlso, Stamp } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
-import { Logo, Photo } from "@/components/Photo";
-import { ArrowIcon } from "@/components/Icons";
-import { PATHS, YEARS, brandLogos, business, reasons } from "@/lib/site";
-import { breadcrumbNode, pageMeta, rootCrumb, webPageNode } from "@/lib/seo";
+import { Logo, Polaroid } from "@/components/Photo";
+import { PATHS, brandLogos, business, reasons } from "@/lib/site";
+import { pageMeta, pageNodes } from "@/lib/seo";
 
-const title = "L'entreprise Gaz Flash : valeurs, engagements, RGE";
-const description =
-  "Chauffagiste à Paris 18e depuis 1965, Gaz Flash est Professionnel du Gaz et Qualibat RGE, reconnu par les grandes marques. Découvrez ses valeurs et engagements.";
-const crumbs = [rootCrumb, { name: "L'entreprise", path: PATHS.company }];
-
-export const metadata = pageMeta({ title, description, path: PATHS.company });
+const path = PATHS.company;
+export const metadata = pageMeta(path);
 
 export default function CompanyPage() {
+  const { legal, address } = business;
   return (
     <>
-      <PageHero
-        crumbs={crumbs}
-        eyebrow="L'entreprise"
-        title="Nos valeurs et nos engagements"
-        lead={`Gaz Flash entretient et dépanne les appareils de chauffage au gaz depuis 1965, soit ${YEARS} ans d'activité à Paris et en petite couronne. L'entreprise est certifiée Professionnel du Gaz et Qualibat RGE.`}
-        image="heroTeam"
+      <PageHead
+        path={path}
+        aside={
+          <div className="relative">
+            <Polaroid id="heroTrust" alt="Illustration : une équipe fiable, la maintenance des appareils depuis 1965" caption="Une équipe fiable" ratio="4 / 3" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />
+            <Stamp className="absolute -left-2 top-4 sm:-left-5">Depuis 1965</Stamp>
+          </div>
+        }
       />
 
-      <section className="container-x pt-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <h2 className="h-section" data-reveal="">Six engagements</h2>
-            <ol className="mt-10 space-y-8">
-              {reasons.map((reason, index) => (
-                <li key={reason.title} className="grid grid-cols-[auto_1fr] gap-5" data-reveal="">
-                  <span className="font-display text-6xl font-extrabold leading-none text-flame">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="text-3xl uppercase">{reason.title}</h3>
-                    <p className="mt-1 text-coal-soft">{reason.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <aside className="space-y-6" data-reveal="">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[4px]">
-              <Photo id="heroTrust" alt="" sizes="(min-width:1024px) 420px, 100vw" />
-            </div>
-            <div className="card p-6">
-              <h2 className="text-3xl">Certifications</h2>
-              <p className="mt-2 text-sm text-coal-soft">Gaz Flash est certifiée :</p>
-              <ul className="mt-4 space-y-4">
-                <li className="flex items-center gap-4">
-                  <Logo id="certQualibat" alt="Qualibat RGE" className="h-14 w-auto" width={120} height={56} />
-                  <span className="font-semibold">Qualibat RGE</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <Logo id="certPdg" alt="Professionnel du Gaz" className="h-14 w-auto" width={120} height={56} />
-                  <span className="font-semibold">Professionnel du Gaz</span>
-                </li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </section>
+      <Page
+        aside={
+          <>
+            <PhoneNote />
+            <Polaroid id="plans" alt="Illustration : règle graduée posée sur des plans, le diagnostic avant l'installation" caption="Le diagnostic d'abord" ratio="495 / 400" sizes="320px" rotate={-1.5} />
+          </>
+        }
+      >
+        <h2 className="!mt-0">Une maison de quartier, depuis 1965</h2>
+        <p>
+          GAZFLASH SAS est une {legal.form.toLowerCase()} au capital de {legal.capital}, immatriculée au registre du commerce et des sociétés de Paris sous le numéro 65 B 3524 (SIRET {legal.siret}, code NAF {legal.naf}, travaux d'installation d'eau et de gaz en tous locaux). Son siège est au {address.street}, {address.postalCode} {address.city}.
+        </p>
+        <p>
+          Depuis 1965, l'entreprise assure la maintenance d'appareils de chauffage et se dit reconnue par les plus grandes marques. Sa devise, sur son site : « Un service d'entretien et de dépannage depuis 1965, nous ne réalisons pas simplement des installations. » Chauffagiste du 18e arrondissement, Gaz Flash entretient, dépanne et installe des appareils au gaz à Paris, en Seine-Saint-Denis, dans les Hauts-de-Seine et dans le Val-de-Marne.
+        </p>
 
-      <section className="mt-28 bg-cream-deep py-20" aria-labelledby="station-title">
-        <div className="container-x">
-          <p className="eyebrow" data-reveal="">Constructeurs</p>
-          <h2 id="station-title" className="h-section mt-3 max-w-3xl" data-reveal="">Station technique agréée</h2>
-          <p className="mt-5 max-w-2xl text-coal-soft" data-reveal="">Reconnue par les plus grandes marques, l'entreprise intervient sur les gammes de plusieurs constructeurs.</p>
-          <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {brandLogos.map((brand) => (
-              <li key={brand.id} className="flex h-28 items-center justify-center rounded-[4px] border border-line bg-white p-6" data-reveal="">
-                <Logo id={brand.id} alt={brand.name} className="max-h-16 w-auto max-w-full object-contain" width={160} height={64} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        <h2>Les six engagements de Gaz Flash</h2>
+        <p>Ce sont ceux que l'entreprise affiche elle-même, noir sur blanc :</p>
+        <ol>
+          {reasons.map((reason) => (
+            <li key={reason.title}>
+              <strong>{reason.title}.</strong> {reason.text}
+            </li>
+          ))}
+        </ol>
 
-      <section className="container-x pt-24">
-        <div className="card flex flex-wrap items-center justify-between gap-6 p-8" data-reveal="">
-          <div>
-            <h2 className="text-4xl">{business.legalName}</h2>
-            <p className="mt-2 text-coal-soft">{business.legal.form} · {business.address.street}, {business.address.postalCode} {business.address.city}</p>
-          </div>
-          <Link href={PATHS.legal} className="inline-flex items-center gap-2 font-semibold text-flame-dark underline underline-offset-4">
-            Mentions légales <ArrowIcon className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+        <h2>Comment ça se passe quand vous appelez</h2>
+        <ol>
+          <li>Vous appelez le standard, au {business.phoneDisplay}, ou vous écrivez par le <Link href={PATHS.contact}>formulaire de contact</Link>.</li>
+          <li>Pour une installation, un diagnostic précède le conseil : l'équipe vous propose la solution la plus adaptée dans sa gamme.</li>
+          <li>Pour un dépannage, vous recevez un devis détaillé, des tarifs prédéfinis et une explication claire de l'origine de la panne.</li>
+          <li>Avec un contrat d'entretien, l'équipe vient chaque année effectuer une visite de prévention afin d'éviter les pannes.</li>
+        </ol>
 
-      <div className="pt-28"><CtaBand /></div>
-      <JsonLd nodes={[webPageNode({ title, description, path: PATHS.company }), breadcrumbNode(crumbs)]} />
+        <h2>Certifications et reconnaissance</h2>
+        <p>
+          Gaz Flash se déclare certifiée <strong>Professionnel du Gaz</strong> et <strong>Qualibat RGE</strong>. RGE signifie « Reconnu Garant de l'Environnement » : c'est la mention qui conditionne l'accès à plusieurs aides à la rénovation énergétique, pour les travaux concernés.
+        </p>
+        <div className="not-prose flex flex-wrap items-center gap-6">
+          <Logo id="certPdg" alt="Logo Professionnel du Gaz" className="h-16 w-auto" width={130} height={60} />
+          <Logo id="certQualibat" alt="Logo Qualibat RGE" className="h-16 w-auto" width={130} height={60} />
+        </div>
+        <p>
+          L'entreprise présente aussi un titre de « station technique agréée », accompagné des logos de cinq marques : Frisquet, Chaffoteaux, Saunier Duval, ELM Leblanc et De Dietrich.
+        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          {brandLogos.map((brand) => (
+            <span key={brand.id} className="flex h-14 w-28 items-center justify-center border border-ink/20 bg-white px-2">
+              <Logo id={brand.id} alt={brand.name} className="max-h-9 w-auto max-w-full object-contain" width={100} height={36} />
+            </span>
+          ))}
+        </div>
+        <p>
+          Les modèles posés pour chaque marque sont détaillés sur la page <Link href={PATHS.brands}>Marques de chaudières et de chauffe-eau</Link>.
+        </p>
+
+        <h2>Où nous trouver, comment nous joindre</h2>
+        <p>
+          Gaz Flash est au {address.street}, {address.postalCode} {address.city}. Le standard répond au <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>. {business.hoursLabel} Pour préparer votre visite ou votre demande, voyez la page <Link href={PATHS.contact}>Contact</Link> ; pour le quartier, la page <Link href={PATHS.paris18}>Chauffagiste Paris 18e</Link>.
+        </p>
+
+        <h2>Informations légales</h2>
+        <ul>
+          <li>Dénomination : {business.legalName} ({business.name})</li>
+          <li>Forme et capital : {legal.form}, {legal.capital}</li>
+          <li>Immatriculation : {legal.rcs}</li>
+          <li>SIRET {legal.siret} · NAF {legal.naf}</li>
+          <li>TVA intracommunautaire : {legal.vat}</li>
+        </ul>
+        <p>
+          Le détail figure dans les <Link href={PATHS.legal}>mentions légales</Link>.
+        </p>
+      </Page>
+
+      <GoogleReviews showQuotes={0} />
+      <Faq keyName="company" title="Faire connaissance : vos questions" />
+      <SeeAlso
+        links={[
+          { path: PATHS.services, text: "Nos quatre services", why: "Entretien, dépannage, installation et ramonage, avec leurs détails." },
+          { path: PATHS.prices, text: "Nos tarifs d'entretien", why: "Les prix TTC affichés, pour le 18e et pour le reste de la zone." },
+          { path: PATHS.zones, text: "La zone d'intervention", why: "Paris et les trois départements voisins, avec un croquis." },
+        ]}
+      />
+      <CallStrip title="Faire connaissance par téléphone" />
+      <JsonLd nodes={pageNodes(path, { faq: "company" })} />
     </>
   );
 }

@@ -1,74 +1,83 @@
 import Link from "next/link";
-import { Checklist, CtaBand, Faq, PageHero } from "@/components/Sections";
+import { CallStrip, Faq, Page, PageHead, PhoneNote, SeeAlso } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
-import { Photo } from "@/components/Photo";
-import { ArrowIcon } from "@/components/Icons";
-import { PATHS, services, sweepPrice } from "@/lib/site";
-import { breadcrumbNode, faqNode, pageMeta, rootCrumb, serviceNode, webPageNode } from "@/lib/seo";
+import { Frame, Polaroid } from "@/components/Photo";
+import { PATHS, business, sweepPrice } from "@/lib/site";
+import { pageMeta, pageNodes } from "@/lib/seo";
 
-const s = services.sweep;
-const crumbs = [rootCrumb, { name: "Services", path: PATHS.services }, { name: s.title, path: s.path }];
-
-export const metadata = pageMeta({ title: s.metaTitle, description: s.metaDescription, path: s.path });
+const path = PATHS.sweep;
+export const metadata = pageMeta(path);
 
 export default function SweepPage() {
   return (
     <>
-      <PageHero
-        crumbs={crumbs}
-        eyebrow="Ramonage"
-        title={s.h1}
-        lead="Le ramonage est une obligation légale et, avant tout, une question de sécurité : il vous protège et préserve vos biens. Il améliore aussi le fonctionnement de vos équipements."
-        image="ramonage"
+      <PageHead
+        path={path}
+        trail={[PATHS.services]}
+        aside={<Polaroid id="ramonage" alt="Illustration : ramonage d'un conduit de fumée" caption="Une question de sécurité" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
       />
 
-      <section className="container-x pt-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="prose-gf" data-reveal="">
-            <h2 className="!mt-0 text-[clamp(2.2rem,4.6vw,3.4rem)]">Ce que le ramonage permet</h2>
-            <p>Le ramonage répond à plusieurs objectifs liés à la réduction des risques :</p>
-            <Checklist
-              items={[
-                "Diminuer l'encrassement des conduits d'évacuation de fumée",
-                "Réduire les risques d'intoxication au monoxyde de carbone",
-                "Limiter les émissions de gaz à effet de serre",
-                "Améliorer le fonctionnement d'une cheminée ou la durée de vie d'une chaudière",
-                "Remplir les conditions imposées par les assurances et la loi",
-                "Réduire la consommation de combustible",
-              ]}
-            />
-            <h3>Retenez que</h3>
-            <ul>
-              <li>Le ramonage doit être réalisé au moins une fois par an.</li>
-              <li>Votre commune ou votre assureur peuvent exiger un second ramonage annuel.</li>
-              <li>Seul un ramonage effectué par un professionnel qualifié est considéré comme valable.</li>
-              <li>La remise d'un certificat de ramonage en bonne et due forme est obligatoire.</li>
-            </ul>
-            <p>
-              Vous conformer à ces règles vous permet de chauffer votre logement en toute sécurité. Si un accident arrive à votre domicile, avoir confié le ramonage à un professionnel vous permet de faire valoir votre assurance. Dans le cas contraire, votre compagnie d'assurance est en droit de vous refuser toute indemnisation, et votre responsabilité peut être engagée en cas de dommages causés à un tiers.
-            </p>
-          </div>
-          <aside className="space-y-6" data-reveal="">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[4px]">
-              <Photo id="ramonage2" alt="" sizes="(min-width:1024px) 420px, 100vw" />
+      <Page
+        aside={
+          <>
+            <PhoneNote rotate={-1} />
+            <Polaroid id="ramonage2" alt="Illustration : conduit de fumée et toiture" caption="Le conduit, chaque année" ratio="3 / 2" sizes="320px" rotate={1.5} />
+            <div className="mx-auto w-40">
+              <Frame id="ramonageTall" alt="Illustration : conduit de cheminée vu d'en bas" ratio="433 / 1030" sizes="160px" />
             </div>
-            <div className="card border-t-[6px] border-t-flame p-6">
-              <p className="font-display text-xl font-semibold uppercase tracking-wider text-coal-soft">Ramonage du conduit gaz</p>
-              <p className="mt-2 font-display text-6xl font-extrabold text-flame-dark">
-                {sweepPrice} <small className="font-sans text-sm font-semibold text-coal-soft">TTC</small>
-              </p>
-              <p className="mt-2 text-sm text-coal-soft">Réalisé uniquement en même temps que l'entretien de la chaudière.</p>
-              <Link href={PATHS.prices} className="mt-5 inline-flex items-center gap-2 font-semibold text-flame-dark underline underline-offset-4">
-                Tous les tarifs <ArrowIcon className="h-4 w-4" />
-              </Link>
-            </div>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      >
+        <h2 className="!mt-0">Pourquoi faire ramoner un conduit de fumée gaz ?</h2>
+        <p>Le ramonage répond à plusieurs objectifs liés à la réduction des risques :</p>
+        <ul>
+          <li>diminuer l'encrassement des conduits d'évacuation de fumée ;</li>
+          <li>réduire les risques d'intoxication au monoxyde de carbone ;</li>
+          <li>limiter les émissions de gaz à effet de serre ;</li>
+          <li>améliorer le fonctionnement d'une cheminée ou la durée de vie d'une chaudière ;</li>
+          <li>remplir les conditions imposées par les assurances et la loi ;</li>
+          <li>réduire la consommation de combustible.</li>
+        </ul>
 
-      <div className="pt-28"><Faq keyName="sweep" /></div>
-      <div className="pt-28"><CtaBand title="Planifier votre ramonage avec l'entretien" /></div>
-      <JsonLd nodes={[webPageNode({ title: s.metaTitle, description: s.metaDescription, path: s.path }), breadcrumbNode(crumbs), serviceNode(s.title, s.path, s.metaDescription), faqNode("sweep")]} />
+        <h2>Ce qu'il faut retenir</h2>
+        <ul>
+          <li>Le ramonage doit être réalisé au moins une fois par an.</li>
+          <li>Votre commune ou votre assureur peuvent exiger un second ramonage annuel.</li>
+          <li>Seul un ramonage effectué par un <strong>professionnel qualifié</strong> est considéré comme valable.</li>
+          <li>La remise d'un certificat de ramonage en bonne et due forme est obligatoire.</li>
+        </ul>
+
+        <h2>Ramonage et assurance</h2>
+        <p>
+          Vous conformer à ces règles vous permet de chauffer votre logement en toute sécurité. Si un accident arrive à votre domicile, avoir confié le ramonage à un professionnel vous permettra de faire valoir votre assurance. Dans le cas contraire, votre compagnie d'assurance est en droit de vous refuser toute indemnisation. Par ailleurs, votre responsabilité peut être engagée en cas de dommages causés à un tiers.
+        </p>
+
+        <h2>Le ramonage chez Gaz Flash : {sweepPrice} TTC</h2>
+        <p>
+          Gaz Flash ramone le conduit de fumée gaz pour <strong>{sweepPrice} TTC</strong>. Le ramonage est réalisé uniquement en même temps que l'entretien de la chaudière : il se demande donc au moment de réserver la visite. Il est proposé en option possible au <Link href={PATHS.maintenance}>contrat d'entretien</Link>, et il est obligatoire une fois par an pour les chaudières à tirage naturel.
+        </p>
+
+        <h2>Tirage naturel ou ventouse : quel est votre cas ?</h2>
+        <p>
+          Une chaudière à tirage naturel évacue ses fumées par un conduit, grâce au tirage de ce conduit. Une chaudière à ventouse prend son air et rejette ses fumées par un conduit étanche, souvent à travers un mur ou en toiture. Si vous ne savez pas à quelle famille appartient votre appareil, demandez-le au technicien lors de la visite : il vous dira si le ramonage est obligatoire chez vous.
+        </p>
+
+        <h2>Le certificat de ramonage</h2>
+        <p>
+          Le certificat est la preuve du ramonage. Conservez-le avec l'attestation d'entretien de la chaudière : votre assureur, votre syndic ou votre propriétaire peuvent vous le demander. Pour réserver un ramonage avec l'entretien, appelez le <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>.
+        </p>
+      </Page>
+
+      <Faq keyName="sweep" />
+      <SeeAlso
+        links={[
+          { path: PATHS.maintenance, text: "L'entretien de la chaudière", why: "Le ramonage se fait en même temps que la visite annuelle." },
+          { path: PATHS.prices, text: "Les tarifs TTC", why: "Ramonage, forfait révision, contrat annuel." },
+          { path: PATHS.faq, text: "Questions fréquentes", why: "Monoxyde de carbone, qui peut ramoner, durée de vie." },
+        ]}
+      />
+      <CallStrip title="Réserver un ramonage avec votre entretien" />
+      <JsonLd nodes={pageNodes(path, { trail: [PATHS.services], faq: "sweep", service: { serviceType: "Ramonage de conduit de fumée gaz" } })} />
     </>
   );
 }
