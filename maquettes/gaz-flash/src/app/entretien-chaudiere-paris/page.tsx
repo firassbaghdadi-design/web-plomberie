@@ -83,7 +83,7 @@ export default function MaintenanceGuidePage() {
           { path: PATHS.paris18, text: "Chauffagiste dans le 18e", why: "Le quartier de la maison et les tarifs de l'arrondissement." },
         ]}
       />
-      <CallStrip title="Réserver votre entretien à Paris" />
+      <CallStrip type="entretien" title="Réserver votre entretien à Paris" />
       <JsonLd nodes={pageNodes(path, { faq: "maintenanceGuide", service: { serviceType: "Entretien annuel de chaudière gaz" } })} />
     </>
   );

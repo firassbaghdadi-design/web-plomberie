@@ -96,7 +96,7 @@ export function RangePage({ range }: { range: Range }) {
           { path: PATHS.install, text: "Le service d'installation", why: "Du diagnostic à la mise en route, et la garantie des pièces." },
         ]}
       />
-      <CallStrip title={`Un projet de ${range.title.toLowerCase()} ?`} text="Décrivez votre logement : Gaz Flash réalise un diagnostic et vous conseille." />
+      <CallStrip type="installation" title={`Un projet de ${range.title.toLowerCase()} ?`} text="Décrivez votre logement : Gaz Flash réalise un diagnostic et vous conseille." />
       <JsonLd nodes={pageNodes(range.path, { trail: [PATHS.installs], faq: range.faq, service: { serviceType: `Installation : ${range.title}` } })} />
     </>
   );

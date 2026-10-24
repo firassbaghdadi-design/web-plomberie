@@ -81,7 +81,7 @@ export default function InstallationsPage() {
           { path: PATHS.prices, text: "Nos tarifs d'entretien", why: "Après la pose, l'entretien annuel : les prix affichés." },
         ]}
       />
-      <CallStrip title="Quelle installation pour votre logement ?" text="Gaz Flash réalise un diagnostic et vous conseille la solution la plus adaptée." />
+      <CallStrip type="installation" title="Quelle installation pour votre logement ?" text="Gaz Flash réalise un diagnostic et vous conseille la solution la plus adaptée." />
       <JsonLd nodes={pageNodes(path, { faq: "installs" })} />
     </>
   );

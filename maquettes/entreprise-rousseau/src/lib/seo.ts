@@ -10,8 +10,8 @@ export function pageMeta({ title, description, path }: PageInput): Metadata {
     description,
     alternates: { canonical: url },
     robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
-    openGraph: { type: "website", locale: "fr_FR", siteName: business.name, title, description, url },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { type: "website", locale: "fr_FR", siteName: business.name, title, description, url, images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: `${business.name}, ${business.tagline}` }] },
+    twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/opengraph-image`] },
   };
 }
 

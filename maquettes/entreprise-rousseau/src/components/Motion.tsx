@@ -7,6 +7,7 @@ const fmt = new Intl.NumberFormat("fr-FR");
 export function Motion() {
   useEffect(() => {
     const root = document.documentElement;
+    root.classList.add("js-ready");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const onScroll = () => {

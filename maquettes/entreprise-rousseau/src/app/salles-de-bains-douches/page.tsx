@@ -1,4 +1,4 @@
-import { CtaBand, FaqList, FeatureRows, PageHero } from "@/components/Sections";
+import { CtaBand, DeepContent, LocalForm, PickedReviews, SeeAlso, FaqList, FeatureRows, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
@@ -24,10 +24,10 @@ export default function Page() {
       />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
-          <h2 id="titre-intro" data-reveal className="text-4xl sm:text-5xl">
+          <h2 id="titre-intro" className="text-4xl sm:text-5xl">
             {c.introTitle}
           </h2>
-          <p data-reveal className="reponse-bref lead mt-6">
+          <p className="reponse-bref lead mt-6">
             {c.intro}
           </p>
         </div>
@@ -37,6 +37,7 @@ export default function Page() {
           <FeatureRows items={services.bathrooms.items} accent={c.accent} contactType="salle-de-bains" />
         </div>
       </section>
+      <DeepContent deep={c.deep} />
       <section aria-label="Réalisations" className="pb-20 sm:pb-28">
         <div className="container-x grid auto-rows-[220px] gap-4 sm:auto-rows-[300px] md:grid-cols-3">
           {c.gallery.map((id, i) => (
@@ -46,7 +47,10 @@ export default function Page() {
           ))}
         </div>
       </section>
+      <PickedReviews pick={c.deep.reviewPick} title={c.deep.reviewTitle} />
+      <LocalForm deep={c.deep} defaultType="salle-de-bains" />
       <FaqList keyName="bathrooms" title={c.faqTitle} />
+      <SeeAlso current="bathrooms" />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Salles de bains / douches", path }]), serviceNode("Aménagement de salles de bains et douches", path, c.intro), faqNode("bathrooms")]} />
     </>

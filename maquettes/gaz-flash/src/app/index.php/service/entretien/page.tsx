@@ -116,7 +116,7 @@ export default function MaintenancePage() {
           { path: PATHS.maintenanceGuide, text: "Entretien de chaudière à Paris", why: "Obligation, attestation, locataire ou propriétaire." },
         ]}
       />
-      <CallStrip title="Souscrire un contrat ou réserver une révision" />
+      <CallStrip type="entretien" title="Souscrire un contrat ou réserver une révision" />
       <JsonLd nodes={pageNodes(path, { trail: [PATHS.services], faq: "maintenance", service: { serviceType: "Entretien de chaudière gaz" } })} />
     </>
   );

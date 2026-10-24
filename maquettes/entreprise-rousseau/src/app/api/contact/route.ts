@@ -54,7 +54,10 @@ export async function POST(request: Request) {
   if (clean(body.website, 50)) return NextResponse.json({ ok: true });
   if (typeof body.elapsed === "number" && body.elapsed < 2500) return NextResponse.json({ ok: true });
 
-  const name = clean(body.name, 120);
+  const firstName = clean(body.firstName, 60);
+  const lastName = clean(body.lastName, 60);
+  const name = `${firstName} ${lastName}`.trim();
+  const address = clean(body.address, 200);
   const phone = clean(body.phone, 40);
   const email = clean(body.email, 160);
   const city = clean(body.city, 120);
@@ -62,7 +65,7 @@ export async function POST(request: Request) {
   const type = clean(body.type, 40);
   const typeLabel = requestTypes.find((t) => t.value === type)?.label ?? "Autre demande";
 
-  if (name.length < 2 || !/^[+\d][\d\s.()-]{7,}$/.test(phone) || message.length < 10 || (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
+  if (firstName.length < 2 || lastName.length < 2 || address.length < 5 || !/^[+\d][\d\s.()-]{7,}$/.test(phone) || message.length < 10 || (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
     return NextResponse.json({ ok: false, error: "Certains champs sont incorrects." }, { status: 400 });
   }
 
@@ -84,6 +87,7 @@ export async function POST(request: Request) {
     ["Nom", name],
     ["Téléphone", phone],
     ["E-mail", email || "non renseigné"],
+    ["Adresse du lieu concerné", address],
     ["Code postal / ville", city || "non renseigné"],
     ["Photos jointes", photos.length ? String(photos.length) : "aucune"],
   ];

@@ -6,6 +6,17 @@ export type Service = { title: string; short: string; photo: PhotoId; items: Ite
 export type Faq = { q: string; a: string };
 export type Quote = { author: string; date: string; text: string };
 
+/** Contenu approfondi d'une page de service : sections « question + réponse directe », bloc local, avis choisis. */
+export type DeepSection = { h2: string; answer: string; body: string[] };
+export type PageDeep = {
+  sections: DeepSection[];
+  localTitle: string;
+  localParagraphs: string[];
+  localPoints: string[];
+  reviewPick: number[];
+  reviewTitle: string;
+};
+
 export type PageCopy = {
   title: string;
   description: string;
@@ -20,6 +31,7 @@ export type PageCopy = {
   faqTitle: string;
   ctaTitle: string;
   ctaText: string;
+  deep: PageDeep;
 };
 
 export type Brand = {

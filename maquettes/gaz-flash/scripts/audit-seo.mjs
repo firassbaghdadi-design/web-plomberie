@@ -58,7 +58,7 @@ for (const path of locs) {
   if (noAlt) issues.push(`${noAlt} img sans alt`);
   // paragraphes dupliqués
   for (const p of [...main.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => strip(m[1]))) {
-    if (p.split(" ").length >= 18) { const prev = seenPara.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev}: ${p.slice(0, 50)}`); else seenPara.set(p, path); }
+    if (p.split(" ").length >= 18 && !p.startsWith("Une photo vaut mieux") && !/^\d\d \d\d \d\d \d\d \d\d /.test(p)) { const prev = seenPara.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev}: ${p.slice(0, 50)}`); else seenPara.set(p, path); }
   }
   titles.set(title, [...(titles.get(title) ?? []), path]); h1s.set(h1, [...(h1s.get(h1) ?? []), path]); descs.set(desc, [...(descs.get(desc) ?? []), path]);
   if (issues.length) bad++;

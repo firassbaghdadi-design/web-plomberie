@@ -1,4 +1,5 @@
 import type { Brand } from "./types";
+import * as deep from "./deep-sandrin";
 
 const business: Brand["business"] = {
   name: "Sandrin-Rousseau",
@@ -122,19 +123,25 @@ export const sandrin: Brand = {
       { q: "Pouvez-vous remplacer un chauffe-eau ?", a: "Oui. Sandrin-Rousseau installe et remplace les appareils sanitaires, y compris les chauffe-eau gaz ou électriques, avec un devis préalable." },
       { q: "Intervenez-vous pour les syndics de copropriété ?", a: "Oui. Les services de plomberie s'adressent aux particuliers, aux professionnels et aux syndics de copropriété." },
       { q: "Réparez-vous une robinetterie qui fuit ?", a: "Oui. Les dépannages comprennent la réparation de robinetterie ou d'appareil sanitaire, le remplacement de robinets d'arrêt et le dépannage gaz." },
+      { q: "Combien coûte l'intervention d'un plombier à Bourg-la-Reine ?", a: `Le prix dépend de la panne, du temps passé et des pièces. Sandrin-Rousseau établit un devis validé avant les travaux, puis une facture détaillée. Pour décrire votre situation, appelez le ${business.phoneDisplay} ou utilisez le formulaire de cette page.` },
+      { q: "Où se trouve votre plombier à Bourg-la-Reine ?", a: `Sandrin-Rousseau est installée au ${business.address.street}, ${business.address.postalCode} ${business.address.city}. Le bureau est ouvert au public : ${business.hoursText.toLowerCase()}.` },
     ],
     heating: [
       { q: "Faut-il entretenir sa chaudière gaz chaque année ?", a: "Oui. Toute chaudière d'une puissance comprise entre 4 et 400 kilowatts doit être entretenue chaque année, que l'on soit propriétaire ou locataire. Le contrat d'entretien lui-même n'est pas obligatoire." },
       { q: "Quel intérêt d'une chaudière à condensation ?", a: "Plus performante et moins gourmande qu'une chaudière ancienne, elle permet de réduire les consommations, d'alléger les factures et de limiter les émissions de CO₂." },
       { q: "Remplacez-vous les radiateurs et posez-vous des robinets thermostatiques ?", a: "Oui. Les travaux comprennent le remplacement de radiateurs de chauffage central, des robinets de radiateurs et la pose de robinets thermostatiques." },
+      { q: "Que vérifie le technicien lors de l'entretien annuel ?", a: "Il contrôle la combustion, l'évacuation des fumées et l'état de l'appareil, puis remet une attestation d'entretien. Gardez-la : votre assureur ou votre propriétaire peut vous la demander, notamment après un sinistre." },
+      { q: "Peut-on remplacer sa chaudière dans une maison à Bourg-la-Reine ?", a: "Oui. En maison, on vérifie surtout l'évacuation des fumées, l'emplacement de l'appareil et la régulation avant de proposer un devis. Un appareil à condensation demande en outre une évacuation des condensats." },
     ],
     bathrooms: [
       { q: "Rénovez-vous des salles de bains complètes ?", a: "Oui. Sandrin-Rousseau crée et rénove des salles de bains et des douches, de la conception à la réalisation." },
       { q: "Puis-je choisir mes matériaux et mon agencement ?", a: "Oui. Les installations sont personnalisées, du choix des matériaux à la mise en œuvre, selon vos envies et votre logement." },
       { q: "Pouvez-vous me conseiller selon mon budget ?", a: "Oui. Les conseils portent sur des solutions durables et esthétiques adaptées à votre budget, et un devis est établi avant les travaux." },
+      { q: "Peut-on remplacer une baignoire par une douche ?", a: "Souvent oui, selon l'évacuation, la place disponible et l'état du sol. Une visite sur place permet de vérifier la pente d'écoulement, l'étanchéité à prévoir et le type de douche le plus adapté, avant de vous remettre un devis." },
+      { q: "Dois-je prévenir mon syndic pour des travaux de salle de bains ?", a: "Si les travaux touchent aux parties communes, comme une colonne d'évacuation ou une façade, oui. Dans une maison individuelle, la question ne se pose pas. Consultez le règlement de copropriété en cas de doute." },
     ],
   },
-  shortAnswer: `Sandrin-Rousseau est l'établissement de Bourg-la-Reine d'Entreprise Rousseau : plomberie, chauffage et salles de bains au ${business.address.street}, ${business.address.postalCode} ${business.address.city}. Pour un dépannage ou un devis, appelez le ${business.phoneDisplay}.`,
+  shortAnswer: `Sandrin-Rousseau est l'établissement de Bourg-la-Reine d'Entreprise Rousseau : plomberie, chauffage et salles de bains au ${business.address.street}, ${business.address.postalCode} ${business.address.city}. Il intervient pour les particuliers, les professionnels et les syndics de copropriété, à Bourg-la-Reine et en région parisienne, avec un devis avant les travaux. Pour un dépannage ou un devis, appelez le ${business.phoneDisplay}.`,
   copy: {
     home: {
       title: "Plombier chauffagiste Bourg-la-Reine | Sandrin-Rousseau",
@@ -170,10 +177,10 @@ export const sandrin: Brand = {
       ctaText: "Décrivez votre besoin : votre message arrive directement à l'équipe de Bourg-la-Reine.",
     },
     plumbing: {
-      title: "Plombier Bourg-la-Reine : dépannage | Sandrin-Rousseau",
-      description: "Plombier à Bourg-la-Reine : dépannage de fuites et d'engorgements, sanitaires, chauffe-eau, robinetterie. Particuliers, professionnels et syndics. Devis.",
+      title: "Plombier Bourg-la-Reine : urgence et dépannage | Sandrin",
+      description: "Plombier à Bourg-la-Reine : fuite d'eau, engorgement, sanitaires, chauffe-eau et dépannage gaz pour particuliers, professionnels, syndics. Devis avant travaux.",
       eyebrow: "Nos services plomberie",
-      heroTitle: "Plombier à Bourg-la-Reine : dépannage et installations",
+      heroTitle: "Plombier Bourg-la-Reine : urgence, fuite et dépannage",
       lead: "Fuites, sanitaires, chauffe-eau : une équipe de plombiers pour les particuliers, les professionnels et les syndics de copropriété.",
       heroPhoto: "plumbSanitaires",
       heroAlt: "Installation de plomberie",
@@ -183,12 +190,13 @@ export const sandrin: Brand = {
       faqTitle: "Vos questions sur la plomberie",
       ctaTitle: "Une fuite, un robinet défaillant ?",
       ctaText: "Appelez-nous ou envoyez votre demande : l'équipe de Bourg-la-Reine vous répond.",
+      deep: deep.plumbing,
     },
     heating: {
-      title: "Chauffagiste Bourg-la-Reine : chaudières | Sandrin-Rousseau",
-      description: "Chauffagiste à Bourg-la-Reine : remplacement de chaudières à condensation, entretien annuel, radiateurs et robinets thermostatiques. Demandez un devis.",
+      title: "Chauffagiste Bourg-la-Reine : chaudière | Sandrin-Rousseau",
+      description: "Chauffagiste à Bourg-la-Reine : entretien annuel, remplacement de chaudière à condensation, radiateurs et robinets thermostatiques. Devis avant les travaux.",
       eyebrow: "Nos services chauffage",
-      heroTitle: "Chauffagiste à Bourg-la-Reine : chaudières et radiateurs",
+      heroTitle: "Chauffagiste Bourg-la-Reine : chaudière, entretien et remplacement",
       lead: "Remplacer une chaudière ancienne, l'entretenir chaque année, équiper ses radiateurs : des solutions pour un logement plus économe.",
       heroPhoto: "heatMaintain",
       heroAlt: "Entretien de chaudière",
@@ -198,6 +206,7 @@ export const sandrin: Brand = {
       faqTitle: "Vos questions sur le chauffage",
       ctaTitle: "Une chaudière à contrôler ou à changer ?",
       ctaText: "Indiquez-nous le type d'appareil : nous vous proposons un devis.",
+      deep: deep.heating,
       noteTitle: "Entretien de chaudière : ce que dit la règle.",
       notePoints: [
         "Le contrat d'entretien de chaudière n'est pas obligatoire.",
@@ -206,19 +215,20 @@ export const sandrin: Brand = {
       ],
     },
     bathrooms: {
-      title: "Salle de bains et douche à Bourg-la-Reine | Sandrin-Rousseau",
-      description: "Création et rénovation de salles de bains et de douches à Bourg-la-Reine et en région parisienne : sur mesure, conseils personnalisés, devis avant travaux.",
+      title: "Rénovation salle de bains Bourg-la-Reine | Sandrin-Rousseau",
+      description: "Rénovation de salle de bains et de douche à Bourg-la-Reine : création sur mesure, rénovation complète et conseils. Un devis vous est remis avant les travaux.",
       eyebrow: "Salles de bains / douches",
-      heroTitle: "Salles de bains et douches à Bourg-la-Reine",
+      heroTitle: "Rénovation de salle de bains à Bourg-la-Reine : douche et salle d'eau",
       lead: "Du plan à la pose, une salle de bains pensée pour votre confort et votre budget.",
       heroPhoto: "showerWide",
       heroAlt: "Douche",
       introTitle: "Qui rénove une salle de bains à Bourg-la-Reine ?",
-      intro: "Sandrin-Rousseau crée et rénove des salles de bains et des douches à Bourg-la-Reine et en région parisienne : création sur mesure, rénovation complète et conseils personnalisés selon votre budget. Un devis vous est remis avant les travaux.",
+      intro: "Sandrin-Rousseau crée et rénove des salles de bains et des douches à Bourg-la-Reine et en région parisienne : création sur mesure, rénovation complète et conseils personnalisés selon votre budget. Un devis vous est remis avant les travaux. Appelez le 01 46 61 88 55 pour décrire votre projet.",
       accent: "salle de bains à Bourg-la-Reine",
       faqTitle: "Vos questions sur les salles de bains",
       ctaTitle: "Parlons de votre future salle de bains.",
       ctaText: "Décrivez votre projet : nous vous conseillons et vous remettons un devis.",
+      deep: deep.bathrooms,
       gallery: ["bathInstall", "bathRenov", "showerWide2"],
     },
     contact: {

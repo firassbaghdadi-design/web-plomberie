@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { business, copy, emergency, faqs, PATHS, reflexes, reviews, steps } from "@/lib/site";
-import { ArrowIcon, PhoneIcon, Stars } from "./Icons";
+import { ArrowIcon, PhoneIcon, PinIcon, Stars } from "./Icons";
 import { Bubbles, Waves } from "./Ocean";
 import { Kinetic } from "./Kinetic";
 import { Photo } from "./Photo";
+import { ContactForm } from "./ContactForm";
+import type { PageDeep } from "@/lib/brands/types";
 import type { PhotoId } from "@/lib/photos";
 
 export function Breadcrumb({ items }: { items: { name: string; href?: string }[] }) {
@@ -87,7 +89,7 @@ export function FeatureRows({ items, accent, contactType }: { items: readonly { 
               0{index + 1}
             </span>
           </div>
-          <div data-reveal style={{ ["--d" as string]: "120ms" }}>
+          <div>
             <h2 className="text-3xl sm:text-5xl">{item.name}</h2>
             <p className="lead mt-5">{item.text}</p>
             <Link href={contactType ? `${PATHS.contact}?demande=${contactType}` : PATHS.contact} className="arrow-link mt-7 inline-flex items-center gap-2 font-medium text-brand-dark hover:text-ink">
@@ -290,6 +292,158 @@ export function CtaBand({ title = copy.home.ctaTitle, text = copy.home.ctaText }
             <ArrowIcon className="h-4 w-4" />
           </Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/** Sections « question + réponse directe » : un H2 en question, une réponse de 40 à 60 mots, puis le détail. */
+export function DeepContent({ deep }: { deep: PageDeep }) {
+  return (
+    <section aria-label="Questions et réponses" className="section pt-0">
+      <div className="container-x max-w-4xl space-y-16">
+        {deep.sections.map((section) => (
+          <article key={section.h2}>
+            <h2 className="text-3xl sm:text-4xl">{section.h2}</h2>
+            <p className="lead mt-5 border-l-4 border-brand pl-5 text-ink">{section.answer}</p>
+            {section.body.map((paragraph) => (
+              <p key={paragraph} className="mt-5 text-lg">
+                {paragraph}
+              </p>
+            ))}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** Avis Google réels, choisis pour la page. */
+export function PickedReviews({ pick, title }: { pick: number[]; title: string }) {
+  const quotes = pick.map((i) => reviews.quotes[i]).filter(Boolean);
+  return (
+    <section aria-labelledby="titre-avis-page" className="section bg-paper-deep">
+      <div className="container-x">
+        <p className="eyebrow">Avis clients</p>
+        <h2 id="titre-avis-page" className="mt-3 max-w-3xl text-3xl sm:text-5xl">
+          {title}
+        </h2>
+        <p className="mt-4 flex items-center gap-3">
+          <Stars className="h-5 w-5" />
+          <span>
+            Note de {reviews.ratingText}/5 sur Google, d'après {reviews.count} avis (relevé du {reviews.observed}).
+          </span>
+        </p>
+        <ul className="mt-10 grid gap-5 md:grid-cols-3">
+          {quotes.map((q) => (
+            <li key={q.author} className="rounded-3xl border border-line bg-white p-7 shadow-lift">
+              <Stars />
+              <blockquote className="mt-4 text-ink">« {q.text} »</blockquote>
+              <p className="mt-4 text-sm text-ink-soft">
+                <strong className="font-medium text-ink">{q.author}</strong> · avis Google, {q.date}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-8">
+          <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+            Lire tous les avis sur Google<span className="sr-only"> (nouvel onglet)</span>
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/** Bloc local : adresse, téléphone, horaires et carte, avec le formulaire de demande à côté. */
+export function LocalForm({ deep, defaultType, withHeading = true }: { deep: PageDeep; defaultType: string; withHeading?: boolean }) {
+  return (
+    <section id="formulaire" aria-labelledby="titre-local" className="section">
+      <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div>
+          {withHeading ? <p className="eyebrow">Nous trouver</p> : null}
+          <h2 id="titre-local" className="mt-3 text-3xl sm:text-4xl">
+            {deep.localTitle}
+          </h2>
+          {deep.localParagraphs.map((paragraph) => (
+            <p key={paragraph} className="mt-5">
+              {paragraph}
+            </p>
+          ))}
+          <ul className="mt-6 space-y-3">
+            {deep.localPoints.map((point) => (
+              <li key={point} className="flex gap-3">
+                <PinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-dark" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 flex flex-wrap gap-3">
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber">
+              <PhoneIcon />
+              {business.phoneDisplay}
+            </a>
+            <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+              Itinéraire<span className="sr-only"> (nouvel onglet)</span>
+            </a>
+          </p>
+        </div>
+        <ContactForm defaultType={defaultType} />
+      </div>
+    </section>
+  );
+}
+
+/** Maillage interne vers les autres pages de service. */
+export function SeeAlso({ current }: { current: "plumbing" | "heating" | "bathrooms" }) {
+  const items = [
+    { key: "plumbing", href: PATHS.plumbing, label: `Plombier ${copy.plumbing.accent.replace("plomberie à ", "")} : urgences et dépannage` },
+    { key: "heating", href: PATHS.heating, label: `Chauffagiste ${copy.heating.accent.replace("chauffage à ", "")} : chaudière et entretien` },
+    { key: "bathrooms", href: PATHS.bathrooms, label: `Rénovation de salle de bains ${copy.bathrooms.accent.replace("salle de bains à ", "")}` },
+  ].filter((i) => i.key !== current);
+  return (
+    <section aria-labelledby="titre-voir-aussi" className="pb-4">
+      <div className="container-x">
+        <h2 id="titre-voir-aussi" className="text-2xl sm:text-3xl">
+          Voir aussi
+        </h2>
+        <ul className="mt-5 flex flex-wrap gap-3">
+          {items.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className="btn-ghost arrow-link">
+                {item.label}
+                <ArrowIcon className="h-4 w-4" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/** Formulaire de demande pleine largeur, pour les pages sans bloc local (accueil). */
+export function FormBand({ defaultType = "plomberie" }: { defaultType?: string }) {
+  return (
+    <section id="formulaire" aria-labelledby="titre-formulaire" className="section">
+      <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div>
+          <p className="eyebrow">Une demande ?</p>
+          <h2 id="titre-formulaire" className="mt-3 text-3xl sm:text-4xl">
+            Décrivez votre besoin, joignez des photos.
+          </h2>
+          <p className="mt-5">
+            Indiquez votre adresse, ce qui se passe et, si possible, une ou deux photos : un technicien lit votre demande et vous répond. Pour une urgence, le téléphone reste le plus rapide.
+          </p>
+          <p className="mt-6">
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber">
+              <PhoneIcon />
+              {business.phoneDisplay}
+            </a>
+          </p>
+          <p className="mt-4 text-sm">{business.hoursText}.</p>
+        </div>
+        <ContactForm defaultType={defaultType} />
       </div>
     </section>
   );

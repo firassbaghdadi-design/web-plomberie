@@ -71,3 +71,12 @@ Contenus, services, horaires et coordonnées repris du site officiel ; note et a
 ## Déploiement
 
 Projet Vercel `entreprise-rousseau-maquette` (compte `firass.baghdadi@gmail.com`), protection « Vercel Authentication » sur tous les déploiements. Pour partager le lien avec le prospect : Settings, Deployment Protection, ajouter un mot de passe ou un lien de partage.
+
+## Refonte des pages de service (24 octobre 2026)
+
+- **H1 métier + ville** : « Plombier Paris 14e : urgence, fuite et dépannage », « Chauffagiste Paris 14e : chaudière, entretien et remplacement », « Rénovation de salle de bains à Paris 14e : douche et salle d'eau » (idem pour Bourg-la-Reine côté Sandrin-Rousseau).
+- **Contenu approfondi** (1 100 à 1 600 mots par page, texte propre à chaque site) : cinq sections « question + réponse directe de 40 à 60 mots », avis Google réels choisis, bloc local, FAQ étendue (5 à 6 questions), maillage « Voir aussi ». Les textes sont dans `src/lib/brands/deep-rousseau.ts` et `deep-sandrin.ts`.
+- **Formulaire sur chaque page** (accueil et trois pages de service) : prénom, nom, téléphone, e-mail, adresse, code postal et ville, photos (4 maximum), message, consentement, bouton Envoyer.
+- **Plus de zone vide** : filet de sécurité CSS qui affiche tout le contenu après 3 secondes si les animations ne démarrent pas, et suppression de l'animation d'apparition sur les textes.
+- **Audit** : `node scripts/audit-seo.mjs http://localhost:3000 https://www.entreprise-rousseau.fr "Paris 14e"` (voir `prospection/standards-maquettes.md`).
+- **À faire relire** : les repères du quartier (Montsouris, Alésia, Plaisance, Pernety, Montparnasse, Denfert-Rochereau pour le 14e ; Sceaux et L'Haÿ-les-Roses pour Bourg-la-Reine), la mention « pavillons et immeubles collectifs » à Bourg-la-Reine, la permanence téléphonique, les règles générales citées (entretien annuel 4 à 400 kW, déclaration d'un dégât des eaux sous cinq jours ouvrés, répartition locataire/propriétaire).

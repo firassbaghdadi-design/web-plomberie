@@ -1,4 +1,4 @@
-import { CtaBand, FaqList, FeatureRows, PageHero } from "@/components/Sections";
+import { CtaBand, DeepContent, LocalForm, PickedReviews, SeeAlso, FaqList, FeatureRows, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { CheckIcon } from "@/components/Icons";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
@@ -24,10 +24,10 @@ export default function Page() {
       />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
-          <h2 id="titre-intro" data-reveal className="text-4xl sm:text-5xl">
+          <h2 id="titre-intro" className="text-4xl sm:text-5xl">
             {c.introTitle}
           </h2>
-          <p data-reveal className="reponse-bref lead mt-6">
+          <p className="reponse-bref lead mt-6">
             {c.intro}
           </p>
         </div>
@@ -37,6 +37,7 @@ export default function Page() {
           <FeatureRows items={services.heating.items} accent={c.accent} contactType="chauffage" />
         </div>
       </section>
+      <DeepContent deep={c.deep} />
       <section aria-labelledby="titre-contrat" className="pb-20 sm:pb-28">
         <div className="container-x">
           <div data-reveal="zoom" className="ocean relative overflow-hidden rounded-[2rem] p-8 text-white shadow-glow sm:p-14">
@@ -55,7 +56,10 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <PickedReviews pick={c.deep.reviewPick} title={c.deep.reviewTitle} />
+      <LocalForm deep={c.deep} defaultType="chauffage" />
       <FaqList keyName="heating" title={c.faqTitle} />
+      <SeeAlso current="heating" />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Chauffage", path }]), serviceNode("Chauffage et chaudières", path, c.intro), faqNode("heating")]} />
     </>

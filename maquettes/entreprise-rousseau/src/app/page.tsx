@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CtaBand, FaqList, Process, ReviewsMarquee, Stats } from "@/components/Sections";
+import { CtaBand, FaqList, FormBand, Process, ReviewsMarquee, Stats } from "@/components/Sections";
 import { ArrowIcon, DropIcon, FlameIcon, PhoneIcon, ShowerIcon, Stars, PinIcon, ClockIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Kinetic } from "@/components/Kinetic";
@@ -218,6 +218,7 @@ export default function Home() {
         </div>
       </section>
 
+      <FormBand />
       <FaqList keyName="home" title={c.faqTitle} />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path: "/" }), breadcrumbNode([{ name: "Accueil", path: "/" }]), faqNode("home")]} />

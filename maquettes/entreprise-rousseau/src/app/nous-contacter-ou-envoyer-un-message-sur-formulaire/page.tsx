@@ -47,11 +47,17 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
         <h2 id="titre-form" className="sr-only">
           Formulaire de demande et coordonnées
         </h2>
+        <div className="container-x mb-10 max-w-4xl">
+          <p className="reponse-bref lead">
+            <strong className="font-medium text-ink">En bref — </strong>
+            Pour joindre {business.name}, appelez le {business.phoneDisplay}, écrivez à {business.email} ou envoyez le formulaire ci-dessous avec vos photos et votre message. Le bureau se trouve au {business.address.street}, {business.address.postalCode} {business.address.city}, et il est ouvert {business.hoursText.toLowerCase()}.
+          </p>
+        </div>
         <div className="container-x grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div data-reveal="left">
+          <div>
             <ContactForm defaultType={type} />
           </div>
-          <div className="space-y-6" data-reveal="right">
+          <div className="space-y-6">
             {[own].map((c) => (
               <article key={c.name} className="overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift">
                 <div className="card-photo relative aspect-[16/7] bg-brand-tint">

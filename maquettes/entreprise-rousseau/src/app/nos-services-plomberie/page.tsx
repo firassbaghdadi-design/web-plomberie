@@ -1,4 +1,4 @@
-import { CtaBand, Emergency, FaqList, FeatureRows, PageHero } from "@/components/Sections";
+import { CtaBand, DeepContent, LocalForm, PickedReviews, SeeAlso, Emergency, FaqList, FeatureRows, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
 import { PATHS, copy, services } from "@/lib/site";
@@ -23,10 +23,10 @@ export default function Page() {
       />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
-          <h2 id="titre-intro" data-reveal className="text-4xl sm:text-5xl">
+          <h2 id="titre-intro" className="text-4xl sm:text-5xl">
             {c.introTitle}
           </h2>
-          <p data-reveal className="reponse-bref lead mt-6">
+          <p className="reponse-bref lead mt-6">
             {c.intro}
           </p>
         </div>
@@ -36,8 +36,12 @@ export default function Page() {
           <FeatureRows items={services.plumbing.items} accent={c.accent} contactType="plomberie" />
         </div>
       </section>
+      <DeepContent deep={c.deep} />
       <Emergency />
+      <PickedReviews pick={c.deep.reviewPick} title={c.deep.reviewTitle} />
+      <LocalForm deep={c.deep} defaultType="plomberie" />
       <FaqList keyName="plumbing" title={c.faqTitle} />
+      <SeeAlso current="plumbing" />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Plomberie", path }]), serviceNode("Plomberie et dépannage", path, c.intro), faqNode("plumbing")]} />
     </>

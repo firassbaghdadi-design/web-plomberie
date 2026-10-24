@@ -83,7 +83,7 @@ export default function InstallPage() {
           { path: PATHS.brands, text: "Les marques posées", why: "Frisquet, Chaffoteaux, Saunier Duval, ELM Leblanc, De Dietrich, Styx." },
         ]}
       />
-      <CallStrip title="Un projet de chaudière ou de chauffe-eau ?" text="Décrivez votre logement : Gaz Flash réalise un diagnostic et vous conseille." />
+      <CallStrip type="installation" title="Un projet de chaudière ou de chauffe-eau ?" text="Décrivez votre logement : Gaz Flash réalise un diagnostic et vous conseille." />
       <JsonLd nodes={pageNodes(path, { trail: [PATHS.services], faq: "install", service: { serviceType: "Installation de chaudière, chauffe-eau et régulation gaz" } })} />
     </>
   );

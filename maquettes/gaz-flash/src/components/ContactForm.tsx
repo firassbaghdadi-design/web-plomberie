@@ -6,7 +6,7 @@ import type { UploadedPhoto } from "@/lib/photo-upload";
 import { PhotoPicker } from "./PhotoPicker";
 
 type Status = "idle" | "sending" | "success" | "error";
-type Errors = Partial<Record<"name" | "phone" | "email" | "message" | "consent", string>>;
+type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
 const field = "mt-1.5 w-full border-2 border-ink/70 bg-white px-4 py-3 text-ink outline-none focus:border-red-btn focus:ring-4 focus:ring-red/20";
 const label = "block text-[0.95rem] font-semibold text-ink-2";
@@ -23,7 +23,9 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
     const form = new FormData(event.currentTarget);
     const data = Object.fromEntries(form.entries()) as Record<string, string>;
     const next: Errors = {};
-    if ((data.name ?? "").trim().length < 2) next.name = "Indiquez votre nom.";
+    if ((data.firstName ?? "").trim().length < 2) next.firstName = "Indiquez votre prénom.";
+    if ((data.lastName ?? "").trim().length < 2) next.lastName = "Indiquez votre nom.";
+    if ((data.address ?? "").trim().length < 5) next.address = "Indiquez l'adresse du lieu concerné (numéro et rue).";
     if (!/^[+\d][\d\s.()-]{7,}$/.test((data.phone ?? "").trim())) next.phone = "Indiquez un numéro de téléphone valide.";
     if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) next.email = "Cette adresse e-mail semble incorrecte.";
     if ((data.message ?? "").trim().length < 10) next.message = "Décrivez votre demande en quelques mots (10 caractères minimum).";
@@ -79,9 +81,14 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
           </select>
         </div>
         <div>
-          <label htmlFor="name" className={label}>Nom et prénom</label>
-          <input id="name" name="name" autoComplete="name" className={field} {...aria("name")} />
-          {err("name")}
+          <label htmlFor="firstName" className={label}>Prénom</label>
+          <input id="firstName" name="firstName" autoComplete="given-name" className={field} {...aria("firstName")} />
+          {err("firstName")}
+        </div>
+        <div>
+          <label htmlFor="lastName" className={label}>Nom</label>
+          <input id="lastName" name="lastName" autoComplete="family-name" className={field} {...aria("lastName")} />
+          {err("lastName")}
         </div>
         <div>
           <label htmlFor="phone" className={label}>Téléphone</label>
@@ -93,8 +100,13 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
           <input id="email" name="email" type="email" autoComplete="email" className={field} {...aria("email")} />
           {err("email")}
         </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="address" className={label}>Adresse du lieu concerné</label>
+          <input id="address" name="address" autoComplete="street-address" placeholder="Numéro et rue" className={field} {...aria("address")} />
+          {err("address")}
+        </div>
         <div>
-          <label htmlFor="city" className={label}>Code postal ou ville</label>
+          <label htmlFor="city" className={label}>Code postal et ville</label>
           <input id="city" name="city" autoComplete="postal-code" className={field} />
         </div>
         <div className="sm:col-span-2">

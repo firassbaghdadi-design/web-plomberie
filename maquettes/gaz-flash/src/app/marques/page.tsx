@@ -64,7 +64,7 @@ export default function BrandsPage() {
           { path: PATHS.prices, text: "Nos tarifs d'entretien", why: "Un prix affiché pour les chaudières, la condensation et les chauffe-bains." },
         ]}
       />
-      <CallStrip title="Quelle marque pour votre logement ?" text="Gaz Flash réalise un diagnostic et vous conseille dans sa gamme." />
+      <CallStrip type="installation" title="Quelle marque pour votre logement ?" text="Gaz Flash réalise un diagnostic et vous conseille dans sa gamme." />
       <JsonLd nodes={pageNodes(path, { faq: "brands" })} />
     </>
   );

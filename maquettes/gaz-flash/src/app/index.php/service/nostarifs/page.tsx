@@ -93,7 +93,7 @@ export default function PricesPage() {
           { path: PATHS.maintenanceGuide, text: "Entretien de chaudière à Paris", why: "Obligation annuelle et attestation." },
         ]}
       />
-      <CallStrip title="Choisir votre formule d'entretien" />
+      <CallStrip type="entretien" title="Choisir votre formule d'entretien" />
       <JsonLd nodes={pageNodes(path, { trail: [PATHS.services], faq: "prices", service: { serviceType: "Entretien de chaudière gaz et ramonage", offers: priceOffers() } })} />
     </>
   );

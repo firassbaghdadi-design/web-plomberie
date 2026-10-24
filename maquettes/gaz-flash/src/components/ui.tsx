@@ -1,3 +1,4 @@
+import { ContactForm } from "@/components/ContactForm";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PATHS, business, faqs, google, pageInfo, reviews, type FaqKey, type PagePath } from "@/lib/site";
@@ -95,7 +96,7 @@ export function Faq({ keyName, title = "Les questions qu'on nous pose" }: { keyN
   );
 }
 
-export function CallStrip({ title = "Une question, un devis, une panne ?", text = "Appelez le standard : on vous répond et on vous dit comment on peut vous aider.", form = true }: { title?: string; text?: string; form?: boolean }) {
+export function CallStrip({ title = "Une question, un devis, une panne ?", text = "Appelez le standard : on vous répond et on vous dit comment on peut vous aider.", form = true, type = "depannage" }: { title?: string; text?: string; form?: boolean; type?: string }) {
   return (
     <section className="wrap mt-24">
       <div className="relative border-[3px] border-ink bg-paper-sheet px-6 py-9 shadow-[7px_8px_0_rgb(44_53_61/0.16)] sm:px-10">
@@ -114,14 +115,19 @@ export function CallStrip({ title = "Une question, un devis, une panne ?", text 
               {business.phoneDisplay}
             </a>
             {form ? (
-              <Link href={PATHS.contact} className="btn btn-ghost">
+              <a href="#formulaire" className="btn btn-ghost">
                 Écrire à l'entreprise
                 <ArrowIcon />
-              </Link>
+              </a>
             ) : null}
           </div>
         </div>
       </div>
+      {form ? (
+        <div id="formulaire" className="mt-10 scroll-mt-28">
+          <ContactForm defaultType={type} />
+        </div>
+      ) : null}
     </section>
   );
 }

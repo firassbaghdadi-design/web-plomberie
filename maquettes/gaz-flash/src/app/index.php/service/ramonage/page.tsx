@@ -76,7 +76,7 @@ export default function SweepPage() {
           { path: PATHS.faq, text: "Questions fréquentes", why: "Monoxyde de carbone, qui peut ramoner, durée de vie." },
         ]}
       />
-      <CallStrip title="Réserver un ramonage avec votre entretien" />
+      <CallStrip type="ramonage" title="Réserver un ramonage avec votre entretien" />
       <JsonLd nodes={pageNodes(path, { trail: [PATHS.services], faq: "sweep", service: { serviceType: "Ramonage de conduit de fumée gaz" } })} />
     </>
   );

@@ -305,6 +305,16 @@ html.js-motion [data-reveal].is-in {
   opacity: 1;
   transform: none;
 }
+/* Filet de sécurité : si le script d'animation ne démarre pas, tout le contenu s'affiche au bout de 3 secondes. */
+html.js-motion:not(.js-ready) [data-reveal] {
+  animation: reveal-failsafe 0.01s 3s forwards;
+}
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* ---------- Boutons et cartes ---------- */
 .pulse::before {
