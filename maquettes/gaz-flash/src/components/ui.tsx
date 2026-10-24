@@ -1,4 +1,3 @@
-import { ContactForm } from "@/components/ContactForm";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PATHS, business, faqs, google, pageInfo, reviews, type FaqKey, type PagePath } from "@/lib/site";
@@ -53,11 +52,11 @@ export function PageHead({ path, trail = [], aside }: { path: PagePath; trail?: 
             <Brief text={info.brief} />
           </div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link href={PATHS.contact} data-track="generate_lead" className="btn">
+            <Link href={PATHS.contact} data-track="generate_lead" className="btn max-sm:w-full">
               Demander un devis ou une intervention
               <ArrowIcon className="h-4 w-4" />
             </Link>
-            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-ghost">
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-ghost max-sm:w-full">
               <PhoneIcon />
               {business.phoneDisplay}
             </a>
@@ -125,19 +124,14 @@ export function CallStrip({ title = "Une question, un devis, une panne ?", text 
               {business.phoneDisplay}
             </a>
             {form ? (
-              <a href="#formulaire" className="btn btn-ghost">
-                Écrire à l'entreprise
+              <Link href={`${PATHS.contact}?demande=${type}`} data-track="generate_lead" className="btn btn-ghost">
+                Devis ou intervention
                 <ArrowIcon />
-              </a>
+              </Link>
             ) : null}
           </div>
         </div>
       </div>
-      {form ? (
-        <div id="formulaire" className="mt-10 scroll-mt-28">
-          <ContactForm defaultType={type} />
-        </div>
-      ) : null}
     </section>
   );
 }
@@ -219,45 +213,16 @@ export function PhoneNote({ rotate = 1.2 }: { rotate?: number }) {
 }
 
 /** Avis Google : la note réelle, sa source et trois extraits signés. Jamais d'aggregateRating dans le JSON-LD. */
-export function GoogleReviews({ showQuotes = 3 }: { showQuotes?: number }) {
+/** Une seule ligne : note, nombre d'avis, lien vers la fiche Google. Pas d'extraits d'avis sur le site. */
+export function GoogleReviews(_props: { showQuotes?: number } = {}) {
   return (
-    <section className="wrap mt-24" aria-labelledby="avis">
-      <div className={`grid gap-10 ${showQuotes > 0 ? "lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]" : ""}`}>
-        <div>
-          <Eyebrow>Ce qu'on dit de nous</Eyebrow>
-          <h2 id="avis" className="mt-1">Des clients de longue date</h2>
-          <div className="affiche mt-6 max-w-sm" style={{ ["--r" as string]: "-1deg" }}>
-            <p className="label text-ink-soft">Fiche Google de Gaz Flash</p>
-            <p className="mt-1 font-display text-[3.2rem] font-semibold leading-none">
-              {google.ratingLabel}
-              <span className="text-[1.6rem] text-ink-soft"> / 5</span>
-            </p>
-            <p className="mt-2">
-              d'après {google.count} avis Google, relevés le {google.observed}.
-            </p>
-            <a className="link-arrow mt-3 text-[0.95rem]" href={google.url} target="_blank" rel="noopener noreferrer">
-              Lire tous les avis sur Google Maps <ArrowIcon className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-        {showQuotes > 0 ? (
-        <div>
-          <ul className="space-y-6">
-            {reviews.slice(0, showQuotes).map((review, index) => (
-              <li key={review.author} style={{ marginLeft: index % 2 ? "clamp(0px, 4vw, 3rem)" : 0 }}>
-                <blockquote className="border-l-[3px] border-red pl-5">
-                  <p className="font-display text-[1.2rem] italic leading-snug text-ink-2">« {review.text} »</p>
-                  <footer className="mt-2 text-[0.92rem] text-ink-soft">
-                    {review.author}, avis Google 5 étoiles, {review.when}
-                  </footer>
-                </blockquote>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-[0.88rem] text-ink-soft">Extraits copiés de la fiche Google Maps de l'entreprise, signés du prénom et de l'initiale.</p>
-        </div>
-        ) : null}
-      </div>
+    <section className="wrap mt-16" aria-label="Note Google">
+      <p className="border-y border-dashed border-ink/30 py-4 text-[0.98rem] text-ink-soft">
+        Note de <strong className="text-ink">{google.ratingLabel}/5</strong> sur Google, d'après {google.count} avis (relevé du {google.observed}).{" "}
+        <a className="link-arrow" href={google.url} target="_blank" rel="noopener noreferrer">
+          Lire les avis sur Google Maps<span className="sr-only"> (nouvel onglet)</span> <ArrowIcon className="h-4 w-4" />
+        </a>
+      </p>
     </section>
   );
 }

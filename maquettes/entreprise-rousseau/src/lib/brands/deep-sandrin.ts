@@ -16,7 +16,6 @@ export const plumbing: PageDeep = {
       h2: "Comment se passe l'intervention d'un plombier ?",
       answer: "Vous nous contactez et nous échangeons sur votre situation. Une visite permet de voir l'installation et de vous conseiller. Un devis vous est remis et validé avant les travaux. Nous intervenons ensuite, puis une facture détaillée est établie. À aucun moment vous n'êtes engagé sans avoir vu le prix.",
       body: [
-        "Xavier L. rapporte dans son avis Google que l'équipe est venue à l'heure au rendez-vous et a trouvé la panne sans hésiter. Thibaut L. évoque un accueil aimable, un devis consciencieux et un tarif très raisonnable.",
         "Que vous soyez particulier, professionnel ou syndic de copropriété, la méthode reste la même : un échange, un devis, une intervention.",
       ],
     },
@@ -49,8 +48,6 @@ export const plumbing: PageDeep = {
     "Bourg-la-Reine, les communes voisines comme Sceaux ou L'Haÿ-les-Roses et les Hauts-de-Seine en général : un plombier proche est un plombier que l'on peut joindre facilement et qui connaît le bâti du secteur. Le bureau est ouvert au public le mercredi matin et du mardi au vendredi après-midi.",
   ],
   localPoints: ["116 avenue du Général Leclerc, 92340 Bourg-la-Reine", "Téléphone : 01 46 61 88 55", "Mercredi de 8h00 à 12h00, du mardi au vendredi de 15h00 à 17h00", "Particuliers, professionnels et syndics de copropriété"],
-  reviewPick: [1, 2, 3],
-  reviewTitle: "Ce que disent les clients de nos interventions de plomberie",
 };
 
 export const heating: PageDeep = {
@@ -67,7 +64,6 @@ export const heating: PageDeep = {
       h2: "Quand changer sa chaudière pour une chaudière à condensation ?",
       answer: "Quand l'appareil est ancien, tombe souvent en panne ou fait grimper la facture de gaz, un remplacement mérite d'être étudié. La chaudière à condensation récupère la chaleur des fumées pour consommer moins de gaz. Une visite technique permet de savoir si votre installation s'y prête avant tout devis.",
       body: [
-        "Marie-Claire se dit très satisfaite de l'intervention réalisée chez elle, et Cat B. évoque un technicien compétent et soucieux de bien faire : c'est cette attention que nous mettons dans un remplacement de chaudière.",
         "Les appareils actuels sont plus performants, moins gourmands et plus fiables que ceux d'il y a quelques années. En maison individuelle, le remplacement s'accompagne souvent d'un contrôle de l'évacuation et de la régulation.",
       ],
     },
@@ -99,8 +95,6 @@ export const heating: PageDeep = {
     "Pour un entretien ou un devis de remplacement, appelez-nous en précisant la marque de l'appareil, son âge approximatif et le mode d'évacuation. Nous vous proposons ensuite une visite adaptée.",
   ],
   localPoints: ["116 avenue du Général Leclerc, 92340 Bourg-la-Reine", "Téléphone : 01 46 61 88 55", "Mercredi de 8h00 à 12h00, du mardi au vendredi de 15h00 à 17h00", "Remplacement, entretien annuel et radiateurs"],
-  reviewPick: [0, 3, 1],
-  reviewTitle: "Ce que disent les clients de nos interventions",
 };
 
 export const bathrooms: PageDeep = {
@@ -148,6 +142,4 @@ export const bathrooms: PageDeep = {
     "Pour une première discussion, appelez-nous ou écrivez-nous en indiquant la surface, l'usage et votre budget approximatif. Vous recevez un devis avant tout démarrage.",
   ],
   localPoints: ["116 avenue du Général Leclerc, 92340 Bourg-la-Reine", "Téléphone : 01 46 61 88 55", "Mercredi de 8h00 à 12h00, du mardi au vendredi de 15h00 à 17h00", "Installation sur mesure, rénovation complète, conseils"],
-  reviewPick: [0, 3],
-  reviewTitle: "Ce que disent nos clients",
 };

@@ -92,7 +92,7 @@ a {
     @apply font-label text-[0.95rem] font-semibold uppercase tracking-[0.16em];
   }
   .btn {
-    @apply inline-flex min-h-[50px] items-center justify-center gap-2.5 border-2 border-ink bg-red-btn px-6 py-2.5 font-label text-[1.2rem] font-bold uppercase tracking-[0.08em] text-white no-underline;
+    @apply inline-flex min-h-[50px] items-center justify-center gap-2.5 whitespace-nowrap border-2 border-ink bg-red-btn px-6 py-2.5 font-label text-[1.2rem] font-bold uppercase tracking-[0.08em] text-white no-underline;
     box-shadow: 4px 4px 0 var(--ink);
     transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
@@ -371,6 +371,16 @@ a {
 .has-menu:hover .menu,
 .has-menu:focus-within .menu {
   display: block;
+}
+
+@media (max-width: 420px) {
+  .btn {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    gap: 0.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

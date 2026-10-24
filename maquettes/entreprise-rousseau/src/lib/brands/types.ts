@@ -13,8 +13,6 @@ export type PageDeep = {
   localTitle: string;
   localParagraphs: string[];
   localPoints: string[];
-  reviewPick: number[];
-  reviewTitle: string;
 };
 
 export type PageCopy = {

@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
-/** Fait apparaître les éléments [data-reveal] au défilement. Sans JavaScript, tout reste visible. */
+/** Fait apparaître les éléments [data-reveal] au défilement, y compris après un changement de page par lien interne. Sans JavaScript, tout reste visible. */
 export function Motion() {
+  const pathname = usePathname();
   useEffect(() => {
     const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     if (!("IntersectionObserver" in window)) {
@@ -23,6 +25,6 @@ export function Motion() {
     );
     items.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
   return null;
 }

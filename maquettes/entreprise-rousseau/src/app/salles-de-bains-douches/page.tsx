@@ -1,4 +1,4 @@
-import { CtaBand, DeepContent, LocalForm, PickedReviews, SeeAlso, FaqList, FeatureRows, PageHero } from "@/components/Sections";
+import { CtaBand, DeepContent, LocalBlock, SeeAlso, FaqList, FeatureRows, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
@@ -47,8 +47,7 @@ export default function Page() {
           ))}
         </div>
       </section>
-      <PickedReviews pick={c.deep.reviewPick} title={c.deep.reviewTitle} />
-      <LocalForm deep={c.deep} defaultType="salle-de-bains" />
+      <LocalBlock deep={c.deep} contactType="salle-de-bains" />
       <FaqList keyName="bathrooms" title={c.faqTitle} />
       <SeeAlso current="bathrooms" />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />

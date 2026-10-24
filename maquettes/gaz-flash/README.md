@@ -85,3 +85,9 @@ npm run dev
 npm run build && npm start
 NEXT_PUBLIC_INDEXABLE=true npm run build   # version indexable (mise en ligne réelle)
 ```
+
+## Corrections du 25 octobre 2026
+
+- Boutons toujours sur une seule ligne (numéro de téléphone compris), sur ordinateur et téléphone.
+- Un seul formulaire, sur `/index.php/contact/`, au style aéré (champs arrondis). Les autres pages renvoient vers lui par des boutons.
+- Extraits d'avis retirés : reste une ligne « Note de 3,7/5 sur Google (63 avis) » avec le lien vers la fiche.

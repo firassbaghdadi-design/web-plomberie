@@ -1,4 +1,4 @@
-import { CtaBand, DeepContent, LocalForm, PickedReviews, SeeAlso, Emergency, FaqList, FeatureRows, PageHero } from "@/components/Sections";
+import { CtaBand, DeepContent, LocalBlock, SeeAlso, Emergency, FaqList, FeatureRows, PageHero } from "@/components/Sections";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
 import { PATHS, copy, services } from "@/lib/site";
@@ -38,8 +38,7 @@ export default function Page() {
       </section>
       <DeepContent deep={c.deep} />
       <Emergency />
-      <PickedReviews pick={c.deep.reviewPick} title={c.deep.reviewTitle} />
-      <LocalForm deep={c.deep} defaultType="plomberie" />
+      <LocalBlock deep={c.deep} contactType="plomberie" />
       <FaqList keyName="plumbing" title={c.faqTitle} />
       <SeeAlso current="plumbing" />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />

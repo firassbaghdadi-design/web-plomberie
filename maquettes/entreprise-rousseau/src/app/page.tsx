@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CtaBand, FaqList, FormBand, Process, ReviewsMarquee, Stats } from "@/components/Sections";
+import { CtaBand, FaqList, Process, Stats } from "@/components/Sections";
 import { ArrowIcon, DropIcon, FlameIcon, PhoneIcon, ShowerIcon, Stars, PinIcon, ClockIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Kinetic } from "@/components/Kinetic";
@@ -45,7 +45,7 @@ export default function Home() {
                 <ArrowIcon className="h-4 w-4" />
               </Link>
             </div>
-            <a href="#avis" className="fade-up mt-9 inline-flex items-center gap-3 text-sm text-white/90 hover:text-white" style={{ ["--delay" as string]: "0.6s" }}>
+            <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="fade-up mt-9 inline-flex items-center gap-3 text-sm text-white/90 hover:text-white" style={{ ["--delay" as string]: "0.6s" }}>
               <Stars />
               <span>
                 <strong className="font-medium text-white">{reviews.ratingText}/5</strong> sur Google · {reviews.count} avis
@@ -135,7 +135,6 @@ export default function Home() {
       </section>
 
       <Stats />
-      <ReviewsMarquee />
       <Process />
 
       <section aria-labelledby="titre-galerie" className="pb-20 sm:pb-28">
@@ -218,7 +217,6 @@ export default function Home() {
         </div>
       </section>
 
-      <FormBand />
       <FaqList keyName="home" title={c.faqTitle} />
       <CtaBand title={c.ctaTitle} text={c.ctaText} />
       <JsonLd nodes={[webPageNode({ title, description, path: "/" }), breadcrumbNode([{ name: "Accueil", path: "/" }]), faqNode("home")]} />

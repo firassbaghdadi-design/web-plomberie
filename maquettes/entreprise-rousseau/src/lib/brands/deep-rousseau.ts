@@ -25,7 +25,6 @@ export const plumbing: PageDeep = {
       answer: "Un chauffe-eau qui fuit au niveau de la cuve, qui chauffe mal ou qui s'entartre vite arrive en fin de vie. Pour les sanitaires, un WC qui fuit en continu ou une robinetterie usée justifient un remplacement. Dans les deux cas, un devis permet de comparer réparation et remplacement.",
       body: [
         "Entreprise Rousseau installe et remplace les appareils sanitaires (évier, lavabo, WC) et les chauffe-eau, qu'ils fonctionnent au gaz ou à l'électricité. Le choix dépend de votre logement, de l'évacuation existante et de la place disponible.",
-        "Madeleine G. raconte dans son avis Google avoir fait changer son chauffe-eau : bon accueil téléphonique, réactivité et travail soigné. Les avis de nos clients sont consultables en entier sur notre fiche Google.",
       ],
     },
     {
@@ -50,8 +49,6 @@ export const plumbing: PageDeep = {
     "Du côté de Montsouris, d'Alésia, de Plaisance, de Pernety, de Montparnasse ou de Denfert-Rochereau, les habitants du 14e appellent un plombier de quartier plutôt qu'un numéro de plateforme. Notre bureau répond du lundi au vendredi, et une permanence téléphonique prend votre message en dehors de ces horaires.",
   ],
   localPoints: ["100 rue de la Tombe-Issoire, 75014 Paris", "Téléphone : 01 45 38 91 91", "Du lundi au vendredi, de 8h00 à 12h00 et de 13h30 à 16h30", "Particuliers, professionnels et syndics de copropriété"],
-  reviewPick: [6, 5, 1],
-  reviewTitle: "Ce que disent les clients de nos interventions de plomberie",
 };
 
 export const heating: PageDeep = {
@@ -68,7 +65,6 @@ export const heating: PageDeep = {
       h2: "Quand faut-il remplacer une vieille chaudière ?",
       answer: "Des pannes qui se répètent, une facture de gaz en hausse, des bruits inhabituels ou une flamme irrégulière sont des signaux. Quand les réparations s'accumulent, comparer le coût d'un remplacement avec celui des interventions devient pertinent. Un technicien peut examiner l'appareil et vous donner son avis avant tout engagement.",
       body: [
-        "Aude D. a fait remplacer son ancienne chaudière à gaz par une chaudière à condensation et salue un travail très professionnel, avec les conseils qui conviennent. C'est exactement l'esprit de ces interventions : on explique avant de poser.",
         "Les chaudières ont énormément évolué ces dernières années : plus performantes, moins gourmandes, plus fiables. Remplacer un appareil ancien est souvent l'occasion de réduire la consommation et d'alléger les factures.",
       ],
     },
@@ -101,8 +97,6 @@ export const heating: PageDeep = {
     "Le plus simple pour planifier un entretien ou un remplacement est de nous appeler : nous vous demandons le type d'appareil, son âge approximatif et le mode d'évacuation, puis nous vous proposons une visite et un devis.",
   ],
   localPoints: ["100 rue de la Tombe-Issoire, 75014 Paris", "Téléphone : 01 45 38 91 91", "Du lundi au vendredi, de 8h00 à 12h00 et de 13h30 à 16h30", "Remplacement, entretien annuel et radiateurs"],
-  reviewPick: [0, 7, 1],
-  reviewTitle: "Ce que disent les clients de nos travaux de chauffage",
 };
 
 export const bathrooms: PageDeep = {
@@ -135,7 +129,6 @@ export const bathrooms: PageDeep = {
       answer: "Consultez le règlement de copropriété, informez le syndic si les travaux touchent aux parties communes, comme une colonne d'évacuation ou une façade, et respectez les horaires de chantier de l'immeuble. Prévoyez la protection des parties communes et l'acheminement des matériaux, surtout sans ascenseur.",
       body: [
         "Ces contraintes se préparent. Plus le chantier est anticipé avec l'immeuble, plus il se déroule sereinement, pour vous comme pour vos voisins.",
-        "Béatrice B. souligne la discrétion et la gentillesse des professionnels intervenus chez elle, ainsi que le suivi proposé : dans un immeuble parisien, ce sont des qualités qui comptent.",
       ],
     },
     {
@@ -152,6 +145,4 @@ export const bathrooms: PageDeep = {
     "Appelez-nous pour une première discussion : surface, usage, budget approximatif, contraintes de l'immeuble. Nous vous répondons directement et vous proposons un devis avant tout démarrage de chantier.",
   ],
   localPoints: ["100 rue de la Tombe-Issoire, 75014 Paris", "Téléphone : 01 45 38 91 91", "Du lundi au vendredi, de 8h00 à 12h00 et de 13h30 à 16h30", "Installation sur mesure, rénovation complète, conseils"],
-  reviewPick: [4, 3, 2],
-  reviewTitle: "Ce que disent les clients de nos chantiers",
 };

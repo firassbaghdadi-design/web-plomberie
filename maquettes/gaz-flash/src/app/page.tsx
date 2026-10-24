@@ -23,11 +23,11 @@ export default function HomePage() {
               <Brief text={info.brief} />
             </div>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link href={PATHS.contact} data-track="generate_lead" className="btn">
+              <Link href={PATHS.contact} data-track="generate_lead" className="btn max-sm:w-full">
                 Demander un devis ou une intervention
                 <ArrowIcon className="h-4 w-4" />
               </Link>
-              <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-ghost">
+              <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-ghost max-sm:w-full">
                 <PhoneIcon />
                 {business.phoneDisplay}
               </a>

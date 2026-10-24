@@ -34,7 +34,12 @@ for (const path of locs) {
   if (canon !== siteUrl + (path === "/" ? "" : path) && canon !== siteUrl + path) issues.push(`canonical ${canon}`);
   if (bw < 40 || bw > 60) issues.push(`En bref ${bw} mots`);
   if (service && words < 500) issues.push(`seulement ${words} mots`);
-  if (service && !/<form/.test(html)) issues.push("pas de formulaire");
+  // un seul formulaire sur tout le site : la page contact ; les autres pages renvoient vers elle par des boutons
+  const isContact = /^\/nous-contacter/.test(path);
+  if (isContact && !/<form/.test(html)) issues.push("pas de formulaire sur la page contact");
+  if (!isContact && /<form/.test(html)) issues.push("formulaire hors page contact");
+  if (!isContact && !/href="\/nous-contacter[^"]*"/.test(main)) issues.push("pas de bouton vers la page contact");
+  if (/avis Google, (janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/.test(main)) issues.push("extraits d'avis affichés");
   if (!/<html lang="fr"/.test(html)) issues.push("lang");
   if (!/property="og:image"/.test(html)) issues.push("og:image");
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
@@ -63,7 +68,7 @@ for (const path of locs) {
   const noAlt = (main.match(/<img(?![^>]*\balt=)[^>]*>/g) ?? []).length;
   if (noAlt) issues.push(`${noAlt} image sans alt`);
   for (const p of [...main.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => strip(m[1]))) {
-    if (p.split(" ").length >= 18 && !p.startsWith("«") && !p.startsWith("Une photo vaut mieux")) { const prev = seen.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev} : ${p.slice(0, 40)}`); else seen.set(p, path); }
+    if (p.split(" ").length >= 18 && !p.startsWith("«") && !p.startsWith("Une photo vaut mieux") && !p.startsWith("Appeler le")) { const prev = seen.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev} : ${p.slice(0, 40)}`); else seen.set(p, path); }
   }
   for (const [k, v] of [["title", title], ["h1", h1], ["description", desc]]) unique[k].set(v, [...(unique[k].get(v) ?? []), path]);
   if (issues.length) bad++;

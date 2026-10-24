@@ -4,7 +4,6 @@ import { ArrowIcon, PhoneIcon, PinIcon, Stars } from "./Icons";
 import { Bubbles, Waves } from "./Ocean";
 import { Kinetic } from "./Kinetic";
 import { Photo } from "./Photo";
-import { ContactForm } from "./ContactForm";
 import type { PageDeep } from "@/lib/brands/types";
 import type { PhotoId } from "@/lib/photos";
 
@@ -130,60 +129,6 @@ export function Stats() {
   );
 }
 
-export function ReviewsMarquee() {
-  const row = (items: typeof reviews.quotes[number][], reverse?: boolean, speed = "80s") => (
-    <div className={`marquee ${reverse ? "reverse" : ""}`} style={{ ["--speed" as string]: speed }}>
-      <ul className="marquee-track">
-        {[...items, ...items].map((q, i) => (
-          <li key={`${q.author}-${i}`} aria-hidden={i >= items.length ? true : undefined} className="w-[min(86vw,380px)] shrink-0 rounded-3xl border border-line bg-white p-7 shadow-lift">
-            <Stars />
-            <blockquote className="mt-4 text-ink">« {q.text} »</blockquote>
-            <p className="mt-4 text-sm text-ink-soft">
-              <strong className="font-medium text-ink">{q.author}</strong> · avis Google, {q.date}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-  const quotes = [...reviews.quotes];
-  return (
-    <section id="avis" aria-labelledby="titre-avis" className="section bg-paper-deep">
-      <div className="container-x">
-        <div className="grid items-end gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div data-reveal>
-            <p className="eyebrow">Avis clients</p>
-            <h2 id="titre-avis" className="mt-3 text-4xl sm:text-6xl">
-              {copy.common.reviewsTitle}
-            </h2>
-          </div>
-          <div data-reveal style={{ ["--d" as string]: "100ms" }} className="flex flex-wrap items-center gap-5 lg:justify-end">
-            <p className="flex items-center gap-3">
-              <span className="font-display text-6xl text-ink">{reviews.ratingText}</span>
-              <span>
-                <Stars className="h-5 w-5" />
-                <span className="mt-1 block text-sm">sur 5 · {reviews.count} avis Google</span>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="mt-12 space-y-5">
-        {row(quotes.slice(0, Math.ceil(quotes.length / 2)), false, "85s")}
-        {row(quotes.slice(Math.ceil(quotes.length / 2)), true, "95s")}
-      </div>
-      <div className="container-x mt-10 flex flex-wrap items-center gap-3">
-        <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-          Lire tous les avis sur Google<span className="sr-only"> (nouvel onglet)</span>
-        </a>
-        <a href={business.reviewUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-          Donner votre avis<span className="sr-only"> (nouvel onglet)</span>
-        </a>
-        <p className="text-xs">Note et nombre d'avis relevés sur la fiche Google de l'entreprise le {reviews.observed}.</p>
-      </div>
-    </section>
-  );
-}
 
 export function Process() {
   return (
@@ -318,59 +263,25 @@ export function DeepContent({ deep }: { deep: PageDeep }) {
   );
 }
 
-/** Avis Google réels, choisis pour la page. */
-export function PickedReviews({ pick, title }: { pick: number[]; title: string }) {
-  const quotes = pick.map((i) => reviews.quotes[i]).filter(Boolean);
-  return (
-    <section aria-labelledby="titre-avis-page" className="section bg-paper-deep">
-      <div className="container-x">
-        <p className="eyebrow">Avis clients</p>
-        <h2 id="titre-avis-page" className="mt-3 max-w-3xl text-3xl sm:text-5xl">
-          {title}
-        </h2>
-        <p className="mt-4 flex items-center gap-3">
-          <Stars className="h-5 w-5" />
-          <span>
-            Note de {reviews.ratingText}/5 sur Google, d'après {reviews.count} avis (relevé du {reviews.observed}).
-          </span>
-        </p>
-        <ul className="mt-10 grid gap-5 md:grid-cols-3">
-          {quotes.map((q) => (
-            <li key={q.author} className="rounded-3xl border border-line bg-white p-7 shadow-lift">
-              <Stars />
-              <blockquote className="mt-4 text-ink">« {q.text} »</blockquote>
-              <p className="mt-4 text-sm text-ink-soft">
-                <strong className="font-medium text-ink">{q.author}</strong> · avis Google, {q.date}
-              </p>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8">
-          <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-            Lire tous les avis sur Google<span className="sr-only"> (nouvel onglet)</span>
-          </a>
-        </p>
-      </div>
-    </section>
-  );
-}
 
-/** Bloc local : adresse, téléphone, horaires et carte, avec le formulaire de demande à côté. */
-export function LocalForm({ deep, defaultType, withHeading = true }: { deep: PageDeep; defaultType: string; withHeading?: boolean }) {
+/** Bloc local : adresse, téléphone, horaires, itinéraire et appel à l'action vers la page contact (le seul formulaire du site). */
+export function LocalBlock({ deep, contactType }: { deep: PageDeep; contactType: string }) {
   return (
-    <section id="formulaire" aria-labelledby="titre-local" className="section">
-      <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+    <section id="nous-trouver" aria-labelledby="titre-local" className="section">
+      <div className="container-x grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          {withHeading ? <p className="eyebrow">Nous trouver</p> : null}
+          <p className="eyebrow">Nous trouver</p>
           <h2 id="titre-local" className="mt-3 text-3xl sm:text-4xl">
             {deep.localTitle}
           </h2>
           {deep.localParagraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-5">
+            <p key={paragraph} className="mt-5 text-lg">
               {paragraph}
             </p>
           ))}
-          <ul className="mt-6 space-y-3">
+        </div>
+        <div className="rounded-[2rem] border border-line bg-white p-7 shadow-lift sm:p-9">
+          <ul className="space-y-3">
             {deep.localPoints.map((point) => (
               <li key={point} className="flex gap-3">
                 <PinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-dark" />
@@ -378,17 +289,22 @@ export function LocalForm({ deep, defaultType, withHeading = true }: { deep: Pag
               </li>
             ))}
           </ul>
-          <p className="mt-6 flex flex-wrap gap-3">
-            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber">
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href={`${PATHS.contact}?demande=${contactType}`} data-track="generate_lead" className="btn-amber pulse whitespace-nowrap">
+              Demander un devis ou une intervention
+            </Link>
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-ghost whitespace-nowrap">
               <PhoneIcon />
               {business.phoneDisplay}
             </a>
-            <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-              Itinéraire<span className="sr-only"> (nouvel onglet)</span>
+          </div>
+          <p className="mt-6 text-sm">
+            <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-dark underline underline-offset-4 hover:text-ink">
+              Itinéraire et fiche Google<span className="sr-only"> (nouvel onglet)</span>
             </a>
+            {" "}· Note de {reviews.ratingText}/5 sur Google ({reviews.count} avis).
           </p>
         </div>
-        <ContactForm defaultType={defaultType} />
       </div>
     </section>
   );
@@ -422,29 +338,3 @@ export function SeeAlso({ current }: { current: "plumbing" | "heating" | "bathro
   );
 }
 
-/** Formulaire de demande pleine largeur, pour les pages sans bloc local (accueil). */
-export function FormBand({ defaultType = "plomberie" }: { defaultType?: string }) {
-  return (
-    <section id="formulaire" aria-labelledby="titre-formulaire" className="section">
-      <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-        <div>
-          <p className="eyebrow">Une demande ?</p>
-          <h2 id="titre-formulaire" className="mt-3 text-3xl sm:text-4xl">
-            Décrivez votre besoin, joignez des photos.
-          </h2>
-          <p className="mt-5">
-            Indiquez votre adresse, ce qui se passe et, si possible, une ou deux photos : un technicien lit votre demande et vous répond. Pour une urgence, le téléphone reste le plus rapide.
-          </p>
-          <p className="mt-6">
-            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber">
-              <PhoneIcon />
-              {business.phoneDisplay}
-            </a>
-          </p>
-          <p className="mt-4 text-sm">{business.hoursText}.</p>
-        </div>
-        <ContactForm defaultType={defaultType} />
-      </div>
-    </section>
-  );
-}

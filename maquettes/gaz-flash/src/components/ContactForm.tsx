@@ -8,7 +8,7 @@ import { PhotoPicker } from "./PhotoPicker";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-1.5 w-full border-2 border-ink/70 bg-white px-4 py-3 text-ink outline-none focus:border-red-btn focus:ring-4 focus:ring-red/20";
+const field = "mt-2 w-full rounded-2xl border border-ink/20 bg-white px-4 py-3.5 text-ink outline-none transition focus:border-red-btn focus:ring-4 focus:ring-red/20";
 const label = "block text-[0.95rem] font-semibold text-ink-2";
 
 export function ContactForm({ defaultType = "depannage" }: { defaultType?: string }) {
@@ -67,11 +67,11 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate aria-labelledby="form-title" className="border-[3px] border-ink bg-paper-sheet p-6 shadow-[7px_8px_0_rgb(44_53_61/0.16)] sm:p-9">
+    <form onSubmit={onSubmit} noValidate aria-labelledby="form-title" className="rounded-[2rem] border border-ink/15 bg-paper-sheet p-6 shadow-[0_30px_60px_-34px_rgb(27_34_41/0.5)] sm:p-10">
       <h2 id="form-title">Écrire à l'entreprise</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de l'entreprise. Pour une panne, le téléphone reste le plus rapide.</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-9 grid gap-x-6 gap-y-7 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>Votre demande</label>
           <select id="type" name="type" defaultValue={defaultType} className={field}>

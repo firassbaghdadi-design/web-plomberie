@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const fmt = new Intl.NumberFormat("fr-FR");
 
+/** Anime les éléments [data-reveal] et [data-count]. Relancé à chaque changement de page : sans cela, les éléments d'une page ouverte par un lien du menu ne seraient jamais révélés. */
 export function Motion() {
+  const pathname = usePathname();
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add("js-ready");
@@ -93,7 +96,7 @@ export function Motion() {
       io.disconnect();
       cleanupPointer();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

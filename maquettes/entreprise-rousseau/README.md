@@ -80,3 +80,9 @@ Projet Vercel `entreprise-rousseau-maquette` (compte `firass.baghdadi@gmail.com`
 - **Plus de zone vide** : filet de sécurité CSS qui affiche tout le contenu après 3 secondes si les animations ne démarrent pas, et suppression de l'animation d'apparition sur les textes.
 - **Audit** : `node scripts/audit-seo.mjs http://localhost:3000 https://www.entreprise-rousseau.fr "Paris 14e"` (voir `prospection/standards-maquettes.md`).
 - **À faire relire** : les repères du quartier (Montsouris, Alésia, Plaisance, Pernety, Montparnasse, Denfert-Rochereau pour le 14e ; Sceaux et L'Haÿ-les-Roses pour Bourg-la-Reine), la mention « pavillons et immeubles collectifs » à Bourg-la-Reine, la permanence téléphonique, les règles générales citées (entretien annuel 4 à 400 kW, déclaration d'un dégât des eaux sous cinq jours ouvrés, répartition locataire/propriétaire).
+
+### Corrections du 25 octobre 2026
+
+- **Zones vides** : cause trouvée et corrigée. `Motion.tsx` ne se lançait qu'au premier chargement ; les blocs et photos d'une page ouverte par le menu restaient invisibles. Il se relance maintenant à chaque changement de page. Test de non-régression : parcours du menu puis défilement (zéro élément invisible).
+- **Avis** : extraits et carrousel retirés. Reste une ligne de note avec lien vers la fiche Google.
+- **Formulaire** : un seul, sur la page contact. Les pages de service ont des boutons « Demander un devis ou une intervention » vers cette page.

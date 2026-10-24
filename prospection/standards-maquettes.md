@@ -1,6 +1,6 @@
 # Standards à respecter pour chaque nouvelle maquette
 
-Règles fixées par Firas le 24 octobre 2026. Elles s'appliquent à tous les prochains secteurs. Aucune page ne part sans les avoir toutes passées.
+Règles fixées par Firas les 24 et 25 octobre 2026. Elles s'appliquent à tous les prochains secteurs, adaptées à la charte de chaque entreprise. Aucune page ne part sans les avoir toutes passées.
 
 ## 1. Référencement (Bible SEO / GEO / AEO)
 
@@ -17,16 +17,17 @@ Règles fixées par Firas le 24 octobre 2026. Elles s'appliquent à tous les pro
 - Contenu **unique** par page et par site (deux établissements d'une même société = deux textes différents).
 - **Intégrité** : aucun prix, délai, chiffre, certification ou avis inventé. Ce qui vient du site d'origine est repris et listé « à faire confirmer ».
 
-## 2. Formulaire sur chaque page
+## 2. Un seul formulaire, sur la page contact
 
-Tout site créé doit proposer, sur **chaque page de service et sur l'accueil**, pas seulement sur la page contact, un formulaire avec :
+Un seul formulaire par site : la **page contact**. Les autres pages (accueil, services, gammes) n'en contiennent pas : elles proposent des **boutons** (« Demander un devis ou une intervention », téléphone) qui mènent à la page contact, avec le type de demande en paramètre (`?demande=chauffage`).
+
+Le formulaire contient :
 
 - type de demande, **prénom**, **nom**, **téléphone**, e-mail (facultatif), **adresse du lieu concerné**, code postal et ville ;
 - **photos** (4 maximum, compressées dans le navigateur, jointes à l'e-mail) ;
-- **message** ;
-- case de consentement, champ piège anti-spam, bouton **Envoyer**.
+- **message**, case de consentement, champ piège anti-spam, bouton **Envoyer ma demande**.
 
-Envoi par Resend (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`). Modèle : `maquettes/gaz-flash` et `maquettes/entreprise-rousseau` (`ContactForm.tsx`, `PhotoPicker.tsx`, `api/contact/route.ts`).
+Style de référence : le formulaire de `maquettes/entreprise-rousseau` (champs arrondis, grands, aérés, jamais tassés), adapté à la charte de l'entreprise. Envoi par Resend (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`). Fichiers modèles : `ContactForm.tsx`, `PhotoPicker.tsx`, `api/contact/route.ts`.
 
 ## 3. Boutons d'appel à l'action
 
@@ -36,15 +37,24 @@ Sur **chaque** site, sans exception :
 - un bouton **« Devis gratuit »** dans l'en-tête (menu), visible sur ordinateur et sur téléphone, vers la page contact ;
 - le numéro de téléphone cliquable à côté.
 
-## 4. Mise en page
+## 4. Avis Google : pas d'extraits sur le site
 
-- Jamais de zone vide sous le héros : le contenu doit s'afficher même si les animations ne démarrent pas (filet de sécurité de 3 secondes).
+- **Aucun avis cité** (ni carrousel, ni extraits, ni nom de client dans les textes).
+- Au plus **une ligne légère** : « Note de X/5 sur Google (N avis, relevé du ... ) » avec le lien vers la fiche Google.
+- Jamais d'`aggregateRating` dans les données structurées.
+
+## 5. Mise en page
+
+- **Jamais de zone vide.** Cause trouvée sur Rousseau : le script d'animation ne s'exécutait qu'au premier chargement, donc les éléments d'une page ouverte par un lien du menu restaient invisibles. Le script (`Motion.tsx`) doit se relancer à chaque changement de page (`usePathname`) et un filet de sécurité CSS doit tout afficher après 3 secondes.
+- **Aucune zone blanche sur les côtés** : une photo ou un bloc ne reste jamais masqué ; une section texte + photo est toujours équilibrée.
+- **Boutons toujours sur une seule ligne** (`white-space: nowrap`), y compris le numéro de téléphone, sur ordinateur et à 360 px.
 - Aucun défilement horizontal à 390 px.
 - Ton de la marque : un commerce de quartier ne ressemble pas à un site « template » (pas de grille de cartes identiques, pas de gadgets).
 
-## 5. Contrôle avant d'annoncer qu'un site est prêt
+## 6. Contrôle avant d'annoncer qu'un site est prêt
 
 1. `npm run typecheck` et `npm run build`.
-2. `npm run audit:seo` sur le serveur local : **zéro problème**.
+2. `npm run audit:seo` sur le serveur local : **zéro problème** (le script vérifie aussi : un seul formulaire, boutons vers le contact, aucun extrait d'avis).
+   Test de navigation : cliquer sur chaque lien du menu, défiler jusqu'en bas, vérifier qu'aucun élément `[data-reveal]` ne reste invisible.
 3. Capture d'écran de chaque type de page à 1440 px et 390 px.
 4. Déploiement Vercel, état READY vérifié.

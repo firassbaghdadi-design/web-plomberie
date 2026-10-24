@@ -28,6 +28,11 @@ for (const path of locs) {
   if (h1n !== 1) issues.push(`h1 x${h1n}`);
   if (canon !== siteUrl + path) issues.push(`canonical ${canon}`);
   if (bw < 40 || bw > 60) issues.push(`brief ${bw}`);
+  const isContact = path === "/index.php/contact/";
+  if (isContact && !/<form/.test(html)) issues.push("pas de formulaire sur la page contact");
+  if (!isContact && /<form/.test(html)) issues.push("formulaire hors page contact");
+  if (!isContact && !/href="\/index\.php\/contact\/[^"]*"/.test(main)) issues.push("pas de bouton vers la page contact");
+  if (/<blockquote/.test(main)) issues.push("extraits d'avis affichés");
   if (!/<html lang="fr"/.test(html)) issues.push("lang");
   if (!/property="og:image"/.test(html)) issues.push("og:image");
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
@@ -58,7 +63,7 @@ for (const path of locs) {
   if (noAlt) issues.push(`${noAlt} img sans alt`);
   // paragraphes dupliqués
   for (const p of [...main.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => strip(m[1]))) {
-    if (p.split(" ").length >= 18 && !p.startsWith("Une photo vaut mieux") && !/^\d\d \d\d \d\d \d\d \d\d /.test(p)) { const prev = seenPara.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev}: ${p.slice(0, 50)}`); else seenPara.set(p, path); }
+    if (p.split(" ").length >= 18 && !p.startsWith("Une photo vaut mieux") && !p.startsWith("Note de") && !/^\d\d \d\d \d\d \d\d \d\d /.test(p)) { const prev = seenPara.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev}: ${p.slice(0, 50)}`); else seenPara.set(p, path); }
   }
   titles.set(title, [...(titles.get(title) ?? []), path]); h1s.set(h1, [...(h1s.get(h1) ?? []), path]); descs.set(desc, [...(descs.get(desc) ?? []), path]);
   if (issues.length) bad++;
