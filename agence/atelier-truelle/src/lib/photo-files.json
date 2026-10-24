@@ -1,0 +1,13 @@
+{
+  "plombier": { "pexels": 6419128, "alt": "Un plombier assemble des raccords de tuyauterie" },
+  "radiateur": { "pexels": 29226620, "alt": "Un plombier raccorde un tuyau de radiateur avec ses outils" },
+  "electricien": { "pexels": 17842832, "alt": "Un électricien devant un tableau électrique" },
+  "tableau": { "pexels": 27928762, "alt": "Un électricien perce près d'un tableau électrique" },
+  "couvreur": { "pexels": 33404248, "alt": "Un couvreur pose des bardeaux sur un toit neuf" },
+  "toit": { "pexels": 38543041, "alt": "Vue aérienne d'un couvreur au travail sur un toit plat" },
+  "macon": { "pexels": 32913797, "alt": "La main d'un maçon pose une brique" },
+  "mains": { "pexels": 33837461, "alt": "Les mains d'un artisan et ses outils usés" },
+  "telephone": { "pexels": 34670920, "alt": "Un ouvrier de chantier souriant, au téléphone, dehors" },
+  "tablette": { "pexels": 8961008, "alt": "Une personne consulte une tablette sur un chantier" },
+  "chantier": { "pexels": 7788264, "alt": "Un ouvrier travaille sur un toit" }
+}

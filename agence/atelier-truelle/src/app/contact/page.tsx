@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/Sections";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 import { PATHS, agency, requestTypes } from "@/lib/site";
 
-const title = "Demander une maquette gratuite | Atelier Truelle";
+const title = "Demander une maquette gratuite de votre site | Truelle";
 const description = "Écrivez à Atelier Truelle : nous préparons une maquette privée de votre site avec votre logo et vos couleurs, gratuite et sans engagement. Réponse par e-mail.";
 const path = PATHS.contact;
 
@@ -15,7 +15,7 @@ export default function Page({ searchParams }: { searchParams: { sujet?: string 
   const type = requestTypes.some((t) => t.value === searchParams.sujet) ? (searchParams.sujet as string) : "maquette";
   return (
     <>
-      <PageHeader eyebrow="Contact" title="Parlons de votre visibilité en ligne." lead="Indiquez votre entreprise et, si vous en avez un, l'adresse de votre site actuel. Nous préparons une maquette gratuite ou un premier point sur votre visibilité, et revenons vers vous par e-mail." crumbs={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
+      <PageHeader eyebrow="Contact" title="Écrivez-nous, une personne vous répond." lead="Indiquez votre entreprise et, si vous en avez un, l'adresse de votre site actuel. Nous préparons une maquette gratuite ou un premier point sur votre visibilité, et revenons vers vous par e-mail." crumbs={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} photo="telephone" note="on décroche, on répond" />
       <section className="section pt-12 sm:pt-16" aria-labelledby="titre-form">
         <h2 id="titre-form" className="sr-only">
           Formulaire de contact
@@ -42,7 +42,7 @@ export default function Page({ searchParams }: { searchParams: { sujet?: string 
                 </p>
               ) : null}
             </div>
-            <div className="card bg-terre-tint/60">
+            <div className="card !bg-terre-tint/50">
               <h3 className="text-2xl">Et ensuite ?</h3>
               <ol className="mt-4 list-decimal space-y-2 pl-5">
                 <li>Nous regardons votre site et votre fiche Google.</li>

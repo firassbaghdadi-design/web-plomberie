@@ -4,6 +4,7 @@ import { LAST_UPDATED, PATHS, SITE_URL, services } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: [string, number, "monthly" | "yearly"][] = [
     [PATHS.home, 1, "monthly"],
+    [PATHS.story, 0.8, "monthly"],
     [PATHS.method, 0.8, "monthly"],
     [PATHS.services, 0.9, "monthly"],
     ...services.map((s): [string, number, "monthly" | "yearly"] => [`${PATHS.services}/${s.slug}`, 0.8, "monthly"]),

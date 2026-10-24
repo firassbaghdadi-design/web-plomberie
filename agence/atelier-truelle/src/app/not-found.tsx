@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Page introuvable", robots: { index: 
 
 export default function NotFound() {
   return (
-    <section className="blueprint flex min-h-[70vh] items-center">
+    <section className="flex min-h-[70vh] items-center">
       <div className="container-x py-24">
         <p className="eyebrow">Erreur 404</p>
         <h1 className="mt-4 max-w-3xl text-5xl sm:text-7xl">Cette page n'existe pas (ou plus).</h1>

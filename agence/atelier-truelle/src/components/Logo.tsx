@@ -16,8 +16,8 @@ export function Logo({ light = false }: { light?: boolean }) {
     <span className="flex items-center gap-3">
       <TrowelMark className="h-11 w-11 shrink-0" />
       <span className="leading-none">
-        <span className={`block font-display text-[0.7rem] font-semibold uppercase tracking-[0.3em] ${light ? "text-zinc" : "text-zinc-dark"}`}>Atelier</span>
-        <span className={`mt-1 block font-display text-2xl font-extrabold tracking-tight ${light ? "text-platre" : "text-ardoise"}`}>Truelle</span>
+        <span className={`block text-[0.68rem] font-semibold uppercase tracking-[0.3em] ${light ? "text-zinc" : "text-zinc-dark"}`}>Atelier</span>
+        <span className={`mt-1 block font-display text-[1.7rem] font-semibold tracking-tight ${light ? "text-platre" : "text-ardoise"}`}>Truelle</span>
       </span>
     </span>
   );

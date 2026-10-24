@@ -3,7 +3,17 @@ import { ArrowIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { CtaBand, PageHeader } from "@/components/Sections";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
+import { Figure } from "@/components/Photo";
 import { PATHS, trades } from "@/lib/site";
+import type { PhotoId } from "@/lib/photos";
+
+const photoFor: Record<string, PhotoId> = {
+  "plombiers-chauffagistes": "radiateur",
+  electriciens: "tableau",
+  couvreurs: "toit",
+  "macons-renovation": "macon",
+  "autres-corps-de-metier": "chantier",
+};
 
 const title = "Marketing digital pour plombiers et électriciens | Truelle";
 const description = "Atelier Truelle accompagne les plombiers, chauffagistes, électriciens, couvreurs, maçons et autres corps de métier du bâtiment dans leur visibilité en ligne.";
@@ -15,7 +25,7 @@ export const metadata = pageMeta({ title, description, path });
 export default function Page() {
   return (
     <>
-      <PageHeader eyebrow="Nos métiers" title="Une méthode, adaptée à chaque métier du bâtiment." lead="Un plombier en urgence et un maçon pour une extension ne sont pas cherchés de la même façon. Nous construisons votre présence en ligne autour de ce que font vos clients." crumbs={[{ name: "Accueil", href: "/" }, { name: "Métiers" }]} />
+      <PageHeader eyebrow="Nos métiers" title="Chaque métier a sa façon d'être appelé." lead="Un plombier en urgence et un maçon pour une extension ne sont pas cherchés de la même façon. Nous construisons votre présence en ligne autour de ce que font vos clients." crumbs={[{ name: "Accueil", href: "/" }, { name: "Métiers" }]} />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
           <h2 id="titre-intro" data-reveal className="text-3xl sm:text-4xl">
@@ -27,26 +37,29 @@ export default function Page() {
         </div>
       </section>
       <section aria-label="Les métiers" className="section">
-        <div className="container-x space-y-6">
+        <div className="container-x space-y-20">
           {trades.map((t, i) => (
-            <article key={t.id} id={t.id} className="card scroll-mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]" data-reveal style={{ ["--d" as string]: `${(i % 2) * 80}ms` }}>
-              <div>
-                <h3 className="text-3xl">{t.name}</h3>
-                <p className="mt-5 text-sm font-bold uppercase tracking-widest text-zinc-dark">Recherches de vos clients</p>
-                <ul className="mt-3 flex flex-wrap gap-2">
+            <article key={t.id} id={t.id} className={`scroll-mt-28 grid items-center gap-8 lg:gap-16 ${i % 2 ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[0.9fr_1.1fr]"}`} data-reveal>
+              <div className={i % 2 ? "lg:order-2" : ""}>
+                <Figure id={photoFor[t.id]} caption={t.name.split(" ")[0].toLowerCase() + ", à votre service"} ratio="aspect-[3/2]" tilt={i % 2 ? "1.2deg" : "-1.2deg"} sizes="(min-width:1024px) 480px, 90vw" />
+              </div>
+              <div className={i % 2 ? "lg:order-1" : ""}>
+                <h2 className="text-3xl sm:text-4xl">{t.name}</h2>
+                <p className="mt-4 text-lg">{t.text}</p>
+                <p className="hand mt-6">ce que vos clients tapent sur Google</p>
+                <ul className="mt-2 flex flex-wrap gap-2">
                   {t.searches.map((q) => (
-                    <li key={q} className="rounded-full bg-platre-deep px-4 py-1.5 text-sm text-ardoise">
+                    <li key={q} className="border border-ardoise/25 bg-platre-light px-3 py-1.5 text-sm text-ardoise">
                       {q}
                     </li>
                   ))}
                 </ul>
               </div>
-              <p>{t.text}</p>
             </article>
           ))}
           <p data-reveal>
-            <Link href={PATHS.services} className="inline-flex items-center gap-2 font-display font-bold text-terre-dark underline decoration-2 underline-offset-8 hover:text-ardoise">
-              Voir tous nos services
+            <Link href={PATHS.services} className="inline-flex items-center gap-2 font-semibold text-terre-dark underline decoration-2 underline-offset-8 hover:text-ardoise">
+              Voir ce que nous faisons
               <ArrowIcon />
             </Link>
           </p>

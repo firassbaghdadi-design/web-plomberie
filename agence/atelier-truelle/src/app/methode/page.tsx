@@ -13,7 +13,7 @@ export const metadata = pageMeta({ title, description, path });
 export default function Page() {
   return (
     <>
-      <PageHeader eyebrow="Notre méthode" title="Comment nous développons la visibilité d'une entreprise du bâtiment." lead="Sept étapes, du premier regard sur votre site à son suivi dans le temps. Rien n'est caché, et vous décidez à chaque étape." crumbs={[{ name: "Accueil", href: "/" }, { name: "Méthode" }]} />
+      <PageHeader eyebrow="Notre méthode" title="Comment nous travaillons, étape par étape." lead="Sept étapes, du premier regard sur votre site à son suivi dans le temps. Rien n'est caché, et vous décidez à chaque étape." crumbs={[{ name: "Accueil", href: "/" }, { name: "Méthode" }]} photo="tablette" note="d'abord la maquette" />
       <section aria-labelledby="titre-intro" className="section pb-0">
         <div className="container-x max-w-4xl">
           <h2 id="titre-intro" data-reveal className="text-3xl sm:text-4xl">
@@ -26,15 +26,15 @@ export default function Page() {
       </section>
       <section aria-label="Les sept étapes" className="section">
         <div className="container-x max-w-4xl">
-          <ol className="space-y-6">
+          <ol className="rule-list">
             {method.map((m, i) => (
-              <li key={m.title} className="card flex gap-6" data-reveal style={{ ["--d" as string]: `${(i % 3) * 80}ms` }}>
-                <span aria-hidden="true" className="font-display text-5xl font-extrabold leading-none text-terre/70">
+              <li key={m.title} className="grid gap-4 py-2 sm:grid-cols-[5rem_1fr] sm:gap-8" data-reveal>
+                <span aria-hidden="true" className="font-display text-5xl font-semibold leading-none text-terre/55">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="text-2xl">{m.title.replace(/^\d+\.\s*/, "")}</h3>
-                  <p className="mt-3">{m.text}</p>
+                  <h2 className="text-2xl sm:text-3xl">{m.title.replace(/^\d+\.\s*/, "")}</h2>
+                  <p className="mt-3 text-lg">{m.text}</p>
                 </div>
               </li>
             ))}

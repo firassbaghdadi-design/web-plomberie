@@ -16,6 +16,7 @@ export const agency = {
 
 export const PATHS = {
   home: "/",
+  story: "/notre-histoire",
   services: "/services",
   trades: "/metiers",
   method: "/methode",
@@ -25,15 +26,15 @@ export const PATHS = {
 } as const;
 
 export const nav = [
-  { href: PATHS.home, label: "Accueil" },
-  { href: PATHS.services, label: "Services" },
+  { href: PATHS.story, label: "Notre histoire" },
+  { href: PATHS.services, label: "Ce que nous faisons" },
   { href: PATHS.trades, label: "Métiers" },
   { href: PATHS.method, label: "Méthode" },
   { href: PATHS.contact, label: "Contact" },
 ] as const;
 
 export const shortAnswer =
-  "Atelier Truelle est une agence de marketing digital spécialisée dans les entreprises du bâtiment : plombiers, chauffagistes, électriciens, couvreurs, maçons. Nous prenons en charge votre site web, votre référencement local, votre fiche Google et vos avis, votre publicité en ligne et le suivi de vos demandes, avec un seul interlocuteur.";
+  "Atelier Truelle aide les artisans du bâtiment (plombiers, chauffagistes, électriciens, couvreurs, maçons) à être trouvés et appelés sur Internet : site web, référencement local, fiche Google et avis, publicité en ligne, suivi des demandes. Nous refaisons d'abord votre site en maquette privée gratuite. Vous regardez, puis vous décidez.";
 
 export type Faq = { q: string; a: string };
 
@@ -108,7 +109,7 @@ export const services: Service[] = [
     name: "Fiche Google et avis clients",
     short: "Une fiche complète, à jour, et des avis qui rassurent, demandés auprès de vos clients satisfaits.",
     metaTitle: "Fiche Google et avis clients pour artisans | Atelier Truelle",
-    metaDescription: "Optimisation de votre fiche Google et collecte légitime d'avis après intervention pour les entreprises du bâtiment. Aucun avis acheté ni récompensé.",
+    metaDescription: "Optimisation de votre fiche Google et collecte légitime d'avis après intervention pour les entreprises du bâtiment. Aucun avis n'est acheté, trié ni récompensé.",
     h1: "Fiche Google et avis clients pour les entreprises du bâtiment",
     brief: "Votre fiche Google est souvent la première chose que voit un client. Nous la complétons et la maintenons à jour : catégories, horaires, zone d'intervention, photos, description. Nous mettons aussi en place une demande d'avis après intervention, par SMS ou QR code, auprès de vos clients satisfaits. Aucun avis n'est acheté ni récompensé.",
     does: [
@@ -131,7 +132,7 @@ export const services: Service[] = [
     name: "Publicité en ligne",
     short: "Des campagnes Google et réseaux sociaux pour recevoir plus de demandes quand vous en avez besoin.",
     metaTitle: "Publicité en ligne pour artisans du bâtiment | Truelle",
-    metaDescription: "Campagnes Google Ads et réseaux sociaux pour les entreprises du bâtiment : recherches ciblées, annonces, pages d'atterrissage et suivi des appels.",
+    metaDescription: "Campagnes Google Ads et réseaux sociaux pour les entreprises du bâtiment : recherches ciblées, annonces, pages d'atterrissage et suivi des appels reçus.",
     h1: "Publicité en ligne pour les entreprises du bâtiment",
     brief: "Quand vous voulez plus de demandes sur une période ou un métier précis, nous mettons en place et pilotons vos campagnes sur Google et les réseaux sociaux : choix des recherches, annonces, page d'atterrissage, suivi des appels. Le budget publicitaire est défini avec vous avant le lancement et vous gardez la maîtrise de vos comptes.",
     does: [
@@ -177,7 +178,7 @@ export const services: Service[] = [
     name: "Suivi des appels et des demandes",
     short: "Savoir d'où viennent vos clients et ce qui fonctionne, avec un bilan mensuel clair.",
     metaTitle: "Suivi des appels et demandes pour artisans | Truelle",
-    metaDescription: "Suivi des appels, formulaires et demandes de devis pour les entreprises du bâtiment : savoir d'où viennent vos clients et quoi améliorer chaque mois.",
+    metaDescription: "Suivi des appels, formulaires et demandes de devis pour les entreprises du bâtiment : savoir d'où viennent vos clients et ce qu'il faut améliorer chaque mois.",
     h1: "Suivi des appels et des demandes de devis",
     brief: "Pour un artisan, ce qui compte, ce sont les appels et les demandes de devis. Nous mettons en place un suivi simple : combien d'appels et de demandes arrivent, par quelle page ou campagne, à quel moment. Chaque mois, vous recevez un bilan clair et des recommandations concrètes.",
     does: [
@@ -231,27 +232,10 @@ export const trades: Trade[] = [
   },
 ];
 
-export const pillars = [
-  { title: "Nous parlons votre métier", text: "Urgence, devis, chantier, zone d'intervention : nous comprenons comment un client choisit un artisan, et nous construisons votre présence en ligne autour de cette réalité." },
-  { title: "Un seul interlocuteur", text: "Site, référencement, fiche Google, publicité, contenus et suivi : tout passe par la même personne, avec la même vision. Vous n'avez pas à coordonner plusieurs prestataires." },
-  { title: "Des preuves, pas des promesses", text: "Nous ne vendons ni « première place sur Google » ni avis achetés. Nous travaillons ce qui est réel, nous le mesurons, et nous vous montrons le résultat avant de vous demander quoi que ce soit." },
-] as const;
-
-export const keep = ["Votre logo, vos couleurs et vos polices", "Vos textes et vos photos de chantier", "Vos adresses de pages (redirections 301 si elles changent)", "Votre ton et votre façon de parler à vos clients"] as const;
-
-export const change = [
-  "Un affichage fait pour le téléphone, avec le bouton d'appel toujours visible",
-  "Des pages rapides à charger, accessibles et propres pour Google",
-  "Vos avis clients mis en avant, avec leur source",
-  "Un formulaire de demande dont les messages arrivent dans votre boîte e-mail",
-  "Un référencement local : pages par métier, questions fréquentes, données structurées",
-] as const;
-
 export const steps = [
-  { title: "Écoute et diagnostic", text: "Nous regardons votre site, votre fiche Google, vos avis et vos concurrents locaux. Vous nous dites ce que vous voulez : plus d'appels, plus de chantiers, un métier en particulier." },
-  { title: "Maquette gratuite et privée", text: "Nous préparons votre page d'accueil avec votre logo et vos couleurs. Vous la découvrez par un lien privé, jamais publié ni référencé." },
-  { title: "Mise en place", text: "Site, référencement, fiche Google, avis, publicité, contenus : nous construisons ce dont vous avez besoin, étape par étape, sans perdre vos adresses de pages." },
-  { title: "Suivi et amélioration", text: "Bilan régulier des appels et des demandes, ajustements, petites modifications. Vous savez toujours ce qui fonctionne." },
+  { title: "On écoute, on regarde", text: "Avant de proposer quoi que ce soit, nous regardons votre site, votre fiche Google, vos avis, ce que font les autres artisans de votre secteur. Puis nous vous écoutons : ce que vous aimez dans votre métier, les chantiers que vous voudriez faire plus souvent.", photo: "telephone", note: "d'abord, on vous écoute" },
+  { title: "On construit, sans rien vous demander", text: "Nous refaisons votre page d'accueil avec votre logo, vos couleurs, vos textes et vos photos. Vos adresses de pages restent les mêmes pour ne rien perdre sur Google. Vous recevez un lien privé que personne d'autre ne voit.", photo: "tablette", note: "puis on se met au travail" },
+  { title: "Vous regardez, puis vous décidez", text: "Si ça vous plaît, nous en parlons et vous recevez un devis écrit avant que le moindre travail commence. Si ça ne vous plaît pas, nous supprimons la maquette et nous ne vous relançons pas.", photo: "mains", note: "et c'est vous qui choisissez" },
 ] as const;
 
 export const method = [
@@ -265,20 +249,23 @@ export const method = [
 ] as const;
 
 export const commitments = [
-  "La maquette est gratuite, privée et sans engagement.",
-  "Nous ne promettons pas la « première place sur Google » : personne ne peut la garantir.",
-  "Les avis ne sont jamais achetés, filtrés ni récompensés.",
-  "Vos photos, vos avis et votre logo ne sont mis en ligne qu'avec votre accord.",
-  "Vous recevez un devis personnalisé avant le début de tout travail.",
+  "Nous ne promettons pas la première place sur Google. Personne ne peut la garantir.",
+  "Nous n'achetons pas d'avis et nous ne les trions pas. Un avis se demande à un client satisfait, c'est tout.",
+  "Nous ne publions rien (photo, avis, logo) sans votre accord.",
+  "Vous recevez un devis écrit avant le début de tout travail. Ce qui est dans le devis est ce que vous payez.",
+  "Votre site, votre nom de domaine, vos comptes et vos contenus restent à vous.",
+  "La maquette est gratuite. Si elle ne vous plaît pas, nous la supprimons et nous ne vous relançons pas.",
 ] as const;
 
+export const owned = ["Votre nom de domaine", "Votre fiche Google", "Vos comptes publicitaires", "Vos textes, vos photos et votre logo"] as const;
+
 export const homeFaqs: Faq[] = [
-  { q: "Que fait une agence de marketing digital pour une entreprise du bâtiment ?", a: "Elle s'occupe de tout ce qui permet à vos clients de vous trouver et de vous contacter en ligne : site web, référencement local, fiche Google et avis, publicité, contenus et suivi des demandes. Atelier Truelle regroupe ces missions avec un seul interlocuteur, pour les plombiers, chauffagistes, électriciens, couvreurs et maçons." },
-  { q: "Combien coûtent vos services ?", a: "Nous ne publions pas de tarif, parce que chaque entreprise a des besoins différents : un site, une fiche Google, une campagne, un suivi, ou l'ensemble. Après un premier échange et la maquette gratuite, vous recevez un devis personnalisé et clair avant le début de tout travail." },
-  { q: "Que se passe-t-il si la maquette ne me plaît pas ?", a: "Rien. La maquette est offerte et sans engagement. Si elle ne vous convient pas, elle est supprimée et nous ne vous recontactons pas à ce sujet." },
-  { q: "Vais-je perdre mon référencement actuel en changeant de site ?", a: "Non, c'est justement ce que nous évitons. Nous conservons vos adresses de pages et, quand une adresse doit changer, nous mettons en place une redirection permanente vers la nouvelle page." },
-  { q: "Pouvez-vous me garantir la première place sur Google ?", a: "Non, et méfiez-vous de ceux qui le font. Nous travaillons ce qui dépend du site et de la fiche Google : vitesse, mobile, pages par métier, questions fréquentes et avis légitimes de vos clients." },
-  { q: "Travaillez-vous uniquement avec des plombiers ?", a: "Nous commençons par les plombiers et les chauffagistes, que nous connaissons le mieux, et nous accompagnons aussi les électriciens, couvreurs, maçons et autres corps de métier du bâtiment." },
+  { q: "Comment savoir que vous n'êtes pas des arnaqueurs ?", a: "Vous avez raison de poser la question, beaucoup d'artisans ont déjà été démarchés par des vendeurs de « première place sur Google ». Voici ce qui vous protège : la maquette est gratuite et vous la voyez avant de payer quoi que ce soit, vous recevez un devis écrit avant le début de tout travail, et notre identité légale (nom, SIREN, adresse) figure dans les mentions légales : vous pouvez la vérifier sur l'annuaire officiel des entreprises." },
+  { q: "Combien ça coûte ?", a: "Nous ne publions pas de tarif, parce qu'un site, une fiche Google, une campagne ou l'ensemble ne représentent pas le même travail. Après un premier échange et la maquette, vous recevez un devis écrit et clair. Vous n'avez rien à payer avant." },
+  { q: "Que se passe-t-il si la maquette ne me plaît pas ?", a: "Rien. Elle est gratuite et sans engagement. Si elle ne vous convient pas, nous la supprimons et nous ne vous recontactons pas à ce sujet." },
+  { q: "Vais-je perdre mon référencement actuel en changeant de site ?", a: "Non, c'est ce que nous évitons en priorité. Nous gardons vos adresses de pages et, quand une adresse doit changer, une redirection permanente envoie vos visiteurs et Google vers la bonne page." },
+  { q: "Pouvez-vous me garantir la première place sur Google ?", a: "Non, et méfiez-vous de ceux qui le font. Nous travaillons ce qui dépend de votre site et de votre fiche Google : rapidité, affichage sur téléphone, pages par métier, questions fréquentes, avis de vos vrais clients." },
+  { q: "Êtes-vous une grosse agence ?", a: "Non, nous sommes un atelier. Vous parlez à la même personne du début à la fin, qui connaît votre dossier et qui vous répond." },
 ];
 
 export const requestTypes = [

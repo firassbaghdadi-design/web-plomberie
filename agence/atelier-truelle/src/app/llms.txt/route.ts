@@ -11,6 +11,7 @@ export function GET() {
 ${services.map((s) => `- [${s.name}](${SITE_URL}${PATHS.services}/${s.slug}) : ${s.short}`).join("\n")}
 
 ## Pages
+- [Notre histoire](${SITE_URL}${PATHS.story})
 - [Méthode](${SITE_URL}${PATHS.method})
 - [Services](${SITE_URL}${PATHS.services})
 - [Métiers](${SITE_URL}${PATHS.trades})
