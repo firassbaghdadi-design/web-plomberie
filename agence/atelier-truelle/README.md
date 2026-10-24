@@ -62,3 +62,11 @@ NEXT_PUBLIC_INDEXABLE=true npm run build   # exige les variables légales
 ## Mesures locales (Lighthouse, build de préparation)
 
 Performance 97 à 100, accessibilité 100, bonnes pratiques 100 sur les pages principales. Le score SEO atteint 100 sur la version indexable ; il est plafonné à 66 sur la version de préparation, à cause du `noindex` voulu.
+
+## Refonte éditoriale (octobre 2026)
+
+- Ton « atelier » : un récit en chapitres (accueil, `/notre-histoire`), des règles écrites noir sur blanc, aucun faux témoignage, aucun faux client, aucune fausse équipe.
+- Photos libres de droit (Pexels, usage commercial autorisé, crédit non obligatoire) : liste et identifiants dans `src/lib/photo-files.json`, téléchargées au build par `scripts/fetch-photos.mjs` vers `public/photos/` (ignoré par Git). Si une photo ne se télécharge pas, un fond rayé neutre la remplace. Le pied de page indique que ce sont des images d'illustration.
+- Polices : Fraunces (titres), Inter (texte), Caveat (annotations manuscrites).
+- À compléter quand vous serez prêt : un prénom et un vrai visage sur `/notre-histoire` et sur l'accueil (c'est ce qui inspire le plus confiance), puis des réalisations réelles dès que vous en aurez avec l'accord des clients.
+- Engagements écrits dans `src/lib/site.ts` (`commitments`, `owned`) : à confirmer comme règles réelles de l'agence (propriété du site et du nom de domaine, devis écrit avant travaux, pas de relance après refus de maquette).
