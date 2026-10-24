@@ -28,3 +28,5 @@ Maquette pilote sur la cible n°1 du classement (voir `prospects-paris-plomberie
 - Maquettes terminées : Entreprise Rousseau, Sandrin-Rousseau, et **Gaz Flash** (cible n°1 du classement) : https://gaz-flash-maquette.vercel.app (`maquettes/gaz-flash/`, voir son README pour les points à valider).
 - Prochaine cible du classement : Somsou-Pons, puis Seragaz.
 - Bloqué tant que le statut d'entreprise n'existe pas : aucun envoi, aucun domaine acheté.
+
+- 24 octobre 2026 (nuit) : fiche préparatoire `somsou-pons-brief.md` (faits lus par recherche web, maquette non lancée : crédits Firecrawl épuisés, site injoignable) et `kit-prospection.md` (e-mail, relance, appel, liste de contrôle avant envoi).
