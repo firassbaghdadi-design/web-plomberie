@@ -1,11 +1,12 @@
+// Symbole : la lame de la truelle est aussi un curseur de souris (voir agence/charte-graphique).
 export function TrowelMark({ className = "h-10 w-10" }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
       <rect width="64" height="64" rx="14" fill="#C8553D" />
-      <g transform="rotate(38 32 32) translate(0 2)">
-        <path d="M32 6 L46 34 Q32 41 18 34 Z" fill="#F6F1E7" />
-        <path d="M32 37 L32 45" stroke="#F6F1E7" strokeWidth="3.2" strokeLinecap="round" />
-        <rect x="28.2" y="44" width="7.6" height="13" rx="3.8" fill="#F6F1E7" />
+      <g transform="rotate(-34 32 32) translate(0 1) translate(32 32) scale(1.1) translate(-32 -32)" strokeLinejoin="round" strokeLinecap="round">
+        <path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#F4EEE3" stroke="#F4EEE3" strokeWidth="2" />
+        <path d="M32 31 L32 41" stroke="#F4EEE3" strokeWidth="3.4" />
+        <rect x="27.6" y="40" width="8.8" height="16" rx="4.4" fill="#14191C" />
       </g>
     </svg>
   );
