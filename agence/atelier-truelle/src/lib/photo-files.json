@@ -1,13 +1,86 @@
 {
-  "plombier": { "pexels": 6419128, "alt": "Un plombier assemble des raccords de tuyauterie" },
-  "radiateur": { "pexels": 29226620, "alt": "Un plombier raccorde un tuyau de radiateur avec ses outils" },
-  "electricien": { "pexels": 17842832, "alt": "Un électricien devant un tableau électrique" },
-  "tableau": { "pexels": 27928762, "alt": "Un électricien perce près d'un tableau électrique" },
-  "couvreur": { "pexels": 33404248, "alt": "Un couvreur pose des bardeaux sur un toit neuf" },
-  "toit": { "pexels": 38543041, "alt": "Vue aérienne d'un couvreur au travail sur un toit plat" },
-  "macon": { "pexels": 32913797, "alt": "La main d'un maçon pose une brique" },
-  "mains": { "pexels": 33837461, "alt": "Les mains d'un artisan et ses outils usés" },
-  "telephone": { "pexels": 34670920, "alt": "Un ouvrier de chantier souriant, au téléphone, dehors" },
-  "tablette": { "pexels": 8961008, "alt": "Une personne consulte une tablette sur un chantier" },
-  "chantier": { "pexels": 7788264, "alt": "Un ouvrier travaille sur un toit" }
+  "plombier": {
+    "pexels": 6419128,
+    "alt": "Un plombier assemble des raccords de tuyauterie"
+  },
+  "radiateur": {
+    "pexels": 29226620,
+    "alt": "Un plombier raccorde un tuyau de radiateur avec ses outils"
+  },
+  "electricien": {
+    "pexels": 17842832,
+    "alt": "Un électricien devant un tableau électrique"
+  },
+  "tableau": {
+    "pexels": 27928762,
+    "alt": "Un électricien perce près d'un tableau électrique"
+  },
+  "couvreur": {
+    "pexels": 33404248,
+    "alt": "Un couvreur pose des bardeaux sur un toit neuf"
+  },
+  "toit": {
+    "pexels": 38543041,
+    "alt": "Vue aérienne d'un couvreur au travail sur un toit plat"
+  },
+  "macon": {
+    "pexels": 32913797,
+    "alt": "La main d'un maçon pose une brique"
+  },
+  "mains": {
+    "pexels": 33837461,
+    "alt": "Les mains d'un artisan et ses outils usés"
+  },
+  "telephone": {
+    "pexels": 34670920,
+    "alt": "Un ouvrier de chantier souriant, au téléphone, dehors"
+  },
+  "tablette": {
+    "pexels": 8961008,
+    "alt": "Une personne consulte une tablette sur un chantier"
+  },
+  "chantier": {
+    "pexels": 7788264,
+    "alt": "Un ouvrier travaille sur un toit"
+  },
+  "truelle": {
+    "pexels": 5691612,
+    "alt": "Un homme tient des truelles et du ciment"
+  },
+  "echafaudage": {
+    "pexels": 12335028,
+    "alt": "Des ouvriers sur un échafaudage sous un ciel bleu"
+  },
+  "facade": {
+    "pexels": 31865990,
+    "alt": "Un immeuble en construction entouré d'échafaudages"
+  },
+  "plans": {
+    "pexels": 834892,
+    "alt": "Un plan de chantier posé sur une table avec une perceuse et des vis"
+  },
+  "atelier": {
+    "pexels": 3846554,
+    "alt": "Un ordinateur portable posé sur une table d'atelier entourée d'outils"
+  },
+  "rabot": {
+    "pexels": 5974013,
+    "alt": "Un menuisier rabote une planche dans son atelier"
+  },
+  "bois": {
+    "pexels": 11127339,
+    "alt": "Un artisan trace un repère sur une pièce de bois"
+  },
+  "peintre": {
+    "pexels": 18369835,
+    "alt": "Un peintre passe un rouleau sur un mur"
+  },
+  "casque": {
+    "pexels": 8990559,
+    "alt": "Portrait d'un homme portant un casque et un gilet de sécurité"
+  },
+  "chantier2": {
+    "pexels": 10383588,
+    "alt": "Un ouvrier au travail sur un chantier"
+  }
 }

@@ -234,8 +234,8 @@ export const trades: Trade[] = [
 
 export const steps = [
   { title: "On écoute, on regarde", text: "Avant de proposer quoi que ce soit, nous regardons votre site, votre fiche Google, vos avis, ce que font les autres artisans de votre secteur. Puis nous vous écoutons : ce que vous aimez dans votre métier, les chantiers que vous voudriez faire plus souvent.", photo: "telephone", note: "d'abord, on vous écoute" },
-  { title: "On construit, sans rien vous demander", text: "Nous refaisons votre page d'accueil avec votre logo, vos couleurs, vos textes et vos photos. Vos adresses de pages restent les mêmes pour ne rien perdre sur Google. Vous recevez un lien privé que personne d'autre ne voit.", photo: "tablette", note: "puis on se met au travail" },
-  { title: "Vous regardez, puis vous décidez", text: "Si ça vous plaît, nous en parlons et vous recevez un devis écrit avant que le moindre travail commence. Si ça ne vous plaît pas, nous supprimons la maquette et nous ne vous relançons pas.", photo: "mains", note: "et c'est vous qui choisissez" },
+  { title: "On construit, sans rien vous demander", text: "Nous refaisons votre page d'accueil avec votre logo, vos couleurs, vos textes et vos photos. Vos adresses de pages restent les mêmes pour ne rien perdre sur Google. Vous recevez un lien privé que personne d'autre ne voit.", photo: "atelier", note: "puis on se met au travail" },
+  { title: "Vous regardez, puis vous décidez", text: "Si ça vous plaît, nous en parlons et vous recevez un devis écrit avant que le moindre travail commence. Si ça ne vous plaît pas, nous supprimons la maquette et nous ne vous relançons pas.", photo: "tablette", note: "et c'est vous qui choisissez" },
 ] as const;
 
 export const method = [

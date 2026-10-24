@@ -10,6 +10,7 @@ const config: Config = {
         ardoise: { DEFAULT: "#1F2A30", soft: "#46545B", 2: "#2C3A41" },
         zinc: { DEFAULT: "#8A9BA3", dark: "#5A6970" },
         line: "#D9CFBB",
+        noir: { DEFAULT: "#14191C", 2: "#1B2328" },
       },
       fontFamily: {
         display: ["'Fraunces Variable'", "Fraunces", "Georgia", "serif"],
