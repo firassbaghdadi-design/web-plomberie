@@ -41,7 +41,7 @@ export default function Home() {
                 Appeler le {business.phoneDisplay}
               </a>
               <Link href={PATHS.contact} className="btn-ghost-light arrow-link !px-8 !py-4 text-lg">
-                Demander un devis
+                Demander un devis ou une intervention
                 <ArrowIcon className="h-4 w-4" />
               </Link>
             </div>

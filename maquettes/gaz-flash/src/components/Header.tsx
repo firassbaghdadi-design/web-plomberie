@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { business, nav } from "@/lib/site";
+import { PATHS, business, nav } from "@/lib/site";
 import { Logo } from "./Photo";
 import { MenuIcon } from "./Icons";
 import { OpenStatus } from "./OpenStatus";
@@ -62,6 +62,10 @@ export function Header() {
           )}
         </nav>
 
+        <div className="flex items-center gap-3">
+        <Link href={PATHS.contact} data-track="generate_lead" className="btn whitespace-nowrap !min-h-[44px] !px-4 !py-2 max-sm:!px-3 max-sm:text-[1rem]">
+          Devis gratuit
+        </Link>
         <details className="relative lg:hidden">
           <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center border-2 border-ink bg-paper-sheet text-ink [&::-webkit-details-marker]:hidden">
             <span className="sr-only">Menu</span>
@@ -82,6 +86,7 @@ export function Header() {
             ))}
           </nav>
         </details>
+        </div>
       </div>
     </header>
   );

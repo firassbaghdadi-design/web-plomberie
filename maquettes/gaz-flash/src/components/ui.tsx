@@ -52,6 +52,16 @@ export function PageHead({ path, trail = [], aside }: { path: PagePath; trail?: 
           <div className="mt-6 max-w-[62ch]">
             <Brief text={info.brief} />
           </div>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link href={PATHS.contact} data-track="generate_lead" className="btn">
+              Demander un devis ou une intervention
+              <ArrowIcon className="h-4 w-4" />
+            </Link>
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn btn-ghost">
+              <PhoneIcon />
+              {business.phoneDisplay}
+            </a>
+          </div>
         </div>
         {aside ? <div className="mx-auto w-full max-w-[420px] pt-4 lg:max-w-none">{aside}</div> : null}
       </div>

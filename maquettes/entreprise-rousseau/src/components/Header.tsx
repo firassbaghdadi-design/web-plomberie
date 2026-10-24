@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { business, nav } from "@/lib/site";
+import { PATHS, business, nav } from "@/lib/site";
 import { Logo } from "./Photo";
 import { PhoneIcon } from "./Icons";
 
@@ -24,7 +24,10 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber pulse !min-h-[46px] !px-5 !py-2 max-sm:hidden">
+          <Link href={PATHS.contact} data-track="generate_lead" className="btn-dark whitespace-nowrap !min-h-[46px] !px-5 !py-2 ring-1 ring-white/40 max-sm:!px-3 max-sm:text-sm">
+            Devis gratuit
+          </Link>
+          <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber pulse !min-h-[46px] !px-5 !py-2 max-lg:hidden">
             <PhoneIcon />
             {business.phoneDisplay}
           </a>

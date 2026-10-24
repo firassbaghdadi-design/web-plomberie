@@ -28,13 +28,21 @@ Tout site créé doit proposer, sur **chaque page de service et sur l'accueil**,
 
 Envoi par Resend (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`). Modèle : `maquettes/gaz-flash` et `maquettes/entreprise-rousseau` (`ContactForm.tsx`, `PhotoPicker.tsx`, `api/contact/route.ts`).
 
-## 3. Mise en page
+## 3. Boutons d'appel à l'action
+
+Sur **chaque** site, sans exception :
+
+- un bouton **« Demander un devis ou une intervention »** dans le héros de l'accueil **et** dans le héros de chaque page de service, vers la page contact (avec le type de demande en paramètre quand c'est utile) ;
+- un bouton **« Devis gratuit »** dans l'en-tête (menu), visible sur ordinateur et sur téléphone, vers la page contact ;
+- le numéro de téléphone cliquable à côté.
+
+## 4. Mise en page
 
 - Jamais de zone vide sous le héros : le contenu doit s'afficher même si les animations ne démarrent pas (filet de sécurité de 3 secondes).
 - Aucun défilement horizontal à 390 px.
 - Ton de la marque : un commerce de quartier ne ressemble pas à un site « template » (pas de grille de cartes identiques, pas de gadgets).
 
-## 4. Contrôle avant d'annoncer qu'un site est prêt
+## 5. Contrôle avant d'annoncer qu'un site est prêt
 
 1. `npm run typecheck` et `npm run build`.
 2. `npm run audit:seo` sur le serveur local : **zéro problème**.

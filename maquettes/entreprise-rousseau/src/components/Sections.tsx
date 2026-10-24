@@ -53,7 +53,7 @@ export function PageHero({ eyebrow, title, lead, photo, photoAlt, crumbs, primar
               Appeler le {business.phoneDisplay}
             </a>
             <Link href={primary?.href ?? PATHS.contact} className="btn-ghost-light arrow-link">
-              {primary?.label ?? "Demander un devis"}
+              Demander un devis ou une intervention
               <ArrowIcon className="h-4 w-4" />
             </Link>
           </div>
