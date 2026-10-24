@@ -4,6 +4,29 @@ import { business, requestTypes } from "@/lib/site";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const MAX_PHOTOS = 4;
+const MAX_PHOTO_B64 = 1_400_000;
+const MAX_TOTAL_B64 = 3_900_000;
+
+/** Ne garde que de vrais JPEG (contrôle des premiers octets), en nombre et en poids limités. */
+function readPhotos(raw: unknown): { filename: string; content: string }[] | "too-big" {
+  if (!Array.isArray(raw)) return [];
+  const out: { filename: string; content: string }[] = [];
+  let total = 0;
+  for (const item of raw.slice(0, MAX_PHOTOS)) {
+    const data = typeof (item as { data?: unknown })?.data === "string" ? ((item as { data: string }).data) : "";
+    if (!data) continue;
+    if (data.length > MAX_PHOTO_B64) return "too-big";
+    if (!/^[A-Za-z0-9+/]+={0,2}$/.test(data)) continue;
+    const head = Buffer.from(data.slice(0, 16), "base64");
+    if (head[0] !== 0xff || head[1] !== 0xd8 || head[2] !== 0xff) continue;
+    total += data.length;
+    if (total > MAX_TOTAL_B64) return "too-big";
+    out.push({ filename: `photo-${out.length + 1}.jpg`, content: data });
+  }
+  return out;
+}
+
 const hits = new Map<string, number[]>();
 
 const esc = (value: string) => value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
@@ -43,6 +66,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Certains champs sont incorrects." }, { status: 400 });
   }
 
+  const photos = readPhotos(body.photos);
+  if (photos === "too-big") {
+    return NextResponse.json({ ok: false, error: "Les photos sont trop lourdes : retirez-en une ou choisissez-en de plus légères." }, { status: 413 });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) {
@@ -57,6 +85,7 @@ export async function POST(request: Request) {
     ["Téléphone", phone],
     ["E-mail", email || "non renseigné"],
     ["Code postal / ville", city || "non renseigné"],
+    ["Photos jointes", photos.length ? String(photos.length) : "aucune"],
   ];
   const text = `${rows.map(([k, v]) => `${k} : ${v}`).join("\n")}\n\nMessage :\n${message}\n`;
   const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#1b2229"><h2 style="margin:0 0 12px">Nouvelle demande depuis le site</h2><table style="border-collapse:collapse;width:100%">${rows
@@ -73,6 +102,7 @@ export async function POST(request: Request) {
       subject: `[Site web] ${typeLabel} — ${name}`,
       text,
       html,
+      attachments: photos.length ? photos : undefined,
     }),
   });
 

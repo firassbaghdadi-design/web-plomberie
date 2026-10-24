@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import { business, requestTypes } from "@/lib/site";
+import type { UploadedPhoto } from "@/lib/photo-upload";
+import { PhotoPicker } from "./PhotoPicker";
 
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"name" | "phone" | "email" | "message" | "consent", string>>;
@@ -14,6 +16,7 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
   const [errors, setErrors] = useState<Errors>({});
   const [serverMessage, setServerMessage] = useState("");
   const started = useRef(Date.now());
+  const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,10 +33,10 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
 
     setStatus("sending");
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, elapsed: Date.now() - started.current }),
+        body: JSON.stringify({ ...data, photos: photos.map(({ name, data: content }) => ({ name, data: content })), elapsed: Date.now() - started.current }),
       });
       const result = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (response.ok && result.ok) {
@@ -99,6 +102,7 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
           <textarea id="message" name="message" rows={5} className={field} placeholder="Type d'appareil, marque, problème rencontré…" {...aria("message")} />
           {err("message")}
         </div>
+        <PhotoPicker photos={photos} onChange={setPhotos} />
         <div className="hidden" aria-hidden="true">
           <label htmlFor="website">Ne pas remplir</label>
           <input id="website" name="website" tabIndex={-1} autoComplete="off" />

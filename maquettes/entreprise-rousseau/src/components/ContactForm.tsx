@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import { business, requestTypes } from "@/lib/site";
+import type { UploadedPhoto } from "@/lib/photo-upload";
+import { PhotoPicker } from "./PhotoPicker";
 import { CheckIcon } from "./Icons";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -15,6 +17,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const [errors, setErrors] = useState<Errors>({});
   const [serverMessage, setServerMessage] = useState("");
   const started = useRef(Date.now());
+  const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -34,7 +37,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, elapsed: Date.now() - started.current }),
+        body: JSON.stringify({ ...data, photos: photos.map(({ name, data: content }) => ({ name, data: content })), elapsed: Date.now() - started.current }),
       });
       const result = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (response.ok && result.ok) {
@@ -116,6 +119,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
           <textarea id="message" name="message" rows={5} className={field} {...aria("message")} />
           {err("message")}
         </div>
+        <PhotoPicker photos={photos} onChange={setPhotos} />
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <label htmlFor="website">Ne pas remplir</label>
           <input id="website" name="website" tabIndex={-1} autoComplete="off" />
