@@ -1,5 +1,5 @@
 import { updateDb, readDb, nouvelId } from "./db";
-import { ajouterJours, debutDeSemaine, jourParis, prochainJourOuvre } from "./dates";
+import { ajouterJours, debutDeSemaine, formatJour, heureParis, jourParis, parisVersIso, prochainJourOuvre } from "./dates";
 import { RELANCES_PAR_DEFAUT } from "@/data/modeles";
 import { PROSPECT_DEFAUTS } from "./migration";
 import {
@@ -8,7 +8,11 @@ import {
   FORMULE_INFO,
   PONDERATION,
   type Formule,
+  type GenreAgenda,
   type Reglages,
+  type RendezVous,
+  GENRES_AGENDA,
+  GENRE_AGENDA_LABEL,
   STATUT_LABEL,
   STATUTS,
   type Db,
@@ -276,6 +280,7 @@ export async function supprimerProspect(id: string): Promise<void> {
     db.evenements = db.evenements.filter((e) => e.prospectId !== id);
     db.emails = db.emails.filter((e) => e.prospectId !== id);
     db.relances = db.relances.filter((r) => r.prospectId !== id);
+    db.agenda = db.agenda.filter((r) => r.prospectId !== id);
   });
 }
 
@@ -542,12 +547,15 @@ export async function enregistrerSuivi(emailId: string, genre: "ouverture" | "cl
 /* ------------------------------------------------------------------ à faire et tableau de bord */
 
 export interface ActionAFaire {
-  genre: "relance" | "appel" | "envoi";
+  genre: "relance" | "appel" | "envoi" | "rendez_vous" | "rappel";
   prospectId: string;
   entreprise: string;
   titre: string;
   detail: string;
   relanceId?: string;
+  agendaId?: string;
+  /** HH:MM (Paris) pour les rendez-vous et rappels du jour */
+  heure?: string;
   urgence: number;
 }
 
@@ -613,7 +621,24 @@ export function calculerAFaire(db: Db, aujourdhui = jourParis()): ActionAFaire[]
       });
     }
   }
-  return actions.sort((a, b) => b.urgence - a.urgence || a.entreprise.localeCompare(b.entreprise));
+  const duJour = db.agenda
+    .filter((r) => !r.fait && jourParis(r.debut) === aujourdhui)
+    .sort((a, b) => a.debut.localeCompare(b.debut))
+    .map((r): ActionAFaire => {
+      const p = r.prospectId ? db.prospects.find((x) => x.id === r.prospectId) : undefined;
+      const heure = heureParis(r.debut);
+      return {
+        genre: r.genre,
+        prospectId: p?.id ?? "",
+        entreprise: p?.entreprise ?? r.titre,
+        titre: `${heure} · ${r.titre}`,
+        detail: r.lieu || (p?.telephone ?? "") || GENRE_AGENDA_LABEL[r.genre],
+        agendaId: r.id,
+        heure,
+        urgence: 4,
+      };
+    });
+  return [...duJour, ...actions.sort((a, b) => b.urgence - a.urgence || a.entreprise.localeCompare(b.entreprise))];
 }
 
 export interface Chiffres {
@@ -738,4 +763,177 @@ export async function modifierReglages(e: { objectifMensuel?: unknown }): Promis
     if (objectif !== undefined) db.reglages.objectifMensuel = objectif;
     return db.reglages;
   });
+}
+
+/* ------------------------------------------------------------------ agenda */
+
+export interface EntreeAgenda {
+  prospectId?: unknown;
+  genre?: unknown;
+  titre?: unknown;
+  debut?: unknown;
+  jour?: unknown;
+  heure?: unknown;
+  dureeMin?: unknown;
+  lieu?: unknown;
+  detail?: unknown;
+  fait?: unknown;
+}
+
+function nettoyerAgenda(e: EntreeAgenda): Partial<RendezVous> {
+  const out: Partial<RendezVous> = {};
+  if (e.genre !== undefined) {
+    if (!GENRES_AGENDA.includes(e.genre as GenreAgenda)) throw new ErreurMetier(`genre : l'un de ${GENRES_AGENDA.join(", ")}`);
+    out.genre = e.genre as GenreAgenda;
+  }
+  if (e.prospectId !== undefined) out.prospectId = texte(e.prospectId, 100) || null;
+  const titre = texte(e.titre, 200);
+  if (titre !== undefined) out.titre = titre;
+  if (e.debut !== undefined && e.debut !== "") {
+    const d = new Date(String(e.debut));
+    if (isNaN(d.getTime())) throw new ErreurMetier("debut : format ISO attendu (2026-10-29T09:00:00Z)");
+    out.debut = d.toISOString();
+  } else if (e.jour !== undefined || e.heure !== undefined) {
+    const jour = texte(e.jour, 10) ?? "";
+    const heure = texte(e.heure, 5) || "09:00";
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(jour) || isNaN(Date.parse(jour))) throw new ErreurMetier("jour : format AAAA-MM-JJ");
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(heure)) throw new ErreurMetier("heure : format HH:MM (heure de Paris)");
+    out.debut = parisVersIso(jour, heure);
+  }
+  if (e.dureeMin !== undefined && e.dureeMin !== "") {
+    const n = Number(e.dureeMin);
+    if (!Number.isInteger(n) || n < 0 || n > 24 * 60) throw new ErreurMetier("dureeMin : un nombre de minutes entre 0 et 1440");
+    out.dureeMin = n;
+  }
+  const lieu = texte(e.lieu, 300);
+  if (lieu !== undefined) out.lieu = lieu;
+  const detail = texte(e.detail, 5000);
+  if (detail !== undefined) out.detail = detail;
+  if (e.fait !== undefined) out.fait = Boolean(e.fait);
+  return out;
+}
+
+const quandLisible = (iso: string) => `${formatJour(jourParis(iso))} à ${heureParis(iso).replace(":", " h ")}`;
+
+export function listerAgendaDb(db: Db, f: { du?: string; au?: string; prospectId?: string; fait?: boolean } = {}) {
+  return db.agenda
+    .filter((r) => (!f.du || jourParis(r.debut) >= f.du) && (!f.au || jourParis(r.debut) <= f.au))
+    .filter((r) => (!f.prospectId || r.prospectId === f.prospectId) && (f.fait === undefined || r.fait === f.fait))
+    .sort((a, b) => a.debut.localeCompare(b.debut));
+}
+
+export async function listerAgenda(f: { du?: string; au?: string; prospectId?: string; fait?: boolean } = {}) {
+  return listerAgendaDb(await readDb(), f);
+}
+
+export async function lireAgenda(id: string) {
+  const db = await readDb();
+  const r = db.agenda.find((x) => x.id === id);
+  if (!r) throw new ErreurMetier("Rendez-vous introuvable", 404);
+  return { rendezVous: r, prospect: r.prospectId ? db.prospects.find((p) => p.id === r.prospectId) ?? null : null };
+}
+
+export async function creerAgenda(e: EntreeAgenda): Promise<RendezVous> {
+  const c = nettoyerAgenda(e);
+  if (!c.debut) throw new ErreurMetier("debut (ISO) ou jour + heure (Paris) : obligatoires");
+  const genre = c.genre ?? "rendez_vous";
+  return updateDb((db) => {
+    const p = c.prospectId ? trouver(db, c.prospectId) : null;
+    const t = maintenant();
+    const r: RendezVous = {
+      id: nouvelId("rdv"),
+      prospectId: p?.id ?? null,
+      genre,
+      titre: c.titre || (genre === "rendez_vous" ? `Rendez-vous${p ? ` · ${p.entreprise}` : ""}` : `Rappel${p ? ` · ${p.entreprise}` : ""}`),
+      debut: c.debut!,
+      dureeMin: c.dureeMin ?? (genre === "rendez_vous" ? 60 : 15),
+      lieu: c.lieu ?? "",
+      detail: c.detail ?? "",
+      fait: c.fait ?? false,
+      creeLe: t,
+      modifieLe: t,
+    };
+    db.agenda.push(r);
+    if (p) {
+      if (genre === "rendez_vous") {
+        journal(db, p.id, "rendez_vous", `Rendez-vous le ${quandLisible(r.debut)}`, [r.lieu, r.detail].filter(Boolean).join("\n"));
+        avancer(db, p, "rendez_vous", "Rendez-vous planifié");
+      } else journal(db, p.id, "note", `Rappel le ${quandLisible(r.debut)}`, r.titre);
+      p.modifieLe = t;
+    }
+    return r;
+  });
+}
+
+export async function modifierAgenda(id: string, e: EntreeAgenda): Promise<RendezVous> {
+  const c = nettoyerAgenda(e);
+  if (c.titre === "") throw new ErreurMetier("titre : ne peut pas être vide");
+  return updateDb((db) => {
+    const r = db.agenda.find((x) => x.id === id);
+    if (!r) throw new ErreurMetier("Rendez-vous introuvable", 404);
+    if (c.prospectId) trouver(db, c.prospectId);
+    const deplace = c.debut && c.debut !== r.debut;
+    Object.assign(r, c, { modifieLe: maintenant() });
+    if (deplace && r.prospectId) journal(db, r.prospectId, "note", `${GENRE_AGENDA_LABEL[r.genre]} déplacé au ${quandLisible(r.debut)}`, r.titre);
+    return r;
+  });
+}
+
+export async function supprimerAgenda(id: string) {
+  await updateDb((db) => {
+    if (!db.agenda.some((r) => r.id === id)) throw new ErreurMetier("Rendez-vous introuvable", 404);
+    db.agenda = db.agenda.filter((r) => r.id !== id);
+  });
+}
+
+/* fichier .ics (RFC 5545) : heures en UTC, lignes repliées à 75 octets, fin de ligne CRLF */
+const icsTexte = (s: string) => s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+const icsDate = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+function replier(ligne: string): string {
+  const morceaux: string[] = [];
+  let courant = "";
+  let octets = 0;
+  for (const ch of ligne) {
+    const n = new TextEncoder().encode(ch).length;
+    if (octets + n > (morceaux.length ? 74 : 75)) {
+      morceaux.push(courant);
+      courant = "";
+      octets = 0;
+    }
+    courant += ch;
+    octets += n;
+  }
+  morceaux.push(courant);
+  return morceaux.join("\r\n ");
+}
+
+export function versIcs(r: RendezVous, p: Prospect | null): string {
+  const fin = new Date(new Date(r.debut).getTime() + Math.max(r.dureeMin, 0) * 60_000).toISOString();
+  const description = [p ? `${p.entreprise}${p.dirigeant ? ` (${p.dirigeant})` : ""}` : "", p?.telephone ? `Tél. ${p.telephone}` : "", r.detail]
+    .filter(Boolean)
+    .join("\n");
+  const lignes = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Atelier Truelle//Atelier OS//FR",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${r.id}@atelier-os`,
+    `DTSTAMP:${icsDate(r.modifieLe)}`,
+    `DTSTART:${icsDate(r.debut)}`,
+    `DTEND:${icsDate(fin)}`,
+    `SUMMARY:${icsTexte(r.titre)}`,
+    ...(r.lieu ? [`LOCATION:${icsTexte(r.lieu)}`] : []),
+    ...(description ? [`DESCRIPTION:${icsTexte(description)}`] : []),
+    "BEGIN:VALARM",
+    `TRIGGER:${r.genre === "rappel" ? "PT0M" : "-PT30M"}`,
+    "ACTION:DISPLAY",
+    `DESCRIPTION:${icsTexte(r.titre)}`,
+    "END:VALARM",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ];
+  return lignes.map(replier).join("\r\n") + "\r\n";
 }

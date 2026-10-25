@@ -26,6 +26,7 @@ export function normaliserProspect(p: Prospect): Prospect {
 
 export function normaliserDb(db: Db): Db {
   db.reglages = { ...REGLAGES_DEFAUT, ...(db.reglages ?? {}) };
+  db.agenda ??= [];
   for (const p of db.prospects) normaliserProspect(p);
   return db;
 }

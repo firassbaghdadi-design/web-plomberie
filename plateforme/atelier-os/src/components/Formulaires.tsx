@@ -16,7 +16,7 @@ export async function appel(chemin: string, methode: string, corps?: unknown) {
   return j;
 }
 
-function useAction() {
+export function useAction() {
   const router = useRouter();
   const [attente, demarrer] = useTransition();
   const [erreur, setErreur] = useState("");

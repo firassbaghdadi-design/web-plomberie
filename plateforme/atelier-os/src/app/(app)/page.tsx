@@ -8,7 +8,7 @@ import { formatJour } from "@/lib/dates";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Tableau de bord" };
 
-const ETIQUETTE_ACTION = { appel: "Appel", relance: "Relance", envoi: "Envoi" } as const;
+const ETIQUETTE_ACTION = { appel: "Appel", relance: "Relance", envoi: "Envoi", rendez_vous: "RDV", rappel: "Rappel" } as const;
 
 export default async function Accueil() {
   const t = await tableauDeBord();
@@ -79,7 +79,7 @@ export default async function Accueil() {
               <Vide>Rien à faire pour l&apos;instant.</Vide>
             ) : (
               t.aFaire.map((a, i) => (
-                <Link key={`${a.prospectId}-${a.genre}-${a.relanceId ?? i}`} href={`/prospects/${a.prospectId}`} className="rang">
+                <Link key={`${a.prospectId}-${a.genre}-${a.relanceId ?? a.agendaId ?? i}`} href={a.prospectId ? `/prospects/${a.prospectId}` : "/agenda"} className="rang">
                   <span className="w-[58px] shrink-0 text-[12px] font-medium uppercase tracking-wide text-doux">{ETIQUETTE_ACTION[a.genre]}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate font-medium">{a.entreprise}</span>
@@ -87,7 +87,7 @@ export default async function Accueil() {
                       {a.titre} · {a.detail}
                     </span>
                   </span>
-                  {a.urgence >= 2 && <span className="h-2 w-2 shrink-0 rounded-full bg-terre" aria-label="Urgent" />}
+                  {a.urgence >= 2 && a.urgence < 4 && <span className="h-2 w-2 shrink-0 rounded-full bg-terre" aria-label="Urgent" />}
                 </Link>
               ))
             )}

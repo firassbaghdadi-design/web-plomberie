@@ -122,5 +122,5 @@ export function seedDb(): Db {
     maquetteEvent(p);
   }
 
-  return { version: 1, reglages: { ...REGLAGES_DEFAUT }, prospects, evenements, emails: [], relances: [], modeles: MODELES };
+  return { version: 1, reglages: { ...REGLAGES_DEFAUT }, agenda: [], prospects, evenements, emails: [], relances: [], modeles: MODELES };
 }

@@ -8,6 +8,7 @@ const liens = [
   { href: "/", label: "Accueil", icone: "accueil", mobile: true },
   { href: "/prospects", label: "Prospects", icone: "prospects", mobile: true },
   { href: "/pipeline", label: "Pipeline", icone: "pipeline", mobile: true },
+  { href: "/agenda", label: "Agenda", icone: "agenda", mobile: true },
   { href: "/emails", label: "E-mails", icone: "emails", mobile: true },
   { href: "/reglages", label: "Réglages", icone: "reglages", mobile: false },
 ];

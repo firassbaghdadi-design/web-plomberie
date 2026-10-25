@@ -146,6 +146,33 @@ try {
   verifie(arg.caDevis === 3201 && arg.caDevisPondere === Math.round(3200.5 * 0.5), `argent : en devis pondéré par étape (${arg.caDevisPondere})`);
   verifie((await api("/api/v1/tableau-de-bord")).json.argent?.objectifMensuel === 10000, "tableau de bord : bloc argent");
 
+  // Agenda
+  const jourParisTest = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris" }).format(new Date());
+  const ete = await api("/api/v1/agenda", { methode: "POST", corps: { prospectId: id, jour: "2026-07-15", heure: "10:00", titre: "Visite été", lieu: "Paris 11e, 3 rue X; bât. B" } });
+  verifie(ete.statut === 201 && ete.json.rendezVous.debut === "2026-07-15T08:00:00.000Z", `agenda : 10 h à Paris l'été = 8 h UTC (${ete.json?.rendezVous?.debut})`);
+  const hiver = await api("/api/v1/agenda", { methode: "POST", corps: { jour: "2026-12-15", heure: "10:00", genre: "rappel" } });
+  verifie(hiver.json?.rendezVous?.debut === "2026-12-15T09:00:00.000Z" && hiver.json.rendezVous.titre === "Rappel" && hiver.json.rendezVous.prospectId === null, "agenda : rappel sans prospect, heure d'hiver");
+  verifie((await api("/api/v1/agenda", { methode: "POST", corps: { jour: "2026-12-15", heure: "25:00" } })).statut === 400, "agenda : heure invalide refusée");
+  verifie((await api("/api/v1/agenda", { methode: "POST", corps: { prospectId: "inconnu", jour: "2026-12-15", heure: "10:00" } })).statut === 404, "agenda : prospect inconnu");
+  const duJourRdv = await api("/api/v1/agenda", { methode: "POST", corps: { prospectId: id, jour: jourParisTest, heure: "23:30", titre: "Point devis" } });
+  verifie(duJourRdv.statut === 201, "agenda : rendez-vous du jour créé");
+  afaire = (await api("/api/v1/a-faire")).json.actions;
+  verifie(afaire[0]?.agendaId === duJourRdv.json.rendezVous.id && afaire[0].heure === "23:30", "« à faire » : rendez-vous du jour en tête");
+  const evRdv = (await api(`/api/v1/prospects/${id}/evenements`)).json.evenements;
+  verifie(evRdv.some((e) => e.type === "rendez_vous" && e.titre.startsWith("Rendez-vous le")), "agenda : rendez-vous inscrit dans l'historique");
+  const ics = await fetch(`${BASE}/api/v1/agenda/${ete.json.rendezVous.id}/ics`, { headers: { Authorization: `Bearer ${TOKEN}` } });
+  const icsTexte = await ics.text();
+  verifie(ics.headers.get("content-type")?.startsWith("text/calendar") && /attachment; filename=".+\.ics"/.test(ics.headers.get("content-disposition") ?? ""), "agenda : .ics téléchargeable");
+  verifie(icsTexte.includes("DTSTART:20260715T080000Z\r\nDTEND:20260715T090000Z") && icsTexte.includes("LOCATION:Paris 11e\\, 3 rue X\\; bât. B") && icsTexte.endsWith("END:VCALENDAR\r\n"), "agenda : .ics conforme (UTC, échappement, CRLF)");
+  const pf = await api(`/api/v1/agenda/${duJourRdv.json.rendezVous.id}`, { methode: "PATCH", corps: { fait: true } });
+  verifie(pf.json?.rendezVous?.fait === true, "agenda : marqué fait");
+  verifie(!(await api("/api/v1/a-faire")).json.actions.some((a) => a.agendaId === duJourRdv.json.rendezVous.id), "« à faire » : rendez-vous fait retiré");
+  await api(`/api/v1/agenda/${duJourRdv.json.rendezVous.id}`, { methode: "PATCH", corps: { fait: false } });
+  const deplace = await api(`/api/v1/agenda/${hiver.json.rendezVous.id}`, { methode: "PATCH", corps: { jour: "2026-12-16", heure: "08:15" } });
+  verifie(deplace.json?.rendezVous?.debut === "2026-12-16T07:15:00.000Z", "agenda : rendez-vous déplacé");
+  verifie((await api(`/api/v1/agenda?du=2026-12-01&au=2026-12-31`)).json.total === 1, "agenda : filtre par période");
+  verifie((await api(`/api/v1/agenda/${hiver.json.rendezVous.id}`, { methode: "DELETE" })).json?.ok === true && (await api(`/api/v1/agenda/${hiver.json.rendezVous.id}`)).statut === 404, "agenda : suppression");
+
   // Captures
   const requis = createRequire(import.meta.url);
   let pw;
@@ -196,6 +223,28 @@ try {
     verifie(pa.formule === "visibilite" && pa.montantDevis === 2490 && pa.montantMensuel === 99, "fiche : formule Visibilité enregistrée depuis l'interface");
     await ctx.close();
   }
+  // Agenda : ajout depuis la page et téléchargement du .ics
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR", acceptDownloads: true });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + "/agenda", { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Rendez-vous ou rappel" }).click();
+    await page.fill("#ag-titre", "Démo maquette e2e");
+    await page.selectOption("#ag-prospect", autre);
+    await page.fill("#ag-jour", jourParisTest);
+    await page.fill("#ag-heure", "23:45");
+    await page.getByRole("button", { name: "Ajouter", exact: true }).click();
+    await page.waitForTimeout(1000);
+    const cree = (await api(`/api/v1/agenda?prospectId=${autre}`)).json.rendezVous.find((r) => r.titre === "Démo maquette e2e");
+    verifie(Boolean(cree), "agenda : ajout depuis l'interface");
+    await page.goto(BASE + "/agenda", { waitUntil: "networkidle" });
+    const [dl] = await Promise.all([page.waitForEvent("download"), page.click(`[data-ics="${cree?.id}"]`)]);
+    verifie(dl.suggestedFilename().endsWith(".ics"), `agenda : bouton « Ajouter au calendrier » (${dl.suggestedFilename()})`);
+    await page.goto(BASE + "/", { waitUntil: "networkidle" });
+    verifie(await page.getByText("23:45 · Démo maquette e2e").isVisible(), "accueil : rendez-vous du jour dans « À faire »");
+    await ctx.close();
+  }
   // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone
   {
     const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR" });
@@ -243,6 +292,7 @@ try {
         ["accueil", "/"],
         ["prospects", "/prospects"],
         ["pipeline", "/pipeline"],
+        ["agenda", "/agenda"],
         ["fiche", `/prospects/${id}`],
         ["fiche-gaz", "/prospects/gaz-flash"],
         ["emails", "/emails"],
@@ -250,7 +300,7 @@ try {
         ["reglages", "/reglages"],
       ];
       for (const [n, chemin] of pages) {
-        if (theme === "sombre" && !["accueil", "fiche", "pipeline"].includes(n)) continue;
+        if (theme === "sombre" && !["accueil", "fiche", "pipeline", "agenda"].includes(n)) continue;
         await page.goto(BASE + chemin, { waitUntil: "networkidle" });
         await pause(300);
         const debordement = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);

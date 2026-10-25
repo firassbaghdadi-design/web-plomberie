@@ -7,7 +7,9 @@ import { FORMULE_INFO } from "@/lib/types";
 import { euros } from "@/lib/format";
 import { PastilleStatut, Titre, Vide } from "@/components/ui";
 import { Icone } from "@/components/Icone";
-import { formatDateHeure, formatJour } from "@/lib/dates";
+import { formatDateHeure, formatJour, jourParis, partiesParis } from "@/lib/dates";
+import { FormAgenda } from "@/components/Agenda";
+import { LignesAgenda } from "@/components/ListeAgenda";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +22,8 @@ export default async function Fiche({ params }: { params: { id: string } }) {
   const evenements = db.evenements.filter((e) => e.prospectId === p.id).sort((a, b) => b.date.localeCompare(a.date));
   const emails = db.emails.filter((e) => e.prospectId === p.id).sort((a, b) => b.creeLe.localeCompare(a.creeLe));
   const relances = db.relances.filter((r) => r.prospectId === p.id).sort((a, b) => a.echeance.localeCompare(b.echeance));
+  const agenda = db.agenda.filter((r) => r.prospectId === p.id).sort((a, b) => a.debut.localeCompare(b.debut));
+  const heureDefaut = `${String(Math.min(partiesParis().heure + 1, 23)).padStart(2, "0")}:00`;
   const nomModele = (id: string) => db.modeles.find((m) => m.id === id)?.nom ?? id;
 
   const infos: Array<[string, React.ReactNode]> = [
@@ -129,6 +133,14 @@ export default async function Fiche({ params }: { params: { id: string } }) {
         </div>
 
         <div>
+          <Titre>Agenda</Titre>
+          <div className="carte overflow-hidden">
+            <LignesAgenda items={agenda} prospects={db.prospects} avecProspect={false} />
+            <div className={agenda.length ? "border-t border-trait/70" : ""}>
+              <FormAgenda prospectId={p.id} jourDefaut={jourParis()} heureDefaut={heureDefaut} />
+            </div>
+          </div>
+
           <Titre>Ajouter à l&apos;historique</Titre>
           <div className="carte">
             <AjoutEvenement prospectId={p.id} />

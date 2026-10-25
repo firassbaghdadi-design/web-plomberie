@@ -159,6 +159,26 @@ export interface Modele {
   corps: string;
 }
 
+export const GENRES_AGENDA = ["rendez_vous", "rappel"] as const;
+export type GenreAgenda = (typeof GENRES_AGENDA)[number];
+export const GENRE_AGENDA_LABEL: Record<GenreAgenda, string> = { rendez_vous: "Rendez-vous", rappel: "Rappel" };
+
+export interface RendezVous {
+  id: string;
+  /** null : rendez-vous ou rappel sans prospect */
+  prospectId: string | null;
+  genre: GenreAgenda;
+  titre: string;
+  /** début, ISO 8601 UTC (saisi en heure de Paris) */
+  debut: string;
+  dureeMin: number;
+  lieu: string;
+  detail: string;
+  fait: boolean;
+  creeLe: string;
+  modifieLe: string;
+}
+
 export interface Reglages {
   /** objectif de chiffre d'affaires signé par mois, en euros */
   objectifMensuel: number;
@@ -169,6 +189,7 @@ export const REGLAGES_DEFAUT: Reglages = { objectifMensuel: 5000 };
 export interface Db {
   version: 1;
   reglages: Reglages;
+  agenda: RendezVous[];
   prospects: Prospect[];
   evenements: Evenement[];
   emails: Email[];

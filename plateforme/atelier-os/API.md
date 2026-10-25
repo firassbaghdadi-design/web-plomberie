@@ -36,6 +36,13 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 - `GET /argent` : `{ mois, caSigneMois, signesDuMois, caSigneTotal, caDevis, caDevisPondere, revenuMensuel, objectifMensuel, progression (0-1), parEtape[{statut, ponderation, nombre, montant, pondere}] }`. Pondération par étape : à contacter 5 %, maquette envoyée 10 %, ouverte 20 %, appel fait 30 %, rendez-vous 50 %, devis 70 %. Le revenu mensuel récurrent additionne les abonnements des prospects signés. Aussi renvoyé dans `GET /tableau-de-bord` sous `argent`.
 - `GET /reglages` : `{ reglages: { objectifMensuel } }` ; `PATCH /reglages` : `{ "objectifMensuel": 8000 }`.
 
+### Agenda (rendez-vous et rappels)
+- Objet : `{ id, prospectId|null, genre: "rendez_vous"|"rappel", titre, debut (ISO UTC), dureeMin, lieu, detail, fait, creeLe, modifieLe }`.
+- `GET /agenda?du=AAAA-MM-JJ&au=AAAA-MM-JJ&prospectId=&fait=true|false` : `{ total, rendezVous[] }` triés par début (jours en heure de Paris).
+- `POST /agenda` : `{ "prospectId": "gaz-flash", "genre": "rendez_vous", "jour": "2026-10-29", "heure": "10:00", "dureeMin": 60, "lieu": "Sur place", "titre": "Présentation de la maquette" }` → `201 { rendezVous }`. `jour` + `heure` sont en heure de Paris (heure d'été gérée) ; on peut donner `debut` (ISO) à la place. Titre par défaut « Rendez-vous · Entreprise ». Un rendez-vous lié à un prospect est inscrit dans son historique (`rendez_vous`) et fait avancer l'étape à « Rendez-vous » ; un rappel ajoute une note.
+- `GET /agenda/{id}` : `{ rendezVous, prospect }` ; `PATCH /agenda/{id}` : mêmes champs (`fait: true` pour cocher) ; `DELETE /agenda/{id}`.
+- `GET /agenda/{id}/ics` : fichier `.ics` (text/calendar, alerte 30 min avant un rendez-vous, à l'heure pour un rappel) à ouvrir dans Calendrier, Google Agenda ou Outlook.
+
 ### Pipeline (kanban)
 - `GET /pipeline` : `{ colonnes[{ statut, label, nombre, prospects[] }] }`, une colonne par étape, dans l'ordre du parcours.
 - `POST /pipeline/deplacer` : `{ "prospectId": "...", "statut": "devis" }` → `{ prospect }`. Change l'étape (dans les deux sens, contrairement aux règles automatiques) et journalise un événement `statut` (« Déplacé dans le pipeline »). Passer à `perdu` ou `signe` annule les relances.
@@ -47,7 +54,7 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 
 ### Tableau de bord et à faire
 - `GET /tableau-de-bord` : `{ date, jour{emailsEnvoyes,ouvertures,clics,reponses,appelsFaits,rendezVous}, semaine{...}, appelsAFaire, relancesDues, entonnoir[{statut,nombre}], totaux, aFaire[] }`
-- `GET /a-faire` : `{ actions[] }` avec `genre` = `relance` | `appel` | `envoi`, `prospectId`, `entreprise`, `titre`, `detail`, `urgence`, `relanceId` pour une relance.
+- `GET /a-faire` : `{ actions[] }` avec `genre` = `rendez_vous` | `rappel` | `relance` | `appel` | `envoi`, `prospectId` (vide pour un rendez-vous sans prospect), `entreprise`, `titre`, `detail`, `urgence`, `relanceId` pour une relance, `agendaId` et `heure` (HH:MM, Paris) pour un rendez-vous ou rappel du jour non fait. Les rendez-vous du jour viennent en tête, par heure.
 
 ### E-mails
 - `GET /emails?prospectId=&statut=` ; `GET /emails/{id}`

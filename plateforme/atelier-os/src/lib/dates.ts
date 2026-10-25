@@ -83,3 +83,24 @@ export function formatRelatif(iso: string, maintenant: Date = new Date()): strin
   if (diff < 86400 * 7) return `il y a ${Math.floor(diff / 86400)} j`;
   return formatDateHeure(iso);
 }
+
+/** Heure de Paris « HH:MM » d'un instant ISO. */
+export function heureParis(iso: string): string {
+  const p = partiesParis(new Date(iso));
+  return `${String(p.heure).padStart(2, "0")}:${String(p.minute).padStart(2, "0")}`;
+}
+
+/** Jour AAAA-MM-JJ et heure HH:MM à Paris → instant ISO UTC (gère l'heure d'été). */
+export function parisVersIso(jour: string, heure: string): string {
+  const [y, m, d] = jour.split("-").map(Number);
+  const [h, mi] = heure.split(":").map(Number);
+  const voulu = Date.UTC(y, m - 1, d, h, mi);
+  let t = voulu;
+  for (let i = 0; i < 3; i++) {
+    const p = partiesParis(new Date(t));
+    const [py, pm, pd] = p.jour.split("-").map(Number);
+    const vu = Date.UTC(py, pm - 1, pd, p.heure, p.minute);
+    t += voulu - vu;
+  }
+  return new Date(t).toISOString();
+}
