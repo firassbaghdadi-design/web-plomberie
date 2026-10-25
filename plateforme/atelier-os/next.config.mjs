@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  async rewrites() {
+    // Le pixel est servi en /t/o/<id>.gif
+    return [{ source: "/t/o/:id.gif", destination: "/t/px/:id" }];
+  },
   async headers() {
     return [
       {
