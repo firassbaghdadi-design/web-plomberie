@@ -72,7 +72,7 @@ export default function HomePage() {
         <Marquee />
       </div>
 
-      <Timeline title={home.storyTitle} text={home.storyText} />
+      <Timeline title={home.storyTitle} text={home.storyText} compact />
 
       <section aria-labelledby="titre-metiers" className="section">
         <div className="container-x">
@@ -90,7 +90,7 @@ export default function HomePage() {
               </Link>
             </p>
           </div>
-          <TradesShowcase />
+          <TradesShowcase compact />
         </div>
       </section>
 
@@ -111,7 +111,7 @@ export default function HomePage() {
             </p>
           </div>
           <div data-reveal>
-            <AgencyPanels />
+            <AgencyPanels compact />
           </div>
         </div>
       </section>

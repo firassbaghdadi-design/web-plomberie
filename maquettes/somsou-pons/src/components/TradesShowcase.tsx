@@ -7,7 +7,7 @@ import { ArrowIcon } from "./Icons";
 import { Photo } from "./Photo";
 
 /** Les métiers en liste : au survol, la photo de droite change (sur téléphone, chaque ligne a sa photo). */
-export function TradesShowcase() {
+export function TradesShowcase({ compact = false }: { compact?: boolean }) {
   const [active, setActive] = useState(0);
   return (
     <div className="grid items-start gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
@@ -23,7 +23,7 @@ export function TradesShowcase() {
               <span className="n">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3>{t.title}</h3>
-                <p className="mt-2 max-w-lg text-[1.02rem]">{t.text}</p>
+                {compact ? null : <p className="mt-2 max-w-lg text-[1.02rem]">{t.text}</p>}
                 <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-amber-action">
                   {t.cta}
                   <ArrowIcon className="h-4 w-4" />

@@ -50,7 +50,7 @@ export const trades = [
 
 export const presentation: PageContent = {
   title: "Présentation de Somsou-Pons, entreprise du bâtiment à Paris",
-  description: "Histoire de Somsou-Pons, entreprise du bâtiment à Paris : origines en 1876, Maison Pons en 1924, fusion en 1992, agences dans le 16e et le 17e.",
+  description: "Histoire de Somsou-Pons, entreprise du bâtiment à Paris : origines en 1876, Maison Pons en 1924, SOMSOU-PONS en 1992, et ses agences dans le 16e et le 17e.",
   h1: "Somsou-Pons, entreprise du bâtiment à Paris depuis plus d'un siècle",
   eyebrow: "Présentation",
   lead: "De la mosaïque de 1876 à la plomberie, au chauffage et à la rénovation d'aujourd'hui : l'histoire d'une entreprise parisienne, racontée avec les dates qu'elle donne elle-même.",
@@ -83,7 +83,7 @@ export const presentation: PageContent = {
     },
     {
       h2: "Que change cette histoire pour un client aujourd'hui ?",
-      answer: "Elle donne des repères concrets : une adresse connue à Paris, plusieurs métiers réunis sous un même nom, des qualifications affichées et un interlocuteur identifiable. Ces éléments se vérifient, ce qui compte davantage que l'ancienneté seule.",
+      answer: "Elle donne des repères concrets : une adresse connue à Paris, plusieurs métiers réunis sous un même nom, des qualifications affichées et un interlocuteur identifiable. Ces éléments se vérifient, ce qui compte davantage que l'ancienneté seule. C'est sur eux que repose la confiance, chantier après chantier.",
       body: [
         "Une longue histoire ne garantit pas, à elle seule, la qualité d'un chantier. Ce qui aide un client, c'est ce qu'elle laisse derrière elle : des agences que l'on peut visiter, des qualifications que l'on peut demander, un nom qui engage et des équipes habituées aux immeubles parisiens, à leurs colonnes d'eau, à leurs étages sans ascenseur et à leurs copropriétés.",
         "Si vous hésitez entre plusieurs entreprises, demandez à chacune ses attestations, des exemples de chantiers comparables au vôtre et un devis écrit détaillé. C'est la meilleure façon de comparer, et c'est ce que nous vous suggérons de faire avec Somsou-Pons comme avec les autres.",
@@ -105,12 +105,12 @@ export const tradesPage: PageContent = {
   h1: "Nos métiers à Paris : plomberie, chauffage et rénovation",
   eyebrow: "Nos métiers",
   lead: "Quatre pages pour entrer dans le détail, un seul numéro pour commencer : les métiers que Somsou-Pons exerce à Paris et en petite couronne.",
-  brief: "Somsou-Pons propose la rénovation partielle ou totale avec un seul interlocuteur, pour les appartements, pavillons, locaux commerciaux et sociétés : démolition, maçonnerie, plâtrerie, carrelage, plomberie, chauffage, menuiserie, parquet, petite couverture, peinture et électricité. Et un service de dépannage rapide.",
+  brief: "Somsou-Pons propose la rénovation partielle ou totale avec un seul interlocuteur, pour les appartements, pavillons, locaux commerciaux et sociétés : démolition, maçonnerie, plâtrerie, carrelage, plomberie, chauffage, menuiserie, parquet, petite couverture, peinture et électricité. Et un service de dépannage rapide en plomberie.",
   heroPhoto: "plans",
   sections: [
     {
       h2: "Que fait Somsou-Pons en plomberie et en chauffage ?",
-      answer: "En plomberie : alimentation et évacuation d'eau, sanitaires, robinetterie et dépannage rapide. En chauffage : chaudières, planchers chauffants, radiateurs et ballons d'eau chaude. Ces deux métiers sont le cœur de l'activité et reposent sur des qualifications Qualibat.",
+      answer: "En plomberie : alimentation et évacuation d'eau, sanitaires, robinetterie et dépannage rapide. En chauffage : chaudières, planchers chauffants, radiateurs et ballons d'eau chaude. Ces deux métiers sont le cœur de l'activité et reposent sur des qualifications Qualibat. La rénovation vient ensuite les compléter.",
       body: [
         "La plomberie recouvre tout ce qui touche à l'eau dans un logement : amener l'eau froide et chaude, évacuer les eaux usées, poser un lavabo, une douche, un WC, changer une robinetterie, remplacer un chauffe-eau. C'est le métier de la maison Pons depuis 1924, et celui qui revient le plus souvent dans les demandes des habitants.",
         "Le chauffage va de la chaudière aux radiateurs, du plancher chauffant au ballon d'eau chaude. Dans un immeuble parisien, il faut tenir compte du mode de chauffage existant, de la place disponible et, pour le collectif, des décisions de la copropriété.",
@@ -127,7 +127,7 @@ export const tradesPage: PageContent = {
     {
       id: "menuiserie",
       h2: "Que propose l'atelier de menuiserie ?",
-      answer: "La menuiserie intérieure (portes, placards, aménagement de cuisine) et extérieure (fenêtres, baies coulissantes, portes d'entrée), ainsi qu'un dépannage rapide en menuiserie. Elle est assurée par la SARL Transvaal, à La Garenne-Colombes, qui a repris l'activité créée en 1992.",
+      answer: "La menuiserie intérieure (portes, placards, aménagement de cuisine) et extérieure (fenêtres, baies coulissantes, portes d'entrée), ainsi qu'un dépannage rapide en menuiserie. Elle est assurée par la SARL Transvaal, à La Garenne-Colombes, qui a repris l'activité créée en 1992. Elle a son propre téléphone.",
       body: [
         "Le travail du bois accompagne souvent une rénovation : une porte qu'on recoupe après la pose d'un nouveau parquet, un placard sur mesure dans une entrée, une cuisine à aménager. L'atelier travaille depuis le 5 rue du Transvaal, et possède son propre numéro de téléphone et sa propre adresse e-mail, indiqués sur la page des agences.",
         "Pour une demande de menuiserie, choisissez le type de demande correspondant dans le formulaire de contact : elle sera orientée vers le bon interlocuteur.",
@@ -153,7 +153,7 @@ export const tradesPage: PageContent = {
 
 export const qualifPage: PageContent = {
   title: "Qualibat, Professionnel du Gaz et RGE : nos qualifications",
-  description: "Qualifications de Somsou-Pons à Paris : Qualibat plomberie, installations thermiques, carrelage et maçonnerie, Professionnel du Gaz et mention RGE.",
+  description: "Qualifications de Somsou-Pons à Paris : Qualibat plomberie, installations thermiques, carrelage et maçonnerie, Professionnel du Gaz et mention RGE expliqués.",
   h1: "Qualibat, Professionnel du Gaz, RGE : les qualifications de notre entreprise à Paris",
   eyebrow: "Nos qualifications",
   lead: "Ce qui est affiché sur le site actuel de l'entreprise, expliqué simplement, avec la façon de le vérifier avant de signer un devis.",
@@ -204,7 +204,7 @@ export const qualifPage: PageContent = {
 
 export const agenciesPage: PageContent = {
   title: "Nos agences Somsou-Pons : Paris 16e, Paris 17e, La Garenne",
-  description: "Les trois adresses de Somsou-Pons : siège rue Gavarni à Paris 16e, agence rue Ampère à Paris 17e, atelier de menuiserie à La Garenne-Colombes. Téléphones et e-mails.",
+  description: "Les trois adresses de Somsou-Pons : siège rue Gavarni à Paris 16e, agence rue Ampère à Paris 17e, menuiserie à La Garenne-Colombes. Téléphones et e-mails.",
   h1: "Nos 3 agences à Paris 16e, Paris 17e et La Garenne-Colombes",
   eyebrow: "Nos agences",
   lead: "Un siège, une agence et un atelier : trois adresses, trois numéros de téléphone, trois boîtes e-mail. Choisissez la plus proche de chez vous.",
@@ -221,7 +221,7 @@ export const agenciesPage: PageContent = {
     },
     {
       h2: "Où est l'agence du 17e arrondissement ?",
-      answer: "L'agence du 17e est au 26 rue Ampère, 75017 Paris. Son téléphone est le 01 46 27 14 86 et son adresse e-mail agence17@somsoupons.fr. D'après l'entreprise, ses bureaux sont installés dans le 17e depuis 2006.",
+      answer: "L'agence du 17e est au 26 rue Ampère, 75017 Paris. Son téléphone est le 01 46 27 14 86 et son adresse e-mail agence17@somsoupons.fr. D'après l'entreprise, ses bureaux sont installés dans le 17e depuis 2006. Elle reçoit les demandes du nord-ouest de Paris.",
       body: [
         "Cette agence reçoit les demandes du nord-ouest de la capitale, et complète le siège du 16e pour les plombiers, chauffagistes et chefs de chantier qui interviennent chez les clients. Pour un chantier, la répartition entre agences se fait en fonction de l'adresse et de la charge de travail.",
         "Si vous hésitez entre les deux agences, appelez l'une ou l'autre : elles travaillent ensemble et vous orienteront vers la bonne.",
@@ -229,7 +229,7 @@ export const agenciesPage: PageContent = {
     },
     {
       h2: "Que fait l'atelier de La Garenne-Colombes ?",
-      answer: "L'atelier Transvaal, au 5 rue du Transvaal à La Garenne-Colombes (92250), est consacré à la menuiserie. Il a son propre numéro, le 01 42 42 23 72, et son adresse e-mail transvaal@somsoupons.fr, pour les demandes de menuiserie.",
+      answer: "L'atelier Transvaal, au 5 rue du Transvaal à La Garenne-Colombes (92250), est consacré à la menuiserie. Il a son propre numéro, le 01 42 42 23 72, et son adresse e-mail transvaal@somsoupons.fr, pour les demandes de menuiserie. Il travaille aussi sur les chantiers parisiens.",
       body: [
         "Cette société a été créée par le dirigeant de l'entreprise pour reprendre l'activité de menuiserie lancée en 1992. Elle réalise des ouvrages en bois et peut intervenir seule ou dans le cadre d'une rénovation menée par les agences parisiennes.",
         "La Garenne-Colombes se trouve dans les Hauts-de-Seine, à proximité immédiate de Paris et de ses arrondissements du nord-ouest.",
@@ -264,7 +264,7 @@ export const plumbing: PageContent = {
   sections: [
     {
       h2: "Que fait un plombier dans un appartement parisien ?",
-      answer: "Il amène l'eau froide et chaude, évacue les eaux usées et installe les appareils qui s'y raccordent : lavabos, douches, baignoires, WC, éviers, chauffe-eau, machines. Il répare aussi les fuites et remplace les robinets, siphons et flexibles usés.",
+      answer: "Il amène l'eau froide et chaude, évacue les eaux usées et installe les appareils qui s'y raccordent : lavabos, douches, baignoires, WC, éviers, chauffe-eau, machines. Il répare aussi les fuites et remplace les robinets, siphons et flexibles usés. Il conseille aussi sur l'état du réseau.",
       body: [
         "Dans un immeuble ancien, le travail du plombier dépend beaucoup de ce qu'il trouve derrière les murs. Les canalisations en plomb ou en acier d'origine ne sont plus aux normes ; les colonnes d'eau, partagées entre étages, relèvent de la copropriété ; les évacuations traversent parfois plusieurs logements. Chaque chantier commence donc par une visite.",
         "Un bon plombier explique ce qu'il voit, ce qu'il propose et ce qu'il laisse volontairement de côté. C'est le sens du devis détaillé que l'entreprise remet avant le début des travaux : vous savez ce qui sera fait, avec quelles pièces, et dans quel ordre.",
@@ -272,7 +272,7 @@ export const plumbing: PageContent = {
     },
     {
       h2: "Quels travaux de plomberie Somsou-Pons réalise-t-elle ?",
-      answer: "Son site cite l'alimentation et l'évacuation d'eau, les sanitaires et la robinetterie, ainsi qu'un service de dépannage rapide. Elle intervient dans les logements parisiens, du remplacement d'un mitigeur à l'installation d'une salle de bains complète.",
+      answer: "Son site cite l'alimentation et l'évacuation d'eau, les sanitaires et la robinetterie, ainsi qu'un service de dépannage rapide. Elle intervient dans les logements parisiens, du remplacement d'un mitigeur à l'installation d'une salle de bains complète. Le devis écrit précède toujours les travaux.",
       body: [
         "L'alimentation désigne tout ce qui amène l'eau jusqu'à vos appareils : tuyaux, vannes, compteurs divisionnaires, groupes de sécurité. L'évacuation regroupe les siphons, les descentes et les raccords aux colonnes de l'immeuble. Les sanitaires, ce sont les appareils eux-mêmes ; la robinetterie, tout ce que l'on manœuvre au quotidien.",
         "Pour un remplacement simple, une photo de l'existant suffit souvent à préparer l'intervention. Pour une salle de bains, le plan et les dimensions comptent davantage, et une visite sur place devient indispensable.",
@@ -280,7 +280,7 @@ export const plumbing: PageContent = {
     },
     {
       h2: "Comment préparer une demande de devis de plomberie ?",
-      answer: "Décrivez le problème ou le projet en quelques phrases, joignez deux ou trois photos, indiquez l'adresse du logement et l'étage, et précisez si vous êtes propriétaire ou locataire. Plus la demande est claire, plus le devis est juste.",
+      answer: "Décrivez le problème ou le projet en quelques phrases, joignez deux ou trois photos, indiquez l'adresse du logement et l'étage, et précisez si vous êtes propriétaire ou locataire. Plus la demande est claire, plus le devis est juste. Rien ne vous engage.",
       body: [
         "Les photos les plus utiles montrent l'installation de loin, puis de près : le robinet d'arrêt, le raccord qui suinte, l'emplacement d'une future douche. Si vous le pouvez, ajoutez une photo de la plaque d'un chauffe-eau ou d'un appareil : elle donne la marque et le modèle.",
         "Le formulaire de la page contact accepte jusqu'à quatre photos et les compresse avant l'envoi. Rien ne s'y paie et rien ne vous engage : vous recevez une réponse de l'agence, puis, si le sujet s'y prête, un devis écrit.",
@@ -288,7 +288,7 @@ export const plumbing: PageContent = {
     },
     {
       h2: "Quelles questions se posent en copropriété ?",
-      answer: "Tout ce qui touche aux parties communes (colonnes d'eau, compteurs généraux, évacuations collectives) relève de la copropriété et du syndic. Les équipements de votre logement, après le robinet d'arrêt privatif, vous appartiennent et se décident chez vous.",
+      answer: "Tout ce qui touche aux parties communes (colonnes d'eau, compteurs généraux, évacuations collectives) relève de la copropriété et du syndic. Les équipements de votre logement, après le robinet d'arrêt privatif, vous appartiennent et se décident chez vous. En cas de doute, demandez au syndic.",
       body: [
         "Avant de lancer des travaux de plomberie, vérifiez ce qui est privatif et ce qui est commun. Une fuite sur une colonne montante, par exemple, se signale au syndic ; une fuite sur le flexible d'un lavabo se répare à vos frais, avec ou sans l'aide de votre assurance.",
         "Dans un immeuble parisien, le règlement de copropriété peut aussi encadrer les horaires de chantier et l'usage des ascenseurs. L'entreprise connaît ces contraintes : signalez-les dans votre demande, elles se règlent mieux en amont.",
@@ -315,7 +315,7 @@ export const heating: PageContent = {
   sections: [
     {
       h2: "Quels équipements de chauffage Somsou-Pons installe-t-elle ?",
-      answer: "Son site cite les chaudières, les planchers chauffants, les radiateurs et les ballons d'eau chaude. Le choix dépend du logement : chauffage individuel ou collectif, énergie disponible, place, hauteur sous plafond et décisions éventuelles de la copropriété.",
+      answer: "Son site cite les chaudières, les planchers chauffants, les radiateurs et les ballons d'eau chaude. Le choix dépend du logement : chauffage individuel ou collectif, énergie disponible, place, hauteur sous plafond et décisions éventuelles de la copropriété. Une visite permet de trancher.",
       body: [
         "La chaudière est le cœur d'une installation individuelle. Au gaz, elle demande un raccordement, une évacuation des fumées et une ventilation conformes, d'où l'importance d'une entreprise qualifiée. Le ballon d'eau chaude, lui, peut être couplé à la chaudière ou fonctionner seul, selon l'équipement du logement.",
         "Les radiateurs diffusent la chaleur par convection ou par rayonnement ; leur remplacement est souvent l'occasion de revoir le circuit. Le plancher chauffant, plus rare en appartement ancien, exige de la hauteur disponible et un revêtement compatible : il se prévoit surtout dans une rénovation lourde.",
@@ -331,7 +331,7 @@ export const heating: PageContent = {
     },
     {
       h2: "Comment savoir si l'entreprise est qualifiée pour le gaz ?",
-      answer: "Son site mentionne une qualification Qualibat 5311 (installations thermiques, mention gaz domestique), une 5112 en plomberie avec mention des installations de gaz domestiques, et Professionnel du Gaz. Demandez à l'agence les attestations en cours de validité avant de signer.",
+      answer: "Son site mentionne une qualification Qualibat 5311 (installations thermiques, mention gaz domestique), une 5112 en plomberie avec mention des installations de gaz domestiques, et Professionnel du Gaz. Demandez à l'agence les attestations en cours de validité avant de signer. Gardez-les ensuite.",
       body: [
         "Sur du gaz, la qualification n'est pas un détail : elle conditionne la sécurité de l'installation, la responsabilité de l'entreprise et, souvent, la prise en charge par votre assurance en cas de sinistre. Gardez dans le dossier du logement l'attestation de l'entreprise et le justificatif de l'installation.",
         "La page des qualifications explique ce que couvre chaque code, et comment vérifier une attestation auprès de l'organisme concerné.",
@@ -366,7 +366,7 @@ export const emergency: PageContent = {
   sections: [
     {
       h2: "Que faire immédiatement en cas de fuite d'eau ?",
-      answer: "Fermez le robinet d'arrêt général de l'eau, souvent près du compteur. Si l'eau atteint des prises ou le tableau, coupez le courant sans toucher aux appareils mouillés. Épongez, déplacez les objets fragiles, photographiez les dégâts, puis appelez un plombier.",
+      answer: "Fermez le robinet d'arrêt général de l'eau, souvent près du compteur. Si l'eau atteint des prises ou le tableau, coupez le courant sans toucher aux appareils mouillés. Épongez, déplacez les objets fragiles, photographiez les dégâts, puis appelez un plombier. Gardez les photos.",
       body: [
         "Repérez le robinet d'arrêt général avant d'en avoir besoin : dans un appartement parisien, il se trouve le plus souvent dans la cuisine, la salle de bains, ou à côté du compteur dans les parties privatives. Apprenez à le manœuvrer, il peut être dur s'il n'a pas servi depuis longtemps.",
         "Les photos et la date de découverte serviront à votre déclaration de sinistre. Ne jetez pas la pièce abîmée si vous la remplacez : l'assureur ou l'expert peut vouloir la voir.",
@@ -407,8 +407,8 @@ export const emergency: PageContent = {
 };
 
 export const renovation: PageContent = {
-  title: "Rénovation d'appartement à Paris 16e et 17e : un interlocuteur",
-  description: "Rénovation d'appartement à Paris 16e et 17e : salle de bains, cuisine, plomberie, électricité, carrelage, peinture avec un seul interlocuteur. Devis sur demande.",
+  title: "Rénovation d'appartement Paris 16e et 17e : un interlocuteur",
+  description: "Rénovation d'appartement à Paris 16e et 17e : salle de bains, cuisine, plomberie, électricité, carrelage, peinture avec un seul interlocuteur. Devis gratuit.",
   h1: "Rénovation d'appartement à Paris 16e et 17e avec un seul interlocuteur",
   eyebrow: "Rénovation",
   lead: "Rénover, c'est enchaîner des métiers dans le bon ordre. Somsou-Pons réunit plomberie, chauffage, carrelage, maçonnerie, menuiserie, peinture et électricité sous un même nom.",
@@ -417,7 +417,7 @@ export const renovation: PageContent = {
   sections: [
     {
       h2: "Que couvre une rénovation d'appartement à Paris ?",
-      answer: "Elle peut couvrir toutes les pièces ou une seule : démolition et reprise des cloisons, réseaux d'eau, d'électricité et de chauffage, sols et carrelage, menuiseries, peinture. L'entreprise coordonne ces métiers, de la visite préalable à la réception des travaux.",
+      answer: "Elle peut couvrir toutes les pièces ou une seule : démolition et reprise des cloisons, réseaux d'eau, d'électricité et de chauffage, sols et carrelage, menuiseries, peinture. L'entreprise coordonne ces métiers, de la visite préalable à la réception des travaux. Vous gardez un seul contact.",
       body: [
         "Dans un appartement parisien, la rénovation se heurte à des contraintes particulières : étages sans ascenseur, escaliers étroits, cours intérieures, horaires de chantier fixés par la copropriété. Elles influent sur le planning et sur la logistique, et se règlent mieux quand l'entreprise les connaît.",
         "Le point de départ est toujours une visite : on mesure, on regarde l'état des réseaux et des murs, on écoute ce que vous voulez changer. C'est elle qui permet de chiffrer sans surprise.",

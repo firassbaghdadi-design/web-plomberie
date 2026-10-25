@@ -181,12 +181,12 @@ export function LocalBlock({ c, contactType }: { c: PageContent; contactType?: s
               Demander un devis ou une intervention
             </Link>
           </div>
-          <p className="mt-6 text-sm">
+          <div className="mt-6 text-sm">
             <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="link-line font-semibold text-brand">
               Itinéraire et fiche Google<span className="sr-only"> (nouvel onglet)</span>
             </a>{" "}
             · Note de {reviews.ratingText}/5 sur Google ({reviews.count} avis, relevé du {reviews.observed}).
-          </p>
+          </div>
         </div>
         <ul className="grid gap-3" data-reveal style={{ ["--d" as string]: "120ms" }}>
           {agencies.map((a) => (
@@ -296,7 +296,7 @@ export function Marquee() {
 }
 
 /** Frise des dates données par l'entreprise : défilement horizontal épinglé sur grand écran, liste sur téléphone. */
-export function Timeline({ title, text }: { title: string; text: string }) {
+export function Timeline({ title, text, compact = false }: { title: string; text: string; compact?: boolean }) {
   return (
     <section data-hscroll className="hscroll" aria-labelledby="titre-histoire">
       <div className="hscroll-pin py-20 lg:py-0">
@@ -314,7 +314,7 @@ export function Timeline({ title, text }: { title: string; text: string }) {
             <li key={t.year} className="tcard">
               <span className="year">{t.year}</span>
               <h3 className="mt-5 text-2xl">{t.title}</h3>
-              <p className="mt-2">{t.text}</p>
+              {compact ? null : <p className="mt-2">{t.text}</p>}
             </li>
           ))}
         </ol>
@@ -326,7 +326,7 @@ export function Timeline({ title, text }: { title: string; text: string }) {
   );
 }
 
-export function AgencyPanels() {
+export function AgencyPanels({ compact = false }: { compact?: boolean }) {
   const tones = ["var(--green)", "var(--action)", "var(--ink)"];
   const nums = ["16", "17", "92"];
   return (
@@ -345,10 +345,12 @@ export function AgencyPanels() {
             <p className="mt-2 text-white/85">
               {a.street}, {a.postalCode} {a.city}
             </p>
-            <div className="more">
-              <p className="mt-4 max-w-md text-sm text-white/85">{a.text}</p>
-              <p className="mt-2 text-sm text-white/75">{a.trades}</p>
-            </div>
+            {compact ? null : (
+              <div className="more">
+                <p className="mt-4 max-w-md text-sm text-white/85">{a.text}</p>
+                <p className="mt-2 text-sm text-white/75">{a.trades}</p>
+              </div>
+            )}
             <div className="mt-6 flex flex-wrap gap-2">
               <a href={`tel:${a.phoneTel}`} data-track="phone_call_click" className="btn-ghost-light !min-h-[46px] !px-5">
                 <PhoneIcon className="h-4 w-4" />

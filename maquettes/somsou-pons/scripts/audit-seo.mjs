@@ -67,7 +67,7 @@ for (const path of locs) {
   for (const l of links) if (!locs.includes(l) && !/^\/(llms\.txt|_next|photos|api)/.test(l)) issues.push(`lien interne hors sitemap ${l}`);
   const noAlt = (main.match(/<img(?![^>]*\balt=)[^>]*>/g) ?? []).length;
   if (noAlt) issues.push(`${noAlt} image sans alt`);
-  for (const p of [...main.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => strip(m[1]))) {
+  for (const p of [...main.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/g)].map((m) => strip(m[1]))) {
     if (p.split(" ").length >= 18 && !p.startsWith("«") && !p.startsWith("Une photo vaut mieux") && !p.startsWith("Appeler le")) { const prev = seen.get(p); if (prev && prev !== path) issues.push(`paragraphe dupliqué avec ${prev} : ${p.slice(0, 40)}`); else seen.set(p, path); }
   }
   for (const [k, v] of [["title", title], ["h1", h1], ["description", desc]]) unique[k].set(v, [...(unique[k].get(v) ?? []), path]);

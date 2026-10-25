@@ -80,7 +80,7 @@ export const localPages: LocalPage[] = [
     agency: "dixsept",
     contactType: "plomberie",
     title: "Plombier Paris 17e : fuite cachée, chauffe-eau, calcaire",
-    description: "Plombier à Paris 17e, rue Ampère : recherche de fuite, remplacement de chauffe-eau électrique, robinetterie et calcaire. Somsou-Pons, agence du 17e.",
+    description: "Plombier à Paris 17e, rue Ampère : recherche de fuite, remplacement de chauffe-eau électrique, robinetterie et calcaire. Somsou-Pons, agence du 17e (Paris).",
     h1: "Plombier à Paris 17e : fuite cachée, chauffe-eau et robinetterie",
     eyebrow: "Plomberie · Paris 17e",
     lead: "L'agence de la rue Ampère reçoit les demandes de plomberie du 17e arrondissement, des Batignolles aux Ternes. Trois sujets reviennent souvent : la fuite qu'on ne voit pas, le chauffe-eau fatigué, le calcaire.",
@@ -106,7 +106,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Le calcaire de l'eau parisienne abîme-t-il la robinetterie ?",
-        answer: "L'eau distribuée à Paris est moyennement calcaire. Avec le temps, le tartre bloque les mousseurs, durcit les cartouches de mitigeur, réduit le débit des douches et encrasse la résistance des chauffe-eau. Un entretien simple limite ces effets.",
+        answer: "L'eau distribuée à Paris est moyennement calcaire. Avec le temps, le tartre bloque les mousseurs, durcit les cartouches de mitigeur, réduit le débit des douches et encrasse la résistance des chauffe-eau. Un entretien simple limite ces effets. Le plombier vous montre lequel.",
         body: [
           "Démontez et trempez régulièrement les mousseurs et les pommes de douche dans du vinaigre blanc. Pour un mitigeur qui devient dur ou qui goutte, le remplacement de la cartouche suffit souvent, sans changer tout le robinet.",
           "Un adoucisseur peut être envisagé dans une maison ou un grand logement ; en appartement, la question se pose surtout pour protéger un chauffe-eau. Le plombier vous dira si c'est utile dans votre cas.",
@@ -134,7 +134,7 @@ export const localPages: LocalPage[] = [
     agency: "seize",
     contactType: "chauffage",
     title: "Chauffagiste Paris 16e : chaudière gaz et radiateurs fonte",
-    description: "Chauffagiste à Paris 16e : remplacement de chaudière gaz, conduit de fumée, radiateurs en fonte, désembouage. Somsou-Pons, Qualibat 5311 et Professionnel du Gaz.",
+    description: "Chauffagiste à Paris 16e : remplacement de chaudière gaz, conduit de fumée, radiateurs en fonte, désembouage. Somsou-Pons, Qualibat 5311, Professionnel du Gaz.",
     h1: "Chauffagiste à Paris 16e : chaudière gaz, conduit et radiateurs en fonte",
     eyebrow: "Chauffage · Paris 16e",
     lead: "Dans les grands appartements anciens du 16e, le chauffage individuel au gaz est fréquent, avec des radiateurs en fonte d'origine. Les remplacer ou les garder : le chauffagiste vous aide à décider.",
@@ -188,7 +188,7 @@ export const localPages: LocalPage[] = [
     agency: "dixsept",
     contactType: "chauffage",
     title: "Chauffagiste Paris 17e : chauffage collectif et entretien",
-    description: "Chauffagiste à Paris 17e : entretien de chaudière, robinets thermostatiques, chauffage collectif, plancher chauffant en rénovation. Agence Somsou-Pons rue Ampère.",
+    description: "Chauffagiste à Paris 17e : entretien de chaudière, robinets thermostatiques, chauffage collectif, plancher chauffant en rénovation. Somsou-Pons, rue Ampère.",
     h1: "Chauffagiste à Paris 17e : entretien, chauffage collectif et confort",
     eyebrow: "Chauffage · Paris 17e",
     lead: "Chauffage individuel ou collectif, chaudière à entretenir ou radiateurs à régler : l'agence de la rue Ampère accompagne les habitants du 17e arrondissement.",
@@ -214,7 +214,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Un plancher chauffant est-il possible lors d'une rénovation ?",
-        answer: "C'est envisageable quand le sol est entièrement repris : il faut de la hauteur pour l'isolant, les tubes et la chape, et un revêtement compatible. Dans un appartement, l'accord de la copropriété peut être nécessaire selon le raccordement prévu.",
+        answer: "C'est envisageable quand le sol est entièrement repris : il faut de la hauteur pour l'isolant, les tubes et la chape, et un revêtement compatible. Dans un appartement, l'accord de la copropriété peut être nécessaire selon le raccordement prévu. Une visite le confirme.",
         body: [
           "Le plancher chauffant diffuse une chaleur douce et libère les murs des radiateurs. Il réagit en revanche lentement aux changements de température, et sa mise en œuvre se prévoit dès la conception du chantier, en même temps que le choix des sols.",
           "Le chauffagiste étudie la faisabilité avec le reste de l'équipe de rénovation : c'est l'intérêt d'un seul interlocuteur pour tous les corps de métier.",
@@ -252,7 +252,7 @@ export const localPages: LocalPage[] = [
     sections: [
       {
         h2: "Que faire quand l'eau traverse le plafond du voisin du dessous ?",
-        answer: "Coupez l'eau de votre logement, prévenez immédiatement le voisin et le gardien, puis cherchez l'origine avec le plombier. Remplissez ensemble un constat amiable de dégât des eaux et déclarez le sinistre à votre assureur dans les cinq jours ouvrés.",
+        answer: "Coupez l'eau de votre logement, prévenez immédiatement le voisin et le gardien, puis cherchez l'origine avec le plombier. Remplissez ensemble un constat amiable de dégât des eaux et déclarez le sinistre à votre assureur dans les cinq jours ouvrés. Gardez les photos.",
         body: [
           "Dans les immeubles anciens, les planchers en bois et plâtre laissent passer l'eau rapidement, et elle peut ressortir loin de la fuite. Ne vous fiez pas à l'emplacement de la tache : c'est la recherche du plombier qui dira d'où vient l'eau, chez vous, chez un voisin ou dans une colonne commune.",
           "Gardez les photos, la date et les factures de l'intervention : elles serviront à l'assureur et, le cas échéant, au syndic.",
@@ -306,7 +306,7 @@ export const localPages: LocalPage[] = [
     sections: [
       {
         h2: "Que vérifier quand il n'y a plus d'eau chaude ?",
-        answer: "Pour un chauffe-eau électrique, regardez le disjoncteur dédié au tableau et l'heure creuse : il chauffe parfois seulement la nuit. Pour une chaudière, vérifiez l'affichage, le code erreur et la pression du circuit. Notez ces informations avant d'appeler.",
+        answer: "Pour un chauffe-eau électrique, regardez le disjoncteur dédié au tableau et l'heure creuse : il chauffe parfois seulement la nuit. Pour une chaudière, vérifiez l'affichage, le code erreur et la pression du circuit. Notez ces informations avant d'appeler. Elles aident l'agence.",
         body: [
           "Un chauffe-eau qui disjoncte à chaque remise en route signale souvent une résistance ou un thermostat défectueux ; n'insistez pas, et coupez son alimentation. Une chaudière en sécurité affiche généralement un code : photographiez-le, il dit beaucoup au technicien.",
           "En chauffage et eau chaude collectifs, la panne vient souvent de la chaufferie : interrogez d'abord vos voisins et le gardien.",
@@ -368,7 +368,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Faut-il refaire l'électricité d'un appartement ancien ?",
-        answer: "Souvent, oui, quand l'installation date de plusieurs décennies : absence de terre, tableau sans disjoncteurs différentiels, fils usés. Une mise en sécurité protège les occupants et l'immeuble. Un diagnostic électrique permet de savoir ce qui doit être repris.",
+        answer: "Souvent, oui, quand l'installation date de plusieurs décennies : absence de terre, tableau sans disjoncteurs différentiels, fils usés. Une mise en sécurité protège les occupants et l'immeuble. Un diagnostic électrique permet de savoir ce qui doit être repris. Il se fait avant les travaux.",
         body: [
           "La rénovation électrique se fait avant les enduits et la peinture, en même temps que la plomberie. C'est le moment de prévoir les prises, l'éclairage et les circuits dont vous aurez besoin, plutôt que de multiplier les rallonges ensuite.",
           "Dans une salle de bains, les règles de sécurité sont particulières : distances entre les points d'eau et les équipements électriques, protection différentielle. L'entreprise en tient compte dans le plan.",
@@ -376,7 +376,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Comment organiser un chantier de rénovation dans un immeuble du 16e ?",
-        answer: "En prévenant le syndic et le gardien, en respectant les horaires de travaux du règlement de copropriété, en protégeant les parties communes et en organisant l'évacuation des gravats. Un seul interlocuteur coordonne ces contraintes pour vous.",
+        answer: "En prévenant le syndic et le gardien, en respectant les horaires de travaux du règlement de copropriété, en protégeant les parties communes et en organisant l'évacuation des gravats. Un seul interlocuteur coordonne ces contraintes pour vous. Le voisinage est prévenu à l'avance.",
         body: [
           "Dans les immeubles où l'ascenseur est petit, les matériaux montent par l'escalier de service quand il existe. Les livraisons se planifient selon les possibilités de stationnement de la rue, ce qui se prépare avant le démarrage.",
           "Un planning partagé, des points réguliers et un interlocuteur unique évitent l'essentiel des tensions avec le voisinage.",
@@ -422,7 +422,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Peut-on ouvrir la cuisine sur le séjour ?",
-        answer: "Souvent, si la cloison n'est pas porteuse. Si elle l'est, une ouverture reste possible avec une étude de structure et, en copropriété, l'accord de l'assemblée générale. L'évacuation de l'évier et la hotte guident aussi l'implantation de la nouvelle cuisine.",
+        answer: "Souvent, si la cloison n'est pas porteuse. Si elle l'est, une ouverture reste possible avec une étude de structure et, en copropriété, l'accord de l'assemblée générale. L'évacuation de l'évier et la hotte guident aussi l'implantation de la nouvelle cuisine. La visite le précise.",
         body: [
           "Une cuisine ouverte demande de soigner la ventilation et l'éclairage : hotte efficace, prises bien placées, lumière sur le plan de travail. Les réseaux d'eau et d'électricité se déplacent avant de poser les sols et les meubles.",
           "Avant d'abattre une cloison, la maçonnerie vérifie sa nature : brique, carreau de plâtre ou pan de bois n'appellent pas les mêmes précautions.",
@@ -430,7 +430,7 @@ export const localPages: LocalPage[] = [
       },
       {
         h2: "Pourquoi faire faire ses rangements sur mesure ?",
-        answer: "Parce qu'un placard sur mesure exploite les recoins, les hauteurs et les murs irréguliers des appartements parisiens, là où un meuble standard laisse de la place perdue. L'atelier de menuiserie Transvaal, à La Garenne-Colombes, réalise ces aménagements.",
+        answer: "Parce qu'un placard sur mesure exploite les recoins, les hauteurs et les murs irréguliers des appartements parisiens, là où un meuble standard laisse de la place perdue. L'atelier de menuiserie Transvaal, à La Garenne-Colombes, réalise ces aménagements. Ils sont dessinés après la visite.",
         body: [
           "Dressing dans une alcôve, bibliothèque autour d'une porte, placard sous un escalier : le sur-mesure se dessine après la visite, pour s'accorder aux sols, aux peintures et à l'éclairage prévus dans la rénovation.",
           "Le fait d'avoir la menuiserie dans la même entreprise évite les décalages de planning entre le menuisier et les autres corps de métier.",
@@ -458,8 +458,8 @@ export const localPages: LocalPage[] = [
     agency: "transvaal",
     contactType: "menuiserie",
     title: "Menuiserie à La Garenne-Colombes : atelier Transvaal (92)",
-    description: "Menuiserie à La Garenne-Colombes : portes, placards, cuisines, fenêtres, baies coulissantes et dépannage. L'atelier Transvaal de Somsou-Pons, 5 rue du Transvaal.",
-    h1: "Menuiserie à La Garenne-Colombes : l'atelier Transvaal",
+    description: "Menuiserie à La Garenne-Colombes : portes, placards, cuisines, fenêtres, baies coulissantes et dépannage. Atelier Transvaal de Somsou-Pons, 5 rue du Transvaal.",
+    h1: "Menuiserie à La Garenne-Colombes, aux portes de Paris : l'atelier Transvaal",
     eyebrow: "Menuiserie · Hauts-de-Seine",
     lead: "Le bois de la maison : un atelier de menuiserie créé en 1992, aujourd'hui installé rue du Transvaal à La Garenne-Colombes. Menuiserie intérieure, extérieure et dépannage.",
     brief: "La menuiserie de Somsou-Pons est assurée par l'atelier Transvaal, au 5 rue du Transvaal à La Garenne-Colombes (01 42 42 23 72) : menuiserie intérieure (portes, placards, aménagement de cuisine), menuiserie extérieure (fenêtres, baies coulissantes, portes d'entrée) et dépannage rapide.",
@@ -469,7 +469,7 @@ export const localPages: LocalPage[] = [
       {
         id: "menuiserie",
         h2: "Que fabrique et pose l'atelier de menuiserie ?",
-        answer: "D'après le site de l'entreprise, la menuiserie intérieure couvre les portes, les placards et l'aménagement de cuisine ; la menuiserie extérieure, les fenêtres, les baies coulissantes et les portes d'entrée. S'y ajoute un service de dépannage rapide en menuiserie.",
+        answer: "D'après le site de l'entreprise, la menuiserie intérieure couvre les portes, les placards et l'aménagement de cuisine ; la menuiserie extérieure, les fenêtres, les baies coulissantes et les portes d'entrée. S'y ajoute un service de dépannage rapide en menuiserie. Il se demande par téléphone.",
         body: [
           "L'activité de menuiserie est née en 1992, l'année où SOMSOU a racheté la Maison Pons. Elle a ensuite été reprise par la SARL Transvaal, installée au 5 rue du Transvaal, qui a gardé le lien avec les chantiers de rénovation de l'entreprise à Paris.",
           "Le bois complète naturellement les autres métiers de la maison : une porte à recouper après la pose d'un parquet, une cuisine à installer après la plomberie, un placard dans l'alcôve d'une chambre.",
