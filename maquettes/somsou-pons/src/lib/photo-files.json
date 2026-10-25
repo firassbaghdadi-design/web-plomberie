@@ -1,0 +1,23 @@
+{
+  "facade": { "pexels": 19328898, "alt": "Immeuble parisien de style haussmannien sous un ciel clair" },
+  "immeuble": { "pexels": 16703087, "alt": "Façade d'un immeuble d'habitation parisien traditionnel" },
+  "plombier": { "pexels": 6419128, "alt": "Un plombier assemble des raccords de tuyauterie" },
+  "radiateur": { "pexels": 29226620, "alt": "Un plombier raccorde un tuyau de radiateur avec ses outils" },
+  "tableau": { "pexels": 27928762, "alt": "Un électricien perce près d'un tableau électrique" },
+  "electricien": { "pexels": 17842832, "alt": "Un électricien devant un tableau électrique" },
+  "macon": { "pexels": 32913797, "alt": "La main d'un maçon pose une brique" },
+  "truelle": { "pexels": 5691612, "alt": "Un homme tient des truelles et du ciment" },
+  "mains": { "pexels": 33837461, "alt": "Les mains d'un artisan et ses outils usés" },
+  "peintre": { "pexels": 18369835, "alt": "Un peintre passe un rouleau sur un mur" },
+  "menuisier": { "pexels": 5974013, "alt": "Un menuisier rabote une planche dans son atelier" },
+  "bois": { "pexels": 11127339, "alt": "Un artisan trace un repère sur une pièce de bois" },
+  "plans": { "pexels": 834892, "alt": "Un plan de chantier posé sur une table avec une perceuse et des vis" },
+  "chantier": { "pexels": 10383588, "alt": "Un ouvrier au travail sur un chantier" },
+  "casque": { "pexels": 8990559, "alt": "Portrait d'un artisan portant un casque et un gilet de sécurité" },
+  "telephone": { "pexels": 34670920, "alt": "Un artisan souriant répond au téléphone sur un chantier" },
+  "tablette": { "pexels": 8961008, "alt": "Un artisan consulte une tablette sur un chantier" },
+  "couvreur": { "pexels": 33404248, "alt": "Un couvreur pose des bardeaux sur un toit" },
+  "salle-de-bains": { "pexels": 35527001, "alt": "Salle de bains moderne aux carreaux blancs" },
+  "douche": { "pexels": 7031570, "alt": "Salle de bains moderne avec une cabine de douche" },
+  "carrelage": { "pexels": 4194867, "alt": "Salle de bains carrelée de blanc" }
+}

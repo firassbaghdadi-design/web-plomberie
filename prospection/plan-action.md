@@ -29,4 +29,5 @@ Maquette pilote sur la cible n°1 du classement (voir `prospects-paris-plomberie
 - Prochaine cible du classement : Somsou-Pons, puis Seragaz.
 - Bloqué tant que le statut d'entreprise n'existe pas : aucun envoi, aucun domaine acheté.
 
+- 25 octobre 2026 : maquette Somsou-Pons en construction (`maquettes/somsou-pons/`) : 5 pages d'origine aux mêmes URL, 4 pages métier, 8 pages métier par arrondissement (16e, 17e), page menuiserie La Garenne-Colombes, page contact. Charte reprise du logo (orange #FF4100, vert #085627).
 - 24 octobre 2026 (nuit) : fiche préparatoire `somsou-pons-brief.md` (faits lus par recherche web, maquette non lancée : crédits Firecrawl épuisés, site injoignable) et `kit-prospection.md` (e-mail, relance, appel, liste de contrôle avant envoi).
