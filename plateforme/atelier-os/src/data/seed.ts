@@ -1,6 +1,7 @@
 import classement from "./classement.json";
 import { MODELES } from "./modeles";
-import type { Db, Evenement, Prospect } from "@/lib/types";
+import { PROSPECT_DEFAUTS } from "@/lib/migration";
+import { REGLAGES_DEFAUT, type Db, type Evenement, type Prospect } from "@/lib/types";
 
 const MAQUETTES: Record<string, string> = {
   "Gaz Flash": "https://gaz-flash-maquette.vercel.app",
@@ -41,6 +42,7 @@ export function seedDb(): Db {
   for (const c of classement) {
     const ct = CONTACTS[c.entreprise] ?? {};
     const p: Prospect = {
+      ...PROSPECT_DEFAUTS,
       id: slug(c.entreprise),
       entreprise: c.entreprise,
       dirigeant: c.dirigeant,
@@ -95,6 +97,7 @@ export function seedDb(): Db {
   ];
   for (const e of extras) {
     const p: Prospect = {
+      ...PROSPECT_DEFAUTS,
       id: slug(e.entreprise),
       entreprise: e.entreprise,
       dirigeant: "",
@@ -119,5 +122,5 @@ export function seedDb(): Db {
     maquetteEvent(p);
   }
 
-  return { version: 1, prospects, evenements, emails: [], relances: [], modeles: MODELES };
+  return { version: 1, reglages: { ...REGLAGES_DEFAUT }, prospects, evenements, emails: [], relances: [], modeles: MODELES };
 }

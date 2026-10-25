@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { EVENT_LABEL, STATUTS, STATUT_LABEL, type Modele, type Prospect, type Statut } from "@/lib/types";
+import { EVENT_LABEL, FORMULES, FORMULE_INFO, STATUTS, STATUT_LABEL, type Formule, type Modele, type Prospect, type Statut } from "@/lib/types";
+import { euros } from "@/lib/format";
 
 export async function appel(chemin: string, methode: string, corps?: unknown) {
   const r = await fetch(chemin, {
@@ -284,6 +285,120 @@ export function Deconnexion() {
   return (
     <form action="/api/logout" method="post">
       <button className="btn w-full">Se déconnecter</button>
+    </form>
+  );
+}
+
+/* ----------------------------------------------------------------- offre et montants */
+
+export function FormArgent({ prospect: p }: { prospect: Prospect }) {
+  const { lancer, erreur, occupe } = useAction();
+  const [formule, setFormule] = useState<Formule | "">(p.formule);
+  const [devis, setDevis] = useState(p.montantDevis?.toString() ?? "");
+  const [mensuel, setMensuel] = useState(p.montantMensuel?.toString() ?? "");
+  const [signeLe, setSigneLe] = useState(p.signeLe ?? "");
+  const [enregistre, setEnregistre] = useState(false);
+  const choisir = (f: Formule) => {
+    setFormule(f);
+    const info = FORMULE_INFO[f];
+    if (info.prix !== null) setDevis(String(info.prix));
+    if (info.mensuel !== null) setMensuel(String(info.mensuel));
+  };
+  return (
+    <form
+      className="p-5"
+      onSubmit={(e) => {
+        e.preventDefault();
+        setEnregistre(false);
+        lancer(
+          () => appel(`/api/v1/prospects/${p.id}`, "PATCH", { formule, montantDevis: devis, montantMensuel: mensuel, signeLe }),
+          () => setEnregistre(true),
+        );
+      }}
+    >
+      <fieldset>
+        <legend className="etiquette">Formule</legend>
+        <div className="grid grid-cols-2 gap-2">
+          {FORMULES.map((f) => {
+            const info = FORMULE_INFO[f];
+            const choisi = formule === f;
+            return (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={choisi}
+                onClick={() => choisir(f)}
+                className={`min-h-[60px] rounded-2xl px-3.5 py-2.5 text-left transition duration-200 active:scale-[0.98] ${
+                  choisi ? "bg-encre text-carte" : "bg-creux text-encre hover:bg-trait"
+                }`}
+              >
+                <span className="block text-[14.5px] font-medium">{info.label}</span>
+                <span className={`block text-[12.5px] tabular-nums ${choisi ? "opacity-70" : "text-doux"}`}>
+                  {info.prix !== null ? `${euros(info.prix)} + ${info.mensuel} €/mois` : "Montants libres"}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div>
+          <label className="etiquette" htmlFor="montantDevis">
+            Devis (€ HT)
+          </label>
+          <input id="montantDevis" value={devis} onChange={(e) => setDevis(e.target.value)} inputMode="decimal" placeholder="0" className="champ tabular-nums" />
+        </div>
+        <div>
+          <label className="etiquette" htmlFor="montantMensuel">
+            Mensuel (€ HT)
+          </label>
+          <input id="montantMensuel" value={mensuel} onChange={(e) => setMensuel(e.target.value)} inputMode="decimal" placeholder="0" className="champ tabular-nums" />
+        </div>
+        <div className="col-span-2">
+          <label className="etiquette" htmlFor="signeLe">
+            Date de signature
+          </label>
+          <input id="signeLe" type="date" value={signeLe} onChange={(e) => setSigneLe(e.target.value)} className="champ" />
+          <p className="mt-1 text-[12px] text-pale">Remplie toute seule quand le prospect passe à « Signé ».</p>
+        </div>
+      </div>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        {erreur ? <Erreur texte={erreur} /> : <span className="text-[13px] text-doux">{enregistre && !occupe ? "Enregistré" : ""}</span>}
+        <button className="btn btn-primaire btn-petit ml-auto" disabled={occupe}>
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  );
+}
+
+/* ----------------------------------------------------------------- réglages */
+
+export function FormObjectif({ objectif }: { objectif: number }) {
+  const { lancer, erreur, occupe } = useAction();
+  const [valeur, setValeur] = useState(String(objectif));
+  const [enregistre, setEnregistre] = useState(false);
+  return (
+    <form
+      className="flex flex-wrap items-end gap-3 p-5"
+      onSubmit={(e) => {
+        e.preventDefault();
+        setEnregistre(false);
+        lancer(() => appel("/api/v1/reglages", "PATCH", { objectifMensuel: valeur }), () => setEnregistre(true));
+      }}
+    >
+      <div className="min-w-0 flex-1">
+        <label className="etiquette" htmlFor="objectifMensuel">
+          Objectif de chiffre d&apos;affaires signé par mois (€ HT)
+        </label>
+        <input id="objectifMensuel" value={valeur} onChange={(e) => setValeur(e.target.value)} inputMode="decimal" className="champ tabular-nums" />
+      </div>
+      <button className="btn btn-primaire" disabled={occupe}>
+        {enregistre && !occupe ? "Enregistré" : "Enregistrer"}
+      </button>
+      <div className="w-full">
+        <Erreur texte={erreur} />
+      </div>
     </form>
   );
 }

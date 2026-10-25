@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { STATUTS, STATUT_LABEL, type Statut } from "@/lib/types";
+import { euros } from "@/lib/format";
 import { appel } from "./Formulaires";
 import { Icone } from "./Icone";
 
@@ -27,7 +28,6 @@ interface Glisse {
   cible: Statut | null;
 }
 
-const euros = (n: number) => new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
 export function Kanban({ cartes: initiales }: { cartes: CarteKanban[] }) {
   const router = useRouter();

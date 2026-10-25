@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { readDb } from "@/lib/db";
 import { EVENT_LABEL } from "@/lib/types";
-import { AjoutEvenement, BoutonApi, ChoixStatut, Copier, FormProspect, PreparerEmail } from "@/components/Formulaires";
+import { AjoutEvenement, BoutonApi, ChoixStatut, Copier, FormArgent, FormProspect, PreparerEmail } from "@/components/Formulaires";
+import { FORMULE_INFO } from "@/lib/types";
+import { euros } from "@/lib/format";
 import { PastilleStatut, Titre, Vide } from "@/components/ui";
 import { Icone } from "@/components/Icone";
 import { formatDateHeure, formatJour } from "@/lib/dates";
@@ -42,6 +44,14 @@ export default async function Fiche({ params }: { params: { id: string } }) {
     ["Maquette", p.maquetteUrl ? <a key="m" href={p.maquetteUrl} target="_blank" rel="noreferrer" className="break-all text-terre">{p.maquetteUrl.replace(/^https?:\/\//, "")}</a> : "Pas encore faite"],
     ["Score", p.score !== null ? `${p.score} / 100${p.vague ? ` · vague ${p.vague}` : ""}` : "—"],
     ["Offre", p.offre || "—"],
+    [
+      "Formule",
+      p.formule || p.montantDevis !== null
+        ? [p.formule ? FORMULE_INFO[p.formule].label : "", p.montantDevis !== null ? euros(p.montantDevis) : "", p.montantMensuel ? `${euros(p.montantMensuel)}/mois` : ""]
+            .filter(Boolean)
+            .join(" · ")
+        : "Pas encore choisie",
+    ],
   ];
 
   return (
@@ -90,6 +100,11 @@ export default async function Fiche({ params }: { params: { id: string } }) {
               </div>
             ))}
           </dl>
+
+          <Titre>Offre et montants</Titre>
+          <div className="carte">
+            <FormArgent prospect={p} />
+          </div>
 
           {p.notes && (
             <>

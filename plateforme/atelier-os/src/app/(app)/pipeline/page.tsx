@@ -1,5 +1,5 @@
 import { readDb } from "@/lib/db";
-import { calculerPipeline } from "@/lib/service";
+import { calculerPipeline, valeurProspect } from "@/lib/service";
 import { Kanban, type CarteKanban } from "@/components/Kanban";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,7 @@ export default async function Pipeline() {
       entreprise: p.entreprise,
       sousTitre: [p.dirigeant, p.arrondissement ? `${p.ville} ${p.arrondissement}` : p.ville].filter(Boolean).join(" · "),
       statut: p.statut,
-      montant: null,
+      montant: valeurProspect(p) || null,
       prochaine: "",
       enRetard: false,
     })),

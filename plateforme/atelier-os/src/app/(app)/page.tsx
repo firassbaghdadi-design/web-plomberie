@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { tableauDeBord } from "@/lib/service";
 import { STATUT_LABEL } from "@/lib/types";
-import { Chiffre, Titre, Vide } from "@/components/ui";
+import { Chiffre, Progression, Titre, Vide } from "@/components/ui";
+import { euros } from "@/lib/format";
 import { formatJour } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
@@ -12,6 +13,8 @@ const ETIQUETTE_ACTION = { appel: "Appel", relance: "Relance", envoi: "Envoi" } 
 export default async function Accueil() {
   const t = await tableauDeBord();
   const max = Math.max(1, ...t.entonnoir.map((e) => e.nombre));
+  const a = t.argent;
+  const nomMois = new Intl.DateTimeFormat("fr-FR", { month: "long", timeZone: "UTC" }).format(new Date(`${a.mois}-15T12:00:00Z`));
 
   return (
     <div className="fondu">
@@ -42,6 +45,31 @@ export default async function Accueil() {
           </div>
         </section>
       </div>
+
+      <section className="carte mt-4 p-6" aria-label="Chiffre d'affaires">
+        <div className="mb-5 flex items-baseline justify-between gap-3">
+          <h2 className="sur-titre">Chiffre d&apos;affaires</h2>
+          <Link href="/pipeline" className="btn-texte !min-h-0 text-[13px]">
+            Pipeline
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
+          <Chiffre compact valeur={euros(a.caSigneMois)} label={`Signé en ${nomMois}`} accent={a.caSigneMois > 0} />
+          <Chiffre compact valeur={euros(a.caDevisPondere)} label={`En devis, pondéré (${euros(a.caDevis)} brut)`} />
+          <Chiffre compact valeur={euros(a.revenuMensuel)} label="Revenu mensuel récurrent" />
+          <Chiffre compact valeur={euros(a.caSigneTotal)} label="Signé au total" />
+        </div>
+        <div className="mt-6">
+          <div className="mb-2 flex items-baseline justify-between gap-3 text-[13.5px]">
+            <span className="text-doux">Objectif de {nomMois}</span>
+            <span className="tabular-nums">
+              <span className="font-medium">{Math.round(a.progression * 100)} %</span>
+              <span className="text-doux"> de {euros(a.objectifMensuel)}</span>
+            </span>
+          </div>
+          <Progression valeur={a.progression} label="Objectif mensuel" />
+        </div>
+      </section>
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <section>

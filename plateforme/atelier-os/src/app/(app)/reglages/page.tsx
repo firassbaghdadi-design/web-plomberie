@@ -1,6 +1,7 @@
 import { etatEnvoyeur } from "@/lib/sender";
-import { stockage } from "@/lib/db";
-import { Deconnexion } from "@/components/Formulaires";
+import { readDb, stockage } from "@/lib/db";
+import { Deconnexion, FormObjectif } from "@/components/Formulaires";
+import { Titre } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Réglages" };
@@ -8,6 +9,7 @@ export const metadata = { title: "Réglages" };
 export default async function Reglages() {
   const e = await etatEnvoyeur();
   const stock = stockage();
+  const db = await readDb();
   const lignes: Array<[string, string]> = [
     ["Envoi d'e-mails", e.active ? "Activé" : "Désactivé"],
     ["Transport", e.transportBranche ? "Branché" : "Pas encore branché (Gmail ou Resend)"],
@@ -17,7 +19,14 @@ export default async function Reglages() {
   ];
   return (
     <div className="fondu">
-      <h1 className="titre-page mb-8">Réglages</h1>
+      <h1 className="titre-page">Réglages</h1>
+      <Titre>Objectif</Titre>
+      <div className="carte">
+        <FormObjectif objectif={db.reglages.objectifMensuel} />
+      </div>
+      <p className="mt-3 px-1 text-[13px] text-doux">Suivi sur le tableau de bord : chiffre d&apos;affaires signé du mois en cours.</p>
+
+      <Titre>Envoi d&apos;e-mails</Titre>
       <div className="carte overflow-hidden">
         {lignes.map(([k, v]) => (
           <div key={k} className="rang items-start !gap-4">

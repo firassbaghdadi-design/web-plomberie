@@ -25,10 +25,16 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 
 ### Prospects
 - `GET /prospects?q=&statut=&vague=` : `{ total, prospects[] }`
-- `POST /prospects` : crée. Champs : `entreprise` (obligatoire), `dirigeant`, `emails` (tableau ou chaîne séparée par des virgules ; ne jamais inventer d'adresse), `telephone`, `ville`, `arrondissement`, `siteActuel`, `maquetteUrl` (http/https), `score` (0-100), `statut`, `vague`, `offre`, `notes`. Réponse `201 { prospect }`.
+- `POST /prospects` : crée. Champs : `entreprise` (obligatoire), `dirigeant`, `emails` (tableau ou chaîne séparée par des virgules ; ne jamais inventer d'adresse), `telephone`, `ville`, `arrondissement`, `siteActuel`, `maquetteUrl` (http/https), `score` (0-100), `statut`, `vague`, `offre` (texte libre), `notes`, et la vente : `formule` (`essentiel`, `visibilite`, `croissance`, `personnalise` ou vide), `montantDevis` et `montantMensuel` (euros HT, nombre ou chaîne « 1 490,50 »), `signeLe` (`AAAA-MM-JJ`). Réponse `201 { prospect }`.
 - `GET /prospects/{id}` : `{ prospect, evenements[], emails[], relances[] }`
 - `PATCH /prospects/{id}` : mêmes champs, plus `stop` (booléen). `{ prospect }`
 - `DELETE /prospects/{id}` : supprime le prospect et son historique.
+
+### Argent et réglages
+- Formules : Essentiel 1 490 € + 49 €/mois, Visibilité 2 490 € + 99 €/mois, Croissance 3 490 € + 199 €/mois, Personnalisé (montants libres). Choisir une formule remplit `montantDevis` et `montantMensuel` s'ils ne sont pas fournis dans la même requête. Passer à `signe` (ou un événement `signature`) remplit `signeLe` avec le jour même s'il est vide.
+- Valeur d'un prospect : `montantDevis`, sinon le prix de sa formule, sinon 0.
+- `GET /argent` : `{ mois, caSigneMois, signesDuMois, caSigneTotal, caDevis, caDevisPondere, revenuMensuel, objectifMensuel, progression (0-1), parEtape[{statut, ponderation, nombre, montant, pondere}] }`. Pondération par étape : à contacter 5 %, maquette envoyée 10 %, ouverte 20 %, appel fait 30 %, rendez-vous 50 %, devis 70 %. Le revenu mensuel récurrent additionne les abonnements des prospects signés. Aussi renvoyé dans `GET /tableau-de-bord` sous `argent`.
+- `GET /reglages` : `{ reglages: { objectifMensuel } }` ; `PATCH /reglages` : `{ "objectifMensuel": 8000 }`.
 
 ### Pipeline (kanban)
 - `GET /pipeline` : `{ colonnes[{ statut, label, nombre, prospects[] }] }`, une colonne par étape, dans l'ordre du parcours.

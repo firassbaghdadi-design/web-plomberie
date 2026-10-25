@@ -12,10 +12,10 @@ export function PastilleStatut({ statut }: { statut: Statut }) {
   );
 }
 
-export function Chiffre({ valeur, label, accent = false }: { valeur: number | string; label: string; accent?: boolean }) {
+export function Chiffre({ valeur, label, accent = false, compact = false }: { valeur: number | string; label: string; accent?: boolean; compact?: boolean }) {
   return (
     <div className="min-w-0">
-      <div className={`text-[30px] font-semibold leading-none tracking-tight tabular-nums ${accent ? "text-terre" : ""}`}>{valeur}</div>
+      <div className={`${compact ? "text-[24px] sm:text-[28px]" : "text-[30px]"} whitespace-nowrap font-semibold leading-none tracking-tight tabular-nums ${accent ? "text-terre" : ""}`}>{valeur}</div>
       <div className="mt-1.5 text-[12.5px] leading-tight text-doux">{label}</div>
     </div>
   );
@@ -30,6 +30,15 @@ export function Titre({ children, droite }: { children: React.ReactNode; droite?
     <div className="mb-3 mt-9 flex items-baseline justify-between px-1 first:mt-0">
       <h2 className="text-[19px] font-semibold tracking-tight">{children}</h2>
       {droite}
+    </div>
+  );
+}
+
+export function Progression({ valeur, label }: { valeur: number; label: string }) {
+  const pct = Math.max(0, Math.min(1, valeur));
+  return (
+    <div className="h-2 overflow-hidden rounded-full bg-creux" role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(pct * 100)}>
+      <div className="h-full rounded-full bg-terre transition-all duration-500" style={{ width: `${pct * 100}%` }} />
     </div>
   );
 }

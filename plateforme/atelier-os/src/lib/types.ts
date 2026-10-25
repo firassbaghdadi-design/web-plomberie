@@ -21,6 +21,28 @@ export const STATUT_LABEL: Record<Statut, string> = {
   perdu: "Perdu",
 };
 
+/** Probabilité de signer selon l'étape : sert au chiffre d'affaires « en devis » pondéré. */
+export const PONDERATION: Record<Statut, number> = {
+  a_contacter: 0.05,
+  maquette_envoyee: 0.1,
+  ouverte: 0.2,
+  appel_fait: 0.3,
+  rendez_vous: 0.5,
+  devis: 0.7,
+  signe: 1,
+  perdu: 0,
+};
+
+export const FORMULES = ["essentiel", "visibilite", "croissance", "personnalise"] as const;
+export type Formule = (typeof FORMULES)[number];
+
+export const FORMULE_INFO: Record<Formule, { label: string; prix: number | null; mensuel: number | null }> = {
+  essentiel: { label: "Essentiel", prix: 1490, mensuel: 49 },
+  visibilite: { label: "Visibilité", prix: 2490, mensuel: 99 },
+  croissance: { label: "Croissance", prix: 3490, mensuel: 199 },
+  personnalise: { label: "Personnalisé", prix: null, mensuel: null },
+};
+
 export const EVENT_TYPES = [
   "note",
   "appel",
@@ -66,7 +88,16 @@ export interface Prospect {
   statut: Statut;
   vague: number | null;
   rang: number | null;
+  /** texte libre : angle de l'offre à proposer */
   offre: string;
+  /** formule commerciale choisie ("" = pas encore choisie) */
+  formule: Formule | "";
+  /** montant du devis, en euros HT */
+  montantDevis: number | null;
+  /** abonnement mensuel, en euros HT */
+  montantMensuel: number | null;
+  /** jour de signature AAAA-MM-JJ (Paris) */
+  signeLe: string | null;
   notes: string;
   /** vrai quand la personne a répondu : plus aucune relance automatique */
   aRepondu: boolean;
@@ -128,8 +159,16 @@ export interface Modele {
   corps: string;
 }
 
+export interface Reglages {
+  /** objectif de chiffre d'affaires signé par mois, en euros */
+  objectifMensuel: number;
+}
+
+export const REGLAGES_DEFAUT: Reglages = { objectifMensuel: 5000 };
+
 export interface Db {
   version: 1;
+  reglages: Reglages;
   prospects: Prospect[];
   evenements: Evenement[];
   emails: Email[];

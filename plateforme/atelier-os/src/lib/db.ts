@@ -12,6 +12,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { seedDb } from "@/data/seed";
 import { MODELES } from "@/data/modeles";
+import { normaliserDb } from "./migration";
 import type { Db } from "./types";
 
 interface Backend {
@@ -27,11 +28,21 @@ const BLOB_PATH = "atelier-os/db.json";
 const backendBlob: Backend = {
   nom: "vercel-blob",
   async lire() {
-    const { get } = await import("@vercel/blob");
+    const { get, head, BlobNotFoundError } = await import("@vercel/blob");
+    // L'ETag de head() est celui que put({ ifMatch }) attend ; celui de l'en-tête HTTP de get() ne
+    // l'est pas toujours (toute écriture après la première échouait). On lit la version avant le
+    // contenu : si le contenu est plus récent, l'écriture échoue et l'on recommence, sans rien perdre.
+    let version: string;
+    try {
+      version = (await head(BLOB_PATH)).etag;
+    } catch (e) {
+      if (e instanceof BlobNotFoundError) return null;
+      throw e;
+    }
     const r = await get(BLOB_PATH, { access: "private", useCache: false });
     if (!r || r.statusCode !== 200) return null;
     const texte = await new Response(r.stream).text();
-    return { db: JSON.parse(texte) as Db, version: r.blob.etag };
+    return { db: JSON.parse(texte) as Db, version };
   },
   async ecrire(db, version) {
     const { put, BlobPreconditionFailedError } = await import("@vercel/blob");
@@ -82,13 +93,13 @@ function normaliser(db: Db): Db {
   db.emails ??= [];
   db.relances ??= [];
   if (!db.modeles?.length) db.modeles = MODELES;
-  return db;
+  return normaliserDb(db);
 }
 
 async function charger(): Promise<{ db: Db; version: string | null }> {
   const r = await backend.lire();
   if (r) return { db: normaliser(r.db), version: r.version };
-  return { db: seedDb(), version: null };
+  return { db: normaliserDb(seedDb()), version: null };
 }
 
 export async function readDb(): Promise<Db> {

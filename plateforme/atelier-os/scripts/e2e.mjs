@@ -129,6 +129,23 @@ try {
   const evAutre = (await api(`/api/v1/prospects/${autre}/evenements`)).json.evenements;
   verifie(evAutre.some((e) => e.type === "statut" && e.detail === "Déplacé dans le pipeline"), "pipeline : événement « statut » créé");
 
+  // Argent
+  const f1 = await api(`/api/v1/prospects/${id}`, { methode: "PATCH", corps: { formule: "croissance" } });
+  verifie(f1.json?.prospect?.montantDevis === 3490 && f1.json.prospect.montantMensuel === 199, "formule Croissance : montants remplis (3 490 € + 199 €/mois)");
+  verifie((await api(`/api/v1/prospects/${id}`, { methode: "PATCH", corps: { formule: "luxe" } })).statut === 400, "formule inconnue refusée");
+  verifie((await api(`/api/v1/prospects/${id}`, { methode: "PATCH", corps: { montantDevis: "beaucoup" } })).statut === 400, "montant invalide refusé");
+  const f2 = await api(`/api/v1/prospects/${id}`, { methode: "PATCH", corps: { montantDevis: "3 200,50" } });
+  verifie(f2.json?.prospect?.montantDevis === 3200.5 && f2.json.prospect.formule === "croissance", "montant saisi à la française");
+  const signeP = (await api("/api/v1/prospects", { methode: "POST", corps: { entreprise: "Signé Test", formule: "essentiel", statut: "signe" } })).json.prospect;
+  verifie(signeP.montantDevis === 1490 && /^\d{4}-\d{2}-\d{2}$/.test(signeP.signeLe ?? ""), "signé : date de signature remplie toute seule");
+  verifie((await api("/api/v1/reglages", { methode: "PATCH", corps: { objectifMensuel: -3 } })).statut === 400, "objectif négatif refusé");
+  const reg = await api("/api/v1/reglages", { methode: "PATCH", corps: { objectifMensuel: 10000 } });
+  verifie(reg.json?.reglages?.objectifMensuel === 10000, "objectif mensuel réglé");
+  const arg = (await api("/api/v1/argent")).json;
+  verifie(arg.caSigneMois === 1490 && arg.revenuMensuel === 49 && arg.progression === 0.149, `argent : signé du mois, récurrent, progression (${arg.caSigneMois}, ${arg.revenuMensuel}, ${arg.progression})`);
+  verifie(arg.caDevis === 3201 && arg.caDevisPondere === Math.round(3200.5 * 0.5), `argent : en devis pondéré par étape (${arg.caDevisPondere})`);
+  verifie((await api("/api/v1/tableau-de-bord")).json.argent?.objectifMensuel === 10000, "tableau de bord : bloc argent");
+
   // Captures
   const requis = createRequire(import.meta.url);
   let pw;
@@ -164,6 +181,19 @@ try {
     await page.waitForTimeout(800);
     verifie((await statutDe(autre)) === "rendez_vous", "pipeline : glisser-déposer à la souris");
     verifie(page.url() === BASE + "/pipeline", "pipeline : le glisser n'ouvre pas la fiche");
+    await ctx.close();
+  }
+  // Argent : choisir une formule sur la fiche
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR" });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + `/prospects/${autre}`, { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: /^Visibilité/ }).click();
+    await page.locator("form:has(#montantDevis) button[type=submit], form:has(#montantDevis) button:not([type])").last().click();
+    await page.waitForTimeout(800);
+    const pa = (await api(`/api/v1/prospects/${autre}`)).json.prospect;
+    verifie(pa.formule === "visibilite" && pa.montantDevis === 2490 && pa.montantMensuel === 99, "fiche : formule Visibilité enregistrée depuis l'interface");
     await ctx.close();
   }
   // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone
@@ -235,6 +265,7 @@ try {
   // Ménage
   await api(`/api/v1/prospects/${id}`, { methode: "DELETE" });
   await api(`/api/v1/prospects/${autre}`, { methode: "DELETE" });
+  await api(`/api/v1/prospects/${signeP.id}`, { methode: "DELETE" });
 } catch (e) {
   console.error(e);
   echecs++;

@@ -1,8 +1,14 @@
 import { updateDb, readDb, nouvelId } from "./db";
 import { ajouterJours, debutDeSemaine, jourParis, prochainJourOuvre } from "./dates";
 import { RELANCES_PAR_DEFAUT } from "@/data/modeles";
+import { PROSPECT_DEFAUTS } from "./migration";
 import {
   EVENT_TYPES,
+  FORMULES,
+  FORMULE_INFO,
+  PONDERATION,
+  type Formule,
+  type Reglages,
   STATUT_LABEL,
   STATUTS,
   type Db,
@@ -63,6 +69,27 @@ export interface EntreeProspect {
   offre?: unknown;
   notes?: unknown;
   stop?: unknown;
+  formule?: unknown;
+  montantDevis?: unknown;
+  montantMensuel?: unknown;
+  signeLe?: unknown;
+}
+
+/** Montant en euros : accepte 1490, "1 490", "1490,50". Vide ou null : null. */
+function montant(v: unknown, champ: string): number | null | undefined {
+  if (v === undefined) return undefined;
+  if (v === null || v === "") return null;
+  const n = typeof v === "number" ? v : Number(String(v).replace(/[\s\u00a0\u202f€]/g, "").replace(",", "."));
+  if (!Number.isFinite(n) || n < 0 || n > 10_000_000) throw new ErreurMetier(`${champ} : un montant en euros (nombre positif)`);
+  return Math.round(n * 100) / 100;
+}
+
+function jourOuNull(v: unknown, champ: string): string | null | undefined {
+  if (v === undefined) return undefined;
+  if (v === null || v === "") return null;
+  const t = String(v).trim().slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(t) || isNaN(Date.parse(t))) throw new ErreurMetier(`${champ} : format AAAA-MM-JJ`);
+  return t;
 }
 
 function nettoyerProspect(e: EntreeProspect): Partial<Prospect> {
@@ -101,7 +128,25 @@ function nettoyerProspect(e: EntreeProspect): Partial<Prospect> {
     out.statut = e.statut as Statut;
   }
   if (e.stop !== undefined) out.stop = Boolean(e.stop);
+  if (e.formule !== undefined) {
+    const f = e.formule === null ? "" : String(e.formule);
+    if (f !== "" && !FORMULES.includes(f as Formule)) throw new ErreurMetier(`formule : l'une de ${FORMULES.join(", ")} (ou vide)`);
+    out.formule = f as Formule | "";
+  }
+  set("montantDevis", montant(e.montantDevis, "montantDevis"));
+  set("montantMensuel", montant(e.montantMensuel, "montantMensuel"));
+  set("signeLe", jourOuNull(e.signeLe, "signeLe"));
   return out;
+}
+
+/** Choisir une formule remplit les montants qui ne sont pas fournis ; passer à « signé » date la signature. */
+function completerVente(p: Prospect, champs: Partial<Prospect>) {
+  if (champs.formule && champs.formule !== "personnalise") {
+    const info = FORMULE_INFO[champs.formule];
+    if (champs.montantDevis === undefined) p.montantDevis = info.prix;
+    if (champs.montantMensuel === undefined) p.montantMensuel = info.mensuel;
+  }
+  if (p.statut === "signe" && !p.signeLe) p.signeLe = jourParis();
 }
 
 /* ------------------------------------------------------------------ utilitaires internes */
@@ -187,8 +232,10 @@ export async function creerProspect(entree: EntreeProspect): Promise<Prospect> {
       stop: false,
       creeLe: t,
       modifieLe: t,
+      ...PROSPECT_DEFAUTS,
       ...champs,
     };
+    completerVente(p, champs);
     db.prospects.push(p);
     journal(db, p.id, "note", "Prospect créé");
     return p;
@@ -203,6 +250,7 @@ export async function modifierProspect(id: string, entree: EntreeProspect, motif
     const avant = p.statut;
     const avantMaquette = p.maquetteUrl;
     Object.assign(p, champs, { modifieLe: maintenant() });
+    completerVente(p, champs);
     if (champs.statut && champs.statut !== avant) {
       journal(db, p.id, "statut", `Étape : ${STATUT_LABEL[avant]} → ${STATUT_LABEL[p.statut]}`, motif);
     }
@@ -271,6 +319,7 @@ export async function ajouterEvenement(prospectId: string, e: EntreeEvenement): 
     if (type === "signature") {
       p.statut = "signe";
       p.aRepondu = true;
+      if (!p.signeLe) p.signeLe = jourParis(date);
     }
     if (type === "reponse") p.aRepondu = true;
     reglerRelances(db, p);
@@ -613,6 +662,7 @@ export function calculerTableauDeBord(db: Db, aujourdhui = jourParis()) {
       relancesPlanifiees: db.relances.filter((r) => r.statut === "planifiee").length,
     },
     aFaire,
+    argent: calculerArgent(db, aujourdhui),
   };
 }
 
@@ -636,4 +686,56 @@ export function calculerPipeline(db: Db) {
 
 export async function pipeline() {
   return calculerPipeline(await readDb());
+}
+
+/* ------------------------------------------------------------------ argent */
+
+/** Valeur d'un prospect : le devis s'il existe, sinon le prix de la formule choisie. */
+export const valeurProspect = (p: Prospect) => p.montantDevis ?? (p.formule ? FORMULE_INFO[p.formule].prix : null) ?? 0;
+export const mensuelProspect = (p: Prospect) => p.montantMensuel ?? (p.formule ? FORMULE_INFO[p.formule].mensuel : null) ?? 0;
+
+const arrondi = (n: number) => Math.round(n);
+
+export function calculerArgent(db: Db, aujourdhui = jourParis()) {
+  const mois = aujourdhui.slice(0, 7);
+  const signes = db.prospects.filter((p) => p.statut === "signe");
+  const enCours = db.prospects.filter((p) => p.statut !== "signe" && p.statut !== "perdu");
+  const somme = (l: Prospect[], f: (p: Prospect) => number) => l.reduce((s, p) => s + f(p), 0);
+  const signesDuMois = signes.filter((p) => (p.signeLe ?? jourParis(p.modifieLe)).startsWith(mois));
+  const caSigneMois = somme(signesDuMois, valeurProspect);
+  const objectif = db.reglages.objectifMensuel;
+  return {
+    mois,
+    caSigneMois: arrondi(caSigneMois),
+    signesDuMois: signesDuMois.length,
+    caSigneTotal: arrondi(somme(signes, valeurProspect)),
+    caDevis: arrondi(somme(enCours, valeurProspect)),
+    caDevisPondere: arrondi(somme(enCours, (p) => valeurProspect(p) * PONDERATION[p.statut])),
+    revenuMensuel: arrondi(somme(signes, mensuelProspect)),
+    objectifMensuel: objectif,
+    progression: objectif > 0 ? Math.round((caSigneMois / objectif) * 1000) / 1000 : 0,
+    parEtape: STATUTS.map((statut) => {
+      const l = db.prospects.filter((p) => p.statut === statut);
+      return { statut, ponderation: PONDERATION[statut], nombre: l.length, montant: arrondi(somme(l, valeurProspect)), pondere: arrondi(somme(l, (p) => valeurProspect(p) * PONDERATION[statut])) };
+    }),
+  };
+}
+
+export async function argent() {
+  return calculerArgent(await readDb());
+}
+
+/* ------------------------------------------------------------------ réglages */
+
+export async function lireReglages(): Promise<Reglages> {
+  return (await readDb()).reglages;
+}
+
+export async function modifierReglages(e: { objectifMensuel?: unknown }): Promise<Reglages> {
+  const objectif = montant(e.objectifMensuel, "objectifMensuel");
+  if (objectif === null) throw new ErreurMetier("objectifMensuel : un montant en euros");
+  return updateDb((db) => {
+    if (objectif !== undefined) db.reglages.objectifMensuel = objectif;
+    return db.reglages;
+  });
 }
