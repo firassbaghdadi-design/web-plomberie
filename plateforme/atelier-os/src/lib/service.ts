@@ -2,6 +2,7 @@ import { updateDb, readDb, nouvelId } from "./db";
 import { ajouterJours, debutDeSemaine, formatJour, heureParis, jourParis, parisVersIso, prochainJourOuvre } from "./dates";
 import { RELANCES_PAR_DEFAUT } from "@/data/modeles";
 import { PROSPECT_DEFAUTS } from "./migration";
+import { ecrireCsv, lireCsv } from "./csv";
 import {
   EVENT_TYPES,
   FORMULES,
@@ -202,48 +203,51 @@ export async function listerProspects() {
   return (await readDb()).prospects;
 }
 
+/** Insère un prospect déjà validé dans la base (identifiant unique tiré du nom). */
+function insererProspect(db: Db, champs: Partial<Prospect>, note = "Prospect créé"): Prospect {
+  const t = maintenant();
+  const base = champs.entreprise!
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  let id = base || nouvelId("p");
+  let i = 2;
+  while (db.prospects.some((p) => p.id === id)) id = `${base}-${i++}`;
+  const p: Prospect = {
+    id,
+    entreprise: "",
+    dirigeant: "",
+    emails: [],
+    telephone: "",
+    ville: "Paris",
+    arrondissement: "",
+    siteActuel: "",
+    maquetteUrl: "",
+    score: null,
+    statut: "a_contacter",
+    vague: null,
+    rang: null,
+    offre: "",
+    notes: "",
+    aRepondu: false,
+    stop: false,
+    creeLe: t,
+    modifieLe: t,
+    ...PROSPECT_DEFAUTS,
+    ...champs,
+  };
+  completerVente(p, champs);
+  db.prospects.push(p);
+  journal(db, p.id, "note", note);
+  return p;
+}
+
 export async function creerProspect(entree: EntreeProspect): Promise<Prospect> {
   const champs = nettoyerProspect(entree);
   if (!champs.entreprise) throw new ErreurMetier("entreprise : obligatoire");
-  return updateDb((db) => {
-    const t = maintenant();
-    const base = champs.entreprise!
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-    let id = base || nouvelId("p");
-    let i = 2;
-    while (db.prospects.some((p) => p.id === id)) id = `${base}-${i++}`;
-    const p: Prospect = {
-      id,
-      entreprise: "",
-      dirigeant: "",
-      emails: [],
-      telephone: "",
-      ville: "Paris",
-      arrondissement: "",
-      siteActuel: "",
-      maquetteUrl: "",
-      score: null,
-      statut: "a_contacter",
-      vague: null,
-      rang: null,
-      offre: "",
-      notes: "",
-      aRepondu: false,
-      stop: false,
-      creeLe: t,
-      modifieLe: t,
-      ...PROSPECT_DEFAUTS,
-      ...champs,
-    };
-    completerVente(p, champs);
-    db.prospects.push(p);
-    journal(db, p.id, "note", "Prospect créé");
-    return p;
-  });
+  return updateDb((db) => insererProspect(db, champs));
 }
 
 export async function modifierProspect(id: string, entree: EntreeProspect, motif = "Modifiée à la main"): Promise<Prospect> {
@@ -936,4 +940,151 @@ export function versIcs(r: RendezVous, p: Prospect | null): string {
     "END:VCALENDAR",
   ];
   return lignes.map(replier).join("\r\n") + "\r\n";
+}
+
+/* ------------------------------------------------------------------ import et export CSV */
+
+/** Colonnes de l'export, dans l'ordre. L'import accepte ces noms et quelques synonymes. */
+export const COLONNES_CSV: Array<{ cle: keyof Prospect; alias: string[] }> = [
+  { cle: "entreprise", alias: ["nom", "societe", "raison sociale", "entreprise", "nom de l'entreprise", "company"] },
+  { cle: "dirigeant", alias: ["gerant", "contact", "nom du dirigeant", "dirigeants"] },
+  { cle: "emails", alias: ["email", "e-mail", "mail", "courriel", "adresse e-mail", "adresses e-mail"] },
+  { cle: "telephone", alias: ["tel", "tel.", "portable", "phone", "numero"] },
+  { cle: "ville", alias: ["commune", "city"] },
+  { cle: "arrondissement", alias: ["arr", "arr.", "code postal", "cp"] },
+  { cle: "siteActuel", alias: ["site", "site web", "site internet", "site actuel", "url", "website"] },
+  { cle: "maquetteUrl", alias: ["maquette", "lien maquette"] },
+  { cle: "statut", alias: ["etape", "statut"] },
+  { cle: "score", alias: [] },
+  { cle: "vague", alias: [] },
+  { cle: "offre", alias: [] },
+  { cle: "formule", alias: [] },
+  { cle: "montantDevis", alias: ["devis", "montant", "montant du devis"] },
+  { cle: "montantMensuel", alias: ["mensuel", "abonnement"] },
+  { cle: "signeLe", alias: ["date de signature", "signe le"] },
+  { cle: "notes", alias: ["note", "commentaire", "commentaires", "remarques"] },
+  { cle: "aRepondu", alias: [] },
+  { cle: "stop", alias: ["ne plus contacter"] },
+  { cle: "id", alias: [] },
+  { cle: "creeLe", alias: [] },
+  { cle: "modifieLe", alias: [] },
+];
+
+/** Colonnes que l'import n'écrit jamais (calculées par l'application). */
+const COLONNES_LECTURE_SEULE = new Set<keyof Prospect>(["id", "creeLe", "modifieLe", "aRepondu"]);
+
+const sansAccents = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+
+/** Clé de dédoublonnage du nom : sans accents, sans ponctuation ni forme juridique. */
+export const cleEntreprise = (s: string) =>
+  sansAccents(s)
+    .replace(/\b(sarl|sas|sasu|eurl|sa|sci|ets|etablissements)\b/g, " ")
+    .replace(/[^a-z0-9]+/g, "");
+
+function versCellule(p: Prospect, cle: keyof Prospect): unknown {
+  const v = p[cle];
+  if (Array.isArray(v)) return v.join(", ");
+  if (typeof v === "boolean") return v ? "oui" : "";
+  return v;
+}
+
+export function exporterCsvDb(db: Db): string {
+  const tri = [...db.prospects].sort((a, b) => a.entreprise.localeCompare(b.entreprise));
+  return ecrireCsv([COLONNES_CSV.map((c) => c.cle), ...tri.map((p) => COLONNES_CSV.map((c) => versCellule(p, c.cle)))]);
+}
+
+export async function exporterCsv() {
+  return exporterCsvDb(await readDb());
+}
+
+export interface LigneImport {
+  ligne: number;
+  entreprise: string;
+  emails: string[];
+  etat: "nouveau" | "doublon" | "erreur";
+  motif: string;
+  doublonDe?: { id: string; entreprise: string };
+}
+
+function lireEntreeCsv(entete: Array<keyof Prospect | null>, cellules: string[]): EntreeProspect {
+  const e: Record<string, unknown> = {};
+  entete.forEach((cle, i) => {
+    if (!cle || COLONNES_LECTURE_SEULE.has(cle)) return;
+    const v = (cellules[i] ?? "").trim();
+    if (v === "") return;
+    if (cle === "statut") {
+      const s = STATUTS.find((x) => x === v || sansAccents(STATUT_LABEL[x]) === sansAccents(v));
+      e.statut = s ?? v;
+    } else if (cle === "formule") {
+      const f = FORMULES.find((x) => x === sansAccents(v) || sansAccents(FORMULE_INFO[x].label) === sansAccents(v));
+      e.formule = f ?? v;
+    } else if (cle === "siteActuel" || cle === "maquetteUrl") e[cle] = /^https?:\/\//i.test(v) ? v : `https://${v}`;
+    else if (cle === "stop") e.stop = /^(oui|vrai|true|1|x)$/i.test(v);
+    else e[cle] = v;
+  });
+  return e as EntreeProspect;
+}
+
+/** Analyse un CSV sans rien écrire : nouveaux, doublons (nom ou e-mail déjà connus) et erreurs. */
+export function analyserImport(db: Db, csv: string) {
+  const lignes = lireCsv(csv);
+  if (lignes.length < 2) throw new ErreurMetier("CSV vide : une ligne d'en-tête puis au moins une ligne de données");
+  const entete = lignes[0].map((h) => {
+    const n = sansAccents(h).replace(/[_]+/g, " ");
+    const c = COLONNES_CSV.find((x) => sansAccents(x.cle) === n || x.alias.includes(n));
+    return c ? c.cle : null;
+  });
+  if (!entete.includes("entreprise")) throw new ErreurMetier("Colonne « entreprise » introuvable dans l'en-tête");
+  if (lignes.length > 2001) throw new ErreurMetier("2 000 lignes au plus par import");
+  const noms = new Map(db.prospects.map((p) => [cleEntreprise(p.entreprise), p]));
+  const mails = new Map(db.prospects.flatMap((p) => p.emails.map((m) => [m, p] as const)));
+  const resultat: Array<LigneImport & { champs?: Partial<Prospect> }> = [];
+  lignes.slice(1).forEach((cellules, i) => {
+    const entree = lireEntreeCsv(entete, cellules);
+    const base = { ligne: i + 2, entreprise: String(entree.entreprise ?? ""), emails: [] as string[] };
+    try {
+      const champs = nettoyerProspect(entree);
+      if (!champs.entreprise) throw new ErreurMetier("entreprise vide");
+      base.emails = champs.emails ?? [];
+      const existant = noms.get(cleEntreprise(champs.entreprise)) ?? base.emails.map((m) => mails.get(m)).find(Boolean);
+      if (existant) {
+        const dansFichier = !db.prospects.includes(existant);
+        resultat.push({ ...base, etat: "doublon", motif: dansFichier ? "Déjà présent plus haut dans le fichier" : "Déjà dans Atelier OS", doublonDe: { id: existant.id, entreprise: existant.entreprise } });
+        return;
+      }
+      const fictif = { ...champs, id: `ligne-${i + 2}`, emails: base.emails } as Prospect;
+      noms.set(cleEntreprise(champs.entreprise), fictif);
+      for (const m of base.emails) mails.set(m, fictif);
+      resultat.push({ ...base, etat: "nouveau", motif: "", champs });
+    } catch (e) {
+      resultat.push({ ...base, etat: "erreur", motif: e instanceof Error ? e.message : "Ligne invalide" });
+    }
+  });
+  const colonnesIgnorees = lignes[0].filter((_, i) => !entete[i]);
+  return { lignes: resultat, colonnesIgnorees };
+}
+
+const resume = (l: Array<LigneImport & { champs?: Partial<Prospect> }>) => ({
+  nouveaux: l.filter((x) => x.etat === "nouveau").length,
+  doublons: l.filter((x) => x.etat === "doublon").length,
+  erreurs: l.filter((x) => x.etat === "erreur").length,
+});
+
+export async function importerCsv(csv: string, apercu: boolean) {
+  if (!csv.trim()) throw new ErreurMetier("csv : obligatoire");
+  if (csv.length > 2_000_000) throw new ErreurMetier("CSV trop volumineux (2 Mo au plus)");
+  if (apercu) {
+    const a = analyserImport(await readDb(), csv);
+    return { apercu: true, ...resume(a.lignes), colonnesIgnorees: a.colonnesIgnorees, lignes: a.lignes.map(({ champs: _c, ...l }) => l) };
+  }
+  return updateDb((db) => {
+    const a = analyserImport(db, csv);
+    const crees = a.lignes.filter((l) => l.etat === "nouveau").map((l) => insererProspect(db, l.champs!, "Importé depuis un fichier CSV"));
+    return { apercu: false, ...resume(a.lignes), importes: crees.length, colonnesIgnorees: a.colonnesIgnorees, prospects: crees.map((p) => ({ id: p.id, entreprise: p.entreprise })), lignes: a.lignes.map(({ champs: _c, ...l }) => l) };
+  });
 }

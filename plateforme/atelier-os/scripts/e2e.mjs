@@ -173,6 +173,37 @@ try {
   verifie((await api(`/api/v1/agenda?du=2026-12-01&au=2026-12-31`)).json.total === 1, "agenda : filtre par période");
   verifie((await api(`/api/v1/agenda/${hiver.json.rendezVous.id}`, { methode: "DELETE" })).json?.ok === true && (await api(`/api/v1/agenda/${hiver.json.rendezVous.id}`)).statut === 404, "agenda : suppression");
 
+  // Import / export CSV
+  const exp = await fetch(`${BASE}/api/v1/prospects/export`, { headers: { Authorization: `Bearer ${TOKEN}` } });
+  const expTexte = await exp.text();
+  const totalAvant = (await api("/api/v1/prospects")).json.total;
+  verifie(exp.headers.get("content-type")?.startsWith("text/csv") && /attachment; filename="atelier-os-prospects-.+\.csv"/.test(exp.headers.get("content-disposition") ?? ""), "export CSV téléchargeable");
+  verifie(expTexte.startsWith("\uFEFFentreprise;dirigeant;emails") || expTexte.startsWith("entreprise;dirigeant;emails"), "export CSV : en-tête et point-virgule");
+  const retour = await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: expTexte, apercu: true } });
+  verifie(retour.json?.nouveaux === 0 && retour.json.doublons === totalAvant && retour.json.erreurs === 0, `export réimporté : ${retour.json?.doublons} doublons sur ${totalAvant}, aucun nouveau`);
+  const csv = [
+    "Société,E-mail,Téléphone,Ville,Étape,Formule,Notes,Colonne inconnue",
+    'Nouvelle Plomberie,nouveau@plomberie-nouvelle.fr,01 11 22 33 44,Montreuil,Devis,Visibilité,"Note avec, virgule\net retour",x',
+    "GAZ FLASH,,,,,,,",
+    "Autre Nom,CONTACT@test-plomberie.fr,,,,,,",
+    "Doublon Interne SARL,,,,,,,",
+    "doublon interne,,,,,,,",
+    "Mauvais Mail,pas-un-mail,,,,,,",
+  ].join("\n");
+  const ap = await api("/api/v1/prospects/import", { methode: "POST", corps: { csv, apercu: true } });
+  verifie(ap.json?.nouveaux === 2 && ap.json.doublons === 3 && ap.json.erreurs === 1, `import CSV : aperçu (2 nouveaux, 3 doublons, 1 erreur ; reçu ${ap.json?.nouveaux}/${ap.json?.doublons}/${ap.json?.erreurs})`);
+  verifie(ap.json.lignes.find((l) => l.entreprise === "GAZ FLASH")?.doublonDe?.id === "gaz-flash" && ap.json.lignes.find((l) => l.entreprise === "Autre Nom")?.doublonDe?.id === id, "import CSV : doublon par nom et par e-mail");
+  verifie(ap.json.colonnesIgnorees.includes("Colonne inconnue"), "import CSV : colonnes inconnues signalées");
+  verifie((await api("/api/v1/prospects")).json.total === totalAvant, "import CSV : l'aperçu n'écrit rien");
+  const brut = await fetch(`${BASE}/api/v1/prospects/import?apercu=1`, { method: "POST", headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "text/csv" }, body: csv });
+  verifie((await brut.json()).nouveaux === 2, "import CSV : corps text/csv brut accepté");
+  const imp = await api("/api/v1/prospects/import", { methode: "POST", corps: { csv, apercu: false } });
+  verifie(imp.json?.importes === 2 && (await api("/api/v1/prospects")).json.total === totalAvant + 2, "import CSV : 2 prospects importés");
+  const np = (await api(`/api/v1/prospects/${imp.json.prospects[0].id}`)).json.prospect;
+  verifie(np.statut === "devis" && np.formule === "visibilite" && np.montantDevis === 2490 && np.notes === "Note avec, virgule\net retour" && np.ville === "Montreuil", "import CSV : étape, formule, montants et notes lus");
+  verifie((await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: "nom;ville\n" } })).statut === 400, "import CSV : fichier sans données refusé");
+  verifie((await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: "ville\nParis" } })).statut === 400, "import CSV : colonne entreprise obligatoire");
+
   // Captures
   const requis = createRequire(import.meta.url);
   let pw;
@@ -243,6 +274,22 @@ try {
     verifie(dl.suggestedFilename().endsWith(".ics"), `agenda : bouton « Ajouter au calendrier » (${dl.suggestedFilename()})`);
     await page.goto(BASE + "/", { waitUntil: "networkidle" });
     verifie(await page.getByText("23:45 · Démo maquette e2e").isVisible(), "accueil : rendez-vous du jour dans « À faire »");
+    await ctx.close();
+  }
+  // Import CSV depuis les réglages, puis export
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, locale: "fr-FR", acceptDownloads: true });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + "/reglages", { waitUntil: "networkidle" });
+    await page.setInputFiles("[data-import-fichier]", { name: "prospects.csv", mimeType: "text/csv", buffer: Buffer.from("entreprise;telephone\nPlomberie Interface;01 99 88 77 66\nGaz Flash;\n") });
+    await page.waitForSelector("[data-import-apercu]");
+    await page.screenshot({ path: "captures/1440-clair-import-apercu.png", fullPage: true });
+    await page.getByRole("button", { name: "Importer 1 prospect" }).click();
+    await page.waitForSelector("[data-import-resultat]");
+    verifie((await page.textContent("[data-import-resultat]")).includes("1 prospect importé, 1 doublon ignoré"), "import CSV depuis l'interface avec aperçu");
+    const [dl] = await Promise.all([page.waitForEvent("download"), page.click("[data-export]")]);
+    verifie(dl.suggestedFilename().endsWith(".csv"), `export CSV depuis l'interface (${dl.suggestedFilename()})`);
     await ctx.close();
   }
   // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone

@@ -47,6 +47,11 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 - `GET /pipeline` : `{ colonnes[{ statut, label, nombre, prospects[] }] }`, une colonne par étape, dans l'ordre du parcours.
 - `POST /pipeline/deplacer` : `{ "prospectId": "...", "statut": "devis" }` → `{ prospect }`. Change l'étape (dans les deux sens, contrairement aux règles automatiques) et journalise un événement `statut` (« Déplacé dans le pipeline »). Passer à `perdu` ou `signe` annule les relances.
 
+### Import et export CSV
+- `GET /prospects/export` : fichier CSV (UTF-8 avec BOM, séparateur `;`, s'ouvre dans Excel), toutes les colonnes, une ligne par prospect. Les e-mails sont séparés par des virgules dans leur cellule.
+- `POST /prospects/import` : `{ "csv": "<contenu>", "apercu": true }` (ou le CSV brut avec `Content-Type: text/csv` et `?apercu=1`). Séparateur `;`, `,` ou tabulation détecté. Colonne `entreprise` obligatoire (synonymes acceptés : société, nom…) ; les autres colonnes sont celles de l'export ou leurs synonymes (e-mail, téléphone, site, étape…). `statut` et `formule` acceptent la clé ou le libellé (« Devis », « Visibilité »). Un site sans `http` reçoit `https://`.
+- Réponse : `{ apercu, nouveaux, doublons, erreurs, colonnesIgnorees[], lignes[{ ligne, entreprise, emails, etat: "nouveau"|"doublon"|"erreur", motif, doublonDe? }] }`, plus `importes` et `prospects[{id, entreprise}]` quand `apercu` est faux. Doublon = même nom d'entreprise (sans accents, ponctuation ni forme juridique) ou une adresse e-mail déjà connue, dans la base ou plus haut dans le fichier : il est ignoré, jamais fusionné. Toujours appeler d'abord avec `apercu: true` (rien n'est écrit). 2 000 lignes au plus.
+
 ### Événements
 - `GET /prospects/{id}/evenements`
 - `POST /prospects/{id}/evenements` : `{ "type": "appel", "titre": "optionnel", "detail": "texte", "date": "optionnel ISO" }` → `201 { evenement }`
