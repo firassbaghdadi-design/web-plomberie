@@ -896,3 +896,43 @@ html.skip-curtain .house svg polyline {
 .photo-missing {
   background: repeating-linear-gradient(135deg, var(--paper-2) 0 14px, #e9dfcc 14px 28px);
 }
+
+/* Comparateur avant / après */
+.ba-chip {
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 999px;
+  background: rgba(23, 32, 27, 0.72);
+  backdrop-filter: blur(6px);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: #fff;
+  color: #085627;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ba:hover .ba-handle,
+.ba:focus-within .ba-handle {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.ba:focus-within {
+  outline: 2px solid #ff4100;
+  outline-offset: 3px;
+}

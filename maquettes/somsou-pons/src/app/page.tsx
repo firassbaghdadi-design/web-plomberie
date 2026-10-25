@@ -152,7 +152,7 @@ export default function HomePage() {
           </div>
           <div data-reveal className="relative aspect-[4/5] overflow-hidden rounded-[1.6rem] shadow-lift">
             <div className="absolute inset-[-6%_0]" data-speed="0.05">
-              <Photo id="peintres" sizes="(min-width:1024px) 40vw, 92vw" />
+              <Photo id="chauffagiste" sizes="(min-width:1024px) 40vw, 92vw" />
             </div>
           </div>
         </div>

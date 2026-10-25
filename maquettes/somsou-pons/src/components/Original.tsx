@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { siteSrc } from "@/lib/photos";
+import { BeforeAfter } from "./BeforeAfter";
 import { depannageList, historique, metiersIntro, metiersLead, metiersList, organigramme, pgText, qualibatText, qualifIntro, rgeText } from "@/lib/original";
 
 /** Mention discrète : ce bloc reprend mot pour mot le site actuel de l'entreprise. */
@@ -93,7 +94,8 @@ export function MetiersOriginal() {
   );
 }
 
-const realisations = [1, 2, 3, 4, 5].map((n) => ({ key: `realisation-${n}`, w: n === 5 ? 412 : 922 }));
+// Montages 922 × 303 px : avant de 0 à 456 px, filet blanc, après de 466 à 922 px.
+const realisations = [1, 2, 3, 4].map((n) => ({ key: `realisation-${n}`, w: 922, split: 456, gap: 10 }));
 
 /** « Nos réalisations en images » : les photos avant / après publiées par l'entreprise. */
 export function Realisations({ limit }: { limit?: number }) {
@@ -108,10 +110,11 @@ export function Realisations({ limit }: { limit?: number }) {
         <h2 id="titre-realisations" data-reveal className="mt-4 text-4xl sm:text-5xl">
           Nos réalisations en images
         </h2>
-        <ul className="mt-12 grid gap-6">
+        <p data-reveal className="mt-5 max-w-xl text-lg">Faites glisser le curseur pour passer de l'avant à l'après.</p>
+        <ul className="mt-12 grid gap-6 lg:grid-cols-2">
           {items.map((r, i) => (
-            <li key={r.key} data-reveal style={{ ["--d" as string]: `${i * 80}ms` }} className="overflow-hidden rounded-[1.4rem] border border-line bg-white p-2">
-              <Image src={siteSrc(r.key)!} alt={`Chantier Somsou-Pons, avant et après travaux (photo ${i + 1})`} width={r.w} height={303} sizes="(min-width:1024px) 1100px, 100vw" className="h-auto w-full rounded-[1rem]" />
+            <li key={r.key} data-reveal style={{ ["--d" as string]: `${i * 80}ms` }} className="rounded-[1.4rem] border border-line bg-white p-2">
+              <BeforeAfter src={siteSrc(r.key)!} width={r.w} split={r.split} gap={r.gap} alt={`Chantier Somsou-Pons (photo ${i + 1})`} />
             </li>
           ))}
         </ul>

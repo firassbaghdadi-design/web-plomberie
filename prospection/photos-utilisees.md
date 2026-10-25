@@ -17,6 +17,7 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 5493650 : Somsou-Pons (peintres)
 - 5493656 : Somsou-Pons (renovation)
 - 5691533 : Somsou-Pons (chantier-interieur)
+- 5691536 : Somsou-Pons (chauffagiste)
 - 5691594 : Somsou-Pons (enduit)
 - 5691597 : Somsou-Pons (peintre)
 - 5691612 : Atelier Truelle (truelle)

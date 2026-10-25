@@ -12,7 +12,7 @@ export default function Page() {
       path={path}
       crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos métiers", href: PATHS.trades }, { name: "Chauffagiste" }]}
       contactType="chauffage"
-      photos={["peintres", "electricien", "plans", "plan-projet"]}
+      photos={["chauffagiste", "electricien", "plans", "plan-projet"]}
       faq={faqs.heating}
       faqTitle="Vos questions de chauffage"
       service="Chauffage"
