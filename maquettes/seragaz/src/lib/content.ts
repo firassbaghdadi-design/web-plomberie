@@ -14,7 +14,7 @@ export const home = {
     "SERAGAZ, chauffagiste à Paris 9 depuis 1985 : installation, remplacement, entretien et dépannage de chaudières gaz, ramonage, désembouage, compteur gaz.",
   h1: "Chauffagiste à Paris 9 : installation et entretien de chaudières gaz",
   brief:
-    "SERAGAZ est une entreprise familiale installée au 69 rue de Dunkerque, à Paris 9e, depuis 1985. Ses techniciens installent, remplacent, entretiennent et dépannent les chaudières et chauffe-eau gaz, ramonent les conduits, désemboue les circuits de chauffage et déplacent les compteurs gaz à Paris et en petite couronne.",
+    "SERAGAZ est une entreprise familiale installée au 69 rue de Dunkerque, à Paris 9e, depuis 1985. Ses techniciens installent, remplacent, entretiennent et dépannent les chaudières et chauffe-eau gaz, ramonent les conduits, désembouent les circuits de chauffage et déplacent les compteurs gaz à Paris et en petite couronne.",
 };
 
 export const presentation: Page = {
@@ -643,3 +643,76 @@ export const meter: Page = {
 };
 
 export const originalPages = [presentation, repair, replacement, descaling, sweeping, meter];
+
+export const reviewsPage: Page = {
+  path: PATHS.reviews,
+  title: "Avis clients SERAGAZ, chauffagiste à Paris 9 : note Google",
+  description:
+    "Avis clients de SERAGAZ, chauffagiste à Paris 9 : note Google de 4,7/5 sur 310 avis relevée le 20 octobre 2026, comment laisser un avis et joindre l'entreprise.",
+  h1: "Avis clients SERAGAZ, chauffagiste à Paris 9 : la note Google",
+  kicker: "Avis clients",
+  lead: "La satisfaction de nos clients est au cœur de nos préoccupations. Les avis laissés sur la fiche Google de SERAGAZ en témoignent : vous pouvez les lire, et laisser le vôtre, directement sur Google.",
+  brief:
+    "Les avis clients de SERAGAZ, chauffagiste à Paris 9, sont publiés sur sa fiche Google : la note relevée le 20 octobre 2026 est de 4,7 sur 5, pour 310 avis. Cette page explique comment lire cette note, comment laisser votre propre avis et comment joindre l'entreprise après une intervention.",
+  contactType: "autre",
+  crumb: "Avis clients",
+  photo: "dunkerque",
+  facts: [
+    { label: "Note Google", value: "4,7 / 5" },
+    { label: "Avis", value: "310" },
+    { label: "Relevé", value: "20/10/2026" },
+  ],
+  sections: [
+    {
+      h2: "Quelle est la note de SERAGAZ sur Google ?",
+      answer:
+        "4,7 sur 5, pour 310 avis, d'après la fiche Google de l'entreprise consultée le 20 octobre 2026. La note évolue à chaque nouvel avis : la fiche Google reste la source à jour. Les avis eux-mêmes ne sont pas reproduits ici, pour respecter leurs auteurs.",
+      paras: [
+        "Une fiche Google réunit les avis de clients qui ont fait appel à l'entreprise : entretiens annuels, dépannages, remplacements de chaudière. Chaque avis porte une note de une à cinq étoiles et, souvent, un commentaire qui décrit l'intervention et le technicien venu sur place.",
+        "Pour consulter les avis complets, ouvrez la fiche Google de SERAGAZ depuis le lien de cette page ou en cherchant « SERAGAZ Paris » dans Google Maps.",
+      ],
+    },
+    {
+      h2: "Comment laisser un avis après une intervention ?",
+      answer:
+        "Ouvrez la fiche Google de SERAGAZ, choisissez « Donner un avis », attribuez une note puis décrivez l'intervention en quelques phrases : le type de travaux, l'arrondissement, ce qui vous a semblé utile. Un compte Google est nécessaire. L'avis devient visible après la vérification automatique de Google.",
+      paras: [
+        "Un avis précis aide les prochains clients : il vaut mieux écrire « entretien annuel d'une chaudière Saunier Duval dans le 9e, explications claires » que « très bien ». Évitez d'y mettre votre adresse ou votre numéro de téléphone.",
+      ],
+    },
+    {
+      h2: "Que faire si une intervention ne vous a pas satisfait ?",
+      answer:
+        "Contactez directement l'entreprise, par téléphone au 01 42 80 03 01 ou par le formulaire, en précisant la date et l'adresse de l'intervention. Grâce à ses outils informatiques, SERAGAZ conserve l'historique précis de ses interventions, ce qui permet de retrouver rapidement le dossier et d'apporter une réponse.",
+      paras: [
+        "La satisfaction de nos clients est au cœur de nos préoccupations. Nous nous engageons à vous fournir un service de qualité, en toute sécurité et dans le respect des normes.",
+      ],
+      original: true,
+    },
+    {
+      h2: "Qui sont les clients de SERAGAZ ?",
+      answer:
+        "Des particuliers, mais aussi des syndics de gestion locative, des agences immobilières, des plombiers, des chauffagistes, des architectes et des commerçants. Beaucoup confient à l'entreprise l'entretien annuel de leurs chaudières depuis de nombreuses années, à Paris et dans les communes voisines de la petite couronne.",
+      paras: [
+        "Cette diversité explique la variété des avis : un entretien de routine dans un deux-pièces du 9e, un dépannage un soir d'hiver dans le 18e ou le remplacement d'une chaudière ancienne dans un grand appartement du 17e ne racontent pas la même histoire.",
+      ],
+    },
+  ],
+  faq: [
+    {
+      q: "Les avis Google sont-ils vérifiés ?",
+      a: "Google applique ses propres règles de modération et retire les avis qui ne les respectent pas. SERAGAZ ne peut ni modifier ni supprimer un avis, mais elle peut y répondre publiquement depuis sa fiche.",
+    },
+    {
+      q: "Puis-je laisser un avis sans compte Google ?",
+      a: "Non, Google demande d'être connecté à un compte pour publier un avis. Vous pouvez aussi transmettre votre retour directement à l'entreprise par téléphone ou par le formulaire de contact.",
+    },
+    {
+      q: "Pourquoi la note affichée ici peut-elle différer de celle de Google ?",
+      a: "Parce qu'elle a été relevée à une date donnée, le 20 octobre 2026. Chaque nouvel avis peut faire varier la note et le nombre d'avis : la fiche Google fait foi.",
+    },
+  ],
+  ctaTitle: "Vous aussi, confiez-nous votre chaudière",
+  ctaText: "Entretien, panne ou remplacement : demandez votre devis gratuit.",
+  related: [PATHS.presentation, PATHS.maintenance, PATHS.repair],
+};

@@ -1,7 +1,7 @@
 // Télécharge, au build, les images publiées par Seragaz sur son site actuel (seragaz.fr, hébergé par Simplébo) :
 // logo, sigle, photos de la page d'accueil, logo RGE Qualibat, logos des marques de chaudières.
 // Une image qui ne se télécharge pas n'arrête pas le build : le site affiche alors une solution de repli.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const BASE = "https://files.sbcdnsb.com/images/4Qzhg1DchZl6TuqGA27FTQ/";
 const files = {
@@ -36,5 +36,20 @@ for (const [name, path] of Object.entries(files)) {
     console.warn(`[site] ${path} : ${e.message}`);
   }
 }
+// Photos libres de lieux réels (Wikimedia Commons, licences libres créditées sur le site) : src/lib/commons.json
+const commons = JSON.parse(readFileSync(new URL("../src/lib/commons.json", import.meta.url), "utf8"));
+for (const [key, { file }] of Object.entries(commons)) {
+  const url = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1600`;
+  try {
+    const res = await fetch(url, { headers: { "User-Agent": "seragaz-maquette/1.0 (build; contact fb.baghdadi@gmail.com)" }, redirect: "follow", signal: AbortSignal.timeout(30000) });
+    const type = res.headers.get("content-type") ?? "";
+    if (!res.ok || !type.startsWith("image/")) throw new Error(`${res.status} ${type}`);
+    writeFileSync(new URL(`${key}.jpg`, outDir), Buffer.from(await res.arrayBuffer()));
+    manifest[key] = `/photos/${key}.jpg`;
+  } catch (e) {
+    manifest[key] = null;
+    console.warn(`[commons] ${file} : ${e.message}`);
+  }
+}
 writeFileSync(new URL("../src/lib/site-photos.generated.json", import.meta.url), JSON.stringify(manifest, null, 2) + "\n");
-console.log(`[site] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(files).length} images du site actuel`);
+console.log(`[site] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(manifest).length} images (site actuel + Commons)`);

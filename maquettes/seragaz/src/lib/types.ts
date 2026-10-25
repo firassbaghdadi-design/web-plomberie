@@ -34,5 +34,6 @@ export type Page = {
   ctaTitle: string;
   ctaText: string;
   related?: string[];
-  photo?: "accueil" | "atelier";
+  /** Clé d'image (site actuel ou Commons). */
+  photo?: string;
 };

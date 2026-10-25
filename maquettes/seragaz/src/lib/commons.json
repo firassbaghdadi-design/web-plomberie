@@ -1,0 +1,15 @@
+{
+  "toits": { "file": "Rooftops and chimneys (41723756875).jpg", "alt": "Toits de Paris en zinc et souches de cheminées", "credit": "Jeanne Menjoulet", "license": "CC BY 2.0" },
+  "toits-large": { "file": "Paris - Rooftops in Paris - 3052.jpg", "alt": "Vue des toits de Paris et de leurs cheminées", "credit": "Jorge Royan", "license": "CC BY-SA 3.0" },
+  "cheminees": { "file": "View of rooftops in Paris with brown chimneys (Unsplash).jpg", "alt": "Souches de cheminées en brique sur un toit parisien", "credit": "Philippe Dehaye", "license": "CC0" },
+  "dunkerque": { "file": "P1320780 Paris IX et X rue de Dunkerque rwk.jpg", "alt": "La rue de Dunkerque, entre le 9e et le 10e arrondissement", "credit": "Mbzt", "license": "CC BY-SA 4.0" },
+  "gare-nord": { "file": "Paris gare nord face 1.jpg", "alt": "Façade de la gare du Nord, Paris 10e", "credit": "Velvet", "license": "CC BY-SA 3.0" },
+  "canal": { "file": "Paris Canal St-Martin écluses Récollets 2013.jpg", "alt": "Écluses des Récollets sur le canal Saint-Martin, Paris 10e", "credit": "JLPC", "license": "CC BY-SA 3.0" },
+  "montmartre": { "file": "La rue de l'Abreuvoir, Montmartre, D.4934.jpg", "alt": "La rue de l'Abreuvoir à Montmartre, photographie ancienne (Paris Musées)", "credit": "Henriette Kosmann-Sichel, Paris Musées", "license": "CC0" },
+  "batignolles": { "file": "Square des Batignolles @ Paris (29769168792).jpg", "alt": "Le square des Batignolles, Paris 17e", "credit": "Guilhem Vellut", "license": "CC BY 2.0" },
+  "saint-lazare": { "file": "Paris, Gare Saint Lazare, 3 June 2019.jpg", "alt": "La gare Saint-Lazare, Paris 8e", "credit": "besopha", "license": "CC BY 2.0" },
+  "cirque": { "file": "Cirque d'hiver, Paris 10 April 2011.jpg", "alt": "Le Cirque d'Hiver, Paris 11e", "credit": "Coyau", "license": "CC BY-SA 3.0" },
+  "clichy": { "file": "Hôtel Ville - Clichy (FR92) - 2023-07-08 - 1.jpg", "alt": "L'hôtel de ville de Clichy", "credit": "Chabe01", "license": "CC BY-SA 4.0" },
+  "levallois": { "file": "Flags and Southeast of the Hôtel de Ville of Levallois-Perret.jpg", "alt": "L'hôtel de ville de Levallois-Perret", "credit": "Wikimedia Commons", "license": "Domaine public" },
+  "vincennes": { "file": "Château de Vincennes 001.jpg", "alt": "Le château de Vincennes", "credit": "Moonik", "license": "CC BY-SA 3.0" }
+}
