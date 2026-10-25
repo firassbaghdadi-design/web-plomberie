@@ -122,3 +122,31 @@ details > summary::-webkit-details-marker {
 .defile-x::-webkit-scrollbar {
   display: none;
 }
+
+/* Couleur de marque de l'organisation (Réglages) : remplace l'accent. */
+.theme-org {
+  --terre: var(--marque, 200 85 61);
+}
+@media (prefers-color-scheme: dark) {
+  .theme-org {
+    --terre: var(--marque-sombre, 226 108 84);
+  }
+}
+
+@layer components {
+  select.champ {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+    background-size: 18px;
+    background-position: right 14px center;
+  }
+  .puce {
+    @apply inline-flex min-h-[34px] items-center rounded-full border border-trait bg-carte px-3.5 text-[13.5px] font-medium text-doux transition-colors duration-200 hover:text-encre;
+  }
+  .puce-active {
+    @apply border-encre bg-encre text-fond hover:text-fond;
+  }
+  .lien-discret {
+    @apply text-doux underline-offset-4 transition-colors hover:text-encre hover:underline;
+  }
+}

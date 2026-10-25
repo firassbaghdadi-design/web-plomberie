@@ -104,6 +104,7 @@ export const sitesService = creerCrud<Site>({
   table: s.sites,
   prefixe: "sit",
   libelle: "Adresse",
+  feminin: true,
   creation: z.siteCreation,
   modification: z.siteModification,
   recherche: [s.sites.adresse, s.sites.ville, s.sites.libelle, s.sites.codePostal],
@@ -176,6 +177,7 @@ export const notesService = creerCrud<Note>({
   table: s.notes,
   prefixe: "not",
   libelle: "Note",
+  feminin: true,
   creation: z.noteCreation,
   modification: z.noteModification,
   recherche: [s.notes.contenu],
@@ -200,6 +202,7 @@ export const tachesService = creerCrud<Tache>({
   table: s.taches,
   prefixe: "tch",
   libelle: "Tâche",
+  feminin: true,
   creation: z.tacheCreation,
   modification: z.tacheModification,
   recherche: [s.taches.titre, s.taches.description],
@@ -229,6 +232,7 @@ export const piecesJointesService = creerCrud<PieceJointe>({
   table: s.piecesJointes,
   prefixe: "pj",
   libelle: "Pièce jointe",
+  feminin: true,
   creation: z.pieceJointeCreation,
   modification: z.pieceJointeModification,
   recherche: [s.piecesJointes.nom],
@@ -253,6 +257,7 @@ export const etiquettesService = creerCrud<Etiquette>({
   table: s.etiquettes,
   prefixe: "eti",
   libelle: "Étiquette",
+  feminin: true,
   creation: z.etiquetteCreation,
   modification: z.etiquetteModification,
   recherche: [s.etiquettes.nom],
@@ -310,6 +315,7 @@ export const activitesService = creerCrud<Activite>({
   table: s.activites,
   prefixe: "act",
   libelle: "Activité",
+  feminin: true,
   creation: lectureSeule,
   modification: lectureSeule,
   recherche: [s.activites.resume],
@@ -427,4 +433,18 @@ export async function verifierExiste(ctx: Contexte, table: "clients" | "chantier
   const t: any = table === "clients" ? s.clients : s.chantiers;
   const [r] = await ctx.db.select({ id: t.id }).from(t).where(and(eq(t.organisationId, ctx.organisationId), eq(t.id, id))).limit(1);
   if (!r) throw introuvable();
+}
+
+/** Noms des clients / titres des chantiers pour un lot d'identifiants (affichage). */
+export async function libelles(ctx: Contexte, ids: { clients?: (string | null)[]; chantiers?: (string | null)[] }) {
+  await exiger(ctx, "clients", "lire");
+  const c = [...new Set((ids.clients ?? []).filter(Boolean) as string[])];
+  const h = [...new Set((ids.chantiers ?? []).filter(Boolean) as string[])];
+  const [lc, lh] = await Promise.all([
+    c.length ? ctx.db.select({ id: s.clients.id, nom: s.clients.nom }).from(s.clients).where(and(eq(s.clients.organisationId, ctx.organisationId), inArray(s.clients.id, c))) : [],
+    h.length
+      ? ctx.db.select({ id: s.chantiers.id, nom: s.chantiers.titre, reference: s.chantiers.reference }).from(s.chantiers).where(and(eq(s.chantiers.organisationId, ctx.organisationId), inArray(s.chantiers.id, h)))
+      : [],
+  ]);
+  return { clients: Object.fromEntries(lc.map((x) => [x.id, x.nom])) as Record<string, string>, chantiers: Object.fromEntries(lh.map((x) => [x.id, x.nom])) as Record<string, string> };
 }

@@ -42,6 +42,8 @@ export interface OptionsCrud<L extends Record<string, any>> {
   table: PgTable & Record<string, any>;
   prefixe: string;
   libelle: string;
+  /** Accord des participes dans le journal (« Note créée »). */
+  feminin?: boolean;
   creation: z.ZodType<any, any>;
   modification: z.ZodType<any, any>;
   recherche?: PgColumn[];
@@ -112,6 +114,7 @@ function traduireErreurBase(e: unknown, libelle: string): never {
 
 export function creerCrud<L extends Record<string, any>>(o: OptionsCrud<L>) {
   const t = o.table as any;
+  const e = o.feminin ? "e" : "";
 
   async function charger(tx: Executeur, ctx: Contexte, id: string): Promise<L> {
     const [l] = await tx.select().from(t).where(and(eq(t.organisationId, ctx.organisationId), eq(t.id, id))).limit(1);
@@ -173,7 +176,7 @@ export function creerCrud<L extends Record<string, any>>(o: OptionsCrud<L>) {
           action: "creation",
           typeRessource: o.ressource,
           ressourceId: cree.id,
-          resume: `${o.libelle} créé : ${o.resume(cree)}`,
+          resume: `${o.libelle} créé${e} : ${o.resume(cree)}`,
           ...(o.liens?.(cree) ?? {}),
         });
         return cree;
@@ -202,7 +205,7 @@ export function creerCrud<L extends Record<string, any>>(o: OptionsCrud<L>) {
           action: "modification",
           typeRessource: o.ressource,
           ressourceId: id,
-          resume: `${o.libelle} modifié : ${o.resume(apres)}`,
+          resume: `${o.libelle} modifié${e} : ${o.resume(apres)}`,
           changements,
           ...(o.liens?.(apres) ?? {}),
         });
@@ -223,7 +226,7 @@ export function creerCrud<L extends Record<string, any>>(o: OptionsCrud<L>) {
           action: "suppression",
           typeRessource: o.ressource,
           ressourceId: id,
-          resume: `${o.libelle} supprimé : ${o.resume(avant)}`,
+          resume: `${o.libelle} supprimé${e} : ${o.resume(avant)}`,
           ...(o.liens?.(avant) ?? {}),
         });
       });
