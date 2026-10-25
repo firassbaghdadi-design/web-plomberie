@@ -1,55 +1,35 @@
-// Télécharge, au build, les photos publiées par l'entreprise sur son site actuel (page « Nos agences » et accueil).
-// Elles sont listées dans le journal de build, puis enregistrées dans public/photos/site-N.<ext>.
-import { copyFileSync, mkdirSync, writeFileSync } from "node:fs";
+// Télécharge, au build, les images publiées par l'entreprise sur son site actuel (somsoupons.fr) :
+// visuels des agences, photos avant/après de chantiers, logos de qualification.
+import { mkdirSync, writeFileSync } from "node:fs";
 
-const pages = ["http://www.somsoupons.fr/agences.html", "http://www.somsoupons.fr/", "http://www.somsoupons.fr/presentation.html", "http://www.somsoupons.fr/metier.html"];
+const BASE = "http://www.somsoupons.fr/images/";
+const files = {
+  "agence-seize.png": "accueil/1.png",
+  "agence-dixsept.png": "accueil/2.png",
+  "agence-transvaal.png": "accueil/3.png",
+  "realisation-1.jpg": "diaporamaindex2/avantapres1b.jpg",
+  "realisation-2.jpg": "diaporamaindex2/avantapres2b.jpg",
+  "realisation-3.jpg": "diaporamaindex2/avantapres3b.jpg",
+  "realisation-4.jpg": "diaporamaindex2/avantapres4b.jpg",
+  "realisation-5.jpg": "diaporamaindex2/avantapres5b.jpg",
+  "logo-qualibat.png": "qualibat.png",
+  "logo-pg.png": "pgr.png",
+  "logo-rge.png": "rge.png",
+};
 const outDir = new URL("../public/photos/", import.meta.url);
 mkdirSync(outDir, { recursive: true });
-const found = [];
-for (const page of pages) {
+const manifest = {};
+for (const [name, path] of Object.entries(files)) {
   try {
-    const html = await (await fetch(page, { signal: AbortSignal.timeout(20000) })).text();
-    for (const m of html.matchAll(/<img[^>]*>/gi)) {
-      const src = (m[0].match(/src=["']([^"']+)["']/i) ?? [])[1];
-      const alt = (m[0].match(/alt=["']([^"']*)["']/i) ?? [])[1] ?? "";
-      if (src) found.push({ page, src: new URL(src, page).href, alt });
-    }
-    for (const m of html.matchAll(/url\(["']?([^"')]+\.(?:jpe?g|png|webp))["']?\)/gi)) found.push({ page, src: new URL(m[1], page).href, alt: "(css)" });
+    const res = await fetch(BASE + path, { signal: AbortSignal.timeout(20000) });
+    const type = res.headers.get("content-type") ?? "";
+    if (!res.ok || !type.startsWith("image/")) throw new Error(`${res.status} ${type}`);
+    writeFileSync(new URL(name, outDir), Buffer.from(await res.arrayBuffer()));
+    manifest[name.replace(/\.\w+$/, "")] = `/photos/${name}`;
   } catch (e) {
-    console.warn(`[site] ${page} : ${e.message}`);
-  }
-}
-const seen = new Set();
-const manifest = [];
-for (const f of found) {
-  if (seen.has(f.src)) continue;
-  seen.add(f.src);
-  try {
-    const res = await fetch(f.src, { signal: AbortSignal.timeout(20000) });
-    const buf = Buffer.from(await res.arrayBuffer());
-    const ext = (f.src.match(/\.(jpe?g|png|webp|gif)(\?|$)/i) ?? [, "jpg"])[1].toLowerCase();
-    const name = `site-${manifest.length + 1}.${ext}`;
-    writeFileSync(new URL(name, outDir), buf);
-    manifest.push({ name, ...f, bytes: buf.length });
-    console.log(`[site] ${name} ${buf.length}o ${f.page} -> ${f.src} alt="${f.alt}"`);
-  } catch (e) {
-    console.warn(`[site] ${f.src} : ${e.message}`);
+    manifest[name.replace(/\.\w+$/, "")] = null;
+    console.warn(`[site] ${path} : ${e.message}`);
   }
 }
 writeFileSync(new URL("../src/lib/site-photos.generated.json", import.meta.url), JSON.stringify(manifest, null, 2) + "\n");
-
-// Photos des agences : les photos (JPEG de plus de 15 ko) de la page « Nos agences », dans l'ordre de la page :
-// agence du 16e, agence du 17e, menuiserie Transvaal. À vérifier à l'écran.
-const keys = ["seize", "dixsept", "transvaal"];
-const photos = manifest.filter((m) => m.page.endsWith("agences.html") && /\.jpe?g$/i.test(m.name) && m.bytes > 15000);
-const agencyPhotos = {};
-keys.forEach((k, i) => {
-  const m = photos[i];
-  if (m) {
-    copyFileSync(new URL(m.name, outDir), new URL(`agence-${k}.jpg`, outDir));
-    agencyPhotos[k] = `/photos/agence-${k}.jpg`;
-  } else agencyPhotos[k] = null;
-});
-writeFileSync(new URL("../src/lib/agency-photos.generated.json", import.meta.url), JSON.stringify(agencyPhotos, null, 2) + "\n");
-console.log("[site] photos d'agences", JSON.stringify(agencyPhotos));
-console.log(`[site] ${manifest.length} images du site actuel`);
+console.log(`[site] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(files).length} images du site actuel`);

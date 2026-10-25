@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AgencyPanels, Brief, CtaBand, FaqList, HouseFrame, Marquee, QualGrid, Timeline } from "@/components/Sections";
 import { TradesShowcase } from "@/components/TradesShowcase";
+import { Realisations } from "@/components/Original";
 import { ArrowIcon, PhoneIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
@@ -93,6 +94,8 @@ export default function HomePage() {
           <TradesShowcase compact />
         </div>
       </section>
+
+      <Realisations limit={2} />
 
       <section aria-labelledby="titre-agences" className="section pt-0">
         <div className="container-x">

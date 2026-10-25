@@ -4,9 +4,10 @@ import type { DeepSection, PageContent } from "@/lib/content";
 import type { PhotoId } from "@/lib/photos";
 import { ArrowIcon, PhoneIcon, PinIcon } from "./Icons";
 import { Photo } from "./Photo";
-import agencyPhotos from "@/lib/agency-photos.generated.json";
 import type { Agency } from "@/lib/site";
 import Image from "next/image";
+import { siteSrc } from "@/lib/photos";
+import { agencyActivities, agencyTeams } from "@/lib/original";
 
 /** La photo prend la silhouette de la maison du logo, soulignée par les deux traits orange et vert. */
 export function HouseFrame({ photo, priority = false, chip, sizes = "(min-width:1024px) 40vw, 90vw" }: { photo: PhotoId; priority?: boolean; chip?: React.ReactNode; sizes?: string }) {
@@ -337,10 +338,13 @@ export function AgencyPanels({ compact = false }: { compact?: boolean }) {
       {agencies.map((a, i) => (
         <article key={a.key} className="agency flex flex-col justify-between p-7 sm:p-9" style={{ ["--tone" as string]: tones[i] }}>
           <div className="bg">
-            <AgencyPhoto agency={a} sizes="(min-width:1024px) 50vw, 92vw" />
+            <Photo id={a.photo} sizes="(min-width:1024px) 50vw, 92vw" />
           </div>
           <div className="flex items-start justify-between gap-4">
-            <span className="num" aria-hidden="true">{nums[i]}</span>
+            <span className="flex items-center gap-4">
+              <span className="num" aria-hidden="true">{nums[i]}</span>
+              <AgencyVisual agency={a} className="h-20 w-20" />
+            </span>
             <span className="rounded-full border border-white/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">{a.role}</span>
           </div>
           <div>
@@ -351,7 +355,10 @@ export function AgencyPanels({ compact = false }: { compact?: boolean }) {
             {compact ? null : (
               <div className="more">
                 <p className="mt-4 max-w-md text-sm text-white/85">{a.text}</p>
-                <p className="mt-2 text-sm text-white/75">{a.trades}</p>
+                <p className="mt-2 text-sm text-white/75">{a.key === "transvaal" ? a.trades : agencyActivities}</p>
+                {agencyTeams[a.key] ? (
+                  <p className="mt-2 text-sm text-white/85">{agencyTeams[a.key].map((t) => `${t.name}, ${t.role.toLowerCase()}`).join(" · ")}</p>
+                ) : null}
               </div>
             )}
             <div className="mt-6 flex flex-wrap gap-2">
@@ -406,9 +413,13 @@ export function QualGrid() {
   );
 }
 
-/** Photo de l'agence publiée sur le site actuel de l'entreprise si elle a pu être récupérée, sinon photo provisoire. */
-export function AgencyPhoto({ agency, sizes }: { agency: Agency; sizes: string }) {
-  const src = (agencyPhotos as Record<string, string | null>)[agency.key];
-  if (src) return <Image src={src} alt={`Agence ${agency.short}, ${agency.street}`} fill sizes={sizes} className="object-cover" />;
-  return <Photo id={agency.photo} sizes={sizes} />;
+/** Visuel de l'agence publié sur le site actuel de l'entreprise (petit format : affiché en vignette). */
+export function AgencyVisual({ agency, className = "h-24 w-24" }: { agency: Agency; className?: string }) {
+  const src = siteSrc(`agence-${agency.key}`);
+  if (!src) return null;
+  return (
+    <span className={`relative block shrink-0 overflow-hidden rounded-2xl ring-2 ring-white/70 ${className}`}>
+      <Image src={src} alt={`Agence ${agency.short}, visuel du site actuel`} fill sizes="120px" className="object-cover" />
+    </span>
+  );
 }

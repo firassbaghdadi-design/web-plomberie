@@ -1,7 +1,7 @@
 import { ContactForm } from "@/components/ContactForm";
 import { MailIcon, PhoneIcon, PinIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
-import { AgencyPhoto, Breadcrumb } from "@/components/Sections";
+import { AgencyVisual, Breadcrumb } from "@/components/Sections";
 import { contact as c } from "@/lib/content";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 import { PATHS, agencies, business, requestTypes } from "@/lib/site";
@@ -53,10 +53,9 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
           <div className="space-y-5">
             {agencies.map((a) => (
               <article key={a.key} className="overflow-hidden rounded-[1.6rem] border border-line bg-white">
-                <div className="relative aspect-[16/8]">
-                  <AgencyPhoto agency={a} sizes="(min-width:1024px) 36vw, 92vw" />
-                </div>
-                <div className="p-7">
+                <div className="flex items-start gap-5 p-7">
+                <AgencyVisual agency={a} className="h-20 w-20 !ring-line" />
+                <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-action">{a.role}</p>
                 <h3 className="mt-1 text-2xl">{a.name}</h3>
                 <p className="mt-3 flex gap-2 text-sm">
@@ -71,6 +70,7 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
                   <a href={`mailto:${a.email}`} className="btn-ghost !min-h-[44px] !px-5">
                     {a.email}
                   </a>
+                </div>
                 </div>
                 </div>
               </article>
