@@ -35,16 +35,16 @@ export function Header() {
           <ul className="flex items-center gap-1 text-[0.95rem] font-medium">
             {nav.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className={`rounded-full px-3 py-2 transition hover:text-blue ${pathname === n.href ? "text-blue" : ""}`}>
+                <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className={`whitespace-nowrap rounded-full px-2.5 py-2 transition hover:text-blue ${pathname === n.href ? "text-blue" : ""}`}>
                   {n.short}
                 </Link>
               </li>
             ))}
             <li aria-hidden="true" className="mx-1 h-5 w-px bg-line" />
-            {navSecondary.slice(0, 2).map((n) => (
+            {navSecondary.slice(0, 1).map((n) => (
               <li key={n.href}>
-                <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className={`rounded-full px-3 py-2 transition hover:text-blue ${pathname === n.href ? "text-blue" : ""}`}>
-                  {n.label.replace(" ?", "")}
+                <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className={`whitespace-nowrap rounded-full px-2.5 py-2 transition hover:text-blue ${pathname === n.href ? "text-blue" : ""}`}>
+                  L'entreprise
                 </Link>
               </li>
             ))}

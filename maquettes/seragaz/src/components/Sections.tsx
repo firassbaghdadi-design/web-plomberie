@@ -6,6 +6,9 @@ import type { Page, Section } from "@/lib/types";
 import { ArrowIcon, CheckIcon, ClockIcon, FlameMark, MailIcon, PhoneIcon, PinIcon } from "./Icons";
 import { Img } from "./Img";
 
+/** Espace insécable avant « : ? ! ; » (typographie française) : jamais de ponctuation orpheline en début de ligne. */
+export const fr = (t: string) => t.replace(/ ([:;?!])/g, "\u00a0$1");
+
 const photoAlt = (id: string) =>
   id === "accueil" ? "Intervention SERAGAZ sur une chaudière gaz (photo publiée par l'entreprise)" : id === "atelier" ? "Technicien SERAGAZ au travail (photo publiée par l'entreprise)" : commonsAlt(id as CommonsId);
 
@@ -51,7 +54,7 @@ export function PageHero({ page, crumbs }: { page: Page; crumbs: { name: string;
             {page.kicker}
           </p>
           <h1 className="mt-5 text-[2.35rem] font-semibold sm:text-6xl xl:text-[4.6rem]">
-            <span className="line-up"><span>{page.h1}</span></span>
+            <span className="line-up"><span>{fr(page.h1)}</span></span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg text-white/75 sm:text-xl">{page.lead}</p>
           <div className="mt-9">
@@ -97,7 +100,7 @@ function SectionBody({ s, n }: { s: Section; n: number }) {
   return (
     <article id={id} className="scroll-mt-28 border-t border-line pt-10 first:border-t-0 first:pt-0 sm:pt-14">
       <p className="label text-ink-faint" data-reveal>{String(n).padStart(2, "0")}</p>
-      <h2 className="mt-3 text-[1.9rem] font-semibold text-night sm:text-[2.6rem]">{s.h2}</h2>
+      <h2 className="mt-3 text-[1.9rem] font-semibold text-night sm:text-[2.6rem]">{fr(s.h2)}</h2>
       {s.answer ? <p className="answer">{s.answer}</p> : null}
       {s.paras?.length ? <div className="prose-sg mt-6 text-ink-soft">{s.paras.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}</div> : null}
       {s.list?.length ? (
@@ -168,7 +171,7 @@ export function FaqList({ items, title = "Questions fréquentes" }: { items: Faq
       <div className="wrap grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="label text-blue">FAQ</p>
-          <h2 id="titre-faq" className="mt-3 text-4xl font-semibold text-night sm:text-5xl">{title}</h2>
+          <h2 id="titre-faq" className="mt-3 text-4xl font-semibold text-night sm:text-5xl">{fr(title)}</h2>
         </div>
         <div className="divide-y divide-line border-y border-line lg:col-span-8">
           {items.map((f) => (
@@ -233,10 +236,10 @@ export function CtaBand({ title, text, contactType }: { title: string; text: str
   return (
     <section className="relative overflow-hidden bg-blue text-white">
       <div className="grid-lines absolute inset-0" aria-hidden="true" />
-      <FlameMark className="pointer-events-none absolute -right-10 -top-10 h-72 w-60 opacity-[0.12]" />
+      <FlameMark className="pointer-events-none absolute -right-8 top-1/2 h-96 w-72 -translate-y-1/2 opacity-[0.1]" />
       <div className="wrap relative flex flex-col gap-8 py-16 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
-          <p className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">{title}</p>
+          <p className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">{fr(title)}</p>
           <p className="mt-4 text-lg text-white/80">{text}</p>
         </div>
         <div className="flex flex-wrap gap-3">

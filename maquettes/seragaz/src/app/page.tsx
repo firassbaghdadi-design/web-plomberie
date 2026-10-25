@@ -47,17 +47,17 @@ export default function HomePage() {
       {/* Héros */}
       <section className="relative overflow-hidden bg-night text-white">
         <div className="grid-lines absolute inset-0" aria-hidden="true" />
-        <div data-mask className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
+        <div data-mask className="absolute inset-y-0 right-0 hidden w-[42%] lg:block">
           <Img id="toits" alt={commonsAlt("toits")} priority className="absolute inset-0" imgClassName="ken" />
           <div className="absolute inset-0 bg-gradient-to-r from-night via-night/30 to-transparent" aria-hidden="true" />
         </div>
         <div className="wrap relative grid min-h-[calc(100svh-8rem)] content-center gap-12 py-14 lg:grid-cols-12 lg:py-20">
-          <div className="lg:col-span-8 xl:col-span-7">
+          <div className="lg:col-span-7">
             <p className="label flex items-center gap-3 text-flame">
               <span className="h-px w-8 bg-flame" aria-hidden="true" /> Votre partenaire de confiance sur Paris depuis 1985
             </p>
-            <h1 className="mt-6 text-[2.6rem] font-semibold sm:text-7xl xl:text-[5.6rem]">
-              <span className="line-up"><span>Chauffagiste à Paris 9 :</span></span>
+            <h1 className="mt-6 text-[2.5rem] font-semibold sm:text-6xl xl:text-[4.1rem]">
+              <span className="line-up"><span>Chauffagiste à Paris&nbsp;9&nbsp;:</span></span>
               <span className="line-up"><span style={{ ["--d" as string]: "120ms" }} className="text-white/55">installation et entretien</span></span>
               <span className="line-up"><span style={{ ["--d" as string]: "240ms" }}>de chaudières gaz</span></span>
             </h1>
@@ -68,10 +68,11 @@ export default function HomePage() {
           </div>
           <div className="relative lg:hidden">
             <Img id="toits" alt={commonsAlt("toits")} className="h-64 rounded-[1.5rem] sm:h-80" imgClassName="ken" />
+            <Gauge className="absolute -bottom-8 right-4 h-28 w-28 drop-shadow-2xl" />
           </div>
-          <div className="flex items-end gap-5 lg:col-span-4 lg:col-start-9 lg:flex-col lg:items-end xl:col-start-9">
-            <Gauge className="h-28 w-28 shrink-0 drop-shadow-2xl sm:h-36 sm:w-36" />
-            <dl className="grid flex-1 grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/15 shadow-plate backdrop-blur lg:w-80 lg:flex-none">
+          <div className="flex flex-col items-stretch gap-5 lg:col-span-4 lg:col-start-9 lg:items-end">
+            <Gauge className="hidden h-36 w-36 shrink-0 drop-shadow-2xl lg:block" />
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/15 shadow-plate backdrop-blur lg:w-80">
               {[["Famille", "Depuis 1903"], ["SERAGAZ", "Fondée en 1985"], ["Réseau", "Partenaire GRDF"], ["Qualifications", "RGE · PG PMG"]].map(([k, v]) => (
                 <div key={k} className="bg-night/85 px-4 py-3.5">
                   <dt className="label text-[0.6rem] text-white/50">{k}</dt>
@@ -124,7 +125,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="lg:col-span-6 lg:pl-8">
-            <p className="label text-blue" data-reveal>D'expertise</p>
+            <p className="label text-blue" data-reveal>Notre expertise</p>
             <h2 id="titre-expertise" className="mt-4 text-4xl font-semibold text-night sm:text-5xl" data-reveal>Plus de 40 ans à Paris et en petite couronne</h2>
             <div className="prose-sg mt-6 text-ink-soft" data-reveal>
               <p>Nous intervenons depuis plus de 40 ans à Paris et la petite couronne pour assurer le bon fonctionnement et la longévité de vos installations de chauffage et appareils à gaz type chauffe-eau, chaudière.</p>

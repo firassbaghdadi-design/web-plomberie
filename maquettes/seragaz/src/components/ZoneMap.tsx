@@ -1,32 +1,33 @@
 import { business } from "@/lib/site";
 
-/** Schéma de la zone : le 9e au centre, le rayon de 15 km annoncé par l'entreprise, les communes citées en pied de page. */
+/** Schéma de la zone (sans échelle) : Paris, l'atelier de la rue de Dunkerque et les communes citées par l'entreprise. */
 export function ZoneMap() {
   const towns = [
-    { n: "Clichy", x: 138, y: 92 },
-    { n: "Levallois-Perret", x: 92, y: 128 },
-    { n: "Boulogne-Billancourt", x: 70, y: 262 },
-    { n: "Le Pré-Saint-Gervais", x: 296, y: 118 },
-    { n: "Saint-Mandé", x: 308, y: 240 },
-    { n: "Vincennes", x: 338, y: 210 },
+    { n: "Clichy", x: 232, y: 66, a: "end" },
+    { n: "Levallois-Perret", x: 160, y: 98, a: "end" },
+    { n: "Boulogne-Billancourt", x: 172, y: 268, a: "end" },
+    { n: "Le Pré-Saint-Gervais", x: 408, y: 82, a: "start" },
+    { n: "Vincennes", x: 482, y: 206, a: "start" },
+    { n: "Saint-Mandé", x: 452, y: 244, a: "start" },
   ];
+  const paris = "M115 178 L134 142 L172 112 L228 93 L290 86 L346 93 L396 112 L430 140 L452 172 L446 206 L420 236 L380 258 L330 272 L275 277 L220 270 L174 252 L139 228 L117 202 Z";
   return (
-    <svg viewBox="0 0 400 360" className="h-auto w-full" role="img" aria-label={`Zone d'intervention de SERAGAZ : Paris et ${business.areaList.slice(1).join(", ")}, dans un rayon de 15 km autour du 9e arrondissement`}>
-      {[150, 110, 70].map((r, i) => (
-        <circle key={r} cx="200" cy="170" r={r} fill={i === 2 ? "rgba(136,187,61,.12)" : "none"} stroke="rgba(255,255,255,.18)" strokeDasharray={i === 0 ? "4 6" : undefined} />
-      ))}
-      <path d="M118 150c10-40 50-70 92-72 46-2 82 22 96 58 10 30 2 64-24 86-30 26-80 32-120 20-34-10-54-40-44-92z" fill="rgba(0,81,158,.35)" stroke="rgba(255,255,255,.5)" strokeWidth="1.5" />
-      <text x="200" y="215" textAnchor="middle" fill="rgba(255,255,255,.75)" fontSize="11" letterSpacing="3" fontWeight="700">PARIS 1er — 20e</text>
-      <circle cx="200" cy="150" r="7" fill="#88bb3d" />
-      <circle cx="200" cy="150" r="16" fill="none" stroke="#88bb3d" strokeOpacity=".5" />
-      <text x="214" y="146" fill="#fff" fontSize="12" fontWeight="700">SERAGAZ · Paris 9e</text>
+    <svg viewBox="0 0 580 380" className="h-auto w-full" role="img" aria-label={`Zone d'intervention de SERAGAZ : Paris et ${business.areaList.slice(1).join(", ")}, dans un rayon d'environ 15 km autour du 9e arrondissement`}>
+      <circle cx="284" cy="138" r="178" fill="none" stroke="rgba(255,255,255,.16)" strokeDasharray="3 7" />
+      <circle cx="284" cy="138" r="118" fill="none" stroke="rgba(255,255,255,.1)" />
+      <path d={paris} fill="rgba(0,81,158,.32)" stroke="rgba(255,255,255,.55)" strokeWidth="1.4" strokeLinejoin="round" />
+      <text x="283" y="232" textAnchor="middle" fill="rgba(255,255,255,.7)" fontSize="12" letterSpacing="4" fontWeight="700">PARIS · 1er — 20e</text>
+      <circle cx="284" cy="138" r="22" fill="rgba(136,187,61,.18)" />
+      <circle cx="284" cy="138" r="7" fill="#88bb3d" />
+      <text x="298" y="134" fill="#fff" fontSize="13" fontWeight="700">SERAGAZ</text>
+      <text x="298" y="150" fill="rgba(255,255,255,.65)" fontSize="11">69 rue de Dunkerque, 9e</text>
       {towns.map((t) => (
         <g key={t.n}>
-          <circle cx={t.x} cy={t.y} r="3.5" fill="#fff" />
-          <text x={t.x + (t.x > 200 ? 8 : -8)} y={t.y + 4} textAnchor={t.x > 200 ? "start" : "end"} fill="rgba(255,255,255,.8)" fontSize="11">{t.n}</text>
+          <circle cx={t.x} cy={t.y} r="4" fill="#fff" />
+          <text x={t.x + (t.a === "start" ? 10 : -10)} y={t.y + 4} textAnchor={t.a as "start" | "end"} fill="rgba(255,255,255,.85)" fontSize="13">{t.n}</text>
         </g>
       ))}
-      <text x="200" y="345" textAnchor="middle" fill="rgba(255,255,255,.5)" fontSize="10" letterSpacing="2">RAYON D'ENVIRON 15 KM · SCHÉMA SANS ÉCHELLE</text>
+      <text x="290" y="362" textAnchor="middle" fill="rgba(255,255,255,.45)" fontSize="10" letterSpacing="2.5">RAYON D'ENVIRON 15 KM · SCHÉMA SANS ÉCHELLE</text>
     </svg>
   );
 }

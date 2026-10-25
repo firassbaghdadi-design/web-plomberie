@@ -53,3 +53,23 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 38543041 : Atelier Truelle (toit)
 
 Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels).
+
+Seragaz utilise les photos de son propre site (aucune photo Pexels).
+
+## Wikimedia Commons (licences libres, crédits sur la page Mentions légales du site concerné)
+
+Photos de lieux réels, à ne pas reprendre sur un autre site :
+
+- Rooftops and chimneys (41723756875).jpg : Seragaz (toits)
+- Paris - Rooftops in Paris - 3052.jpg : Seragaz (toits-large)
+- View of rooftops in Paris with brown chimneys (Unsplash).jpg : Seragaz (cheminees)
+- P1320780 Paris IX et X rue de Dunkerque rwk.jpg : Seragaz (dunkerque)
+- Paris gare nord face 1.jpg : Seragaz (gare-nord)
+- Paris Canal St-Martin écluses Récollets 2013.jpg : Seragaz (canal)
+- La rue de l'Abreuvoir, Montmartre, D.4934.jpg : Seragaz (montmartre)
+- Square des Batignolles @ Paris (29769168792).jpg : Seragaz (batignolles)
+- Paris, Gare Saint Lazare, 3 June 2019.jpg : Seragaz (saint-lazare)
+- Cirque d'hiver, Paris 10 April 2011.jpg : Seragaz (cirque)
+- Hôtel Ville - Clichy (FR92) - 2023-07-08 - 1.jpg : Seragaz (clichy)
+- Flags and Southeast of the Hôtel de Ville of Levallois-Perret.jpg : Seragaz (levallois)
+- Château de Vincennes 001.jpg : Seragaz (vincennes)
