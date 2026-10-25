@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fond: 245 245 247;
+  --carte: 255 255 255;
+  --creux: 240 240 244;
+  --trait: 229 229 234;
+  --encre: 29 29 31;
+  --doux: 110 110 115;
+  --pale: 160 160 166;
+  --terre: 200 85 61;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: 0 0 0;
+    --carte: 28 28 30;
+    --creux: 44 44 46;
+    --trait: 58 58 60;
+    --encre: 245 245 247;
+    --doux: 152 152 158;
+    --pale: 99 99 104;
+    --terre: 226 108 84;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-fond font-sans text-[15px] leading-relaxed text-encre antialiased;
+  font-feature-settings: "cv11", "ss01";
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+::selection {
+  background: rgb(var(--terre) / 0.25);
+}
+
+@layer components {
+  .carte {
+    @apply rounded-3xl bg-carte shadow-doux;
+  }
+  .rang {
+    @apply flex items-center gap-3 px-5 py-4 transition-colors duration-200;
+  }
+  .rang + .rang {
+    @apply border-t border-trait/70;
+  }
+  a.rang:hover {
+    @apply bg-creux/60;
+  }
+  .titre-page {
+    @apply text-[28px] font-semibold leading-tight tracking-tight sm:text-[34px];
+  }
+  .sur-titre {
+    @apply text-[12px] font-medium uppercase tracking-[0.08em] text-doux;
+  }
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-creux px-5 text-[15px] font-medium text-encre transition duration-200 hover:bg-trait active:scale-[0.98] disabled:opacity-50;
+  }
+  .btn-primaire {
+    @apply bg-terre text-white hover:bg-terre hover:brightness-95;
+  }
+  .btn-petit {
+    @apply min-h-[34px] px-4 text-[13px];
+  }
+  .btn-texte {
+    @apply inline-flex min-h-[34px] items-center text-[14px] font-medium text-terre transition-opacity duration-200 hover:opacity-70;
+  }
+  .champ {
+    @apply min-h-[46px] w-full rounded-2xl border border-transparent bg-creux px-4 text-[16px] text-encre placeholder:text-pale outline-none transition duration-200 focus:border-terre/60 focus:bg-carte;
+  }
+  textarea.champ {
+    @apply py-3;
+  }
+  .etiquette {
+    @apply mb-1.5 block text-[13px] font-medium text-doux;
+  }
+  .pastille {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-creux px-2.5 py-[3px] text-[12px] font-medium text-doux;
+  }
+}
+
+.fondu {
+  animation: fondu 200ms ease-out both;
+}
+@keyframes fondu {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fondu {
+    animation: none;
+  }
+  * {
+    transition-duration: 0ms !important;
+  }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.defile-x {
+  scrollbar-width: none;
+}
+.defile-x::-webkit-scrollbar {
+  display: none;
+}

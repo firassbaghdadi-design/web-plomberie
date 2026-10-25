@@ -1,6 +1,6 @@
 import classement from "./classement.json";
 import { MODELES } from "./modeles";
-import { PROSPECT_DEFAUTS } from "@/lib/migration";
+import { PROSPECT_DEFAUTS, lireGoogle } from "@/lib/migration";
 import { REGLAGES_DEFAUT, type Db, type Evenement, type Prospect } from "@/lib/types";
 
 const MAQUETTES: Record<string, string> = {
@@ -41,8 +41,13 @@ export function seedDb(): Db {
 
   for (const c of classement) {
     const ct = CONTACTS[c.entreprise] ?? {};
+    const google = lireGoogle(c.google);
     const p: Prospect = {
       ...PROSPECT_DEFAUTS,
+      metier: "plombier",
+      source: "Classement des 20 prochaines cibles",
+      noteGoogle: google.note,
+      avisGoogle: google.avis,
       id: slug(c.entreprise),
       entreprise: c.entreprise,
       dirigeant: c.dirigeant,
@@ -96,8 +101,13 @@ export function seedDb(): Db {
     },
   ];
   for (const e of extras) {
+    const google = lireGoogle(e.notes ?? "");
     const p: Prospect = {
       ...PROSPECT_DEFAUTS,
+      metier: "plombier",
+      source: "Maquette pilote",
+      noteGoogle: google.note,
+      avisGoogle: google.avis,
       id: slug(e.entreprise),
       entreprise: e.entreprise,
       dirigeant: "",

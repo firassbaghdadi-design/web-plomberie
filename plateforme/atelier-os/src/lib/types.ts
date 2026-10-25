@@ -33,6 +33,38 @@ export const PONDERATION: Record<Statut, number> = {
   perdu: 0,
 };
 
+export const METIERS = [
+  "plombier",
+  "chauffagiste",
+  "electricien",
+  "couvreur",
+  "menuisier",
+  "macon",
+  "peintre",
+  "carreleur",
+  "serrurier",
+  "multi_services",
+  "autre",
+] as const;
+export type Metier = (typeof METIERS)[number];
+
+export const METIER_LABEL: Record<Metier, string> = {
+  plombier: "Plombier",
+  chauffagiste: "Chauffagiste",
+  electricien: "Électricien",
+  couvreur: "Couvreur",
+  menuisier: "Menuisier",
+  macon: "Maçon",
+  peintre: "Peintre",
+  carreleur: "Carreleur",
+  serrurier: "Serrurier",
+  multi_services: "Multi-services",
+  autre: "Autre",
+};
+
+/** Suggestions pour le champ « source » (texte libre). */
+export const SOURCES = ["Classement Pappers", "Google Maps", "Pages Jaunes", "Recommandation", "Bouche-à-oreille", "Salon", "Site web", "Réseaux sociaux"];
+
 export const FORMULES = ["essentiel", "visibilite", "croissance", "personnalise"] as const;
 export type Formule = (typeof FORMULES)[number];
 
@@ -88,6 +120,19 @@ export interface Prospect {
   statut: Statut;
   vague: number | null;
   rang: number | null;
+  /** corps de métier ("" = non renseigné) */
+  metier: Metier | "";
+  /** d'où vient le prospect (texte libre) */
+  source: string;
+  /** note Google sur 5 */
+  noteGoogle: number | null;
+  /** nombre d'avis Google */
+  avisGoogle: number | null;
+  /** points faibles du site actuel, pour argumenter */
+  pointsFaibles: string;
+  prochaineAction: string;
+  /** jour AAAA-MM-JJ (Paris) */
+  prochaineActionLe: string | null;
   /** texte libre : angle de l'offre à proposer */
   offre: string;
   /** formule commerciale choisie ("" = pas encore choisie) */

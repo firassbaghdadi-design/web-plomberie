@@ -8,7 +8,7 @@ import { formatJour } from "@/lib/dates";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Tableau de bord" };
 
-const ETIQUETTE_ACTION = { appel: "Appel", relance: "Relance", envoi: "Envoi", rendez_vous: "RDV", rappel: "Rappel" } as const;
+const ETIQUETTE_ACTION = { appel: "Appel", relance: "Relance", envoi: "Envoi", rendez_vous: "RDV", rappel: "Rappel", action: "Action" } as const;
 
 export default async function Accueil() {
   const t = await tableauDeBord();

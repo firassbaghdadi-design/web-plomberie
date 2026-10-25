@@ -13,6 +13,8 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 - Types d'événement : `note`, `appel`, `email_envoye`, `email_ouvert`, `clic`, `reponse`, `rendez_vous`, `devis`, `signature`, `statut`, `relance`, `maquette`.
 - Les dates sont des chaînes ISO 8601 (UTC). Les échéances de relance sont des jours `AAAA-MM-JJ` (heure de Paris).
 
+Les documents enregistrés avant l'ajout d'un champ sont complétés à la lecture (valeur par défaut) ; aucun champ n'est jamais effacé.
+
 ## Règles automatiques (à connaître avant d'écrire)
 
 - Un événement `appel`, `rendez_vous`, `devis` ou `email_envoye` fait avancer l'étape du prospect, jamais reculer. `signature` passe à `signe`.
@@ -24,8 +26,8 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 ## Routes
 
 ### Prospects
-- `GET /prospects?q=&statut=&vague=` : `{ total, prospects[] }`
-- `POST /prospects` : crée. Champs : `entreprise` (obligatoire), `dirigeant`, `emails` (tableau ou chaîne séparée par des virgules ; ne jamais inventer d'adresse), `telephone`, `ville`, `arrondissement`, `siteActuel`, `maquetteUrl` (http/https), `score` (0-100), `statut`, `vague`, `offre` (texte libre), `notes`, et la vente : `formule` (`essentiel`, `visibilite`, `croissance`, `personnalise` ou vide), `montantDevis` et `montantMensuel` (euros HT, nombre ou chaîne « 1 490,50 »), `signeLe` (`AAAA-MM-JJ`). Réponse `201 { prospect }`.
+- `GET /prospects?q=&statut=&vague=&metier=` : `{ total, prospects[] }` (`metier=aucun` : métier non renseigné)
+- `POST /prospects` : crée. Champs : `entreprise` (obligatoire), `dirigeant`, `emails` (tableau ou chaîne séparée par des virgules ; ne jamais inventer d'adresse), `telephone`, `ville`, `arrondissement`, `siteActuel`, `maquetteUrl` (http/https), `score` (0-100), `statut`, `vague`, `offre` (texte libre), `notes` ; pour vendre : `metier` (`plombier`, `chauffagiste`, `electricien`, `couvreur`, `menuisier`, `macon`, `peintre`, `carreleur`, `serrurier`, `multi_services`, `autre` ou vide), `source` (texte libre : Google Maps, recommandation…), `noteGoogle` (0 à 5, « 4,6 » accepté), `avisGoogle` (entier), `pointsFaibles` (points faibles du site actuel), `prochaineAction` (texte) et `prochaineActionLe` (`AAAA-MM-JJ`, la fait apparaître dans « à faire » ce jour-là, `genre: "action"`) ; et l'argent : `formule` (`essentiel`, `visibilite`, `croissance`, `personnalise` ou vide), `montantDevis` et `montantMensuel` (euros HT, nombre ou chaîne « 1 490,50 »), `signeLe` (`AAAA-MM-JJ`). Réponse `201 { prospect }`.
 - `GET /prospects/{id}` : `{ prospect, evenements[], emails[], relances[] }`
 - `PATCH /prospects/{id}` : mêmes champs, plus `stop` (booléen). `{ prospect }`
 - `DELETE /prospects/{id}` : supprime le prospect et son historique.
@@ -62,7 +64,7 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 
 ### Tableau de bord et à faire
 - `GET /tableau-de-bord` : `{ date, jour{emailsEnvoyes,ouvertures,clics,reponses,appelsFaits,rendezVous}, semaine{...}, appelsAFaire, relancesDues, entonnoir[{statut,nombre}], totaux, aFaire[] }`
-- `GET /a-faire` : `{ actions[] }` avec `genre` = `rendez_vous` | `rappel` | `relance` | `appel` | `envoi`, `prospectId` (vide pour un rendez-vous sans prospect), `entreprise`, `titre`, `detail`, `urgence`, `relanceId` pour une relance, `agendaId` et `heure` (HH:MM, Paris) pour un rendez-vous ou rappel du jour non fait. Les rendez-vous du jour viennent en tête, par heure.
+- `GET /a-faire` : `{ actions[] }` avec `genre` = `rendez_vous` | `rappel` | `action` | `relance` | `appel` | `envoi`, `prospectId` (vide pour un rendez-vous sans prospect), `entreprise`, `titre`, `detail`, `urgence`, `relanceId` pour une relance, `agendaId` et `heure` (HH:MM, Paris) pour un rendez-vous ou rappel du jour non fait. Les rendez-vous du jour viennent en tête, par heure.
 
 ### E-mails
 - `GET /emails?prospectId=&statut=` ; `GET /emails/{id}`

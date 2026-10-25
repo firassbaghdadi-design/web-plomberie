@@ -10,8 +10,10 @@ export function GET(req: Request) {
     const q = (u.searchParams.get("q") ?? "").toLowerCase();
     const statut = u.searchParams.get("statut");
     const vague = u.searchParams.get("vague");
+    const metier = u.searchParams.get("metier");
     let liste = await listerProspects();
     if (statut && (STATUTS as readonly string[]).includes(statut)) liste = liste.filter((p) => p.statut === statut);
+    if (metier) liste = liste.filter((p) => p.metier === (metier === "aucun" ? "" : metier));
     if (vague) liste = liste.filter((p) => String(p.vague) === vague);
     if (q) liste = liste.filter((p) => `${p.entreprise} ${p.dirigeant} ${p.ville} ${p.arrondissement} ${p.emails.join(" ")}`.toLowerCase().includes(q));
     return { total: liste.length, prospects: liste };

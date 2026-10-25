@@ -2,6 +2,8 @@
 
 Le suivi commercial de l'Atelier Truelle : prospects, maquettes, e-mails, ouvertures, clics, relances, appels, rendez-vous, devis, signatures. Remplace le tableau Excel. Une seule personne se connecte ; Claude le pilote par l'API.
 
+Pages : tableau de bord (activité du jour et de la semaine, chiffre d'affaires signé, en devis pondéré, récurrent, objectif du mois), prospects (filtres par étape, métier, vague), pipeline en colonnes (glisser-déposer), agenda (rendez-vous, rappels, .ics), e-mails, réglages (objectif, import et export CSV). Recherche globale : ⌘K ou la loupe.
+
 Next.js 14 (App Router), TypeScript, Tailwind 3. Interface en français, mode sombre automatique, pensée pour l'iPhone.
 
 ## Variables d'environnement
@@ -28,6 +30,8 @@ npm run build && npm run test:e2e   # voir scripts/e2e.mjs (Playwright, captures
 ## Stockage
 
 Tout passe par `src/lib/db.ts` (`readDb`, `updateDb`). En production : un document JSON dans un magasin Vercel Blob privé (`atelier-os-data`), écrit avec contrôle d'ETag. En développement : `data/db.json`. Pour passer à Postgres ou KV, réécrire les deux fonctions du `backend` de ce fichier ; rien d'autre ne change. Au premier lancement, la base est remplie avec les 20 prospects de `prospection/classement-20-prochaines.md` et les 4 maquettes (Gaz Flash, Entreprise Rousseau, Sandrin-Rousseau, Somsou-Pons). Seules les adresses e-mail publiques déjà relevées dans le dépôt y figurent.
+
+Migration douce : `src/lib/migration.ts` complète à la lecture les champs ajoutés après coup (métier, note Google, formule, montants, agenda, réglages…). La base n'est jamais réinitialisée ; un document existant reste valide.
 
 ## Suivi des ouvertures et des clics
 

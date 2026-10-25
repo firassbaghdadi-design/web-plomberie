@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { readDb } from "@/lib/db";
 import { EVENT_LABEL } from "@/lib/types";
 import { AjoutEvenement, BoutonApi, ChoixStatut, Copier, FormArgent, FormProspect, PreparerEmail } from "@/components/Formulaires";
-import { FORMULE_INFO } from "@/lib/types";
+import { FORMULE_INFO, METIER_LABEL } from "@/lib/types";
+import { Etoiles } from "@/components/ui";
 import { euros } from "@/lib/format";
 import { PastilleStatut, Titre, Vide } from "@/components/ui";
 import { Icone } from "@/components/Icone";
@@ -26,7 +27,9 @@ export default async function Fiche({ params }: { params: { id: string } }) {
   const heureDefaut = `${String(Math.min(partiesParis().heure + 1, 23)).padStart(2, "0")}:00`;
   const nomModele = (id: string) => db.modeles.find((m) => m.id === id)?.nom ?? id;
 
+  const aujourdhui = jourParis();
   const infos: Array<[string, React.ReactNode]> = [
+    ["Métier", p.metier ? METIER_LABEL[p.metier] : "—"],
     ["Dirigeant", p.dirigeant || "—"],
     [
       "E-mail",
@@ -45,6 +48,8 @@ export default async function Fiche({ params }: { params: { id: string } }) {
     ["Téléphone", p.telephone ? <a key="t" href={`tel:${p.telephone.replace(/\s/g, "")}`} className="text-terre">{p.telephone}</a> : "—"],
     ["Ville", [p.ville, p.arrondissement].filter(Boolean).join(" ") || "—"],
     ["Site actuel", p.siteActuel ? <a key="s" href={p.siteActuel} target="_blank" rel="noreferrer" className="break-all text-terre">{p.siteActuel.replace(/^https?:\/\//, "")}</a> : "—"],
+    ["Google", p.noteGoogle !== null ? <Etoiles key="g" note={p.noteGoogle} avis={p.avisGoogle} /> : "—"],
+    ["Source", p.source || "—"],
     ["Maquette", p.maquetteUrl ? <a key="m" href={p.maquetteUrl} target="_blank" rel="noreferrer" className="break-all text-terre">{p.maquetteUrl.replace(/^https?:\/\//, "")}</a> : "Pas encore faite"],
     ["Score", p.score !== null ? `${p.score} / 100${p.vague ? ` · vague ${p.vague}` : ""}` : "—"],
     ["Offre", p.offre || "—"],
@@ -75,6 +80,21 @@ export default async function Fiche({ params }: { params: { id: string } }) {
         <ChoixStatut id={p.id} statut={p.statut} />
       </div>
 
+      {(p.prochaineAction || p.prochaineActionLe) && (
+        <div className="carte mb-5 flex items-center gap-3 px-5 py-3.5" data-prochaine-action>
+          <span className={`h-2 w-2 shrink-0 rounded-full ${p.prochaineActionLe && p.prochaineActionLe < aujourdhui ? "bg-terre" : "bg-encre/30"}`} />
+          <span className="min-w-0 flex-1">
+            <span className="sur-titre block !text-[11px]">Prochaine action</span>
+            <span className="block font-medium">{p.prochaineAction || "À définir"}</span>
+          </span>
+          {p.prochaineActionLe && (
+            <span className={`shrink-0 text-[13.5px] ${p.prochaineActionLe < aujourdhui ? "font-medium text-terre" : "text-doux"}`}>
+              {p.prochaineActionLe === aujourdhui ? "Aujourd'hui" : formatJour(p.prochaineActionLe)}
+            </span>
+          )}
+        </div>
+      )}
+
       <div className="mb-8 flex flex-wrap gap-2">
         {p.telephone && (
           <a href={`tel:${p.telephone.replace(/\s/g, "")}`} className="btn btn-primaire">
@@ -104,6 +124,13 @@ export default async function Fiche({ params }: { params: { id: string } }) {
               </div>
             ))}
           </dl>
+
+          {p.pointsFaibles && (
+            <>
+              <Titre>Points faibles du site actuel</Titre>
+              <div className="carte whitespace-pre-wrap p-5 text-[14.5px] leading-relaxed">{p.pointsFaibles}</div>
+            </>
+          )}
 
           <Titre>Offre et montants</Titre>
           <div className="carte">

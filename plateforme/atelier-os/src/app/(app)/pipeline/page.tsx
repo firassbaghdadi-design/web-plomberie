@@ -1,4 +1,6 @@
 import { readDb } from "@/lib/db";
+import { formatJour, jourParis } from "@/lib/dates";
+import { METIER_LABEL } from "@/lib/types";
 import { calculerPipeline, valeurProspect } from "@/lib/service";
 import { Kanban, type CarteKanban } from "@/components/Kanban";
 
@@ -8,15 +10,16 @@ export const metadata = { title: "Pipeline" };
 export default async function Pipeline() {
   const db = await readDb();
   const colonnes = calculerPipeline(db);
+  const aujourdhui = jourParis();
   const cartes: CarteKanban[] = colonnes.flatMap((c) =>
     c.prospects.map((p) => ({
       id: p.id,
       entreprise: p.entreprise,
-      sousTitre: [p.dirigeant, p.arrondissement ? `${p.ville} ${p.arrondissement}` : p.ville].filter(Boolean).join(" · "),
+      sousTitre: [p.metier ? METIER_LABEL[p.metier] : "", p.arrondissement ? `${p.ville} ${p.arrondissement}` : p.ville].filter(Boolean).join(" · "),
       statut: p.statut,
       montant: valeurProspect(p) || null,
-      prochaine: "",
-      enRetard: false,
+      prochaine: p.prochaineAction || p.prochaineActionLe ? [p.prochaineAction, p.prochaineActionLe ? (p.prochaineActionLe === aujourdhui ? "aujourd'hui" : formatJour(p.prochaineActionLe)) : ""].filter(Boolean).join(" · ") : "",
+      enRetard: Boolean(p.prochaineActionLe && p.prochaineActionLe < aujourdhui),
     })),
   );
   const actifs = db.prospects.filter((p) => p.statut !== "perdu" && p.statut !== "signe").length;

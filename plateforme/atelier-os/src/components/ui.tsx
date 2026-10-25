@@ -42,3 +42,22 @@ export function Progression({ valeur, label }: { valeur: number; label: string }
     </div>
   );
 }
+
+/** Note Google : étoiles pleines, demi et vides, puis note et nombre d'avis. */
+export function Etoiles({ note, avis }: { note: number; avis: number | null }) {
+  const pleines = Math.round(note * 2) / 2;
+  return (
+    <span className="inline-flex items-center gap-2" aria-label={`${note.toLocaleString("fr-FR")} sur 5${avis !== null ? `, ${avis} avis` : ""}`}>
+      <span className="relative inline-block text-[14px] leading-none tracking-[1px]" aria-hidden="true">
+        <span className="text-trait">★★★★★</span>
+        <span className="absolute inset-0 overflow-hidden whitespace-nowrap text-terre" style={{ width: `${(pleines / 5) * 100}%` }}>
+          ★★★★★
+        </span>
+      </span>
+      <span className="tabular-nums">
+        {note.toLocaleString("fr-FR", { minimumFractionDigits: 1 })}
+        {avis !== null && <span className="text-doux"> · {avis} avis</span>}
+      </span>
+    </span>
+  );
+}

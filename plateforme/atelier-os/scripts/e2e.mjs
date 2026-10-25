@@ -2,7 +2,7 @@
 // Usage : npm run build && npm run test:e2e
 // Playwright : le paquet « playwright » s'il est installé, sinon PLAYWRIGHT_CORE=/chemin/vers/playwright-core (et CHROME=/chemin/chrome).
 import { spawn } from "node:child_process";
-import { mkdirSync, rmSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { setTimeout as pause } from "node:timers/promises";
 
@@ -42,6 +42,10 @@ try {
     try { if ((await fetch(BASE + "/login")).ok) break; } catch {}
     await pause(500);
   }
+
+  // Session (pour appeler les pages sans navigateur)
+  const login = await fetch(BASE + "/api/login", { method: "POST", body: new URLSearchParams({ motdepasse: MDP }), redirect: "manual" });
+  const cookieSession = (login.headers.get("set-cookie") ?? "").split(";")[0];
 
   // Protection
   verifie((await fetch(BASE + "/", { redirect: "manual" })).status === 307, "la page d'accueil redirige vers la connexion");
@@ -215,6 +219,26 @@ try {
   const vide = await rq("   ");
   verifie(vide.prospects.length === 0 && vide.emails.length === 0 && vide.notes.length === 0, "recherche : vide sans résultat");
 
+  // Champs utiles à la vente
+  const gaz = (await api("/api/v1/prospects/gaz-flash")).json.prospect;
+  verifie(gaz.metier === "plombier" && gaz.noteGoogle === 3.7 && gaz.avisGoogle === 63 && gaz.source !== "", "seed : métier, note Google (3,7 · 63 avis) et source");
+  const hier = new Date(Date.now() - 86400000).toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
+  const elec = await api("/api/v1/prospects", { methode: "POST", corps: { entreprise: "Volt Électricité", metier: "electricien", source: "Google Maps", noteGoogle: "4,6", avisGoogle: "205", pointsFaibles: "Pas de version mobile, formulaire cassé", prochaineAction: "Envoyer la maquette", prochaineActionLe: hier } });
+  verifie(elec.statut === 201 && elec.json.prospect.noteGoogle === 4.6 && elec.json.prospect.avisGoogle === 205 && elec.json.prospect.metier === "electricien", "prospect avec métier, source, note Google, points faibles");
+  const elecId = elec.json.prospect.id;
+  verifie((await api("/api/v1/prospects", { methode: "POST", corps: { entreprise: "X", metier: "astronaute" } })).statut === 400, "métier inconnu refusé");
+  verifie((await api("/api/v1/prospects", { methode: "POST", corps: { entreprise: "X", noteGoogle: 6 } })).statut === 400, "note Google hors 0-5 refusée");
+  const filtre = (await api("/api/v1/prospects?metier=electricien")).json;
+  verifie(filtre.total === 1 && filtre.prospects[0].id === elecId, "API : filtre par métier");
+  const actionDue = (await api("/api/v1/a-faire")).json.actions.find((a) => a.genre === "action" && a.prospectId === elecId);
+  verifie(actionDue?.titre === "Envoyer la maquette" && actionDue.urgence === 2, "« à faire » : prochaine action en retard");
+  verifie((await rq("formulaire cassé")).notes.some((n) => n.prospectId === elecId), "recherche : points faibles du site");
+  const csvMetier = await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: "entreprise;métier;note google;avis google;source\nToit Malin;Couvreur;4,2;17;Salon\nTout Fait;multi-services;;;\n", apercu: false } });
+  const toit = (await api("/api/v1/prospects?metier=couvreur")).json.prospects[0];
+  verifie(csvMetier.json?.importes === 2 && toit?.noteGoogle === 4.2 && toit.avisGoogle === 17 && toit.source === "Salon" && (await api("/api/v1/prospects?metier=multi_services")).json.total === 1, "import CSV : métier, note Google, source");
+  const enteteCsv = expTexte.split("\r\n")[0].replace(/^\uFEFF/, "").split(";");
+  verifie(["metier", "source", "noteGoogle", "avisGoogle", "pointsFaibles", "prochaineAction", "prochaineActionLe", "formule", "montantDevis"].every((c) => enteteCsv.includes(c)), "export CSV : colonnes de vente");
+
   // Captures
   const requis = createRequire(import.meta.url);
   let pw;
@@ -338,6 +362,28 @@ try {
     verifie(true, `recherche : loupe sur iPhone (${theme})`);
     await ctx.close();
   }
+  // Filtre par métier et modification de la fiche
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR" });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + "/prospects", { waitUntil: "networkidle" });
+    await page.locator('[data-metier="electricien"]').tap();
+    await page.waitForURL(/metier=electricien/);
+    const lignes = await page.locator("a.rang").allTextContents();
+    verifie(lignes.length === 1 && lignes[0].includes("Volt"), "liste : filtre par métier");
+    await page.screenshot({ path: "captures/390-clair-prospects-metier.png", fullPage: true });
+    await page.goto(BASE + `/prospects/${autre}`, { waitUntil: "networkidle" });
+    await page.getByText("Modifier la fiche").tap();
+    await page.selectOption("#metier", "chauffagiste");
+    await page.fill("#noteGoogle", "4,8");
+    await page.fill("#prochaineAction", "Relancer pour signature");
+    await page.locator("form:has(#metier) button:not([type])").last().tap();
+    await page.waitForTimeout(900);
+    const pa = (await api(`/api/v1/prospects/${autre}`)).json.prospect;
+    verifie(pa.metier === "chauffagiste" && pa.noteGoogle === 4.8 && pa.prochaineAction === "Relancer pour signature", "fiche : métier, note et prochaine action modifiés depuis l'interface");
+    await ctx.close();
+  }
   // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone
   {
     const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR" });
@@ -388,6 +434,7 @@ try {
         ["agenda", "/agenda"],
         ["fiche", `/prospects/${id}`],
         ["fiche-gaz", "/prospects/gaz-flash"],
+        ["fiche-volt", `/prospects/${elecId}`],
         ["emails", "/emails"],
         ["modeles", "/emails?vue=modeles"],
         ["reglages", "/reglages"],
@@ -404,6 +451,30 @@ try {
     }
   }
   await navigateur.close();
+
+  // Migration douce : un document enregistré avant ces fonctions reste lisible et inscriptible
+  {
+    const actuel = readFileSync("data/db.json", "utf8");
+    const ancien = JSON.parse(actuel);
+    delete ancien.reglages;
+    delete ancien.agenda;
+    const nouveaux = ["metier", "source", "noteGoogle", "avisGoogle", "pointsFaibles", "prochaineAction", "prochaineActionLe", "formule", "montantDevis", "montantMensuel", "signeLe"];
+    for (const p of ancien.prospects) for (const k of nouveaux) delete p[k];
+    writeFileSync("data/db.json", JSON.stringify(ancien));
+    const g = (await api("/api/v1/prospects/gaz-flash")).json.prospect;
+    verifie(g.metier === "plombier" && g.noteGoogle === 3.7 && g.avisGoogle === 63 && g.formule === "" && g.montantDevis === null && g.prochaineActionLe === null, "migration : champs complétés à la lecture (note Google tirée des notes)");
+    verifie((await api("/api/v1/argent")).json.objectifMensuel === 5000 && (await api("/api/v1/agenda")).json.total === 0, "migration : réglages et agenda par défaut");
+    verifie((await api("/api/v1/prospects")).json.total === ancien.prospects.length, "migration : aucun prospect perdu");
+    const w = await api("/api/v1/prospects/gaz-flash", { methode: "PATCH", corps: { formule: "essentiel" } });
+    const relu = JSON.parse(readFileSync("data/db.json", "utf8"));
+    verifie(w.json?.prospect?.montantDevis === 1490 && relu.reglages?.objectifMensuel === 5000 && relu.prospects.find((p) => p.id === "gaz-flash").metier === "plombier", "migration : écriture après lecture d'un ancien document");
+    for (const page of ["/", "/prospects", "/pipeline", "/agenda", "/prospects/gaz-flash"]) {
+      const r = await fetch(BASE + page, { headers: { Cookie: cookieSession } });
+      if (r.status !== 200) verifie(false, `migration : ${page} répond ${r.status}`);
+    }
+    verifie(true, "migration : pages principales servies avec un ancien document");
+    writeFileSync("data/db.json", actuel);
+  }
 
   // Ménage
   await api(`/api/v1/prospects/${id}`, { methode: "DELETE" });

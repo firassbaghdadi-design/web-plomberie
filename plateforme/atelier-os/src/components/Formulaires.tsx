@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { EVENT_LABEL, FORMULES, FORMULE_INFO, STATUTS, STATUT_LABEL, type Formule, type Modele, type Prospect, type Statut } from "@/lib/types";
+import { EVENT_LABEL, FORMULES, FORMULE_INFO, METIERS, METIER_LABEL, SOURCES, STATUTS, STATUT_LABEL, type Formule, type Modele, type Prospect, type Statut } from "@/lib/types";
 import { euros } from "@/lib/format";
 
 export async function appel(chemin: string, methode: string, corps?: unknown) {
@@ -151,6 +151,13 @@ export function FormProspect({ prospect }: { prospect?: Prospect }) {
           score: v("score"),
           offre: v("offre"),
           notes: v("notes"),
+          metier: v("metier"),
+          source: v("source"),
+          noteGoogle: v("noteGoogle"),
+          avisGoogle: v("avisGoogle"),
+          pointsFaibles: v("pointsFaibles"),
+          prochaineAction: v("prochaineAction"),
+          prochaineActionLe: v("prochaineActionLe"),
         };
         if (p) lancer(() => appel(`/api/v1/prospects/${p.id}`, "PATCH", donnees));
         else
@@ -161,15 +168,46 @@ export function FormProspect({ prospect }: { prospect?: Prospect }) {
       }}
     >
       <Champ nom="entreprise" label="Entreprise" defaut={p?.entreprise} requis />
+      <div>
+        <label className="etiquette" htmlFor="metier">
+          Métier
+        </label>
+        <select id="metier" name="metier" defaultValue={p?.metier ?? ""} className="champ">
+          <option value="">Non renseigné</option>
+          {METIERS.map((m) => (
+            <option key={m} value={m}>
+              {METIER_LABEL[m]}
+            </option>
+          ))}
+        </select>
+      </div>
       <Champ nom="dirigeant" label="Dirigeant" defaut={p?.dirigeant} />
       <Champ nom="emails" label="Adresses e-mail publiques" defaut={p?.emails.join(", ")} aide="Séparées par une virgule. Laisser vide si inconnue." type="text" />
       <Champ nom="telephone" label="Téléphone" defaut={p?.telephone} type="tel" />
       <Champ nom="ville" label="Ville" defaut={p?.ville ?? "Paris"} />
       <Champ nom="arrondissement" label="Arrondissement" defaut={p?.arrondissement} />
+      <Champ nom="source" label="Source" defaut={p?.source} liste="sources" aide="D'où vient ce prospect." />
+      <datalist id="sources">
+        {SOURCES.map((s) => (
+          <option key={s} value={s} />
+        ))}
+      </datalist>
+      <div className="grid grid-cols-2 gap-3">
+        <Champ nom="noteGoogle" label="Note Google" defaut={p?.noteGoogle?.toString().replace(".", ",")} type="text" mode="decimal" exemple="4,5" />
+        <Champ nom="avisGoogle" label="Nombre d'avis" defaut={p?.avisGoogle?.toString()} type="text" mode="numeric" exemple="38" />
+      </div>
       <Champ nom="siteActuel" label="Site actuel" defaut={p?.siteActuel} type="url" />
       <Champ nom="maquetteUrl" label="Lien de la maquette" defaut={p?.maquetteUrl} type="url" />
       <Champ nom="score" label="Score (sur 100)" defaut={p?.score?.toString()} type="number" />
       <Champ nom="offre" label="Offre à proposer" defaut={p?.offre} />
+      <div className="sm:col-span-2">
+        <label className="etiquette" htmlFor="pointsFaibles">
+          Points faibles du site actuel
+        </label>
+        <textarea id="pointsFaibles" name="pointsFaibles" rows={3} defaultValue={p?.pointsFaibles} className="champ" placeholder="Pas adapté au mobile, pas de devis en ligne, lent…" />
+      </div>
+      <Champ nom="prochaineAction" label="Prochaine action" defaut={p?.prochaineAction} exemple="Rappeler pour le devis" />
+      <Champ nom="prochaineActionLe" label="Pour le" defaut={p?.prochaineActionLe ?? ""} type="date" />
       <div className="sm:col-span-2">
         <label className="etiquette" htmlFor="notes">
           Notes
@@ -186,13 +224,46 @@ export function FormProspect({ prospect }: { prospect?: Prospect }) {
   );
 }
 
-function Champ({ nom, label, defaut, requis, aide, type = "text" }: { nom: string; label: string; defaut?: string; requis?: boolean; aide?: string; type?: string }) {
+function Champ({
+  nom,
+  label,
+  defaut,
+  requis,
+  aide,
+  type = "text",
+  mode,
+  exemple,
+  liste,
+}: {
+  nom: string;
+  label: string;
+  defaut?: string;
+  requis?: boolean;
+  aide?: string;
+  type?: string;
+  mode?: "decimal" | "numeric";
+  exemple?: string;
+  liste?: string;
+}) {
   return (
     <div>
       <label className="etiquette" htmlFor={nom}>
         {label}
       </label>
-      <input id={nom} name={nom} type={type} defaultValue={defaut ?? ""} required={requis} inputMode={type === "number" ? "numeric" : undefined} min={type === "number" ? 0 : undefined} max={type === "number" ? 100 : undefined} className="champ" autoCapitalize="off" />
+      <input
+        id={nom}
+        name={nom}
+        type={type}
+        defaultValue={defaut ?? ""}
+        required={requis}
+        inputMode={mode ?? (type === "number" ? "numeric" : undefined)}
+        min={type === "number" ? 0 : undefined}
+        max={type === "number" ? 100 : undefined}
+        placeholder={exemple}
+        list={liste}
+        className="champ"
+        autoCapitalize="off"
+      />
       {aide && <p className="mt-1 text-[12px] text-pale">{aide}</p>}
     </div>
   );

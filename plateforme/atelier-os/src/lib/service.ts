@@ -10,6 +10,9 @@ import {
   FORMULE_INFO,
   PONDERATION,
   type Formule,
+  type Metier,
+  METIERS,
+  METIER_LABEL,
   type GenreAgenda,
   type Reglages,
   type RendezVous,
@@ -75,6 +78,13 @@ export interface EntreeProspect {
   offre?: unknown;
   notes?: unknown;
   stop?: unknown;
+  metier?: unknown;
+  source?: unknown;
+  noteGoogle?: unknown;
+  avisGoogle?: unknown;
+  pointsFaibles?: unknown;
+  prochaineAction?: unknown;
+  prochaineActionLe?: unknown;
   formule?: unknown;
   montantDevis?: unknown;
   montantMensuel?: unknown;
@@ -138,6 +148,31 @@ function nettoyerProspect(e: EntreeProspect): Partial<Prospect> {
     const f = e.formule === null ? "" : String(e.formule);
     if (f !== "" && !FORMULES.includes(f as Formule)) throw new ErreurMetier(`formule : l'une de ${FORMULES.join(", ")} (ou vide)`);
     out.formule = f as Formule | "";
+  }
+  if (e.metier !== undefined) {
+    const m = e.metier === null ? "" : String(e.metier).trim();
+    if (m !== "" && !METIERS.includes(m as Metier)) throw new ErreurMetier(`metier : l'un de ${METIERS.join(", ")} (ou vide)`);
+    out.metier = m as Metier | "";
+  }
+  set("source", texte(e.source, 200));
+  set("pointsFaibles", texte(e.pointsFaibles, 5000));
+  set("prochaineAction", texte(e.prochaineAction, 300));
+  set("prochaineActionLe", jourOuNull(e.prochaineActionLe, "prochaineActionLe"));
+  if (e.noteGoogle !== undefined) {
+    if (e.noteGoogle === null || e.noteGoogle === "") out.noteGoogle = null;
+    else {
+      const n = typeof e.noteGoogle === "number" ? e.noteGoogle : Number(String(e.noteGoogle).replace(",", "."));
+      if (!Number.isFinite(n) || n < 0 || n > 5) throw new ErreurMetier("noteGoogle : une note entre 0 et 5");
+      out.noteGoogle = Math.round(n * 10) / 10;
+    }
+  }
+  if (e.avisGoogle !== undefined) {
+    if (e.avisGoogle === null || e.avisGoogle === "") out.avisGoogle = null;
+    else {
+      const n = Number(String(e.avisGoogle).replace(/[\s\u202f]/g, ""));
+      if (!Number.isInteger(n) || n < 0) throw new ErreurMetier("avisGoogle : un nombre entier d'avis");
+      out.avisGoogle = n;
+    }
   }
   set("montantDevis", montant(e.montantDevis, "montantDevis"));
   set("montantMensuel", montant(e.montantMensuel, "montantMensuel"));
@@ -552,7 +587,7 @@ export async function enregistrerSuivi(emailId: string, genre: "ouverture" | "cl
 /* ------------------------------------------------------------------ à faire et tableau de bord */
 
 export interface ActionAFaire {
-  genre: "relance" | "appel" | "envoi" | "rendez_vous" | "rappel";
+  genre: "relance" | "appel" | "envoi" | "rendez_vous" | "rappel" | "action";
   prospectId: string;
   entreprise: string;
   titre: string;
@@ -585,6 +620,17 @@ export function calculerAFaire(db: Db, aujourdhui = jourParis()): ActionAFaire[]
   }
 
   for (const p of db.prospects) {
+    if (p.prochaineActionLe && p.prochaineActionLe <= aujourdhui && p.statut !== "perdu" && p.statut !== "signe" && !p.stop) {
+      const retard = p.prochaineActionLe < aujourdhui;
+      actions.push({
+        genre: "action",
+        prospectId: p.id,
+        entreprise: p.entreprise,
+        titre: p.prochaineAction || "Prochaine action",
+        detail: retard ? `Prévue le ${formatJour(p.prochaineActionLe)}, en retard` : "Prévue aujourd'hui",
+        urgence: retard ? 2 : 1,
+      });
+    }
     if (!actif(p)) continue;
     const mails = db.emails.filter((m) => m.prospectId === p.id && m.statut === "envoye" && m.envoyeLe);
     const dernierAppel = db.evenements.filter((e) => e.prospectId === p.id && e.type === "appel").map((e) => e.date).sort().pop();
@@ -951,10 +997,17 @@ export const COLONNES_CSV: Array<{ cle: keyof Prospect; alias: string[] }> = [
   { cle: "dirigeant", alias: ["gerant", "contact", "nom du dirigeant", "dirigeants"] },
   { cle: "emails", alias: ["email", "e-mail", "mail", "courriel", "adresse e-mail", "adresses e-mail"] },
   { cle: "telephone", alias: ["tel", "tel.", "portable", "phone", "numero"] },
+  { cle: "metier", alias: ["corps de metier", "activite", "metiers"] },
   { cle: "ville", alias: ["commune", "city"] },
   { cle: "arrondissement", alias: ["arr", "arr.", "code postal", "cp"] },
   { cle: "siteActuel", alias: ["site", "site web", "site internet", "site actuel", "url", "website"] },
   { cle: "maquetteUrl", alias: ["maquette", "lien maquette"] },
+  { cle: "source", alias: ["origine", "provenance"] },
+  { cle: "noteGoogle", alias: ["note google", "google", "etoiles"] },
+  { cle: "avisGoogle", alias: ["avis google", "nombre d'avis", "avis"] },
+  { cle: "pointsFaibles", alias: ["points faibles", "points faibles du site", "defauts du site"] },
+  { cle: "prochaineAction", alias: ["prochaine action", "action"] },
+  { cle: "prochaineActionLe", alias: ["date prochaine action", "prochaine action le", "echeance"] },
   { cle: "statut", alias: ["etape", "statut"] },
   { cle: "score", alias: [] },
   { cle: "vague", alias: [] },
@@ -1024,6 +1077,10 @@ function lireEntreeCsv(entete: Array<keyof Prospect | null>, cellules: string[])
     } else if (cle === "formule") {
       const f = FORMULES.find((x) => x === sansAccents(v) || sansAccents(FORMULE_INFO[x].label) === sansAccents(v));
       e.formule = f ?? v;
+    } else if (cle === "metier") {
+      const n = sansAccents(v).replace(/[\s-]+/g, "_");
+      const m = METIERS.find((x) => x === n || sansAccents(METIER_LABEL[x]) === sansAccents(v) || n.startsWith(x));
+      e.metier = m ?? v;
     } else if (cle === "siteActuel" || cle === "maquetteUrl") e[cle] = /^https?:\/\//i.test(v) ? v : `https://${v}`;
     else if (cle === "stop") e.stop = /^(oui|vrai|true|1|x)$/i.test(v);
     else e[cle] = v;
@@ -1122,11 +1179,11 @@ export function rechercherDb(db: Db, q: string, limite = 8) {
 
   const prospects = db.prospects
     .map((p) => {
-      const champs = [p.entreprise, p.dirigeant, p.ville, p.arrondissement, p.emails.join(" "), p.telephone, p.siteActuel, p.offre, STATUT_LABEL[p.statut]].join(" ");
+      const champs = [p.entreprise, p.dirigeant, p.ville, p.arrondissement, p.emails.join(" "), p.telephone, p.siteActuel, p.offre, STATUT_LABEL[p.statut], p.metier ? METIER_LABEL[p.metier] : "", p.source, p.prochaineAction].join(" ");
       if (!contient(champs)) return null;
       const n = sansAccents(p.entreprise);
       const rang = n.startsWith(mots[0]) ? 0 : n.includes(mots[0]) ? 1 : 2;
-      return { rang, r: { genre: "prospect", id: p.id, prospectId: p.id, titre: p.entreprise, extrait: [p.dirigeant, [p.ville, p.arrondissement].filter(Boolean).join(" "), STATUT_LABEL[p.statut]].filter(Boolean).join(" · "), lien: `/prospects/${p.id}` } as Resultat };
+      return { rang, r: { genre: "prospect", id: p.id, prospectId: p.id, titre: p.entreprise, extrait: [p.metier ? METIER_LABEL[p.metier] : "", p.dirigeant, [p.ville, p.arrondissement].filter(Boolean).join(" "), STATUT_LABEL[p.statut]].filter(Boolean).join(" · "), lien: `/prospects/${p.id}` } as Resultat };
     })
     .filter((x): x is { rang: number; r: Resultat } => x !== null)
     .sort((a, b) => a.rang - b.rang || a.r.titre.localeCompare(b.r.titre))
@@ -1142,6 +1199,9 @@ export function rechercherDb(db: Db, q: string, limite = 8) {
     ...db.prospects
       .filter((p) => p.notes && contient(`${p.notes} ${p.entreprise}`) && mots.some((m) => sansAccents(p.notes).includes(m)))
       .map((p): Resultat => ({ genre: "note", id: `notes-${p.id}`, prospectId: p.id, titre: `Notes · ${p.entreprise}`, extrait: extrait(p.notes, mots), lien: `/prospects/${p.id}` })),
+    ...db.prospects
+      .filter((p) => p.pointsFaibles && contient(`${p.pointsFaibles} ${p.entreprise}`) && mots.some((m) => sansAccents(p.pointsFaibles).includes(m)))
+      .map((p): Resultat => ({ genre: "note", id: `faibles-${p.id}`, prospectId: p.id, titre: `Points faibles du site · ${p.entreprise}`, extrait: extrait(p.pointsFaibles, mots), lien: `/prospects/${p.id}` })),
     ...db.evenements
       .filter((e) => types.includes(e.type) && (e.detail || e.titre) && contient(`${e.titre} ${e.detail} ${nom(e.prospectId)}`) && mots.some((m) => sansAccents(`${e.titre} ${e.detail}`).includes(m)))
       .sort((a, b) => b.date.localeCompare(a.date))

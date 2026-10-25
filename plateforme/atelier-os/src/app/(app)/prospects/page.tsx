@@ -1,28 +1,33 @@
 import Link from "next/link";
 import { listerProspects } from "@/lib/service";
-import { STATUTS, STATUT_LABEL, type Statut } from "@/lib/types";
+import { METIERS, METIER_LABEL, STATUTS, STATUT_LABEL, type Statut } from "@/lib/types";
 import { PastilleStatut, Vide } from "@/components/ui";
 import { Icone } from "@/components/Icone";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Prospects" };
 
-export default async function Prospects({ searchParams }: { searchParams: { q?: string; statut?: string; vague?: string } }) {
+export default async function Prospects({ searchParams }: { searchParams: { q?: string; statut?: string; vague?: string; metier?: string } }) {
   const tous = await listerProspects();
   const q = (searchParams.q ?? "").trim().toLowerCase();
   const statut = (STATUTS as readonly string[]).includes(searchParams.statut ?? "") ? (searchParams.statut as Statut) : null;
   const vague = searchParams.vague ?? "";
+  const metier = (METIERS as readonly string[]).includes(searchParams.metier ?? "") || searchParams.metier === "aucun" ? searchParams.metier! : "";
+  const metiersPresents = METIERS.filter((m) => tous.some((p) => p.metier === m));
+  const sansMetier = tous.filter((p) => !p.metier).length;
 
   const compte = (s: Statut) => tous.filter((p) => p.statut === s).length;
   const liste = tous
     .filter((p) => (!statut || p.statut === statut) && (!vague || String(p.vague) === vague))
+    .filter((p) => !metier || p.metier === (metier === "aucun" ? "" : metier))
     .filter((p) => !q || `${p.entreprise} ${p.dirigeant} ${p.ville} ${p.arrondissement} ${p.emails.join(" ")}`.toLowerCase().includes(q))
     .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || a.entreprise.localeCompare(b.entreprise));
 
-  const lien = (s: string | null, v = vague) => {
+  const lien = (s: string | null, v = vague, m = metier) => {
     const u = new URLSearchParams();
     if (s) u.set("statut", s);
     if (v) u.set("vague", v);
+    if (m) u.set("metier", m);
     if (q) u.set("q", q);
     const t = u.toString();
     return `/prospects${t ? `?${t}` : ""}`;
@@ -46,6 +51,7 @@ export default async function Prospects({ searchParams }: { searchParams: { q?: 
       <form className="relative mb-4" action="/prospects">
         {statut && <input type="hidden" name="statut" value={statut} />}
         {vague && <input type="hidden" name="vague" value={vague} />}
+        {metier && <input type="hidden" name="metier" value={metier} />}
         <Icone nom="chercher" className="pointer-events-none absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-pale" />
         <input name="q" defaultValue={searchParams.q ?? ""} placeholder="Rechercher une entreprise, un dirigeant, une ville" className="champ !bg-carte pl-11 shadow-doux" type="search" />
       </form>
@@ -59,6 +65,21 @@ export default async function Prospects({ searchParams }: { searchParams: { q?: 
             {STATUT_LABEL[s]} <span className="opacity-60">{compte(s)}</span>
           </Link>
         ))}
+      </div>
+      <div className="defile-x -mx-4 mb-2 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0" aria-label="Métier">
+        <Link href={lien(statut, vague, "")} className={puce(!metier)}>
+          Tous les métiers
+        </Link>
+        {metiersPresents.map((m) => (
+          <Link key={m} href={lien(statut, vague, m)} className={puce(metier === m)} data-metier={m}>
+            {METIER_LABEL[m]} <span className="opacity-60">{tous.filter((p) => p.metier === m).length}</span>
+          </Link>
+        ))}
+        {sansMetier > 0 && (
+          <Link href={lien(statut, vague, "aucun")} className={puce(metier === "aucun")}>
+            Non renseigné <span className="opacity-60">{sansMetier}</span>
+          </Link>
+        )}
       </div>
       <div className="defile-x -mx-4 mb-5 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
         {["", "1", "2", "3"].map((v) => (
@@ -77,9 +98,15 @@ export default async function Prospects({ searchParams }: { searchParams: { q?: 
               <span className="min-w-0 flex-1">
                 <span className="block truncate font-medium">{p.entreprise}</span>
                 <span className="block truncate text-[13.5px] text-doux">
-                  {[p.dirigeant, p.arrondissement ? `${p.ville} ${p.arrondissement}` : p.ville].filter(Boolean).join(" · ")}
+                  {[p.metier ? METIER_LABEL[p.metier] : "", p.dirigeant, p.arrondissement ? `${p.ville} ${p.arrondissement}` : p.ville].filter(Boolean).join(" · ")}
                 </span>
               </span>
+              {p.noteGoogle !== null && (
+                <span className="hidden shrink-0 text-[12.5px] tabular-nums text-doux sm:block">
+                  <span className="text-terre">★</span> {p.noteGoogle.toLocaleString("fr-FR", { minimumFractionDigits: 1 })}
+                  {p.avisGoogle !== null && <span className="text-pale"> ({p.avisGoogle})</span>}
+                </span>
+              )}
               <span className="hidden shrink-0 text-[12.5px] text-pale sm:block">{p.maquetteUrl ? "Maquette prête" : ""}</span>
               <PastilleStatut statut={p.statut} />
               <span className="w-7 shrink-0 text-right text-[14px] tabular-nums text-doux">{p.score ?? ""}</span>
