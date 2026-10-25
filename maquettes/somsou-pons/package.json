@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "prebuild": "node scripts/fetch-photos.mjs",
+    "prebuild": "node scripts/fetch-photos.mjs && node scripts/fetch-site-photos.mjs",
     "fetch-photos": "node scripts/fetch-photos.mjs",
     "audit:seo": "node scripts/audit-seo.mjs"
   },
