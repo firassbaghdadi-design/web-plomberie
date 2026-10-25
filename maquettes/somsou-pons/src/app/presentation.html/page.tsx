@@ -12,7 +12,7 @@ export default function Page() {
       c={c}
       path={path}
       crumbs={[{ name: "Accueil", href: "/" }, { name: "Présentation" }]}
-      photos={["truelle", "macon", "plans", "casque"]}
+      photos={["enduit", "chantier-interieur", "plans", "peintres"]}
       after={<Timeline title="Les dates de la maison" text="Mosaïque, maçonnerie, plomberie, couverture, menuiserie : chaque date marque un métier ajouté ou une équipe reprise, d'après la page de présentation de l'entreprise." />}
     />
   );

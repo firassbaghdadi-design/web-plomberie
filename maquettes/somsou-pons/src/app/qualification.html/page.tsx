@@ -8,7 +8,7 @@ export const metadata = metaFor(c, path);
 
 export default function Page() {
   return (
-    <ContentPage c={c} path={path} crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos qualifications" }]} photos={["casque", "radiateur", "tableau", "tablette"]}>
+    <ContentPage c={c} path={path} crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos qualifications" }]} photos={["peintres", "radiateur", "electricien", "radiateur-blanc"]}>
       <section aria-label="Les qualifications affichées" className="section pb-0">
         <div className="container-x">
           <QualGrid />

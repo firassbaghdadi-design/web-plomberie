@@ -58,3 +58,10 @@ Sur **chaque** site, sans exception :
    Test de navigation : cliquer sur chaque lien du menu, défiler jusqu'en bas, vérifier qu'aucun élément `[data-reveal]` ne reste invisible.
 3. Capture d'écran de chaque type de page à 1440 px et 390 px.
 4. Déploiement Vercel, état READY vérifié.
+
+## 7. Photos
+
+- **Chaque site a son identité** : aucune photo commune entre deux sites. Registre : `prospection/photos-utilisees.md`, à mettre à jour à chaque site.
+- En priorité, les **photos de l'entreprise** (son site, sa fiche Google) : devantures d'agences, équipes, chantiers. Elles sont récupérées au build si le site n'est pas lisible depuis l'environnement de travail.
+- Les photos libres de droits doivent **correspondre au contexte** : artisans d'apparence locale, immeubles parisiens, toits en zinc pour un couvreur parisien. Pas de chantier visiblement étranger, pas de photo hors sujet.
+- Photo interdite : Pexels 8990559.

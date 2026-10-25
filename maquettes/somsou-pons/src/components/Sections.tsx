@@ -4,6 +4,9 @@ import type { DeepSection, PageContent } from "@/lib/content";
 import type { PhotoId } from "@/lib/photos";
 import { ArrowIcon, PhoneIcon, PinIcon } from "./Icons";
 import { Photo } from "./Photo";
+import agencyPhotos from "@/lib/agency-photos.generated.json";
+import type { Agency } from "@/lib/site";
+import Image from "next/image";
 
 /** La photo prend la silhouette de la maison du logo, soulignée par les deux traits orange et vert. */
 export function HouseFrame({ photo, priority = false, chip, sizes = "(min-width:1024px) 40vw, 90vw" }: { photo: PhotoId; priority?: boolean; chip?: React.ReactNode; sizes?: string }) {
@@ -334,7 +337,7 @@ export function AgencyPanels({ compact = false }: { compact?: boolean }) {
       {agencies.map((a, i) => (
         <article key={a.key} className="agency flex flex-col justify-between p-7 sm:p-9" style={{ ["--tone" as string]: tones[i] }}>
           <div className="bg">
-            <Photo id={a.photo} sizes="(min-width:1024px) 50vw, 92vw" />
+            <AgencyPhoto agency={a} sizes="(min-width:1024px) 50vw, 92vw" />
           </div>
           <div className="flex items-start justify-between gap-4">
             <span className="num" aria-hidden="true">{nums[i]}</span>
@@ -401,4 +404,11 @@ export function QualGrid() {
       </li>
     </ul>
   );
+}
+
+/** Photo de l'agence publiée sur le site actuel de l'entreprise si elle a pu être récupérée, sinon photo provisoire. */
+export function AgencyPhoto({ agency, sizes }: { agency: Agency; sizes: string }) {
+  const src = (agencyPhotos as Record<string, string | null>)[agency.key];
+  if (src) return <Image src={src} alt={`Agence ${agency.short}, ${agency.street}`} fill sizes={sizes} className="object-cover" />;
+  return <Photo id={agency.photo} sizes={sizes} />;
 }

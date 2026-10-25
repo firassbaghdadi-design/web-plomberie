@@ -51,7 +51,7 @@ export const agencies: Agency[] = [
     email: "agence17@somsoupons.fr",
     trades: "Plomberie, chauffage, rénovation",
     text: "Les bureaux de la rue Ampère, installés dans le 17e arrondissement en 2006 selon l'entreprise. Ils reçoivent les demandes du nord-ouest de la capitale.",
-    photo: "immeuble",
+    photo: "rue",
   },
   {
     key: "transvaal",
@@ -66,7 +66,7 @@ export const agencies: Agency[] = [
     email: "transvaal@somsoupons.fr",
     trades: "Menuiserie",
     text: "La SARL Transvaal a repris l'activité de menuiserie créée en 1992 : portes, placards, cuisines, fenêtres, baies coulissantes, portes d'entrée. Elle travaille depuis La Garenne-Colombes.",
-    photo: "menuisier",
+    photo: "atelier-bois",
   },
 ];
 

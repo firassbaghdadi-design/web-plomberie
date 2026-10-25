@@ -1,6 +1,6 @@
 // Télécharge, au build, les photos publiées par l'entreprise sur son site actuel (page « Nos agences » et accueil).
 // Elles sont listées dans le journal de build, puis enregistrées dans public/photos/site-N.<ext>.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, writeFileSync } from "node:fs";
 
 const pages = ["http://www.somsoupons.fr/agences.html", "http://www.somsoupons.fr/", "http://www.somsoupons.fr/presentation.html", "http://www.somsoupons.fr/metier.html"];
 const outDir = new URL("../public/photos/", import.meta.url);
@@ -37,4 +37,19 @@ for (const f of found) {
   }
 }
 writeFileSync(new URL("../src/lib/site-photos.generated.json", import.meta.url), JSON.stringify(manifest, null, 2) + "\n");
+
+// Photos des agences : les photos (JPEG de plus de 15 ko) de la page « Nos agences », dans l'ordre de la page :
+// agence du 16e, agence du 17e, menuiserie Transvaal. À vérifier à l'écran.
+const keys = ["seize", "dixsept", "transvaal"];
+const photos = manifest.filter((m) => m.page.endsWith("agences.html") && /\.jpe?g$/i.test(m.name) && m.bytes > 15000);
+const agencyPhotos = {};
+keys.forEach((k, i) => {
+  const m = photos[i];
+  if (m) {
+    copyFileSync(new URL(m.name, outDir), new URL(`agence-${k}.jpg`, outDir));
+    agencyPhotos[k] = `/photos/agence-${k}.jpg`;
+  } else agencyPhotos[k] = null;
+});
+writeFileSync(new URL("../src/lib/agency-photos.generated.json", import.meta.url), JSON.stringify(agencyPhotos, null, 2) + "\n");
+console.log("[site] photos d'agences", JSON.stringify(agencyPhotos));
 console.log(`[site] ${manifest.length} images du site actuel`);

@@ -31,8 +31,8 @@ export const localPages: LocalPage[] = [
     eyebrow: "Plomberie · Paris 16e",
     lead: "Le siège de Somsou-Pons est rue Gavarni, dans le quartier de Passy. C'est d'ici que partent les plombiers qui travaillent dans les immeubles du 16e arrondissement.",
     brief: "Pour un plombier à Paris 16e, Somsou-Pons a son siège au 9 rue Gavarni (01 42 15 25 15). L'entreprise remplace les canalisations anciennes, installe et répare les sanitaires et la robinetterie, et aménage des salles d'eau, avec des qualifications Qualibat en plomberie et sanitaire.",
-    heroPhoto: "plombier",
-    photos: ["mains", "tablette", "carrelage"],
+    heroPhoto: "balcon",
+    photos: ["carreleur", "radiateur-blanc", "carrelage"],
     sections: [
       {
         h2: "Faut-il remplacer les vieilles canalisations d'un immeuble ancien du 16e ?",
@@ -85,8 +85,8 @@ export const localPages: LocalPage[] = [
     eyebrow: "Plomberie · Paris 17e",
     lead: "L'agence de la rue Ampère reçoit les demandes de plomberie du 17e arrondissement, des Batignolles aux Ternes. Trois sujets reviennent souvent : la fuite qu'on ne voit pas, le chauffe-eau fatigué, le calcaire.",
     brief: "Pour un plombier à Paris 17e, l'agence Somsou-Pons du 26 rue Ampère répond au 01 46 27 14 86. Elle intervient sur les fuites, les chauffe-eau, la robinetterie et les sanitaires, dans les immeubles anciens comme dans les plus récents, et remet un devis écrit avant tout travail.",
-    heroPhoto: "telephone",
-    photos: ["plombier", "douche", "mains"],
+    heroPhoto: "plan-projet",
+    photos: ["cle-evier", "douche", "carreleur"],
     sections: [
       {
         h2: "Comment savoir si l'on a une fuite d'eau cachée ?",
@@ -140,7 +140,7 @@ export const localPages: LocalPage[] = [
     lead: "Dans les grands appartements anciens du 16e, le chauffage individuel au gaz est fréquent, avec des radiateurs en fonte d'origine. Les remplacer ou les garder : le chauffagiste vous aide à décider.",
     brief: "Pour un chauffagiste à Paris 16e, Somsou-Pons intervient depuis son siège de la rue Gavarni (01 42 15 25 15) : remplacement de chaudière gaz, adaptation du conduit, radiateurs, désembouage et ballons d'eau chaude. Elle présente la qualification Qualibat 5311 avec mention gaz et Professionnel du Gaz.",
     heroPhoto: "radiateur",
-    photos: ["immeuble", "tableau", "casque"],
+    photos: ["immeuble", "electricien", "peintres"],
     sections: [
       {
         h2: "Peut-on remplacer une vieille chaudière gaz par une chaudière à condensation ?",
@@ -193,8 +193,8 @@ export const localPages: LocalPage[] = [
     eyebrow: "Chauffage · Paris 17e",
     lead: "Chauffage individuel ou collectif, chaudière à entretenir ou radiateurs à régler : l'agence de la rue Ampère accompagne les habitants du 17e arrondissement.",
     brief: "Pour un chauffagiste à Paris 17e, l'agence Somsou-Pons du 26 rue Ampère (01 46 27 14 86) entretient et remplace les chaudières, pose des robinets thermostatiques, intervient sur les radiateurs et les ballons d'eau chaude, et étudie le plancher chauffant lors d'une rénovation.",
-    heroPhoto: "tablette",
-    photos: ["radiateur", "plans", "telephone"],
+    heroPhoto: "radiateur-blanc",
+    photos: ["radiateur", "plans", "plan-projet"],
     sections: [
       {
         h2: "Que peut-on faire soi-même quand le chauffage est collectif ?",
@@ -247,8 +247,8 @@ export const localPages: LocalPage[] = [
     eyebrow: "Dépannage · Paris 16e",
     lead: "Dans un immeuble ancien, une fuite descend vite d'un étage à l'autre. Les bons réflexes avant l'arrivée du plombier, et comment joindre l'agence de la rue Gavarni.",
     brief: "Pour un dépannage de plomberie à Paris 16e, coupez l'eau, prévenez les voisins du dessous et appelez l'agence Somsou-Pons de la rue Gavarni au 01 42 15 25 15. L'entreprise propose un service de dépannage rapide en plomberie, sans délai promis à l'avance.",
-    heroPhoto: "mains",
-    photos: ["plombier", "telephone", "chantier"],
+    heroPhoto: "immeuble",
+    photos: ["rue", "plan-projet", "renovation"],
     sections: [
       {
         h2: "Que faire quand l'eau traverse le plafond du voisin du dessous ?",
@@ -301,8 +301,8 @@ export const localPages: LocalPage[] = [
     eyebrow: "Dépannage · Paris 17e",
     lead: "Un évier qui ne se vide plus, une douche froide, une odeur qui remonte : les pannes du quotidien, ce que vous pouvez vérifier, et quand appeler l'agence de la rue Ampère.",
     brief: "Pour un dépannage de plomberie à Paris 17e, l'agence Somsou-Pons du 26 rue Ampère répond au 01 46 27 14 86 : évier bouché, panne d'eau chaude, odeur d'égout, chasse d'eau qui coule. Quelques vérifications simples permettent de mieux décrire la panne au téléphone.",
-    heroPhoto: "chantier",
-    photos: ["plombier", "mains", "tablette"],
+    heroPhoto: "renovation",
+    photos: ["radiateur-blanc", "carreleur", "balcon"],
     sections: [
       {
         h2: "Que vérifier quand il n'y a plus d'eau chaude ?",
@@ -356,7 +356,7 @@ export const localPages: LocalPage[] = [
     lead: "Parquets, moulures, cheminées, hauteurs sous plafond : rénover un appartement ancien du 16e, c'est moderniser l'eau, l'électricité et le chauffage en gardant ce qui fait son caractère.",
     brief: "Pour rénover un appartement à Paris 16e, Somsou-Pons coordonne depuis la rue Gavarni tous les corps de métier : plomberie, électricité, chauffage, maçonnerie, carrelage, menuiserie, parquet, peinture. L'objectif : remettre les réseaux à neuf tout en préservant parquets, moulures et cheminées.",
     heroPhoto: "salle-de-bains",
-    photos: ["peintre", "bois", "plans"],
+    photos: ["parquet", "peintre", "plans"],
     sections: [
       {
         h2: "Peut-on rénover un appartement haussmannien sans perdre son cachet ?",
@@ -410,7 +410,7 @@ export const localPages: LocalPage[] = [
     lead: "Deux pièces sur cour, studio sous les toits ou appartement familial : dans le 17e, rénover, c'est souvent gagner de la place. Salle d'eau compacte, cuisine ouverte, rangements sur mesure.",
     brief: "Pour rénover un appartement à Paris 17e, l'agence Somsou-Pons de la rue Ampère (01 46 27 14 86) coordonne plomberie, électricité, cloisons, carrelage, menuiserie et peinture. Elle aide à optimiser les petites surfaces : salle d'eau compacte, cuisine ouverte, rangements sur mesure réalisés en atelier.",
     heroPhoto: "douche",
-    photos: ["menuisier", "carrelage", "telephone"],
+    photos: ["menuisier", "carrelage", "plan-projet"],
     sections: [
       {
         h2: "Comment aménager une salle d'eau dans une petite surface ?",
@@ -464,7 +464,7 @@ export const localPages: LocalPage[] = [
     lead: "Le bois de la maison : un atelier de menuiserie créé en 1992, aujourd'hui installé rue du Transvaal à La Garenne-Colombes. Menuiserie intérieure, extérieure et dépannage.",
     brief: "La menuiserie de Somsou-Pons est assurée par l'atelier Transvaal, au 5 rue du Transvaal à La Garenne-Colombes (01 42 42 23 72) : menuiserie intérieure (portes, placards, aménagement de cuisine), menuiserie extérieure (fenêtres, baies coulissantes, portes d'entrée) et dépannage rapide.",
     heroPhoto: "menuisier",
-    photos: ["bois", "mains", "immeuble"],
+    photos: ["atelier-bois", "carreleur", "immeuble"],
     sections: [
       {
         id: "menuiserie",

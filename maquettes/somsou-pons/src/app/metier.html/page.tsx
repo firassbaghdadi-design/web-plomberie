@@ -8,7 +8,7 @@ export const metadata = metaFor(c, path);
 
 export default function Page() {
   return (
-    <ContentPage c={c} path={path} crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos métiers" }]} photos={["chantier", "salle-de-bains", "menuisier", "couvreur"]}>
+    <ContentPage c={c} path={path} crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos métiers" }]} photos={["renovation", "salle-de-bains", "menuisier", "toits"]}>
       <section aria-label="Les métiers en détail" className="section pb-0">
         <div className="container-x">
           <TradesShowcase />
