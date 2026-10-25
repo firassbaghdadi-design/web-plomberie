@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icone } from "./Icone";
+import { Recherche } from "./Recherche";
 
 const liens = [
   { href: "/", label: "Accueil", icone: "accueil", mobile: true },
@@ -25,19 +26,22 @@ export function Navigation() {
           <Link href="/" className="text-[15px] font-semibold tracking-tight">
             Atelier <span className="text-doux">OS</span>
           </Link>
-          <nav className="flex gap-1">
-            {liens.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-colors duration-200 lg:px-4 ${
-                  actif(chemin, l.href) ? "bg-carte text-encre shadow-doux" : "text-doux hover:text-encre"
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex items-center gap-3">
+            <nav className="flex gap-1">
+              {liens.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-colors duration-200 lg:px-4 ${
+                    actif(chemin, l.href) ? "bg-carte text-encre shadow-doux" : "text-doux hover:text-encre"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <Recherche variante="bureau" />
+          </div>
         </div>
       </header>
 
@@ -50,6 +54,7 @@ export function Navigation() {
             Atelier <span className="text-doux">OS</span>
           </Link>
           <div className="-mr-2 flex items-center">
+            <Recherche variante="mobile" />
             <Link
               href="/reglages"
               aria-label="Réglages"

@@ -204,6 +204,17 @@ try {
   verifie((await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: "nom;ville\n" } })).statut === 400, "import CSV : fichier sans données refusé");
   verifie((await api("/api/v1/prospects/import", { methode: "POST", corps: { csv: "ville\nParis" } })).statut === 400, "import CSV : colonne entreprise obligatoire");
 
+  // Recherche globale
+  const rq = async (q) => (await api(`/api/v1/recherche?q=${encodeURIComponent(q)}`)).json;
+  verifie((await rq("GAZ flash")).prospects[0]?.id === "gaz-flash", "recherche : prospect par nom (casse ignorée)");
+  verifie((await rq("seragaz franche")).prospects.some((p) => p.id === "seragaz"), "recherche : plusieurs mots (entreprise + dirigeant)");
+  verifie((await rq("rappeler jeudi")).notes.some((n) => n.prospectId === id && n.extrait.includes("rappeler jeudi")), "recherche : texte d'un appel dans l'historique");
+  verifie((await rq("monsieur dupont")).emails.some((m) => m.id === mid), "recherche : contenu d'un e-mail");
+  verifie((await rq("note avec virgule")).notes.some((n) => n.titre.startsWith("Notes")), "recherche : notes d'un prospect");
+  verifie((await rq("CRÉÉE en 1965")).notes.some((n) => n.prospectId === "gaz-flash") && (await rq("creee en 1965")).notes.some((n) => n.prospectId === "gaz-flash"), "recherche : accents ignorés");
+  const vide = await rq("   ");
+  verifie(vide.prospects.length === 0 && vide.emails.length === 0 && vide.notes.length === 0, "recherche : vide sans résultat");
+
   // Captures
   const requis = createRequire(import.meta.url);
   let pw;
@@ -290,6 +301,41 @@ try {
     verifie((await page.textContent("[data-import-resultat]")).includes("1 prospect importé, 1 doublon ignoré"), "import CSV depuis l'interface avec aperçu");
     const [dl] = await Promise.all([page.waitForEvent("download"), page.click("[data-export]")]);
     verifie(dl.suggestedFilename().endsWith(".csv"), `export CSV depuis l'interface (${dl.suggestedFilename()})`);
+    await ctx.close();
+  }
+  // Recherche : ⌘K au clavier, loupe sur iPhone
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, locale: "fr-FR" });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.keyboard.press("Meta+k");
+    await page.waitForSelector("[role=dialog] input");
+    await page.keyboard.type("gaz flash");
+    await page.waitForSelector("[data-recherche-resultats] [data-index='0']");
+    await page.screenshot({ path: "captures/1440-clair-recherche.png" });
+    await page.keyboard.press("Enter");
+    await page.waitForURL(BASE + "/prospects/gaz-flash");
+    verifie(true, "recherche : ⌘K, saisie, Entrée ouvre la fiche");
+    await page.keyboard.press("Control+k");
+    verifie(await page.locator("[role=dialog]").isVisible(), "recherche : Ctrl+K ouvre aussi");
+    await page.keyboard.press("Escape");
+    verifie(!(await page.locator("[role=dialog]").isVisible()), "recherche : Échap ferme");
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto(BASE + "/", { waitUntil: "networkidle" });
+    verifie(!(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1)), "en-tête sans débordement à 768 px");
+    await ctx.close();
+  }
+  for (const theme of ["light", "dark"]) {
+    const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR", colorScheme: theme });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.locator("header.md\\:hidden [data-recherche-bouton]").tap();
+    await page.keyboard.type("rappeler jeudi");
+    await page.waitForSelector("[data-recherche-resultats] [data-index='0']");
+    await page.screenshot({ path: `captures/390-${theme === "light" ? "clair" : "sombre"}-recherche.png` });
+    await page.locator("[data-recherche-resultats] [data-index='0']").tap();
+    await page.waitForURL(BASE + `/prospects/${id}`);
+    verifie(true, `recherche : loupe sur iPhone (${theme})`);
     await ctx.close();
   }
   // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone

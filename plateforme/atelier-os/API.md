@@ -47,6 +47,9 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 - `GET /pipeline` : `{ colonnes[{ statut, label, nombre, prospects[] }] }`, une colonne par étape, dans l'ordre du parcours.
 - `POST /pipeline/deplacer` : `{ "prospectId": "...", "statut": "devis" }` → `{ prospect }`. Change l'étape (dans les deux sens, contrairement aux règles automatiques) et journalise un événement `statut` (« Déplacé dans le pipeline »). Passer à `perdu` ou `signe` annule les relances.
 
+### Recherche globale
+- `GET /recherche?q=texte` : `{ q, prospects[], emails[], notes[] }` (8 au plus par groupe). Chaque résultat : `{ genre, id, prospectId, titre, extrait, lien }`. Tous les mots doivent apparaître (casse et accents ignorés). Prospects : nom, dirigeant, ville, e-mails, téléphone, site, offre, étape. E-mails : objet, texte, destinataire. Notes : notes de la fiche et historique (notes, appels, réponses, rendez-vous, devis).
+
 ### Import et export CSV
 - `GET /prospects/export` : fichier CSV (UTF-8 avec BOM, séparateur `;`, s'ouvre dans Excel), toutes les colonnes, une ligne par prospect. Les e-mails sont séparés par des virgules dans leur cellule.
 - `POST /prospects/import` : `{ "csv": "<contenu>", "apercu": true }` (ou le CSV brut avec `Content-Type: text/csv` et `?apercu=1`). Séparateur `;`, `,` ou tabulation détecté. Colonne `entreprise` obligatoire (synonymes acceptés : société, nom…) ; les autres colonnes sont celles de l'export ou leurs synonymes (e-mail, téléphone, site, étape…). `statut` et `formule` acceptent la clé ou le libellé (« Devis », « Visibilité »). Un site sans `http` reçoit `https://`.

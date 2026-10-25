@@ -32,7 +32,7 @@ export const business = {
   registry: "33203912200012",
   phoneDisplay: "01 42 80 03 01",
   phoneTel: "+33142800301",
-  email: "contact@seragaz.fr",
+  email: "jf@seragaz.fr",
   address: { street: "69 rue de Dunkerque", postalCode: "75009", city: "Paris", district: "Paris 9e" },
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=SERAGAZ+69+rue+de+Dunkerque+75009+Paris",
   /** Deux horaires différents figurent sur le site actuel : à faire trancher par l'entreprise. */

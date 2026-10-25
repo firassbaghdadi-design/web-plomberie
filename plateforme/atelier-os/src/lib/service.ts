@@ -4,6 +4,7 @@ import { RELANCES_PAR_DEFAUT } from "@/data/modeles";
 import { PROSPECT_DEFAUTS } from "./migration";
 import { ecrireCsv, lireCsv } from "./csv";
 import {
+  EVENT_LABEL,
   EVENT_TYPES,
   FORMULES,
   FORMULE_INFO,
@@ -1087,4 +1088,69 @@ export async function importerCsv(csv: string, apercu: boolean) {
     const crees = a.lignes.filter((l) => l.etat === "nouveau").map((l) => insererProspect(db, l.champs!, "Importé depuis un fichier CSV"));
     return { apercu: false, ...resume(a.lignes), importes: crees.length, colonnesIgnorees: a.colonnesIgnorees, prospects: crees.map((p) => ({ id: p.id, entreprise: p.entreprise })), lignes: a.lignes.map(({ champs: _c, ...l }) => l) };
   });
+}
+
+/* ------------------------------------------------------------------ recherche globale */
+
+export interface Resultat {
+  genre: "prospect" | "email" | "note";
+  id: string;
+  prospectId: string;
+  titre: string;
+  extrait: string;
+  lien: string;
+}
+
+/** Extrait d'environ 110 caractères autour du premier mot trouvé. */
+function extrait(texteBrut: string, mots: string[]): string {
+  const t = texteBrut.replace(/\s+/g, " ").trim();
+  const n = sansAccents(t);
+  const pos = Math.min(...mots.map((m) => n.indexOf(m)).filter((i) => i >= 0), Infinity);
+  if (!Number.isFinite(pos) || t.length <= 110) return t.slice(0, 110);
+  const debut = Math.max(0, pos - 35);
+  return `${debut > 0 ? "…" : ""}${t.slice(debut, debut + 110).trim()}${debut + 110 < t.length ? "…" : ""}`;
+}
+
+export function rechercherDb(db: Db, q: string, limite = 8) {
+  const mots = sansAccents(q).split(/\s+/).filter(Boolean).slice(0, 8);
+  if (!mots.length) return { q, prospects: [] as Resultat[], emails: [] as Resultat[], notes: [] as Resultat[] };
+  const contient = (texte: string) => {
+    const n = sansAccents(texte);
+    return mots.every((m) => n.includes(m));
+  };
+  const nom = (id: string) => db.prospects.find((p) => p.id === id)?.entreprise ?? "";
+
+  const prospects = db.prospects
+    .map((p) => {
+      const champs = [p.entreprise, p.dirigeant, p.ville, p.arrondissement, p.emails.join(" "), p.telephone, p.siteActuel, p.offre, STATUT_LABEL[p.statut]].join(" ");
+      if (!contient(champs)) return null;
+      const n = sansAccents(p.entreprise);
+      const rang = n.startsWith(mots[0]) ? 0 : n.includes(mots[0]) ? 1 : 2;
+      return { rang, r: { genre: "prospect", id: p.id, prospectId: p.id, titre: p.entreprise, extrait: [p.dirigeant, [p.ville, p.arrondissement].filter(Boolean).join(" "), STATUT_LABEL[p.statut]].filter(Boolean).join(" · "), lien: `/prospects/${p.id}` } as Resultat };
+    })
+    .filter((x): x is { rang: number; r: Resultat } => x !== null)
+    .sort((a, b) => a.rang - b.rang || a.r.titre.localeCompare(b.r.titre))
+    .map((x) => x.r);
+
+  const emails = db.emails
+    .filter((m) => contient(`${m.objet} ${m.corps} ${m.destinataire} ${nom(m.prospectId)}`))
+    .sort((a, b) => (b.envoyeLe ?? b.creeLe).localeCompare(a.envoyeLe ?? a.creeLe))
+    .map((m): Resultat => ({ genre: "email", id: m.id, prospectId: m.prospectId, titre: `${m.objet} · ${nom(m.prospectId)}`, extrait: extrait(contient(m.objet) ? m.corps : `${m.objet} ${m.corps}`, mots), lien: `/prospects/${m.prospectId}` }));
+
+  const types: EventType[] = ["note", "appel", "reponse", "rendez_vous", "devis", "signature"];
+  const notes: Resultat[] = [
+    ...db.prospects
+      .filter((p) => p.notes && contient(`${p.notes} ${p.entreprise}`) && mots.some((m) => sansAccents(p.notes).includes(m)))
+      .map((p): Resultat => ({ genre: "note", id: `notes-${p.id}`, prospectId: p.id, titre: `Notes · ${p.entreprise}`, extrait: extrait(p.notes, mots), lien: `/prospects/${p.id}` })),
+    ...db.evenements
+      .filter((e) => types.includes(e.type) && (e.detail || e.titre) && contient(`${e.titre} ${e.detail} ${nom(e.prospectId)}`) && mots.some((m) => sansAccents(`${e.titre} ${e.detail}`).includes(m)))
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .map((e): Resultat => ({ genre: "note", id: e.id, prospectId: e.prospectId, titre: `${EVENT_LABEL[e.type]} · ${nom(e.prospectId)}`, extrait: extrait(e.detail || e.titre, mots), lien: `/prospects/${e.prospectId}` })),
+  ];
+
+  return { q, prospects: prospects.slice(0, limite), emails: emails.slice(0, limite), notes: notes.slice(0, limite) };
+}
+
+export async function rechercher(q: string) {
+  return rechercherDb(await readDb(), q.slice(0, 200));
 }
