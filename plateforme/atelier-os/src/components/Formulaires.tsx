@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { EVENT_LABEL, STATUTS, STATUT_LABEL, type Modele, type Prospect, type Statut } from "@/lib/types";
 
-async function appel(chemin: string, methode: string, corps?: unknown) {
+export async function appel(chemin: string, methode: string, corps?: unknown) {
   const r = await fetch(chemin, {
     method: methode,
     headers: corps ? { "Content-Type": "application/json" } : undefined,

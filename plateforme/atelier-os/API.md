@@ -30,6 +30,10 @@ Erreurs : `{ "erreur": "message" }` avec le code HTTP `400` (données invalides)
 - `PATCH /prospects/{id}` : mêmes champs, plus `stop` (booléen). `{ prospect }`
 - `DELETE /prospects/{id}` : supprime le prospect et son historique.
 
+### Pipeline (kanban)
+- `GET /pipeline` : `{ colonnes[{ statut, label, nombre, prospects[] }] }`, une colonne par étape, dans l'ordre du parcours.
+- `POST /pipeline/deplacer` : `{ "prospectId": "...", "statut": "devis" }` → `{ prospect }`. Change l'étape (dans les deux sens, contrairement aux règles automatiques) et journalise un événement `statut` (« Déplacé dans le pipeline »). Passer à `perdu` ou `signe` annule les relances.
+
 ### Événements
 - `GET /prospects/{id}/evenements`
 - `POST /prospects/{id}/evenements` : `{ "type": "appel", "titre": "optionnel", "detail": "texte", "date": "optionnel ISO" }` → `201 { evenement }`

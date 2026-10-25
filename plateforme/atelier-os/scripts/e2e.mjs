@@ -1,5 +1,6 @@
 // Test de bout en bout : lance l'application, se connecte, appelle l'API, prend des captures.
-// Usage : npm run build && PLAYWRIGHT_CORE=/chemin/vers/playwright-core CHROME=/chemin/chrome npm run test:e2e
+// Usage : npm run build && npm run test:e2e
+// Playwright : le paquet « playwright » s'il est installé, sinon PLAYWRIGHT_CORE=/chemin/vers/playwright-core (et CHROME=/chemin/chrome).
 import { spawn } from "node:child_process";
 import { mkdirSync, rmSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -119,10 +120,79 @@ try {
   verifie(tdb.jour.emailsEnvoyes >= 1 && tdb.jour.ouvertures >= 1 && tdb.jour.reponses >= 1 && tdb.entonnoir.length === 8, "tableau de bord cohérent");
   console.log(JSON.stringify({ jour: tdb.jour, entonnoir: tdb.entonnoir.map((e) => `${e.statut}:${e.nombre}`).join(" ") }));
 
+  // Pipeline
+  const pipe = (await api("/api/v1/pipeline")).json;
+  verifie(pipe.colonnes?.length === 8 && pipe.colonnes.reduce((s, c) => s + c.nombre, 0) === liste.json.total + 2, "pipeline : 8 colonnes, tous les prospects");
+  verifie((await api("/api/v1/pipeline/deplacer", { methode: "POST", corps: { prospectId: autre, statut: "nimporte" } })).statut === 400, "pipeline : étape inconnue refusée");
+  const dep = await api("/api/v1/pipeline/deplacer", { methode: "POST", corps: { prospectId: autre, statut: "appel_fait" } });
+  verifie(dep.json?.prospect?.statut === "appel_fait", "pipeline : déplacement par l'API");
+  const evAutre = (await api(`/api/v1/prospects/${autre}/evenements`)).json.evenements;
+  verifie(evAutre.some((e) => e.type === "statut" && e.detail === "Déplacé dans le pipeline"), "pipeline : événement « statut » créé");
+
   // Captures
   const requis = createRequire(import.meta.url);
-  const { chromium } = requis(process.env.PLAYWRIGHT_CORE || "playwright-core");
-  const navigateur = await chromium.launch({ executablePath: process.env.CHROME, args: ["--no-sandbox"] });
+  let pw;
+  for (const nom of [process.env.PLAYWRIGHT_CORE, "playwright", "/opt/node-tools/node_modules/playwright", "playwright-core"].filter(Boolean)) {
+    try { pw = requis(nom); break; } catch {}
+  }
+  const { chromium } = pw;
+  const navigateur = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME, args: ["--no-sandbox"] } : {});
+  const connecter = async (page) => {
+    await page.goto(BASE + "/login");
+    await page.fill("input[name=motdepasse]", MDP);
+    await page.click("button[type=submit]");
+    await page.waitForURL(BASE + "/");
+  };
+  const statutDe = async (pid) => (await api(`/api/v1/prospects/${pid}`)).json.prospect.statut;
+
+  // Pipeline : glisser-déposer à la souris
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, locale: "fr-FR" });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + "/pipeline", { waitUntil: "networkidle" });
+    const carte = page.locator(`[data-carte="${autre}"]`);
+    const cible = page.locator('[data-colonne="rendez_vous"]');
+    await cible.scrollIntoViewIfNeeded();
+    await carte.scrollIntoViewIfNeeded();
+    const a = await carte.boundingBox();
+    const b = await cible.boundingBox();
+    await page.mouse.move(a.x + 40, a.y + 20);
+    await page.mouse.down();
+    for (let i = 1; i <= 12; i++) await page.mouse.move(a.x + 40 + ((b.x + 60 - a.x - 40) * i) / 12, a.y + 20 + ((b.y + 60 - a.y - 20) * i) / 12);
+    await page.mouse.up();
+    await page.waitForTimeout(800);
+    verifie((await statutDe(autre)) === "rendez_vous", "pipeline : glisser-déposer à la souris");
+    verifie(page.url() === BASE + "/pipeline", "pipeline : le glisser n'ouvre pas la fiche");
+    await ctx.close();
+  }
+  // Pipeline : menu « Déplacer vers » et glisser au doigt sur iPhone
+  {
+    const ctx = await navigateur.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "fr-FR" });
+    const page = await ctx.newPage();
+    await connecter(page);
+    await page.goto(BASE + "/pipeline", { waitUntil: "networkidle" });
+    await page.selectOption(`select[data-deplacer="${autre}"]`, "devis");
+    await page.waitForTimeout(800);
+    verifie((await statutDe(autre)) === "devis", "pipeline : menu « Déplacer vers » sur mobile");
+    // glisser au doigt via la poignée (événements pointeur de type « touch »), de « Devis » vers « Signé »
+    await page.evaluate(() => document.querySelector('[data-colonne="devis"]').scrollIntoView({ inline: "start", block: "nearest" }));
+    await page.waitForTimeout(400);
+    const h = await page.locator(`[data-carte="${autre}"] [data-poignee]`).boundingBox();
+    const colSigne = await page.locator('[data-colonne="signe"]').boundingBox();
+    const x0 = h.x + h.width / 2, y0 = h.y + h.height / 2;
+    const x1 = Math.min(colSigne.x + 30, 380), y1 = colSigne.y + 60;
+    const evt = (type, x, y) => page.evaluate(([type, x, y, id]) => {
+      const el = type === "pointerdown" ? document.querySelector(`[data-carte="${id}"] [data-poignee]`) : window;
+      el.dispatchEvent(new PointerEvent(type, { clientX: x, clientY: y, pointerType: "touch", bubbles: true, cancelable: true, button: 0, isPrimary: true }));
+    }, [type, x, y, autre]);
+    await evt("pointerdown", x0, y0);
+    for (let i = 1; i <= 6; i++) await evt("pointermove", x0 + ((x1 - x0) * i) / 6, y0 + ((y1 - y0) * i) / 6);
+    await evt("pointerup", x1, y1);
+    await page.waitForTimeout(800);
+    verifie((await statutDe(autre)) === "signe", "pipeline : glisser au doigt avec la poignée");
+    await ctx.close();
+  }
   const tailles = [
     ["1440", { width: 1440, height: 900 }, 1],
     ["390", { width: 390, height: 844 }, 2],
@@ -142,6 +212,7 @@ try {
       const pages = [
         ["accueil", "/"],
         ["prospects", "/prospects"],
+        ["pipeline", "/pipeline"],
         ["fiche", `/prospects/${id}`],
         ["fiche-gaz", "/prospects/gaz-flash"],
         ["emails", "/emails"],
@@ -149,7 +220,7 @@ try {
         ["reglages", "/reglages"],
       ];
       for (const [n, chemin] of pages) {
-        if (theme === "sombre" && !["accueil", "fiche"].includes(n)) continue;
+        if (theme === "sombre" && !["accueil", "fiche", "pipeline"].includes(n)) continue;
         await page.goto(BASE + chemin, { waitUntil: "networkidle" });
         await pause(300);
         const debordement = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);

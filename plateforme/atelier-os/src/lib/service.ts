@@ -195,7 +195,7 @@ export async function creerProspect(entree: EntreeProspect): Promise<Prospect> {
   });
 }
 
-export async function modifierProspect(id: string, entree: EntreeProspect): Promise<Prospect> {
+export async function modifierProspect(id: string, entree: EntreeProspect, motif = "Modifiée à la main"): Promise<Prospect> {
   const champs = nettoyerProspect(entree);
   if (champs.entreprise === "") throw new ErreurMetier("entreprise : ne peut pas être vide");
   return updateDb((db) => {
@@ -204,13 +204,21 @@ export async function modifierProspect(id: string, entree: EntreeProspect): Prom
     const avantMaquette = p.maquetteUrl;
     Object.assign(p, champs, { modifieLe: maintenant() });
     if (champs.statut && champs.statut !== avant) {
-      journal(db, p.id, "statut", `Étape : ${STATUT_LABEL[avant]} → ${STATUT_LABEL[p.statut]}`, "Modifiée à la main");
+      journal(db, p.id, "statut", `Étape : ${STATUT_LABEL[avant]} → ${STATUT_LABEL[p.statut]}`, motif);
     }
     if (champs.maquetteUrl && champs.maquetteUrl !== avantMaquette) journal(db, p.id, "maquette", "Lien de la maquette enregistré", champs.maquetteUrl);
     if (champs.stop === true) journal(db, p.id, "note", "Marqué « ne plus contacter »");
     reglerRelances(db, p);
     return p;
   });
+}
+
+/** Glisser-déposer du pipeline : change l'étape et journalise un événement « statut ». */
+export async function deplacerProspect(id: unknown, statut: unknown): Promise<Prospect> {
+  const pid = texte(id, 100);
+  if (!pid) throw new ErreurMetier("prospectId : obligatoire");
+  if (!STATUTS.includes(statut as Statut)) throw new ErreurMetier(`statut : l'une de ${STATUTS.join(", ")}`);
+  return modifierProspect(pid, { statut }, "Déplacé dans le pipeline");
 }
 
 export async function supprimerProspect(id: string): Promise<void> {
@@ -613,4 +621,19 @@ export async function tableauDeBord() {
 }
 export async function aFaire() {
   return calculerAFaire(await readDb());
+}
+
+/* ------------------------------------------------------------------ pipeline */
+
+export function calculerPipeline(db: Db) {
+  return STATUTS.map((statut) => {
+    const prospects = db.prospects
+      .filter((p) => p.statut === statut)
+      .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || a.entreprise.localeCompare(b.entreprise));
+    return { statut, label: STATUT_LABEL[statut], nombre: prospects.length, prospects };
+  });
+}
+
+export async function pipeline() {
+  return calculerPipeline(await readDb());
 }
