@@ -1,7 +1,7 @@
 # Le goût de Firas : charte de design des maquettes
 
 > À lire avant toute maquette. Ce fichier prime sur les autres consignes de design.
-> Validé avec Firas le 26/10/2026. Référence : la maquette **Entreprise Rousseau**.
+> Validé avec Firas le 26/10/2026. Référence : la maquette **Entreprise Rousseau**. Voir aussi `references-design.md` (meilleures pratiques des sites primés).
 > Contre-exemple : la maquette **Gaz Flash** (« écolier, ça fait maternelle »).
 
 ## La direction : épuré blanc, façon Apple
