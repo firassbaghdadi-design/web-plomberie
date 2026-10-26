@@ -73,3 +73,4 @@ Sur **chaque** site, sans exception :
 - Tout nouveau projet Vercel est **lié à GitHub dès sa création** : outil `create_project` (sans teamId) avec `gitRepository: {repo: "firassbaghdadi-design/web-plomberie", type: "github"}`, `rootDirectory` = le dossier du site, `framework: "nextjs"`, `enableAffectedProjectsDeployments: true` (ne reconstruit que si le dossier change).
 - La branche de production du dépôt est `claude/plumbing-outreach-idf-yw3jbm` : chaque push redéploie automatiquement.
 - Client signé : on crée un dépôt GitHub dédié à son site et un projet Vercel lié à ce dépôt.
+- Ne créer le projet lié qu'une fois le dossier du site poussé sur GitHub, sinon chaque push déclenche un build en erreur. Le projet `entreprise-clairon-maquette` est en attente : builds ignorés (`commandForIgnoringBuildStep: "exit 0"`, pas de rootDirectory). Quand la maquette démarre, remettre `rootDirectory: "maquettes/entreprise-clairon"` et retirer la commande d'ignore.
