@@ -13,6 +13,22 @@
 - Composants sobres : boutons arrondis simples, filets fins, ombres très douces ou absentes.
 - Le site doit paraître **cher, calme et sérieux** : une entreprise solide, pas une start-up et pas un jouet.
 
+## Le test du directeur (obligatoire)
+
+Se mettre dans la peau du dirigeant qui ouvre la maquette depuis notre e-mail, souvent sur son téléphone :
+- **En 3 secondes, dès le héros, il doit se dire « waouh ».** Sinon il pense « encore une agence de com / un arnaqueur » et ne rappelle pas.
+- Il doit voir un site **qu'il n'a jamais vu**, et qui n'a **rien à voir** avec son site actuel : plus beau, plus moderne, plus cher.
+- Il doit se reconnaître : son nom, son logo, sa couleur, ses métiers, son quartier, son histoire.
+
+Le « waouh » vient de l'élégance, pas des gadgets :
+- Héros plein écran avec une photo spectaculaire et parfaitement cadrée (immeuble parisien, artisan au travail, lumière), éventuellement un très lent zoom.
+- Très grand titre léger, révélé ligne par ligne au chargement ; une phrase courte qui dit qui ils sont et depuis quand.
+- Un seul bouton d'action évident, le téléphone visible.
+- Composition magazine : marges généreuses, alignements parfaits, typographie impeccable, détails soignés (filets, numérotation, petites légendes).
+- Qualité « site primé » : rien d'approximatif, aucun bloc vide, aucune photo floue ou hors sujet, rendu parfait sur iPhone.
+
+Avant de livrer : capture du héros en 390 px et 1440 px, posée à côté d'une capture de leur site actuel. Si l'écart ne saute pas aux yeux, on recommence.
+
 ## Animations : sobres
 
 - Apparitions douces au défilement (fondu + léger glissement). Rien qui distrait.
