@@ -52,3 +52,19 @@ Avant de livrer : capture du héros en 390 px et 1440 px, posée à côté d'une
 - Mêmes pages et mêmes textes que le site d'origine, puis pages métier × zone aux textes tous différents.
 - SEO : audit à 0 problème.
 - Chaque site a sa propre identité **dans ce cadre épuré** : elle vient de la couleur, du choix de typographie, du cadrage des photos et d'un détail de mise en page, pas d'effets.
+
+## Un concept créatif par site (obligatoire)
+
+« Il faut être créatif, sinon on ressemble à n'importe quelle agence. » Chaque maquette a **une idée signature tirée du métier ou de l'histoire de l'entreprise**, qui sert de fil conducteur à toute la page, exécutée avec la sobriété ci-dessus.
+
+Exemple montré par Firas (site Durand, chauffagiste) : **un tuyau dessiné traverse toute la page** de haut en bas, relie les sections entre elles, puis **change de couleur** (gris, rouge eau chaude, bleu eau froide) en passant d'une section à l'autre.
+
+Pistes par métier, à adapter (une seule par site) :
+- **Plombier** : le tuyau qui se dessine au défilement et relie les sections ; une goutte qui guide la lecture ; les coudes du tuyau comme numéros de section.
+- **Chauffagiste / gaz** : une flamme bleue ou une ligne de chaleur qui passe du froid (bleu) au chaud (rouge) au fil de la page ; un thermostat comme indicateur de défilement.
+- **Couvreur / zingueur** : la ligne des toits de Paris dessinée en un trait continu ; le profil d'un toit en zinc comme séparateur.
+- **Électricien** : un câble qui court entre les sections et « allume » chaque bloc quand on arrive dessus.
+- **Rénovation / maçon** : le plan d'architecte qui se trace puis se remplit de la photo finie (du plan au chantier).
+- **Maison ancienne** : une frise chronologique dessinée comme un tuyau ou un trait d'architecte, qui avance avec les années.
+
+Règles : le concept reste fin et élégant (traits fins, couleurs de la charte), il ne gêne jamais la lecture, il fonctionne aussi sur mobile, et il n'est jamais réutilisé tel quel d'un site à l'autre.
