@@ -2,6 +2,8 @@
 
 Règles fixées par Firas les 24 et 25 octobre 2026. Elles s'appliquent à tous les prochains secteurs, adaptées à la charte de chaque entreprise. Aucune page ne part sans les avoir toutes passées.
 
+> **Design : lire d'abord `gout-firas.md`** (épuré blanc façon Rousseau, typo fine, animations sobres). Il prime sur toute consigne de design de ce fichier.
+
 ## 1. Référencement (Bible SEO / GEO / AEO)
 
 - **H1** : le métier + la ville, mot-clé en premier (« Plombier Paris 14e : urgence, fuite et dépannage », « Rénovation de salle de bains à Bourg-la-Reine »). Un seul H1 par page.
