@@ -53,6 +53,10 @@ Avant de livrer : capture du héros en 390 px et 1440 px, posée à côté d'une
 - SEO : audit à 0 problème.
 - Chaque site a sa propre identité **dans ce cadre épuré** : elle vient de la couleur, du choix de typographie, du cadrage des photos et d'un détail de mise en page, pas d'effets.
 
+## Le niveau d'exigence
+
+« Je ne t'ai pas payé pour faire des sites classiques. » Les dirigeants doivent nous faire confiance au premier regard : chaque maquette doit **sortir de l'ordinaire**, être **hyper créative** et faire travailler l'imagination à fond, tout en respectant **toujours** la charte de l'entreprise (logo, couleurs) et la Bible SEO. Créatif ne veut pas dire chargé : une idée forte, exécutée parfaitement.
+
 ## Un concept créatif par site (obligatoire)
 
 « Il faut être créatif, sinon on ressemble à n'importe quelle agence. » Chaque maquette a **une idée signature tirée du métier ou de l'histoire de l'entreprise**, qui sert de fil conducteur à toute la page, exécutée avec la sobriété ci-dessus.
