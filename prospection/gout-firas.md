@@ -23,6 +23,7 @@ Se mettre dans la peau du dirigeant qui ouvre la maquette depuis notre e-mail, s
 Le « waouh » vient de l'élégance, pas des gadgets :
 - Héros plein écran avec une photo spectaculaire et parfaitement cadrée (immeuble parisien, artisan au travail, lumière), éventuellement un très lent zoom.
 - Très grand titre léger, révélé ligne par ligne au chargement ; une phrase courte qui dit qui ils sont et depuis quand.
+- **Le H1 du héros = toujours métier + zone géographique** (« Plombier chauffagiste à Paris 18e », « Rénovation de salle de bains à Neuilly »). Jamais un slogan seul en H1 : le slogan va en sous-titre ou en accroche au-dessus.
 - Un seul bouton d'action évident, le téléphone visible.
 - Composition magazine : marges généreuses, alignements parfaits, typographie impeccable, détails soignés (filets, numérotation, petites légendes).
 - Qualité « site primé » : rien d'approximatif, aucun bloc vide, aucune photo floue ou hors sujet, rendu parfait sur iPhone.
