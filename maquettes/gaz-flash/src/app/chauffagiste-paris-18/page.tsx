@@ -14,14 +14,14 @@ export default function Paris18Page() {
     <>
       <PageHead
         path={path}
-        aside={<Polaroid id="entretien2" alt="Illustration : visite d'entretien d'une chaudière" caption="Chauffagiste du 18e" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="entretien2" alt="Illustration : visite d'entretien d'une chaudière" caption="Chauffagiste du 18e" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <Page
         aside={
           <>
             <Ticket
-              className="lg:rotate-[1deg]"
+              className=""
               title="Entretien · Paris 18e"
               rows={[
                 { label: "Chaudière, forfait révision", price: priceGroups[0].review.paris18 },

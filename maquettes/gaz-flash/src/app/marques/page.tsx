@@ -21,10 +21,10 @@ export default function BrandsPage() {
 
         <h2>Les marques citées par Gaz Flash</h2>
         {brands.map((brand) => (
-          <section key={brand.name} aria-labelledby={`marque-${brand.name.replace(/\s/g, "-")}`} className="border-t-[1.5px] border-dashed border-ink/25 pt-6">
+          <section key={brand.name} aria-labelledby={`marque-${brand.name.replace(/\s/g, "-")}`} className="border-t-[1.5px] border-line pt-6">
             <div className="flex flex-wrap items-center gap-5">
               {brand.id ? (
-                <span className="flex h-16 w-36 items-center justify-center border border-ink/20 bg-white px-3">
+                <span className="flex h-16 w-36 items-center justify-center px-3 opacity-80 grayscale">
                   <Logo id={brand.id} alt={`Logo ${brand.name}`} className="max-h-11 w-auto max-w-full object-contain" width={130} height={44} />
                 </span>
               ) : null}

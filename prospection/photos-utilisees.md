@@ -53,7 +53,7 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 36344878 : Somsou-Pons (radiateur)
 - 38543041 : Atelier Truelle (toit)
 
-Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels).
+Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels) ; Gaz Flash y ajoute deux photos Wikimedia Commons du 18e (voir plus bas).
 
 Seragaz utilise les photos de son propre site (aucune photo Pexels).
 
@@ -74,3 +74,5 @@ Photos de lieux réels, à ne pas reprendre sur un autre site :
 - Hôtel Ville - Clichy (FR92) - 2023-07-08 - 1.jpg : Seragaz (clichy)
 - Flags and Southeast of the Hôtel de Ville of Levallois-Perret.jpg : Seragaz (levallois)
 - Château de Vincennes 001.jpg : Seragaz (vincennes)
+- Paris, Schornsteine -- 2014 -- 1200.jpg (Dietmar Rabich, CC BY-SA 4.0) : Gaz Flash (héros, cheminées à Montmartre)
+- Toits de Montmartre.jpg (FreCha, CC BY-SA 4.0) : Gaz Flash (toits de Montmartre)

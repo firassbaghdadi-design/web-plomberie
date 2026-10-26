@@ -12,14 +12,15 @@ export default function FaqPage() {
     <>
       <PageHead
         path={path}
+        wide={false}
         aside={
-          <div className="affiche red mx-auto max-w-[360px]" style={{ ["--r" as string]: "1.5deg" }}>
-            <p className="hand text-[1.9rem] text-red-btn">Urgence ?</p>
+          <div className="affiche red">
+            <p className="label text-red-dark">Urgence ?</p>
             <ul className="mt-2 space-y-1.5">
               <li>Odeur de gaz ou monoxyde : pompiers <strong>18</strong> ou <strong>112</strong></li>
               <li>Urgence gaz GRDF : <strong>0 800 47 33 33</strong></li>
               <li>
-                Panne ordinaire, en semaine : <a href={`tel:${business.phoneTel}`} className="font-bold text-red-dark">{business.phoneDisplay}</a>
+                Panne ordinaire, en semaine : <a href={`tel:${business.phoneTel}`} className="font-medium text-red-dark">{business.phoneDisplay}</a>
               </li>
             </ul>
           </div>

@@ -8,8 +8,8 @@ import { PhotoPicker } from "./PhotoPicker";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-2xl border border-ink/20 bg-white px-4 py-3.5 text-ink outline-none transition focus:border-red-btn focus:ring-4 focus:ring-red/20";
-const label = "block text-[0.95rem] font-semibold text-ink-2";
+const field = "mt-2 w-full rounded-lg border border-line bg-white px-4 py-3.5 text-ink outline-none transition focus:border-ink focus:ring-4 focus:ring-ink/5";
+const label = "block text-[0.9rem] font-medium text-ink-2";
 
 export function ContactForm({ defaultType = "depannage" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -56,18 +56,18 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
   if (status === "success") {
     return (
       <div role="status" className="affiche red text-center">
-        <p className="hand text-[2.2rem] text-red-btn">Bien reçu, merci !</p>
+        <p className="label text-red-dark">Bien reçu, merci</p>
         <h2 className="mt-1">Votre demande est arrivée.</h2>
         <p className="mt-3">Votre message est dans la boîte de l'entreprise. Pour une urgence, appelez le {business.phoneDisplay}.</p>
       </div>
     );
   }
 
-  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1 text-sm font-semibold text-[#b42318]">{errors[key]}</p> : null);
+  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1.5 text-sm text-[#b42318]">{errors[key]}</p> : null);
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate aria-labelledby="form-title" className="rounded-[2rem] border border-ink/15 bg-paper-sheet p-6 shadow-[0_30px_60px_-34px_rgb(27_34_41/0.5)] sm:p-10">
+    <form onSubmit={onSubmit} noValidate aria-labelledby="form-title" className="rounded-xl bg-paper-2 p-6 sm:p-12">
       <h2 id="form-title">Écrire à l'entreprise</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de l'entreprise. Pour une panne, le téléphone reste le plus rapide.</p>
 
@@ -121,7 +121,7 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-[#C9261D]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-[#D42C23]" {...aria("consent")} />
             <span>J'accepte que mes informations soient utilisées pour répondre à ma demande, conformément à la politique de données personnelles.</span>
           </label>
           {err("consent")}
@@ -129,8 +129,8 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
       </div>
 
       {status === "error" ? (
-        <p role="alert" className="mt-6 border-2 border-[#b42318]/50 bg-[#fef3f2] p-4 text-sm text-[#b42318]">
-          {serverMessage} Vous pouvez aussi appeler le <a className="font-semibold underline" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a> ou écrire à <a className="font-semibold underline" href={`mailto:${business.email}`}>{business.email}</a>.
+        <p role="alert" className="mt-6 rounded-lg border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#b42318]">
+          {serverMessage} Vous pouvez aussi appeler le <a className="font-medium underline" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a> ou écrire à <a className="font-medium underline" href={`mailto:${business.email}`}>{business.email}</a>.
         </p>
       ) : null}
 

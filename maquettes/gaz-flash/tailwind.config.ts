@@ -5,15 +5,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        red: { DEFAULT: "#E4342B", btn: "#C9261D", dark: "#9E1B14", tint: "#FBE6E1" },
-        ink: { DEFAULT: "#2C353D", 2: "#1B2229", soft: "#505B64" },
-        paper: { DEFAULT: "#F6F0E3", 2: "#EDE4D0", 3: "#E2D6BB", sheet: "#FFFCF4" },
+        red: { DEFAULT: "#E4342B", btn: "#D42C23", dark: "#B3241C", tint: "#FBEDEB" },
+        ink: { DEFAULT: "#15181B", 2: "#0D0F11", soft: "#5D636A" },
+        paper: { DEFAULT: "#FFFFFF", 2: "#F6F5F3", 3: "#ECEAE6", sheet: "#FFFFFF" },
+        line: "#E7E5E1",
+        flame: "#2F6FD6",
       },
       fontFamily: {
-        display: ["'Fraunces Variable'", "Georgia", "serif"],
-        sans: ["'Open Sans Variable'", "'Open Sans'", "system-ui", "sans-serif"],
-        hand: ["Caveat", "'Segoe Print'", "cursive"],
-        label: ["'Barlow Condensed'", "'Arial Narrow'", "sans-serif"],
+        display: ["'Inter Tight Variable'", "'Inter Tight'", "system-ui", "sans-serif"],
+        sans: ["'Inter Variable'", "Inter", "system-ui", "sans-serif"],
+        label: ["'Inter Variable'", "Inter", "system-ui", "sans-serif"],
       },
     },
   },

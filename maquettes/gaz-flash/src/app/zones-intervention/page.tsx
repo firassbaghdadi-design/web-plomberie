@@ -39,20 +39,20 @@ export default function ZonesPage() {
           <table className="w-full min-w-[420px] border-collapse text-left">
             <caption className="sr-only">Tarifs TTC d'entretien d'une chaudière selon la zone</caption>
             <thead>
-              <tr className="border-b-2 border-ink/60 font-label uppercase tracking-wider">
+              <tr className="border-b border-ink label text-ink-soft">
                 <th scope="col" className="py-2 pr-3">Zone</th>
                 <th scope="col" className="px-3 py-2">Forfait révision</th>
                 <th scope="col" className="px-3 py-2">Contrat annuel</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-dashed border-ink/25">
-                <th scope="row" className="py-3 pr-3 font-semibold">Paris 18e</th>
+              <tr className="border-b border-line">
+                <th scope="row" className="py-3 pr-3 font-medium">Paris 18e</th>
                 <td className="price px-3 py-3 text-[1.7rem]">{g.review.paris18}</td>
                 <td className="price px-3 py-3 text-[1.7rem]">{g.contract.paris18}</td>
               </tr>
-              <tr className="border-b border-dashed border-ink/25">
-                <th scope="row" className="py-3 pr-3 font-semibold">Paris (autres arrondissements) et petite couronne</th>
+              <tr className="border-b border-line">
+                <th scope="row" className="py-3 pr-3 font-medium">Paris (autres arrondissements) et petite couronne</th>
                 <td className="price px-3 py-3 text-[1.7rem]">{g.review.other}</td>
                 <td className="price px-3 py-3 text-[1.7rem]">{g.contract.other}</td>
               </tr>

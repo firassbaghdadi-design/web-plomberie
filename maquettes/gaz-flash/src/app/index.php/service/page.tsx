@@ -30,7 +30,7 @@ export default function ServicesPage() {
     <>
       <PageHead
         path={path}
-        aside={<Polaroid id="depannage2" alt="Illustration : intervention de dépannage sur un appareil de chauffage" caption="Entretien, dépannage, pose" ratio="4 / 3" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="depannage2" alt="Illustration : intervention de dépannage sur un appareil de chauffage" caption="Entretien, dépannage, pose" ratio="4 / 3" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <section className="wrap mt-16" aria-labelledby="cas">
@@ -39,7 +39,7 @@ export default function ServicesPage() {
         <ul className="ruled mt-6">
           {situations.map((s) => (
             <li key={s.when} className="grid gap-1 py-4 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:gap-8">
-              <p className="font-display text-[1.2rem] font-semibold text-ink-2">{s.when}</p>
+              <p className="font-display text-[1.2rem] font-light text-ink-2">{s.when}</p>
               <p className="text-ink-soft">
                 {s.what}{" "}
                 <Link href={s.to} className="link-arrow">
@@ -59,7 +59,7 @@ export default function ServicesPage() {
               <Polaroid id={service.image} alt={`Illustration : ${service.title.toLowerCase()} de chaudière gaz`} caption={service.title} ratio="3 / 2" sizes="(min-width:768px) 360px, 90vw" rotate={index % 2 ? 1.5 : -1.5} className="mx-auto w-full max-w-[380px]" />
               <div className="prose-gf">
                 <h3 className="!mt-0 text-[1.7rem]">{service.title}</h3>
-                <p className="hand text-[1.45rem] text-red-btn">{service.line}</p>
+                <p className="label text-red-dark">{service.line}</p>
                 <p>{descriptions[service.key]}</p>
                 <p>
                   <Link href={service.path} className="link-arrow">
@@ -71,7 +71,7 @@ export default function ServicesPage() {
           ))}
         </div>
         <p className="mt-12 max-w-[64ch] text-ink-soft">
-          Pour l'entretien et le ramonage, les prix sont publiés : voir <Link href={PATHS.prices} className="font-semibold text-red-dark underline">les tarifs TTC</Link>. Pour le dépannage et l'installation, Gaz Flash remet un devis détaillé avant d'intervenir.
+          Pour l'entretien et le ramonage, les prix sont publiés : voir <Link href={PATHS.prices} className="font-medium text-red-dark underline">les tarifs TTC</Link>. Pour le dépannage et l'installation, Gaz Flash remet un devis détaillé avant d'intervenir.
         </p>
       </section>
 

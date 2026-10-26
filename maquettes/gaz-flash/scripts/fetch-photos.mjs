@@ -6,12 +6,13 @@ const outDir = new URL("../public/photos/", import.meta.url);
 const manifestUrl = new URL("../src/lib/photos.generated.json", import.meta.url);
 mkdirSync(outDir, { recursive: true });
 
-const extension = (file) => file.split(".").pop().toLowerCase();
+const extension = (file) => file.split("?")[0].split(".").pop().toLowerCase();
+const urlOf = (file) => (/^https?:/.test(file) ? file : CDN + file);
 
 async function download(file, target) {
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const res = await fetch(CDN + file, { signal: AbortSignal.timeout(25000) });
+      const res = await fetch(urlOf(file), { headers: { "User-Agent": "GazFlashMaquette/1.0 (https://github.com/firassbaghdadi-design/web-plomberie)" }, signal: AbortSignal.timeout(30000) });
       const type = res.headers.get("content-type") ?? "";
       if (!res.ok || !type.startsWith("image/")) throw new Error(`${res.status} ${type}`);
       writeFileSync(target, Buffer.from(await res.arrayBuffer()));

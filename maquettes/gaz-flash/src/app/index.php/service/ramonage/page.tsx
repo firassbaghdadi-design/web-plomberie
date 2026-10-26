@@ -14,7 +14,7 @@ export default function SweepPage() {
       <PageHead
         path={path}
         trail={[PATHS.services]}
-        aside={<Polaroid id="ramonage" alt="Illustration : ramonage d'un conduit de fumée" caption="Une question de sécurité" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="ramonage" alt="Illustration : ramonage d'un conduit de fumée" caption="Une question de sécurité" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <Page

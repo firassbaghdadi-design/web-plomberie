@@ -14,7 +14,7 @@ export default function InstallPage() {
       <PageHead
         path={path}
         trail={[PATHS.services]}
-        aside={<Polaroid id="installation" alt="Illustration : installation d'une chaudière" caption="Une solution clé en main" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={-2} priority />}
+        aside={<Polaroid id="installation" alt="Illustration : installation d'une chaudière" caption="Une solution clé en main" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={-2} priority />}
       />
 
       <Page

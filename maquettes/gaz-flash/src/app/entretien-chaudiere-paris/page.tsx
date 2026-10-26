@@ -13,14 +13,14 @@ export default function MaintenanceGuidePage() {
     <>
       <PageHead
         path={path}
-        aside={<Polaroid id="entretien" alt="Illustration : entretien d'une chaudière gaz" caption="Une fois par an" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="entretien" alt="Illustration : entretien d'une chaudière gaz" caption="Une fois par an" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <Page
         aside={
           <>
             <Ticket
-              className="lg:rotate-[1deg]"
+              className=""
               title="Chaudière · Paris 18e"
               rows={[
                 { label: "Forfait révision", price: priceGroups[0].review.paris18 },

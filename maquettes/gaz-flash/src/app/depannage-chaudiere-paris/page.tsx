@@ -22,18 +22,18 @@ export default function RepairGuidePage() {
     <>
       <PageHead
         path={path}
-        aside={<Polaroid id="depannage" alt="Illustration : dépannage d'un appareil de chauffage" caption="Respirez, on vérifie" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={-2} priority />}
+        aside={<Polaroid id="depannage" alt="Illustration : dépannage d'un appareil de chauffage" caption="Respirez, on vérifie" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={-2} priority />}
       />
 
       <Page
         aside={
           <>
-            <div className="affiche red" style={{ ["--r" as string]: "1deg" }}>
-              <p className="hand text-[1.8rem] text-red-btn">Les numéros utiles</p>
+            <div className="affiche red">
+              <p className="label text-red-dark">Les numéros utiles</p>
               <ul className="mt-2 space-y-1 text-[0.97rem]">
                 <li>Pompiers : <strong>18</strong> ou <strong>112</strong></li>
                 <li>Urgence gaz GRDF : <strong>0 800 47 33 33</strong></li>
-                <li>Gaz Flash : <a href={`tel:${business.phoneTel}`} className="font-bold">{business.phoneDisplay}</a></li>
+                <li>Gaz Flash : <a href={`tel:${business.phoneTel}`} className="font-medium">{business.phoneDisplay}</a></li>
               </ul>
             </div>
             <PhoneNote rotate={-1} />
@@ -57,7 +57,7 @@ export default function RepairGuidePage() {
           <table className="w-full min-w-[560px] border-collapse text-left text-[0.97rem]">
             <caption className="sr-only">Symptômes courants d'une chaudière gaz, vérifications et moment d'appeler</caption>
             <thead>
-              <tr className="border-b-2 border-ink/60 font-label uppercase tracking-wider">
+              <tr className="border-b border-ink label text-ink-soft">
                 <th scope="col" className="py-2 pr-3">Ce que vous constatez</th>
                 <th scope="col" className="px-3 py-2">Ce que vous pouvez vérifier</th>
                 <th scope="col" className="px-3 py-2">Quand appeler</th>
@@ -65,8 +65,8 @@ export default function RepairGuidePage() {
             </thead>
             <tbody>
               {checks.map((c) => (
-                <tr key={c.sign} className="border-b border-dashed border-ink/25 align-top">
-                  <th scope="row" className="py-3 pr-3 font-semibold text-ink-2">{c.sign}</th>
+                <tr key={c.sign} className="border-b border-line align-top">
+                  <th scope="row" className="py-3 pr-3 font-medium text-ink-2">{c.sign}</th>
                   <td className="px-3 py-3">{c.look}</td>
                   <td className="px-3 py-3">{c.call}</td>
                 </tr>

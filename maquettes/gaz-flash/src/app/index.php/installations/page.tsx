@@ -21,7 +21,7 @@ export default function InstallationsPage() {
     <>
       <PageHead
         path={path}
-        aside={<Polaroid id="heroInstall" alt="Illustration : vous en rêvez, nous vous l'installons" caption="Vous en rêvez, on l'installe" ratio="4 / 3" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="heroInstall" alt="Illustration : vous en rêvez, nous vous l'installons" caption="Vous en rêvez, on l'installe" ratio="4 / 3" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <section className="wrap mt-16" aria-labelledby="gammes">
@@ -37,7 +37,7 @@ export default function InstallationsPage() {
                 <Polaroid id={range.image} alt={`Illustration : ${range.title.toLowerCase()}`} caption={range.title} ratio="1500 / 630" sizes="(min-width:768px) 520px, 90vw" rotate={index % 2 ? 1.2 : -1.2} />
               </Link>
               <div className="prose-gf">
-                <p className="hand text-[1.9rem] leading-none text-red-btn">{range.letter}</p>
+                <p className="label text-red-dark">{range.letter}</p>
                 <h3 className="!mt-0 text-[1.7rem]">
                   <Link href={range.path} className="text-ink-2 no-underline hover:underline">{range.title}</Link>
                 </h3>
@@ -59,7 +59,7 @@ export default function InstallationsPage() {
         <ul className="ruled mt-6">
           {start.map((s) => (
             <li key={s.to} className="grid gap-1 py-4 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] sm:gap-8">
-              <p className="font-display text-[1.15rem] font-semibold text-ink-2">{s.when}</p>
+              <p className="font-display text-[1.15rem] font-light text-ink-2">{s.when}</p>
               <p>
                 <Link href={s.to} className="link-arrow">
                   {s.label} <ArrowIcon className="h-4 w-4" />

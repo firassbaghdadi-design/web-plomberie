@@ -26,7 +26,7 @@ export default function RepairPage() {
       <PageHead
         path={path}
         trail={[PATHS.services]}
-        aside={<Polaroid id="depannage" alt="Illustration : dépannage d'un appareil de chauffage" caption="Quand ça ne chauffe plus" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="depannage" alt="Illustration : dépannage d'un appareil de chauffage" caption="Quand ça ne chauffe plus" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <Page
@@ -54,7 +54,7 @@ export default function RepairPage() {
         </p>
 
         <div className="affiche red">
-          <p className="hand text-[1.8rem] text-red-btn">Ça sent le gaz ?</p>
+          <p className="label text-red-dark">Ça sent le gaz ?</p>
           <p className="mt-1">
             Ne cherchez pas d'abord un dépanneur : fermez le robinet de gaz si vous le pouvez, ouvrez les fenêtres, n'actionnez aucun interrupteur, sortez et appelez les secours (18 ou 112) depuis l'extérieur. Détails sur la page <Link href={PATHS.repairGuide}>Dépannage de chaudière gaz à Paris</Link>.
           </p>

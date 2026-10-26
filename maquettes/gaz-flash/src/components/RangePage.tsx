@@ -20,7 +20,7 @@ export function RangePage({ range }: { range: Range }) {
       <PageHead
         path={range.path}
         trail={[PATHS.installs]}
-        aside={<Polaroid id={range.image} alt={`Illustration : ${range.title.toLowerCase()}`} caption={`${range.letter} · ${range.title}`} ratio="1500 / 630" sizes="(min-width:1024px) 420px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id={range.image} alt={`Illustration : ${range.title.toLowerCase()}`} caption={`${range.letter} · ${range.title}`} ratio="1500 / 630" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <section className="wrap mt-16" aria-labelledby="modeles">
@@ -46,7 +46,7 @@ export function RangePage({ range }: { range: Range }) {
           <>
             {group ? (
               <Ticket
-                className="lg:rotate-[1deg]"
+                className=""
                 title={`Entretien · ${group.title}`}
                 rows={[
                   { label: "Forfait révision, Paris 18e", price: group.review.paris18 },
@@ -80,9 +80,9 @@ export function RangePage({ range }: { range: Range }) {
           {others.map((other) => (
             <li key={other.path}>
               <Link href={other.path} className="group flex items-baseline gap-3 py-3 no-underline">
-                <span className="hand text-[1.7rem] text-red-btn">{other.letter}</span>
-                <span className="font-display text-[1.2rem] font-semibold text-ink-2 underline decoration-red/50 underline-offset-4 group-hover:decoration-red">{other.title}</span>
-                <ArrowIcon className="h-4 w-4 text-red-btn" />
+                <span className="label text-red-dark">{other.letter}</span>
+                <span className="font-display text-[1.2rem] font-light text-ink-2 underline decoration-red/50 underline-offset-4 group-hover:decoration-red">{other.title}</span>
+                <ArrowIcon className="h-4 w-4 text-red-dark" />
               </Link>
             </li>
           ))}

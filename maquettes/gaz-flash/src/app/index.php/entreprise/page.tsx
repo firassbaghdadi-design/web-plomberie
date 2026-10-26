@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CallStrip, Faq, GoogleReviews, PageHead, Page, PhoneNote, SeeAlso, Stamp } from "@/components/ui";
+import { CallStrip, Faq, GoogleReviews, PageHead, Page, PhoneNote, SeeAlso } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
 import { Logo, Polaroid } from "@/components/Photo";
 import { PATHS, brandLogos, business, reasons } from "@/lib/site";
@@ -15,10 +15,7 @@ export default function CompanyPage() {
       <PageHead
         path={path}
         aside={
-          <div className="relative">
-            <Polaroid id="heroTrust" alt="Illustration : une équipe fiable, la maintenance des appareils depuis 1965" caption="Une équipe fiable" ratio="4 / 3" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />
-            <Stamp className="absolute -left-2 top-4 sm:-left-5">Depuis 1965</Stamp>
-          </div>
+          <Polaroid id="heroTeam" alt="La devanture de Gaz Flash, 7 rue Sainte-Isaure à Paris 18e" caption="Depuis 1965, rue Sainte-Isaure" ratio="21 / 9" sizes="(min-width:1200px) 1120px, 100vw" priority />
         }
       />
 
@@ -69,7 +66,7 @@ export default function CompanyPage() {
         </p>
         <div className="flex flex-wrap items-center gap-3">
           {brandLogos.map((brand) => (
-            <span key={brand.id} className="flex h-14 w-28 items-center justify-center border border-ink/20 bg-white px-2">
+            <span key={brand.id} className="flex h-14 w-28 items-center justify-center px-2 opacity-70 grayscale">
               <Logo id={brand.id} alt={brand.name} className="max-h-9 w-auto max-w-full object-contain" width={100} height={36} />
             </span>
           ))}

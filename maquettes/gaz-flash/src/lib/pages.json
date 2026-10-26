@@ -24,7 +24,7 @@
     "name": "Entretien",
     "title": "Entretien de chaudière gaz à Paris : contrat | Gaz Flash",
     "description": "Contrat d'entretien ou forfait révision de chaudière gaz à Paris et petite couronne : visite annuelle, attestation, ramonage en option. Tarifs TTC affichés.",
-    "h1": "Entretien de chaudière gaz : contrat annuel ou forfait révision",
+    "h1": "Entretien de chaudière gaz à Paris : contrat annuel ou forfait révision",
     "brief": "L'entretien d'une chaudière gaz se fait une fois par an et donne lieu à une attestation. Chez Gaz Flash, il se prend sous deux formes : le forfait révision sans engagement, à 130 € TTC à Paris 18e pour une chaudière, ou le contrat annuel à 150 € TTC, dépannages compris hors pièces."
   },
   "/index.php/service/depannage/": {
@@ -38,35 +38,35 @@
     "name": "Installation",
     "title": "Installation de chaudière gaz à Paris et en petite couronne",
     "description": "Installation de chaudière, chauffe-eau, régulation et radiateurs à Paris : diagnostic, conseil et pose clé en main par un chauffagiste certifié Gaz et RGE.",
-    "h1": "Installation de chaudière, chauffe-eau et régulation, clé en main",
+    "h1": "Installation de chaudière, chauffe-eau et régulation à Paris, clé en main",
     "brief": "Gaz Flash installe chaudières à condensation et basse température, chauffe-eau gaz, régulations et radiateurs à Paris et en petite couronne. Un diagnostic précède le conseil, puis viennent la pose et la mise en route. Les installations sont garanties deux ans pour les pièces."
   },
   "/index.php/service/ramonage/": {
     "name": "Ramonage",
     "title": "Ramonage de conduit de fumée gaz à Paris | Gaz Flash",
     "description": "Ramonage de conduit de fumée gaz à Paris et petite couronne : obligation annuelle, certificat remis, réalisé par un professionnel qualifié. Tarif affiché.",
-    "h1": "Ramonage de conduit de fumée gaz : obligations et sécurité",
+    "h1": "Ramonage de conduit de fumée gaz à Paris : obligations et sécurité",
     "brief": "Le ramonage d'un conduit de fumée gaz doit être fait au moins une fois par an par un professionnel qualifié, qui remet un certificat. Gaz Flash le réalise en même temps que l'entretien de la chaudière, pour 50 € TTC. Il est obligatoire chaque année pour les chaudières à tirage naturel."
   },
   "/index.php/service/nostarifs/": {
     "name": "Nos tarifs",
     "title": "Tarifs entretien chaudière et ramonage à Paris | Gaz Flash",
     "description": "Tarifs TTC de Gaz Flash à Paris 18e et en petite couronne : contrat d'entretien annuel, forfait révision sans engagement et ramonage du conduit de fumée gaz.",
-    "h1": "Tarifs d'entretien de chaudière et de ramonage",
+    "h1": "Tarifs d'entretien de chaudière et de ramonage à Paris",
     "brief": "Gaz Flash publie ses tarifs d'entretien en TTC. Pour une chaudière à Paris 18e : forfait révision 130 €, contrat annuel 150 €. Ailleurs à Paris et en petite couronne : 150 € et 170 €. Le ramonage du conduit gaz, fait avec l'entretien, coûte 50 € TTC."
   },
   "/index.php/installations/": {
     "name": "Installations",
     "title": "Installations de chaudière et chauffe-eau gaz | Gaz Flash",
     "description": "Chaudières à condensation et basse température, chauffe-eau gaz, régulation et thermostats : les gammes posées par Gaz Flash à Paris et en petite couronne.",
-    "h1": "Chaudières, chauffe-eau et régulations posés par Gaz Flash",
+    "h1": "Chaudières, chauffe-eau et régulations posés par Gaz Flash à Paris",
     "brief": "Gaz Flash pose quatre familles d'équipements au gaz : la régulation et le thermostat d'ambiance, le chauffe-eau gaz, la chaudière à condensation et la chaudière basse température. Chaque page présente les modèles cités par l'entreprise, des repères pour choisir, et renvoie à un diagnostic sur place."
   },
   "/index.php/portfolio-item/regulation/": {
     "name": "Régulation et thermostat",
     "title": "Régulation et thermostat d'ambiance chaudière | Gaz Flash",
     "description": "Régulation et thermostat d'ambiance pour chaudière gaz : Chaffoteaux Expert Control, Saunier Duval ExaControl, ELM Touch, Frisquet Visio, posés par Gaz Flash.",
-    "h1": "Régulation et thermostat d'ambiance pour chaudière gaz",
+    "h1": "Régulation et thermostat d'ambiance pour chaudière gaz à Paris",
     "brief": "Une régulation adaptée module la puissance de la chaudière selon la température mesurée chez vous, ce qui limite les variations de confort et gère mieux l'énergie. Gaz Flash pose des thermostats d'ambiance Chaffoteaux, Saunier Duval, ELM Leblanc et Frisquet, compatibles avec la chaudière installée."
   },
   "/index.php/portfolio-item/project-2-modern-house/": {
@@ -80,21 +80,21 @@
     "name": "Chaudière à condensation",
     "title": "Chaudière à condensation gaz : modèles posés | Gaz Flash",
     "description": "Chaudières gaz à condensation Frisquet, Chaffoteaux, Saunier Duval et ELM Leblanc : rendement élevé, pose et entretien par Gaz Flash à Paris et petite couronne.",
-    "h1": "Chaudière gaz à condensation : modèles et conseils de choix",
+    "h1": "Chaudière gaz à condensation à Paris : modèles et conseils de choix",
     "brief": "Une chaudière gaz à condensation récupère la chaleur contenue dans les fumées, ce qui donne un rendement élevé. Gaz Flash en pose des marques Frisquet, Chaffoteaux, Saunier Duval et ELM Leblanc, avec évacuation par cheminée ou par ventouse, à Paris et en petite couronne."
   },
   "/index.php/portfolio-item/project-1-interior-design/": {
     "name": "Chaudière basse température",
     "title": "Chaudière gaz basse température : modèles posés | Gaz Flash",
     "description": "Chaudières gaz basse température ELM Leblanc Acléis, Frisquet Hydromotrix, Chaffoteaux Mira C et Saunier Duval ThemaClassic, posées par Gaz Flash à Paris.",
-    "h1": "Chaudière gaz basse température : modèles et conseils de choix",
+    "h1": "Chaudière gaz basse température à Paris : modèles et conseils de choix",
     "brief": "Une chaudière gaz basse température chauffe sans condenser : elle consomme moins qu'un appareil d'ancienne génération et se pose facilement en rénovation. Gaz Flash installe les ELM Leblanc Acléis, Frisquet Hydromotrix Évolution, Chaffoteaux Mira C et Saunier Duval ThemaClassic à Paris et en petite couronne."
   },
   "/index.php/contact/": {
     "name": "Contact",
     "title": "Contact et devis chauffagiste à Paris 18e | Gaz Flash",
     "description": "Contactez Gaz Flash, 7 rue Sainte-Isaure à Paris 18e : téléphone, e-mail, formulaire de demande de devis ou de dépannage, horaires du lundi au vendredi.",
-    "h1": "Contacter Gaz Flash : devis, dépannage, renseignement",
+    "h1": "Contacter Gaz Flash, chauffagiste à Paris 18e : devis, dépannage, renseignement",
     "brief": "Pour un devis, un dépannage ou un renseignement, appelez Gaz Flash au 01 42 64 80 51 du lundi au vendredi, de 8 h à 12 h 30 et de 13 h 30 à 17 h, ou écrivez via le formulaire. L'adresse est le 7 rue Sainte-Isaure, 75018 Paris."
   },
   "/index.php/mentions-legales/": {
@@ -143,14 +143,14 @@
     "name": "Marques",
     "title": "Marques de chaudières posées : Frisquet, Saunier Duval",
     "description": "Frisquet, Chaffoteaux, Saunier Duval, ELM Leblanc, De Dietrich et Styx : les marques de chauffage au gaz citées par Gaz Flash et les modèles qu'elle installe.",
-    "h1": "Les marques de chaudières et de chauffe-eau de Gaz Flash",
+    "h1": "Les marques de chaudières et de chauffe-eau posées par Gaz Flash à Paris",
     "brief": "Gaz Flash affiche les logos de cinq marques de chauffage, Frisquet, Chaffoteaux, Saunier Duval, ELM Leblanc et De Dietrich, et pose aussi des accumulateurs Styx. Cette page indique, marque par marque, les modèles cités sur le site de l'entreprise et les pages où les retrouver."
   },
   "/questions-frequentes/": {
     "name": "Questions fréquentes",
     "title": "Questions fréquentes sur le chauffage gaz | Gaz Flash",
     "description": "Odeur de gaz, monoxyde de carbone, entretien du locataire, pression, durée de vie, ramonage : les réponses de Gaz Flash aux questions courantes à Paris.",
-    "h1": "Questions fréquentes sur le chauffage au gaz à Paris",
+    "h1": "Questions fréquentes au chauffagiste : le chauffage au gaz à Paris",
     "brief": "Cette page répond aux questions les plus courantes sur le chauffage au gaz à Paris : odeur de gaz, monoxyde de carbone, entretien du locataire, pression de la chaudière, durée de vie, ramonage. Pour un cas précis, appelez Gaz Flash au 01 42 64 80 51 du lundi au vendredi."
   }
 }

@@ -14,7 +14,7 @@ export default function PricesPage() {
       <PageHead
         path={path}
         trail={[PATHS.services]}
-        aside={<Polaroid id="entretien3" alt="Illustration : entretien d'un appareil de chauffage" caption="Les prix, affichés" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={2} priority />}
+        aside={<Polaroid id="entretien3" alt="Illustration : entretien d'un appareil de chauffage" caption="Les prix, affichés" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={2} priority />}
       />
 
       <Page
@@ -34,7 +34,7 @@ export default function PricesPage() {
           <table className="w-full min-w-[520px] border-collapse text-left">
             <caption className="sr-only">Tarifs TTC d'entretien par type d'appareil, formule et zone</caption>
             <thead>
-              <tr className="border-b-2 border-ink/60 font-label text-[0.95rem] uppercase tracking-wider">
+              <tr className="border-b border-ink label text-ink-soft">
                 <th scope="col" className="py-2 pr-3">Appareil et formule</th>
                 <th scope="col" className="px-3 py-2">Paris 18e</th>
                 <th scope="col" className="px-3 py-2">Autres arr. et petite couronne</th>
@@ -43,15 +43,15 @@ export default function PricesPage() {
             {priceGroups.map((group) => (
               <tbody key={group.title} className="border-b border-ink/30">
                 <tr>
-                  <th scope="rowgroup" colSpan={3} className="pt-5 pb-1 text-left font-display text-[1.3rem] font-semibold text-ink-2">{group.title}</th>
+                  <th scope="rowgroup" colSpan={3} className="pt-5 pb-1 text-left font-display text-[1.3rem] font-light text-ink-2">{group.title}</th>
                 </tr>
-                <tr className="border-b border-dashed border-ink/25 align-baseline">
-                  <th scope="row" className="py-3 pr-3 font-semibold">Contrat d'entretien annuel</th>
+                <tr className="border-b border-line align-baseline">
+                  <th scope="row" className="py-3 pr-3 font-medium">Contrat d'entretien annuel</th>
                   <td className="price px-3 py-3 text-[1.9rem]">{group.contract.paris18}</td>
                   <td className="price px-3 py-3 text-[1.9rem]">{group.contract.other}</td>
                 </tr>
                 <tr className="align-baseline">
-                  <th scope="row" className="py-3 pr-3 font-semibold">Forfait révision, sans engagement</th>
+                  <th scope="row" className="py-3 pr-3 font-medium">Forfait révision, sans engagement</th>
                   <td className="price px-3 py-3 text-[1.9rem]">{group.review.paris18}</td>
                   <td className="price px-3 py-3 text-[1.9rem]">{group.review.other}</td>
                 </tr>
@@ -59,7 +59,7 @@ export default function PricesPage() {
             ))}
             <tbody>
               <tr>
-                <th scope="row" className="py-4 pr-3 font-display text-[1.3rem] font-semibold text-ink-2">Ramonage du conduit de fumée gaz</th>
+                <th scope="row" className="py-4 pr-3 font-display text-[1.3rem] font-light text-ink-2">Ramonage du conduit de fumée gaz</th>
                 <td colSpan={2} className="price px-3 py-4 text-[1.9rem]">{sweepPrice}</td>
               </tr>
             </tbody>

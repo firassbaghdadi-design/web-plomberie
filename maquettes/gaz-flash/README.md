@@ -6,7 +6,9 @@ Déployée en privé sur Vercel (projet `gaz-flash-maquette`, protégée par con
 
 ## Parti pris
 
-Gaz Flash est une boîte de quartier du 18e, ouverte depuis 1965. Le site est écrit et dessiné comme tel : ton de voisin professionnel, photos réelles de l'ancien site, détails « papier » (mot épinglé « En bref », photos collées, affichette, ardoise des horaires, étiquette de tarif, tampon, croquis dessinés). Aucune animation décorative, aucun chiffre qui défile, aucune grille de cartes à icônes. Charte conservée : rouge `#E4342B`, anthracite `#2C353D`, Open Sans pour le texte, logo d'origine. Polices d'affichage : Fraunces (titres), Caveat (annotations manuscrites), Barlow Condensed (étiquettes).
+Refonte visuelle du 26 octobre 2026 (charte `prospection/gout-firas.md`) : épuré blanc, calme et sérieux. Typographie Inter Tight (titres, graisses 200 à 400) et Inter (texte, 400). Palette : blanc, encre `#15181B`, gris `#5D636A`, filets `#E7E5E1` ; le rouge Gaz Flash `#E4342B` sert uniquement d'accent (boutons, filets, numéros). Héros plein écran (cheminées de Montmartre, zoom très lent, H1 révélé ligne par ligne, un seul bouton et le téléphone), grandes photos panoramiques peu nombreuses, chiffres clés légers, en-tête flottant fin.
+
+Concept signature : **le tuyau**. Un trait fin part du héros, descend la page et se dessine au défilement (`src/components/Pipe.tsx`) ; chaque coude porte le numéro d'une section, le tracé passe du gris au rouge, une petite flamme bleue s'allume au niveau du chauffage. Sur téléphone, tracé simplifié au bord gauche. Animations : fondu et léger glissement au défilement (`Motion.tsx`, relancé à chaque page, filet de sécurité CSS à 3 s), rien d'autre.
 
 ## Pages (22)
 

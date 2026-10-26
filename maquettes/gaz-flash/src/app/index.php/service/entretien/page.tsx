@@ -23,14 +23,14 @@ export default function MaintenancePage() {
       <PageHead
         path={path}
         trail={[PATHS.services]}
-        aside={<Polaroid id="entretien" alt="Illustration : entretien d'une chaudière gaz" caption="La visite annuelle" ratio="3 / 2" sizes="(min-width:1024px) 400px, 90vw" rotate={-2} priority />}
+        aside={<Polaroid id="entretien" alt="Illustration : entretien d'une chaudière gaz" caption="La visite annuelle" ratio="3 / 2" sizes="(min-width:1200px) 1120px, 100vw" rotate={-2} priority />}
       />
 
       <Page
         aside={
           <>
             <Ticket
-              className="lg:rotate-[1deg]"
+              className=""
               title="Chaudière · Paris 18e"
               rows={[
                 { label: "Forfait révision", price: chaudiere.review.paris18 },
@@ -62,7 +62,7 @@ export default function MaintenancePage() {
           <table className="w-full min-w-[480px] border-collapse text-left text-[0.97rem]">
             <caption className="sr-only">Comparaison du contrat annuel et du forfait révision</caption>
             <thead>
-              <tr className="border-b-2 border-ink/60 font-label uppercase tracking-wider">
+              <tr className="border-b border-ink label text-ink-soft">
                 <th scope="col" className="py-2 pr-3"></th>
                 <th scope="col" className="px-3 py-2">Contrat annuel</th>
                 <th scope="col" className="px-3 py-2">Forfait révision</th>
@@ -70,8 +70,8 @@ export default function MaintenancePage() {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.what} className="border-b border-dashed border-ink/25 align-top">
-                  <th scope="row" className="py-3 pr-3 font-semibold text-ink-2">{row.what}</th>
+                <tr key={row.what} className="border-b border-line align-top">
+                  <th scope="row" className="py-3 pr-3 font-medium text-ink-2">{row.what}</th>
                   <td className="px-3 py-3">{row.contract}</td>
                   <td className="px-3 py-3">{row.review}</td>
                 </tr>

@@ -13,7 +13,7 @@ export default function ContactPage() {
   const { address } = business;
   return (
     <>
-      <PageHead path={path} aside={<HoursSlate className="mx-auto max-w-[340px]" />} />
+      <PageHead path={path} wide={false} aside={<HoursSlate />} />
 
       <section className="wrap mt-16">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
@@ -24,7 +24,7 @@ export default function ContactPage() {
               <div>
                 <dt className="label text-ink-soft">Téléphone</dt>
                 <dd>
-                  <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="font-display text-[2.4rem] font-semibold leading-none text-ink-2 no-underline hover:text-red-dark">
+                  <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="font-display text-[2.4rem] font-light leading-none text-ink-2 no-underline hover:text-red-dark">
                     {business.phoneDisplay}
                   </a>
                   <p className="mt-1 text-[0.95rem] text-ink-soft">Standard et service commercial, du lundi au vendredi.</p>
@@ -33,7 +33,7 @@ export default function ContactPage() {
               <div>
                 <dt className="label text-ink-soft">E-mail</dt>
                 <dd>
-                  <a href={`mailto:${business.email}`} className="break-all font-semibold text-red-dark underline">{business.email}</a>
+                  <a href={`mailto:${business.email}`} className="break-all font-medium text-red-dark underline">{business.email}</a>
                 </dd>
               </div>
               <div>

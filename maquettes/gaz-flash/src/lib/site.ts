@@ -189,7 +189,7 @@ export const ranges: Range[] = [
     path: PATHS.regulation,
     letter: "A",
     title: "Régulation et thermostat d'ambiance",
-    image: "gammeRegulation",
+    image: "entretien",
     intro: "Optimiser le confort et bien gérer l'énergie : une régulation adaptée module la puissance de la chaudière selon la température réellement mesurée chez vous.",
     products: [
       { brand: "Chaffoteaux", model: "Expert Control", text: "La sonde d'ambiance module la puissance de la chaudière en fonction de la température ambiante mesurée, indépendamment de la température extérieure. En modulant la puissance, les variations de température sont minimisées, le niveau de confort augmente et la longévité de la chaudière est prolongée." },
@@ -229,7 +229,7 @@ export const ranges: Range[] = [
     path: PATHS.condensing,
     letter: "C",
     title: "Chaudière à condensation",
-    image: "gammeCondensation",
+    image: "installation",
     intro: "Parfaitement maîtrisée par Gaz Flash, la technologie de la condensation atteint des rendements énergétiques exceptionnels, quel que soit le type d'installation (cheminée ou ventouse).",
     products: [
       { brand: "Frisquet", model: "Hydroconfort Condensation Visio", text: "Cette chaudière bénéficie des équipements exclusifs Frisquet : corps de chauffe Optimal®, brûleur FlatFire® et régulation Éco Radio System Visio. La marche combinée de ces trois technologies lui garantit un rendement élevé et durable. La qualité de combustion du brûleur modulant FlatFire® permet d'atteindre le plus bas taux d'émissions de polluants (NOx)." },
@@ -250,7 +250,7 @@ export const ranges: Range[] = [
     path: PATHS.lowTemp,
     letter: "D",
     title: "Chaudière à basse température",
-    image: "gammeBasse",
+    image: "installation2",
     intro: "Avec une chaudière gaz conventionnelle, la sensation de confort est optimale et les rendements élevés. Par rapport à une chaudière d'ancienne génération, la consommation est réduite.",
     products: [
       { brand: "ELM Leblanc", model: "Acléis", text: "Idéale pour obtenir instantanément une eau à la température choisie et la maintenir stable au demi-degré près, Acléis s'appuie sur l'efficacité combinée d'un échangeur à plaques en inox et d'un système de régulation convivial. Conçue pour aller à l'essentiel, cette chaudière au design épuré offre une souplesse d'installation très avantageuse en rénovation." },
