@@ -1,9 +1,12 @@
-// Audit SEO d'un site de la maquette : node scripts/audit-seo.mjs http://localhost:3355 https://www.entreprise-rousseau.fr
+// Audit SEO de la maquette Martinet Thibault : node scripts/audit-seo.mjs http://localhost:3355 https://www.martinet-thibault.com
 // Contrôle chaque page du sitemap selon la Bible : title, description, H1, canonical, « En bref », JSON-LD, FAQ,
 // réponses des H2-questions, longueur du contenu, formulaire, liens internes, images, doublons.
 const base = process.argv[2];
-const siteUrl = (process.argv[3] ?? "https://www.entreprise-rousseau.fr").replace(/\/$/, "");
-const city = process.argv[4] ?? "";
+const siteUrl = (process.argv[3] ?? "https://www.martinet-thibault.com").replace(/\/$/, "");
+// Ville attendue dans le H1 : Paris (10e et arrondissements voisins)
+const cityRe = /paris/i;
+const CONTACT = /^\/contact\.html/;
+const LIGHT = /^\/mentions-legales$/;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ");
 const strip = (s) => dec(s.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<style[\s\S]*?<\/style>/g, " ").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 const sm = await (await fetch(`${base}/sitemap.xml`)).text();
@@ -24,21 +27,25 @@ for (const path of locs) {
   const h1 = strip((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) ?? [])[1] ?? "");
   const main = (html.match(/<main[\s\S]*?<\/main>/) ?? [""])[0];
   const words = strip(main).split(" ").length;
-  const service = !/^\/($|nous-contacter)/.test(path);
+  const light = LIGHT.test(path);
+  const service = path !== "/" && !CONTACT.test(path) && !light;
   const brief = strip((html.match(/<p class="[^"]*reponse-bref[^"]*"[^>]*>([\s\S]*?)<\/p>/) ?? [])[1] ?? "").replace(/^En bref\s*[—:-]\s*/, "");
   const bw = brief ? brief.split(" ").length : 0;
   if ([...title].length < 50 || [...title].length > 60) issues.push(`title ${[...title].length}`);
   if ([...desc].length < 150 || [...desc].length > 160) issues.push(`description ${[...desc].length}`);
   if (h1n !== 1) issues.push(`h1 x${h1n}`);
-  if (city && service && !h1.toLowerCase().includes(city.toLowerCase())) issues.push("H1 sans la ville");
+  if (path !== "/" && !cityRe.test(h1)) issues.push("H1 sans la ville");
   if (canon !== siteUrl + (path === "/" ? "" : path) && canon !== siteUrl + path) issues.push(`canonical ${canon}`);
   if (bw < 40 || bw > 60) issues.push(`En bref ${bw} mots`);
+  if (service && cityRe.exec(main.slice(0, 4000)) === null) issues.push("ville absente du début de page");
   if (service && words < 500) issues.push(`seulement ${words} mots`);
   // un seul formulaire sur tout le site : la page contact ; les autres pages renvoient vers elle par des boutons
-  const isContact = /^\/nous-contacter/.test(path);
+  const isContact = CONTACT.test(path);
   if (isContact && !/<form/.test(html)) issues.push("pas de formulaire sur la page contact");
   if (!isContact && /<form/.test(html)) issues.push("formulaire hors page contact");
-  if (!isContact && !/href="\/nous-contacter[^"]*"/.test(main)) issues.push("pas de bouton vers la page contact");
+  if (!isContact && !light && !/href="\/contact\.html[^"]*"/.test(main)) issues.push("pas de bouton vers la page contact");
+  if (service && !/Demander un devis ou une intervention/.test(main.slice(0, main.indexOf("reponse-bref") + 1 || 20000))) issues.push("bouton « Demander un devis ou une intervention » absent du héros");
+  if (!/>Devis gratuit</.test(html)) issues.push("bouton « Devis gratuit » absent du menu");
   if (/avis Google, (janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/.test(main)) issues.push("extraits d'avis affichés");
   if (!/<html lang="fr"/.test(html)) issues.push("lang");
   if (!/property="og:image"/.test(html)) issues.push("og:image");
@@ -53,7 +60,7 @@ for (const path of locs) {
   if (lbs.length !== 1 || !lbs[0]["@id"]) issues.push(`LocalBusiness x${lbs.length}`);
   const faq = nodes.find((n) => n["@type"] === "FAQPage");
   let faqInfo = "-";
-  const visible = [...html.matchAll(/<details class="group py-6"><summary[^>]*>([\s\S]*?)<\/summary><p class="faq-a[^"]*">([\s\S]*?)<\/p><\/details>/g)].map((m) => [strip(m[1]).replace(/\s*\+$/, ""), strip(m[2])]);
+  const visible = [...html.matchAll(/<details class="faq[^"]*"><summary[^>]*>([\s\S]*?)<\/summary><p class="faq-a[^"]*">([\s\S]*?)<\/p><\/details>/g)].map((m) => [strip(m[1]).replace(/\s*\+$/, ""), strip(m[2])]);
   if (faq) {
     const q = faq.mainEntity;
     const same = visible.length === q.length && q.every((it, i) => visible[i] && visible[i][0] === it.name && visible[i][1] === it.acceptedAnswer.text);
@@ -61,7 +68,10 @@ for (const path of locs) {
     faqInfo = String(q.length);
   } else if (visible.length) issues.push("FAQ visible sans JSON-LD");
   // réponses directes des H2-questions
-  const answers = [...main.matchAll(/<h2[^>]*>([^<]*\?)<\/h2><p class="lead mt-5 border-l-4[^"]*">([\s\S]*?)<\/p>/g)].map((m) => strip(m[2]).split(" ").length);
+  const answers = [...main.matchAll(/<h2[^>]*>([^<]*\?)<\/h2><p class="answer[^"]*">([\s\S]*?)<\/p>/g)].map((m) => strip(m[2]).split(" ").length);
+  const qH2 = (main.match(/<h2[^>]*>[^<]*\?<\/h2>/g) ?? []).length;
+  if (service && qH2 !== answers.length) issues.push(`${qH2 - answers.length} H2-question sans réponse directe`);
+  if (service && answers.length < 2) issues.push("moins de 2 H2-questions");
   for (const n of answers) if (n < 40 || n > 60) issues.push(`réponse H2 ${n} mots`);
   const links = [...new Set([...main.matchAll(/href="(\/[^"#?]*)"/g)].map((m) => m[1]))];
   for (const l of links) if (!locs.includes(l) && !/^\/(llms\.txt|_next|photos|api)/.test(l)) issues.push(`lien interne hors sitemap ${l}`);

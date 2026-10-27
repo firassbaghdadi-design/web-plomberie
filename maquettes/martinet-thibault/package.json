@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "prebuild": "node scripts/fetch-photos.mjs && node scripts/fetch-site-photos.mjs",
-    "fetch-photos": "node scripts/fetch-photos.mjs && node scripts/fetch-site-photos.mjs",
-    "audit:seo": "node scripts/audit-seo.mjs"
+    "prebuild": "node scripts/fetch-photos.mjs",
+    "fetch-photos": "node scripts/fetch-photos.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs http://localhost:3355 https://www.martinet-thibault.com"
   },
   "dependencies": {
     "next": "14.2.35",
@@ -17,9 +17,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@fontsource-variable/hanken-grotesk": "^5.2.5",
-    "@fontsource-variable/jetbrains-mono": "^5.2.5",
-    "@fontsource/instrument-serif": "^5.2.5",
+    "@fontsource-variable/albert-sans": "^5.3.0",
     "@types/node": "^20.19.43",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",

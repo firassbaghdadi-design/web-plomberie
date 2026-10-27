@@ -55,8 +55,15 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 35527001 : Somsou-Pons (salle-de-bains)
 - 36344878 : Somsou-Pons (radiateur)
 - 38543041 : Atelier Truelle (toit)
+- 7859953 : Martinet Thibault (chaudiere) — « Plumber Repairing Power Source »
+- 16509869 : Martinet Thibault (plombier) — « Close-up of Man Using a Spanner »
+- 32497162 : Martinet Thibault (salle-de-bains) — « Senior Man Conducting Bathroom Inspection with Device »
+- 34019842 : Martinet Thibault (toiture) — « Construction Worker on Roof Removing Debris »
+- 34792149 : Martinet Thibault (couvreur) — « Black and White Construction Worker on Rooftop »
 
 Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels) ; Gaz Flash y ajoute deux photos Wikimedia Commons du 18e (voir plus bas).
+
+Martinet Thibault utilise les photos de son propre site (réalisations, logos) et cinq photos Pexels d'artisans au travail (ci-dessus), choisies par leur titre exact sur pexels.com.
 
 Seragaz utilise les photos de son propre site, des photos de lieux (Wikimedia Commons ci-dessous) et trois photos Pexels d'intervention (6474460, 12644994, 7937300), choisies par leur titre exact sur pexels.com.
 
