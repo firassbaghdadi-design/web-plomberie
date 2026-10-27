@@ -6,10 +6,11 @@ L'offre à présenter à SERAGAZ reste surtout le référencement local, la visi
 
 ## Charte
 
-- Couleurs relevées au pixel sur le logo (`image001.png` du site actuel) : bleu `#00519E`, vert `#88BB3D`. Marine `#022C68` repris de la feuille de style du site actuel ; fond nuit `#061A33` pour les sections sombres.
+- Couleurs relevées au pixel sur le logo (`image001.png` du site actuel) : bleu `#00519E`, vert `#88BB3D`. Marine `#022C68` repris de la feuille de style du site actuel.
 - Logo : le fichier d'origine est téléchargé au build (fond blanc, posé sur une pastille blanche dans le pied de page). S'il manque, un sigle dessiné (goutte bleue et virgule verte, comme le logo) et le nom SERAGAZ le remplacent.
-- Typographies : Bricolage Grotesque (titres) et Figtree (texte). Le site actuel utilise DIN et Lato ; aucune autre maquette n'utilise ces deux polices.
-- Signature : fond « plan technique » (quadrillage fin), manomètre dessiné dont l'aiguille se lève au chargement, plaque d'informations, liste de prestations en lignes numérotées, sommaire collant sur les pages longues. Animations : lignes du titre qui montent, photos dévoilées par un masque, apparitions au défilement (relancées à chaque page, filet de sécurité CSS à 3 s), `prefers-reduced-motion` respecté.
+- Typographie : Manrope (une seule famille, graisses 200 à 500 ; titres en 300, texte en 400). Le site actuel utilise DIN et Lato ; aucune autre maquette n'utilise Manrope.
+- Direction : fond blanc, beaucoup d'air, filets fins, coins presque droits ; le bleu et le vert du logo servent d'accents.
+- Concept signature, « la ligne de chaleur » (`HeatLine.tsx`) : une veilleuse (la flamme bleue et verte du logo) s'allume à côté de l'accroche du héros ; un trait fin la suit au fil de la lecture, dans la marge gauche, et passe du marine (installation froide) au bleu de la flamme, puis au vert du logo à la « température idéale » (le contrat d'entretien sur l'accueil, l'appel à l'action final ailleurs). Chaque libellé de section est une station de la ligne, qui s'allume quand on l'atteint. Fonctionne aussi sur mobile. Animations : lignes du titre qui montent, zoom très lent de la photo du héros, photos dévoilées par un masque, apparitions au défilement (relancées à chaque page, filet de sécurité CSS à 3 s), `prefers-reduced-motion` respecté.
 
 ## Pages
 
@@ -51,8 +52,9 @@ Textes de toutes les pages ci-dessus, mot pour mot (fautes de frappe évidentes 
 ## Photos
 
 1. Photos de l'entreprise (site actuel), téléchargées au build par `scripts/fetch-site-photos.mjs`.
-2. Photos de lieux réels de Paris et des communes desservies, sous licence libre (Wikimedia Commons : CC0, CC BY, CC BY-SA, domaine public), listées avec auteur et licence dans `src/lib/commons.json` et créditées sur la page Mentions légales. **Aucune photo Pexels** : impossible de vérifier visuellement des photos Pexels depuis l'environnement de travail ; les photos de lieux nommés (gare du Nord, canal Saint-Martin, toits et cheminées de Paris, hôtels de ville de Clichy et Levallois, château de Vincennes…) collent au contexte sans risque de chantier étranger.
-3. Si une image ne se télécharge pas, un aplat quadrillé la remplace (jamais de zone vide).
+2. Photos d'artisans au travail (Pexels, `src/lib/pexels.json`) : 6474460 « A Man Carrying a Tool Box » (contrat d'entretien, entretien et dépannage), 12644994 « Hand of a Person Turning the Radiator Valve » (désembouage), 7937300 « Steel Pipes with Pressure Gauge » (déplacement de compteur), téléchargées au build et créditées sur la page Mentions légales.
+3. Photos de lieux réels de Paris et des communes desservies, sous licence libre (Wikimedia Commons : CC0, CC BY, CC BY-SA, domaine public), listées avec auteur et licence dans `src/lib/commons.json` et créditées sur la page Mentions légales. Les photos de lieux nommés (canal Saint-Martin, toits et cheminées de Paris, hôtels de ville de Clichy et Levallois, château de Vincennes…) servent aux pages locales.
+4. Si une image ne se télécharge pas, un aplat clair légendé la remplace (jamais de zone vide).
 
 ## Lancer et contrôler
 

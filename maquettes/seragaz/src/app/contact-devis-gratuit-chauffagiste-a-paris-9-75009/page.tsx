@@ -1,5 +1,4 @@
 import { ContactForm } from "@/components/ContactForm";
-import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, reviews, type Faq } from "@/lib/site";
@@ -34,35 +33,36 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   const nodes = [webPageNode({ title, description, path }, "ContactPage"), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Contact", path }]), faqNode(faq)];
   return (
     <>
-      <section className="relative overflow-hidden bg-night text-white">
-        <div className="grid-lines absolute inset-0" aria-hidden="true" />
-        <div className="wrap relative pb-40 pt-8 sm:pt-12">
-          <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} light />
-          <p className="label mt-10 flex items-center gap-3 text-flame"><span className="h-px w-8 bg-flame" aria-hidden="true" /> Prendre contact avec notre équipe</p>
-          <h1 className="mt-5 max-w-4xl text-[2.35rem] font-semibold sm:text-6xl xl:text-7xl">
-            <span className="line-up"><span>Devis gratuit de chauffagiste à Paris 9 (75009)</span></span>
-          </h1>
-          <p className="reponse-bref mt-7 max-w-3xl text-white/75">{brief}</p>
+      <section>
+        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
+            <p className="label mt-12 text-blue sm:mt-16" data-heat-start>Prendre contact avec notre équipe</p>
+            <h1 className="mt-6 text-[2.55rem] sm:text-[3.8rem] xl:text-[4.4rem]">
+              <span className="line-up"><span>Devis gratuit de chauffagiste à Paris 9 (75009)</span></span>
+            </h1>
+            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+          </div>
+          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
+            <p className="label">Urgence ou panne</p>
+            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-navy transition hover:text-blue" data-track="cta_tel">{business.phoneDisplay}</a>
+            <p className="mt-1 text-sm text-ink-faint">{business.phoneHours}</p>
+          </div>
         </div>
       </section>
-      <section className="bg-paper pb-20">
-        <div className="wrap relative -mt-28 grid gap-8 lg:grid-cols-12">
+      <section className="border-t border-line py-14 sm:py-20">
+        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-8">
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-4 lg:col-span-4">
-            <div className="rounded-[2rem] bg-blue p-7 text-white shadow-soft">
-              <p className="label text-white/70">Urgence ou panne</p>
-              <a href={`tel:${business.phoneTel}`} className="mt-3 flex items-center gap-3 whitespace-nowrap font-display text-3xl font-semibold"><PhoneIcon className="h-6 w-6 text-flame" />{business.phoneDisplay}</a>
-              <p className="mt-2 text-sm text-white/75">{business.phoneHours}</p>
-            </div>
-            <ul className="divide-y divide-line rounded-[2rem] border border-line bg-white p-7">
-              <li className="flex gap-3 pb-4"><PinIcon className="mt-1 h-5 w-5 shrink-0 text-blue" /><span>{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="text-sm font-semibold text-blue underline underline-offset-4">Itinéraire</a></span></li>
-              <li className="flex gap-3 py-4"><ClockIcon className="mt-1 h-5 w-5 shrink-0 text-blue" /><span>{business.hours}</span></li>
-              <li className="flex gap-3 pt-4"><MailIcon className="mt-1 h-5 w-5 shrink-0 text-blue" /><a href={`mailto:${business.email}`} className="hover:text-blue">{business.email}</a></li>
-            </ul>
-            <p className="px-2 text-sm text-ink-soft">
-              <a href={reviews.url} target="_blank" rel="noopener" className="underline underline-offset-4">Note de {reviews.ratingText}/5 sur Google</a> ({reviews.count} avis, relevé du {reviews.observed}).
+          <aside className="space-y-10 lg:col-span-4 lg:pt-4">
+            <dl className="space-y-6 border-t border-line pt-6">
+              <div><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
+              <div><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
+              <div><dt className="label">E-mail</dt><dd className="mt-2"><a href={`mailto:${business.email}`} className="text-ink transition hover:text-blue">{business.email}</a></dd></div>
+            </dl>
+            <p className="border-t border-line pt-6 text-sm">
+              <a href={reviews.url} target="_blank" rel="noopener" className="underline decoration-line underline-offset-4 hover:text-blue">Note de {reviews.ratingText}/5 sur Google</a> ({reviews.count} avis, relevé du {reviews.observed}).
             </p>
           </aside>
         </div>

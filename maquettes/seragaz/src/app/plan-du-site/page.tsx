@@ -20,29 +20,29 @@ export default function PlanPage() {
   ];
   return (
     <>
-      <section className="bg-night text-white">
-        <div className="wrap pb-14 pt-8 sm:pt-12">
-          <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Plan du site" }]} light />
-          <h1 className="mt-10 text-4xl font-semibold sm:text-6xl">Plan du site de SERAGAZ, chauffagiste à Paris 9</h1>
-          <p className="reponse-bref mt-6 max-w-3xl text-white/75">
+      <section>
+        <div className="wrap pb-16 pt-6 sm:pt-10">
+          <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Plan du site" }]} />
+          <h1 className="mt-14 max-w-5xl text-[2.4rem] sm:text-6xl" data-heat-start>Plan du site de SERAGAZ, chauffagiste à Paris 9</h1>
+          <p className="reponse-bref mt-8 max-w-3xl">
             Toutes les pages du site de SERAGAZ, chauffagiste à Paris 9 depuis 1985 : les prestations autour de la chaudière et du chauffe-eau gaz, les pages par arrondissement et par commune de la zone d'intervention, la présentation de l'entreprise, les avis clients et la page de contact pour un devis gratuit.
           </p>
         </div>
       </section>
-      <section className="bg-paper py-16">
+      <section className="border-t border-line py-16 sm:py-20">
         <div className="wrap grid gap-12 md:grid-cols-3">
           {groups.map((g) => (
             <div key={g.t}>
-              <h2 className="text-2xl font-semibold text-night">{g.t}</h2>
-              <ul className="mt-5 space-y-2.5">{g.items.map((p) => <li key={p.path}><Link href={p.path} className="text-ink-soft underline-offset-4 hover:text-blue hover:underline">{p.h1}</Link></li>)}</ul>
+              <h2 className="text-[1.6rem] text-navy">{g.t}</h2>
+              <ul className="mt-5 space-y-2.5">{g.items.map((p) => <li key={p.path}><Link href={p.path} className="transition hover:text-blue">{p.h1}</Link></li>)}</ul>
             </div>
           ))}
           <div>
-            <h2 className="text-2xl font-semibold text-night">SERAGAZ</h2>
+            <h2 className="text-[1.6rem] text-navy">SERAGAZ</h2>
             <ul className="mt-5 space-y-2.5">
-              <li><Link href="/" className="text-ink-soft hover:text-blue">Accueil</Link></li>
-              <li><Link href={PATHS.contact} className="text-ink-soft hover:text-blue">Contact et devis gratuit</Link></li>
-              <li><Link href={PATHS.legal} className="text-ink-soft hover:text-blue">Mentions légales</Link></li>
+              <li><Link href="/" className="transition hover:text-blue">Accueil</Link></li>
+              <li><Link href={PATHS.contact} className="transition hover:text-blue">Contact et devis gratuit</Link></li>
+              <li><Link href={PATHS.legal} className="transition hover:text-blue">Mentions légales</Link></li>
             </ul>
           </div>
         </div>

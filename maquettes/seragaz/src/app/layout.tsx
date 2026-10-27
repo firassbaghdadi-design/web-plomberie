@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/bricolage-grotesque/index.css";
-import "@fontsource-variable/figtree/index.css";
+import "@fontsource-variable/manrope/index.css";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { HeatLine } from "@/components/HeatLine";
 import { JsonLd } from "@/components/JsonLd";
 import { MockupBadge } from "@/components/MockupBadge";
 import { Motion } from "@/components/Motion";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#061a33" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,11 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-blue focus:px-5 focus:py-3 focus:font-semibold focus:text-white">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-blue focus:px-5 focus:py-3 focus:font-medium focus:text-white">
           Aller au contenu
         </a>
         <Header />
-        <main id="contenu">{children}</main>
+        <div className="relative">
+          <main id="contenu">{children}</main>
+          <HeatLine />
+        </div>
         <Footer />
         <StickyCall />
         {INDEXABLE ? null : <MockupBadge />}

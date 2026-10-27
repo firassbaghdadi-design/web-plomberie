@@ -17,8 +17,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@fontsource-variable/bricolage-grotesque": "^5.2.5",
-    "@fontsource-variable/figtree": "^5.2.5",
+    "@fontsource-variable/manrope": "^5.2.8",
     "@types/node": "^20.19.43",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",

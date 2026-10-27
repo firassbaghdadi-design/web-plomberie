@@ -24,15 +24,18 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 5922202 : Somsou-Pons (plan-projet)
 - 5973919 : Somsou-Pons (menuisier)
 - 5974013 : Atelier Truelle (rabot)
+- 6474460 : Seragaz (intervention) — « A Man Carrying a Tool Box »
 - 6419128 : Atelier Truelle (plombier)
 - 6615095 : Somsou-Pons (plans)
 - 7031570 : Somsou-Pons (douche)
 - 7788264 : Atelier Truelle (chantier)
+- 7937300 : Seragaz (manometre) — « Steel Pipes with Pressure Gauge »
 - 8961008 : Atelier Truelle (tablette)
 - 10383588 : Atelier Truelle (chantier2)
 - 10961064 : Somsou-Pons (cle-evier)
 - 11127339 : Atelier Truelle (bois)
 - 12034871 : Somsou-Pons (radiateur-blanc)
+- 12644994 : Seragaz (vanne) — « Hand of a Person Turning the Radiator Valve »
 - 15066939 : Somsou-Pons (parquet)
 - 16703087 : Somsou-Pons (immeuble)
 - 17297265 : Somsou-Pons (toits)
@@ -55,17 +58,15 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 
 Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels) ; Gaz Flash y ajoute deux photos Wikimedia Commons du 18e (voir plus bas).
 
-Seragaz utilise les photos de son propre site (aucune photo Pexels).
+Seragaz utilise les photos de son propre site, des photos de lieux (Wikimedia Commons ci-dessous) et trois photos Pexels d'intervention (6474460, 12644994, 7937300), choisies par leur titre exact sur pexels.com.
 
 ## Wikimedia Commons (licences libres, crédits sur la page Mentions légales du site concerné)
 
 Photos de lieux réels, à ne pas reprendre sur un autre site :
 
 - Rooftops and chimneys (41723756875).jpg : Seragaz (toits)
-- Paris - Rooftops in Paris - 3052.jpg : Seragaz (toits-large)
 - View of rooftops in Paris with brown chimneys (Unsplash).jpg : Seragaz (cheminees)
 - P1320780 Paris IX et X rue de Dunkerque rwk.jpg : Seragaz (dunkerque)
-- Paris gare nord face 1.jpg : Seragaz (gare-nord)
 - Paris Canal St-Martin écluses Récollets 2013.jpg : Seragaz (canal)
 - La rue de l'Abreuvoir, Montmartre, D.4934.jpg : Seragaz (montmartre)
 - Square des Batignolles @ Paris (29769168792).jpg : Seragaz (batignolles)

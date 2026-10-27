@@ -51,5 +51,22 @@ for (const [key, { file }] of Object.entries(commons)) {
     console.warn(`[commons] ${file} : ${e.message}`);
   }
 }
+// Photos d'artisans au travail (Pexels, licence Pexels, créditées sur la page Mentions légales) : src/lib/pexels.json
+const pexels = JSON.parse(readFileSync(new URL("../src/lib/pexels.json", import.meta.url), "utf8"));
+for (const [key, { pexels: id }] of Object.entries(pexels)) {
+  const url = `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1800`;
+  manifest[key] = null;
+  for (let attempt = 1; attempt <= 3 && !manifest[key]; attempt++) {
+    try {
+      const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (compatible; build)" }, signal: AbortSignal.timeout(30000) });
+      const type = res.headers.get("content-type") ?? "";
+      if (!res.ok || !type.startsWith("image/")) throw new Error(`${res.status} ${type}`);
+      writeFileSync(new URL(`${key}.jpg`, outDir), Buffer.from(await res.arrayBuffer()));
+      manifest[key] = `/photos/${key}.jpg`;
+    } catch (e) {
+      if (attempt === 3) console.warn(`[pexels] ${id} : ${e.message}`);
+    }
+  }
+}
 writeFileSync(new URL("../src/lib/site-photos.generated.json", import.meta.url), JSON.stringify(manifest, null, 2) + "\n");
-console.log(`[site] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(manifest).length} images (site actuel + Commons)`);
+console.log(`[site] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(manifest).length} images (site actuel, Commons, Pexels)`);

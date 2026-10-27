@@ -1,9 +1,7 @@
 {
   "toits": null,
-  "toits-large": null,
   "cheminees": null,
   "dunkerque": null,
-  "gare-nord": null,
   "canal": null,
   "montmartre": null,
   "batignolles": null,
@@ -25,5 +23,8 @@
   "marque-chappee": null,
   "marque-chaffoteaux": null,
   "marque-auer": null,
-  "marque-atlantic": null
+  "marque-atlantic": null,
+  "intervention": null,
+  "vanne": null,
+  "manometre": null
 }

@@ -9,8 +9,8 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-2xl border border-line bg-paper px-4 py-4 text-ink outline-none transition focus:border-blue focus:bg-white focus:ring-4 focus:ring-blue/15";
-const label = "block text-sm font-semibold text-night";
+const field = "mt-2 w-full rounded-xl border border-line bg-mist px-4 py-4 text-ink outline-none transition focus:border-blue focus:bg-white focus:ring-4 focus:ring-blue/15";
+const label = "block text-sm font-medium text-navy";
 
 export function ContactForm({ defaultType = "depannage" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -56,8 +56,8 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[2rem] border border-flame/50 bg-flame-soft p-10 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-night text-flame">
+      <div role="status" className="rounded-[6px] border border-green/50 bg-green-tint p-10 text-center">
+        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-green text-green-deep">
           <CheckIcon className="h-8 w-8" />
         </span>
         <h2 className="mt-6 text-3xl">Demande bien reçue.</h2>
@@ -70,8 +70,8 @@ export function ContactForm({ defaultType = "depannage" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-10">
-      <h2 className="text-3xl font-semibold text-night sm:text-4xl">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
+      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de SERAGAZ.</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">

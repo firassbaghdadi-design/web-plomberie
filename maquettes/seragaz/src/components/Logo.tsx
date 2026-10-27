@@ -11,7 +11,7 @@ export function Logo({ className = "h-11" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`} aria-label="SERAGAZ">
       <FlameMark className="h-full w-auto py-0.5" />
-      <span className="font-display text-[1.6rem] font-extrabold tracking-[0.06em] text-blue">SERAGAZ</span>
+      <span className="text-[1.35rem] font-medium tracking-[0.14em] text-blue">SERAGAZ</span>
     </span>
   );
 }
