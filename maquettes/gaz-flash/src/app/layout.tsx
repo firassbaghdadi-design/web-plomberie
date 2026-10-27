@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
         </div>
         <Footer />
-        <div className="no-print fixed inset-x-0 bottom-0 z-50 border-t border-line bg-white/90 px-4 py-3 backdrop-blur-md lg:hidden">
+        <div className="sticky-call no-print fixed inset-x-0 bottom-0 z-50 border-t border-line bg-white/90 px-4 py-3 backdrop-blur-md lg:hidden">
           <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn w-full">
             <PhoneIcon className="h-4 w-4" />
             Appeler le {business.phoneDisplay}

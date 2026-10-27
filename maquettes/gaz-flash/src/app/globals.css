@@ -622,3 +622,13 @@ main {
     display: none;
   }
 }
+
+/* La barre d'appel mobile n'apparaît qu'après le héros : un seul bouton rouge à l'écran. */
+.sticky-call {
+  transition: transform 0.5s var(--ease), opacity 0.5s;
+}
+html[data-top="1"] .sticky-call {
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+}

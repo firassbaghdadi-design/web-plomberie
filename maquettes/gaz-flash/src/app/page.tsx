@@ -29,7 +29,7 @@ export default function HomePage() {
         <div className="hero-photo absolute inset-0">
           <Photo id="toitsCheminees" alt="Cheminées et toits de zinc à Montmartre, dans le 18e arrondissement de Paris" sizes="100vw" priority className="object-[62%_50%]" />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(13_15_17/0.08)_0%,rgb(13_15_17/0.05)_35%,rgb(13_15_17/0.62)_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(13_15_17/0.18)_0%,rgb(13_15_17/0.3)_40%,rgb(13_15_17/0.74)_100%)]" aria-hidden="true" />
         <div className="wrap relative pb-36 pt-40 sm:pb-24">
           <p className="label fade-in text-white/80" style={{ ["--delay" as string]: "0.05s" }}>
             7 rue Sainte-Isaure, Paris 18e
