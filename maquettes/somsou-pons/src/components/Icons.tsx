@@ -1,5 +1,5 @@
 type P = { className?: string };
-const base = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
+const base = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
 
 export const PhoneIcon = ({ className = "h-5 w-5" }: P) => (
   <svg className={className} viewBox="0 0 24 24" {...base}>

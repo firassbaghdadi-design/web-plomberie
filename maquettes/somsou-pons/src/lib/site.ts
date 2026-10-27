@@ -36,7 +36,7 @@ export const agencies: Agency[] = [
     email: "agence16@somsoupons.fr",
     trades: "Plomberie, chauffage, rénovation",
     text: "Le siège social, rue Gavarni, dans le quartier de Passy, issu du rachat de l'entreprise Théuloup en 1999. L'adresse à retenir pour un devis, une rénovation ou un dépannage dans l'ouest de Paris.",
-    photo: "facade",
+    photo: "balcon",
   },
   {
     key: "dixsept",

@@ -65,14 +65,14 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-2xl border-2 border-dashed border-brand-dark/50 bg-white px-3 text-ink hover:border-brand-dark hover:bg-brand-tint/40 disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-2xl border border-dashed border-brand/50 bg-white px-3 text-ink hover:border-brand-dark hover:bg-brand-tint/40 disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
-            <span className="text-sm font-semibold">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
+            <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>
         ) : null}
       </div>
       <input ref={input} type="file" accept="image/*" multiple className="sr-only" tabIndex={-1} onChange={onFiles} aria-label="Choisir des photos à joindre" />
-      <p role="status" aria-live="polite" className="mt-2 text-sm font-semibold text-[#b42318]">
+      <p role="status" aria-live="polite" className="mt-2 text-sm font-medium text-[#b42318]">
         {message}
       </p>
     </fieldset>

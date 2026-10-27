@@ -64,26 +64,25 @@ export function ZoneLinks({ trade, title }: { trade: string; title: string }) {
         <p className="eyebrow" data-reveal>
           Près de chez vous
         </p>
-        <h2 id="titre-zones" data-reveal className="mt-4 text-3xl sm:text-5xl">
+        <h2 id="titre-zones" data-reveal className="h-sub mt-5">
           {title}
         </h2>
-        <ul className="mt-10 grid gap-5 md:grid-cols-2">
+        <ul className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2">
           {pages.map((p, i) => (
             <li key={p.slug} data-reveal style={{ ["--d" as string]: `${i * 100}ms` }}>
-              <Link href={`/${p.slug}`} className="group relative block overflow-hidden rounded-[1.6rem] text-white" aria-label={p.h1}>
-                <div className="relative aspect-[16/10]">
-                  <Photo id={p.heroPhoto} alt="" sizes="(min-width:768px) 45vw, 92vw" className="transition duration-[1.2s] group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#063d1b]/90 via-[#063d1b]/30 to-transparent" />
+              <Link href={`/${p.slug}`} className="group block" aria-label={p.h1}>
+                <div className="mosaic aspect-[16/10]">
+                  <Photo id={p.heroPhoto} alt="" sizes="(min-width:768px) 45vw, 94vw" className="transition duration-[1.4s] group-hover:scale-[1.03]" />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 sm:p-8">
+                <div className="flex items-end justify-between gap-4 border-b border-line py-5">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">{p.zone}</p>
-                    <p className="mt-1 font-display text-2xl font-semibold sm:text-3xl">
+                    <p className="caption">{p.zone}</p>
+                    <p className="mt-1 text-[1.5rem] font-light text-ink transition group-hover:text-brand sm:text-[1.8rem]">
                       {p.tradeLabel} · {p.zone}
                     </p>
                   </div>
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber transition group-hover:rotate-[-45deg]">
-                    <ArrowIcon className="h-5 w-5" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-amber text-white transition duration-500 group-hover:rotate-[-90deg] group-hover:bg-brand">
+                    <ArrowIcon className="h-4 w-4" />
                   </span>
                 </div>
               </Link>

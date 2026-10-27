@@ -3,11 +3,10 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-
 /**
- * Moteur d'animations. Il se relance à chaque changement de page (sinon les éléments d'une page ouverte par un lien
- * interne resteraient invisibles) et ne fait rien si le visiteur a demandé moins d'animations.
+ * Animations sobres. Le script se relance à chaque changement de page (sinon les éléments d'une page ouverte
+ * par un lien interne resteraient invisibles) et ne fait rien d'autre qu'afficher si le visiteur a demandé
+ * moins d'animations.
  */
 export function Motion() {
   const pathname = usePathname();
@@ -17,111 +16,109 @@ export function Motion() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     root.classList.add("js-ready");
 
-    // Rideau d'ouverture : une fois par visite
-    let seenTimer: number | undefined;
-    if (!root.classList.contains("seen")) {
-      seenTimer = window.setTimeout(() => {
-        root.classList.add("seen");
-        try { sessionStorage.setItem("somsou-seen", "1"); } catch {}
-      }, reduce ? 0 : 2500);
-    }
-
-    // Apparitions au défilement
-    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    // Apparitions au défilement, et trames de tesselles qui s'assemblent
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal],[data-mosaic]"));
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          (entry.target as HTMLElement).classList.add("is-in");
+          entry.target.classList.add("is-in");
           io.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
     );
-    items.forEach((el) => io.observe(el));
+    if (reduce) items.forEach((el) => el.classList.add("is-in"));
+    else items.forEach((el) => io.observe(el));
 
-    // Frise horizontale épinglée
-    const hs = Array.from(document.querySelectorAll<HTMLElement>("[data-hscroll]"));
-    const setupH = () => {
-      hs.forEach((s) => {
-        const track = s.querySelector<HTMLElement>(".hscroll-track");
-        if (!track) return;
-        const on = window.innerWidth >= 1024 && !reduce;
-        s.classList.toggle("is-h", on);
-        if (on) {
-          const travel = Math.max(0, track.scrollWidth - window.innerWidth);
-          s.style.setProperty("--hs-h", `${travel + window.innerHeight * 1.1}px`);
-        } else {
-          s.style.removeProperty("--hs-h");
-          track.style.transform = "";
-        }
+    // Frise : une tesselle par année, allumée jusqu'à l'étape en cours
+    const cleanups: (() => void)[] = [];
+    document.querySelectorAll<HTMLElement>("[data-years]").forEach((section) => {
+      const cells = Array.from(section.querySelectorAll<HTMLElement>(".y[data-y]"));
+      const steps = Array.from(section.querySelectorAll<HTMLElement>("[data-step]"));
+      const end = Number(section.dataset.years);
+      let upto = 0;
+      const paint = (year: number, focus?: number) => {
+        const from = upto;
+        cells.forEach((c) => {
+          const y = Number(c.dataset.y);
+          const on = y <= year;
+          c.style.setProperty("--w", on && y > from ? `${Math.min(900, (y - from) * 9)}ms` : "0ms");
+          c.classList.toggle("on", on);
+          c.classList.toggle("focus", y === focus);
+        });
+        steps.forEach((s) => s.classList.toggle("is-active", Number(s.dataset.step) === focus));
+        upto = year;
+      };
+      if (reduce) {
+        paint(end);
+        return;
+      }
+      const desktop = window.matchMedia("(min-width: 1024px)").matches;
+      if (desktop) {
+        // sur grand écran, la mosaïque suit la lecture de la frise
+        const sio = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const y = Number((e.target as HTMLElement).dataset.step);
+              paint(y >= 2026 ? end : y, y);
+            });
+          },
+          { rootMargin: "-48% 0px -48% 0px" },
+        );
+        steps.forEach((s) => sio.observe(s));
+        const tail = section.querySelector<HTMLElement>("[data-years-end]");
+        const tio = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && paint(end)), { rootMargin: "0px 0px -30% 0px" });
+        if (tail) tio.observe(tail);
+        cleanups.push(() => { sio.disconnect(); tio.disconnect(); });
+      } else {
+        // sur téléphone, la mosaïque se remplit d'elle-même, de 1876 à aujourd'hui
+        const grid = section.querySelector<HTMLElement>(".years");
+        const gio = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              gio.disconnect();
+              paint(end);
+            });
+          },
+          { threshold: 0.4 },
+        );
+        if (grid) gio.observe(grid);
+        cleanups.push(() => gio.disconnect());
+      }
+      steps.forEach((s) => {
+        const enter = () => {
+          const y = Number(s.dataset.step);
+          cells.forEach((c) => c.classList.toggle("focus", Number(c.dataset.y) === y));
+        };
+        s.addEventListener("pointerenter", enter);
+        cleanups.push(() => s.removeEventListener("pointerenter", enter));
       });
-    };
-    setupH();
+    });
 
-    const parallax = Array.from(document.querySelectorAll<HTMLElement>("[data-speed]"));
-    const wordmark = document.querySelector<HTMLElement>("[data-rise]");
+    // En-tête : un filet apparaît au défilement, il s'efface quand on descend et revient quand on remonte
     const head = document.querySelector<HTMLElement>("[data-head]");
     let lastY = window.scrollY;
     let raf = 0;
-
     const update = () => {
       raf = 0;
       const y = window.scrollY;
-      const vh = window.innerHeight;
       if (head) {
-        head.classList.toggle("is-solid", y > 40);
-        head.classList.toggle("is-hidden", y > 420 && y > lastY + 4 && !document.body.classList.contains("menu-open"));
-        if (y < lastY - 4) head.classList.remove("is-hidden");
+        head.classList.toggle("is-solid", y > 20);
+        if (y > 480 && y > lastY + 4 && !document.body.classList.contains("menu-open")) head.classList.add("is-hidden");
+        if (y < lastY - 4 || y < 480) head.classList.remove("is-hidden");
       }
       lastY = y;
-      if (reduce) return;
-      parallax.forEach((el) => {
-        const r = el.parentElement!.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        const off = (r.top + r.height / 2 - vh / 2) * Number(el.dataset.speed);
-        el.style.transform = `translate3d(0, ${(-off).toFixed(1)}px, 0)`;
-      });
-      hs.forEach((s) => {
-        if (!s.classList.contains("is-h")) return;
-        const track = s.querySelector<HTMLElement>(".hscroll-track")!;
-        const r = s.getBoundingClientRect();
-        const p = clamp(-r.top / Math.max(1, r.height - vh));
-        const travel = Math.max(0, track.scrollWidth - window.innerWidth);
-        track.style.transform = `translate3d(${(-p * travel).toFixed(1)}px,0,0)`;
-        s.style.setProperty("--hp", p.toFixed(3));
-      });
-      if (wordmark) {
-        const r = wordmark.getBoundingClientRect();
-        wordmark.style.setProperty("--rise", String(clamp((vh - r.top) / (r.height * 1.4))));
-      }
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
-    const onResize = () => { setupH(); schedule(); };
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", onResize);
     update();
 
-    // Boutons magnétiques
-    const cleanups: (() => void)[] = [];
-    if (!reduce && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((el) => {
-        const move = (e: PointerEvent) => {
-          const r = el.getBoundingClientRect();
-          el.style.transform = `translate3d(${(e.clientX - (r.left + r.width / 2)) * 0.25}px, ${(e.clientY - (r.top + r.height / 2)) * 0.25}px, 0)`;
-        };
-        const leave = () => { el.style.transform = ""; };
-        el.addEventListener("pointermove", move);
-        el.addEventListener("pointerleave", leave);
-        cleanups.push(() => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", leave); });
-      });
-    }
-
     return () => {
-      if (seenTimer) clearTimeout(seenTimer);
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", onResize);
       io.disconnect();
       cleanups.forEach((c) => c());
     };

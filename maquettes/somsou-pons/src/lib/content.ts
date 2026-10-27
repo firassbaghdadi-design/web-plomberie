@@ -41,7 +41,7 @@ export const home = {
 };
 
 export const trades = [
-  { key: "plumbing", title: "Plomberie", path: "/plombier-paris", cta: "Plombier à Paris 16e et 17e", text: "Alimentation et évacuation d'eau, sanitaires et robinetterie : l'installation, la réparation, le remplacement.", photo: "cle-evier" as PhotoId },
+  { key: "plumbing", title: "Plomberie", path: "/plombier-paris", cta: "Plombier à Paris 16e et 17e", text: "Alimentation et évacuation d'eau, sanitaires et robinetterie : l'installation, la réparation, le remplacement.", photo: "douche" as PhotoId },
   { key: "heating", title: "Chauffage", path: "/chauffagiste-paris", cta: "Chauffagiste à Paris 16e et 17e", text: "Chaudières, radiateurs, planchers chauffants et ballons d'eau chaude, avec les qualifications gaz de l'entreprise.", photo: "radiateur" as PhotoId },
   { key: "emergency", title: "Dépannage", path: "/depannage-plomberie-paris", cta: "Dépannage plomberie à Paris", text: "Fuite, engorgement, panne d'eau chaude : ce qu'il faut faire en attendant, et comment joindre l'agence.", photo: "cle-evier" as PhotoId },
   { key: "renovation", title: "Rénovation", path: "/renovation-appartement-paris", cta: "Rénovation d'appartement à Paris", text: "Rénovation partielle ou totale avec un seul interlocuteur : salles de bains et cuisines sur mesure, carrelage, maçonnerie, peinture, électricité.", photo: "salle-de-bains" as PhotoId },
@@ -158,7 +158,7 @@ export const qualifPage: PageContent = {
   eyebrow: "Nos qualifications",
   lead: "Ce qui est affiché sur le site actuel de l'entreprise, expliqué simplement, avec la façon de le vérifier avant de signer un devis.",
   brief: "Somsou-Pons présente cinq qualifications Qualibat (5111, 5112, 5311, 6311 et 2141), en plomberie et sanitaire, installations thermiques, carrelage et maçonnerie, dont deux avec la mention gaz domestique, ainsi que Professionnel du Gaz et la mention RGE. Demandez les attestations à jour avant de signer.",
-  heroPhoto: "electricien",
+  heroPhoto: "chauffagiste",
   sections: [
     {
       h2: "Que signifie une qualification Qualibat ?",
@@ -260,7 +260,7 @@ export const plumbing: PageContent = {
   eyebrow: "Plomberie",
   lead: "L'eau, de l'arrivée dans l'immeuble au robinet de votre cuisine : alimentation, évacuation, sanitaires. Un métier que l'entreprise exerce depuis la Maison Pons, en 1924.",
   brief: "Somsou-Pons est un plombier de Paris 16e et 17e : alimentation et évacuation d'eau, sanitaires et robinetterie, installation et remplacement. L'entreprise affiche des qualifications Qualibat 5111 et 5112. Demandez un devis écrit, avec photos de l'installation, depuis la page contact.",
-  heroPhoto: "carreleur",
+  heroPhoto: "douche",
   sections: [
     {
       h2: "Que fait un plombier dans un appartement parisien ?",

@@ -5,18 +5,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#17201b", soft: "#47544c", 2: "#22302a" },
-        paper: { DEFAULT: "#fbf7f0", deep: "#f1eadd" },
-        brand: { DEFAULT: "#085627", dark: "#063d1b", light: "#6fb287", tint: "#e4efe7" },
-        amber: { DEFAULT: "#ff4100", action: "#d63c00", deep: "#a82e00", tint: "#ffe9df" },
-        line: "#ddd3c1",
+        ink: { DEFAULT: "#121814", soft: "#565c58", 2: "#22302a" },
+        paper: { DEFAULT: "#ffffff", deep: "#f6f5f1" },
+        brand: { DEFAULT: "#085627", dark: "#063d1b", light: "#6fb287", tint: "#e8f0ea" },
+        amber: { DEFAULT: "#ff4100", action: "#c43300", deep: "#a82e00", tint: "#fff0ea" },
+        line: "#e6e5df",
       },
       fontFamily: {
-        display: ["'Playfair Display Variable'", "Georgia", "serif"],
-        sans: ["'Inter Variable'", "system-ui", "sans-serif"],
+        display: ["'Jost Variable'", "system-ui", "sans-serif"],
+        sans: ["'Jost Variable'", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        lift: "0 34px 60px -34px rgba(23,32,27,0.45)",
+        lift: "0 30px 60px -40px rgba(18,24,20,0.25)",
       },
     },
   },

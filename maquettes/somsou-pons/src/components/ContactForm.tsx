@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-ink outline-none transition focus:border-brand-dark focus:ring-4 focus:ring-brand/25";
+const field = "mt-2 w-full rounded-xl border border-line bg-white px-4 py-3.5 text-ink outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,7 +56,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[2rem] border border-brand/40 bg-brand-tint/60 p-10 text-center">
+      <div role="status" className="rounded-[6px] border border-brand/40 bg-brand-tint/60 p-10 text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ink text-white">
           <CheckIcon className="h-8 w-8" />
         </span>
@@ -70,7 +70,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[2rem] border border-line bg-white p-6 shadow-lift sm:p-10">
+    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 sm:p-10">
       <h2 className="text-3xl sm:text-4xl">Envoyer une demande</h2>
       <p className="mt-2">Votre message arrive directement dans la boîte e-mail de l'entreprise.</p>
 
@@ -157,7 +157,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         ) : null}
       </div>
 
-      <button type="submit" disabled={status === "sending"} className="btn-amber pulse mt-8 w-full sm:w-auto disabled:opacity-70">
+      <button type="submit" disabled={status === "sending"} className="btn-amber mt-8 w-full sm:w-auto disabled:opacity-70">
         {status === "sending" ? "Envoi en cours…" : "Envoyer ma demande"}
       </button>
     </form>

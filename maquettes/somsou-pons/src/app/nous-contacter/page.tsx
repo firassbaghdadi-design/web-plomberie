@@ -17,18 +17,18 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
       <section className="hero pb-10" aria-labelledby="titre-page">
         <div className="container-x">
           <Breadcrumb items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-          <h1 id="titre-page" className="mask mt-8 max-w-4xl text-[2.5rem] leading-[1.02] sm:text-6xl lg:text-[4.3rem]">
+          <h1 id="titre-page" className="page-title mask mt-10 max-w-4xl">
             <span>{c.h1}</span>
           </h1>
           <p className="lead fade-in mt-7 max-w-2xl" style={{ ["--i" as string]: 2 }}>
             {c.lead}
           </p>
           <div className="fade-in mt-9 flex flex-wrap gap-3" style={{ ["--i" as string]: 3 }}>
-            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-amber">
+            <a href={`tel:${business.phoneTel}`} data-track="phone_call_click" className="btn-dark">
               <PhoneIcon className="h-4 w-4" />
               {business.phoneDisplay}
             </a>
-            <a href={`mailto:${business.email}`} data-track="generate_lead" className="btn-ghost">
+            <a href={`mailto:${business.email}`} data-track="generate_lead" className="btn-ghost max-sm:!px-4">
               <MailIcon className="h-4 w-4" />
               {business.email}
             </a>
@@ -41,33 +41,36 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
           Formulaire de demande et coordonnées des agences
         </h2>
         <div className="container-x mb-12 max-w-4xl">
-          <div className="border-l-4 border-amber pl-6">
-            <p className="reponse-bref font-display text-2xl leading-snug text-ink">
-              <strong className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brand">En bref : </strong>
+          <div className="border-t border-line pt-10">
+            <p className="reponse-bref text-[1.35rem] font-light leading-[1.5] text-ink sm:text-[1.6rem]">
+              <strong className="caption mb-4 flex items-center gap-3 !text-brand">
+                <span aria-hidden="true" className="inline-block h-[7px] w-[7px] bg-amber" />
+                En bref :{" "}
+              </strong>
               Pour joindre Somsou-Pons, appelez l'agence du 16e au 01 42 15 25 15 ou celle du 17e au 01 46 27 14 86, écrivez à {business.email}, ou envoyez ce formulaire avec vos photos. Pour la menuiserie, l'atelier de La Garenne-Colombes répond au 01 42 42 23 72.
             </p>
           </div>
         </div>
         <div className="container-x grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <ContactForm defaultType={type} />
-          <div className="space-y-5">
+          <div className="border-b border-line">
             {agencies.map((a) => (
-              <article key={a.key} className="overflow-hidden rounded-[1.6rem] border border-line bg-white">
-                <div className="flex items-start gap-5 p-7">
-                <AgencyVisual agency={a} className="h-20 w-20 !ring-line" />
-                <div>
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-action">{a.role}</p>
-                <h3 className="mt-1 text-2xl">{a.name}</h3>
+              <article key={a.key} className="border-t border-line">
+                <div className="flex items-start gap-5 py-7">
+                <AgencyVisual agency={a} className="h-16 w-16" />
+                <div className="min-w-0">
+                <p className="caption">{a.role}</p>
+                <h3 className="mt-1 text-[1.5rem]">{a.name}</h3>
                 <p className="mt-3 flex gap-2 text-sm">
                   <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                   {a.street}, {a.postalCode} {a.city}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <a href={`tel:${a.phoneTel}`} data-track="phone_call_click" className="btn-dark !min-h-[44px] !px-5">
+                  <a href={`tel:${a.phoneTel}`} data-track="phone_call_click" className="btn-ghost !min-h-[44px] !px-5">
                     <PhoneIcon className="h-4 w-4" />
                     {a.phoneDisplay}
                   </a>
-                  <a href={`mailto:${a.email}`} className="btn-ghost !min-h-[44px] !px-5">
+                  <a href={`mailto:${a.email}`} className="link-line self-center text-sm text-brand">
                     {a.email}
                   </a>
                 </div>
@@ -75,7 +78,7 @@ export default function Page({ searchParams }: { searchParams: { demande?: strin
                 </div>
               </article>
             ))}
-            <p className="rounded-2xl bg-paper-deep p-5 text-sm">Les horaires d'ouverture ne figurent pas sur le site actuel : appelez l'agence avant de vous déplacer.</p>
+            <p className="border-t border-line py-5 text-sm">Les horaires d'ouverture ne figurent pas sur le site actuel : appelez l'agence avant de vous déplacer.</p>
           </div>
         </div>
       </section>

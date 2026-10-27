@@ -12,7 +12,7 @@ export default function Page() {
       path={path}
       crumbs={[{ name: "Accueil", href: "/" }, { name: "Nos métiers", href: PATHS.trades }, { name: "Plombier" }]}
       contactType="plomberie"
-      photos={["carreleur", "douche", "radiateur-blanc", "immeuble"]}
+      photos={["immeuble", "cle-evier", "plan-projet", "balcon"]}
       faq={faqs.plumbing}
       faqTitle="Vos questions de plomberie"
       service="Plomberie"
