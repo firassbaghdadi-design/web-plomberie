@@ -61,15 +61,17 @@ const colors = new Map();
 const fonts = new Map();
 const images = new Map();
 let logo = null;
+const report = [];
+const say = (line) => { report.push(line); console.log(line); };
 
-console.log(`\n===== RELEVÉ DU SITE ACTUEL (${SITE}) =====`);
+say(`\n===== RELEVÉ DU SITE ACTUEL (${SITE}) =====`);
 for (const path of PAGES) {
   try {
     const res = await get(SITE + path);
     const html = await res.text();
     const title = (html.match(/<title>([^<]*)<\/title>/i) ?? [])[1] ?? "";
-    console.log(`\n--- PAGE ${path} (${res.status}) title="${decode(title)}"`);
-    for (const line of text(html.match(/<body[\s\S]*<\/body>/i)?.[0] ?? html)) console.log(`  ${line}`);
+    say(`\n--- PAGE ${path} (${res.status}) title="${decode(title)}"`);
+    for (const line of text(html.match(/<body[\s\S]*<\/body>/i)?.[0] ?? html)) say(`  ${line}`);
     const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => m[1]);
     for (const href of [...html.matchAll(/<link[^>]+rel=["']?stylesheet[^>]*>/gi)].map((m) => (m[0].match(/href=["']([^"']+)/) ?? [])[1]).filter(Boolean)) {
       try { css.push(await (await get(new URL(href, SITE + path).href)).text()); } catch { /* feuille illisible */ }
@@ -97,8 +99,8 @@ for (const path of PAGES) {
     console.warn(`[site] ${path} : ${e.message}`);
   }
 }
-console.log(`\n--- COULEURS ${[...colors].sort((a, b) => b[1] - a[1]).slice(0, 30).map(([c, n]) => `${c}×${n}`).join("  ")}`);
-console.log(`--- POLICES ${[...fonts].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([c, n]) => `${c}×${n}`).join("  ")}`);
+say(`\n--- COULEURS ${[...colors].sort((a, b) => b[1] - a[1]).slice(0, 30).map(([c, n]) => `${c}×${n}`).join("  ")}`);
+say(`--- POLICES ${[...fonts].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([c, n]) => `${c}×${n}`).join("  ")}`);
 
 // Images de l'entreprise : le logo, puis les photos assez grandes pour être montrées.
 let n = 0;
@@ -109,7 +111,7 @@ for (const [url, info] of images) {
     const buf = Buffer.from(await res.arrayBuffer());
     const [w, h] = dims(buf);
     const isLogo = /logo/i.test(`${url} ${info.alt} ${info.hint}`);
-    console.log(`--- IMAGE ${w}x${h} ${Math.round(buf.length / 1024)} Ko ${type} ${url} alt="${info.alt}" page=${info.page}${isLogo ? " [LOGO]" : ""}`);
+    say(`--- IMAGE ${w}x${h} ${Math.round(buf.length / 1024)} Ko ${type} ${url} alt="${info.alt}" page=${info.page}${isLogo ? " [LOGO]" : ""}`);
     if (!type.startsWith("image/")) continue;
     const ext = type.includes("png") ? "png" : type.includes("webp") ? "webp" : type.includes("svg") ? "svg" : type.includes("gif") ? "gif" : "jpg";
     if (isLogo && !logo) {
@@ -124,7 +126,9 @@ for (const [url, info] of images) {
     console.warn(`[site] image ${url} : ${e.message}`);
   }
 }
-console.log(`===== FIN DU RELEVÉ : ${sitePhotos.length} photo(s) de l'entreprise, logo ${logo ? "trouvé" : "absent"} =====\n`);
+say(`===== FIN DU RELEVÉ : ${sitePhotos.length} photo(s) de l'entreprise, logo ${logo ? "trouvé" : "absent"} =====\n`);
+// Relevé temporaire, lisible sur le déploiement pour la relecture (retiré de la version livrée).
+writeFileSync(new URL("releve-site-actuel.txt", new URL("../public/", import.meta.url)), report.join("\n"));
 
 // Photos d'artisans au travail (Pexels, licence Pexels, créditées sur la page Mentions légales).
 const pexels = JSON.parse(readFileSync(new URL("../src/lib/pexels.json", import.meta.url), "utf8"));
