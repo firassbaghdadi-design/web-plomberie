@@ -74,3 +74,8 @@ Sur **chaque** site, sans exception :
 - La branche de production du dépôt est `claude/plumbing-outreach-idf-yw3jbm` : chaque push redéploie automatiquement.
 - Client signé : on crée un dépôt GitHub dédié à son site et un projet Vercel lié à ce dépôt.
 - Ne créer le projet lié qu'une fois le dossier du site poussé sur GitHub, sinon chaque push déclenche un build en erreur. Le projet `entreprise-clairon-maquette` est en attente : builds ignorés (`commandForIgnoringBuildStep: "exit 0"`, pas de rootDirectory). Quand la maquette démarre, remettre `rootDirectory: "maquettes/entreprise-clairon"` et retirer la commande d'ignore.
+
+## Favicon et partage (règle de Firas, 28/10/2026)
+
+- Chaque site a un favicon (`src/app/icon.svg` ou `icon.png`) et une icône iPhone (`apple-icon.png`, 180 px), tirés du logo de l'entreprise.
+- Chaque site a une image de partage Open Graph (`src/app/opengraph-image.tsx`) et les métadonnées `openGraph` et `twitter` sur chaque page.
