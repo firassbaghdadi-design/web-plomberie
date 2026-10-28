@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Generations } from "@/components/Generations";
 import { ArrowIcon } from "@/components/Icons";
 import { Img } from "@/components/Img";
+import { Realisation } from "@/components/Realisation";
 import { JsonLd } from "@/components/JsonLd";
 import { Ecluse } from "@/components/Lock";
 import { CtaBand, FaqList, contactHref } from "@/components/Sections";
@@ -148,10 +149,10 @@ function Works() {
           <p className="mt-6 text-[1.02rem]">« Découvrez nos réalisations en images pour particuliers &amp; professionnels : cuisine, douche, salle de bains, plomberie générale, chauffage et climatisation, couverture et chéneaux. »</p>
           <Link href={PATHS.works} className="link-line mt-8 text-[0.92rem]">Les neuf réalisations <ArrowIcon className="h-3.5 w-3.5" /></Link>
         </div>
-        <ul className="archive grid grid-cols-3 gap-3 self-start sm:gap-5 lg:col-span-8">
+        <ul className="archive ba-grid ba-3 self-start lg:col-span-8">
           {realisations.slice(0, 6).map((k) => (
-            <li key={k} data-mask className="max-w-[300px] overflow-hidden rounded-[3px]">
-              <Img id={k} alt={photoAlt(k)} className="aspect-square" />
+            <li key={k} data-mask>
+              <Realisation id={k} />
             </li>
           ))}
         </ul>

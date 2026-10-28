@@ -6,6 +6,7 @@ import { PATHS, business, contacts, type Faq } from "@/lib/site";
 import type { Page, Section } from "@/lib/types";
 import { ArrowIcon } from "./Icons";
 import { Img } from "./Img";
+import { Realisation } from "./Realisation";
 import { Ecluse } from "./Lock";
 
 /** Espace insécable avant « : ? ! ; » (typographie française). */
@@ -164,7 +165,7 @@ export function DeepContent({ sections }: { sections: Section[] }) {
   );
 }
 
-/** Trois photos publiées par l'entreprise : petites, nettes, jamais agrandies au-delà de leur taille d'origine. */
+/** Trois montages avant / après publiés par l'entreprise, en comparateurs nets (jamais plus de deux fois leur taille). */
 export function Gallery({ keys, title = "Des chantiers de l'entreprise" }: { keys: string[]; title?: string }) {
   const shown = keys.filter((k) => imgSrc(k));
   if (!shown.length) return null;
@@ -177,10 +178,10 @@ export function Gallery({ keys, title = "Des chantiers de l'entreprise" }: { key
           <p className="mt-4 text-[1.5rem] font-light leading-snug tracking-[-0.02em] text-ink">{title}</p>
           <Link href={PATHS.works} className="link-line mt-6 text-[0.9rem]">Toutes les réalisations <ArrowIcon className="h-3.5 w-3.5" /></Link>
         </div>
-        <ul className="archive grid grid-cols-3 gap-3 sm:gap-5 lg:col-span-8">
+        <ul className="archive ba-grid ba-3 lg:col-span-8">
           {shown.map((k) => (
-            <li key={k} data-mask className="max-w-[300px] overflow-hidden rounded-[3px]">
-              <Img id={k} alt={photoAlt(k)} className="aspect-square" />
+            <li key={k} data-mask>
+              <Realisation id={k} />
             </li>
           ))}
         </ul>

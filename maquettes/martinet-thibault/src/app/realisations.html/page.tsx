@@ -1,13 +1,13 @@
 import { Bief } from "@/components/Bief";
 import { ContentPage, metaFor } from "@/components/ContentPage";
-import { Img } from "@/components/Img";
 import { Ecluse } from "@/components/Lock";
-import { photoAlt, realisations } from "@/lib/photos";
+import { Realisation } from "@/components/Realisation";
+import { realisations } from "@/lib/photos";
 import { PATHS } from "@/lib/site";
 
 export const metadata = metaFor(PATHS.works);
 
-/** Les neuf photos de chantiers publiées par l'entreprise, à leur taille d'origine (300 px). */
+/** Les neuf montages avant / après publiés par l'entreprise, en comparateurs (jamais plus de deux fois leur taille). */
 function Wall() {
   return (
     <section aria-labelledby="titre-galerie" className="py-20 sm:py-28">
@@ -15,10 +15,11 @@ function Wall() {
       <div className="wrap">
         <Ecluse n="09">Photos de l'entreprise</Ecluse>
         <h2 id="titre-galerie" className="h2 mt-5" data-reveal>Neuf chantiers, tels que l'entreprise les a photographiés</h2>
-        <ul className="archive mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:max-w-[60rem]">
+        <p className="mt-6 max-w-xl">Chaque photo montre le chantier avant et après travaux : faites glisser l'écluse pour passer de l'un à l'autre.</p>
+        <ul className="archive ba-grid ba-3 mt-14 lg:max-w-[60rem]">
           {realisations.map((k, i) => (
-            <li key={k} data-mask className="max-w-[300px]">
-              <div className="overflow-hidden rounded-[3px]"><Img id={k} alt={photoAlt(k)} className="aspect-square" /></div>
+            <li key={k} data-mask>
+              <Realisation id={k} />
               <p className="label mt-3 !tracking-[0.18em]">Réalisation {String(i + 1).padStart(2, "0")}</p>
             </li>
           ))}

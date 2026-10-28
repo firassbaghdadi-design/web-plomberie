@@ -130,3 +130,16 @@ section:has(> .bief) { position: relative; }
 .js .bief:not(.is-in) b { animation: bief-safety 0s 3s forwards; }
 @keyframes bief-safety { to { transform: scaleX(1); } }
 .bief-mist::before { background: #e5eaf1; }
+
+/* ————— Avant / après : les montages de l'entreprise, à deux fois leur taille au plus ————— */
+.ba-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem 1.25rem; }
+@media (min-width: 640px) { .ba-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ba-grid.ba-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ba img { image-rendering: auto; }
+.ba-line { position: absolute; top: 0; bottom: 0; width: 1px; margin-left: -.5px; background: rgba(255,255,255,.95); box-shadow: 0 0 0 .5px rgba(13,27,46,.12); pointer-events: none; }
+.ba-handle { position: absolute; top: 50%; left: 50%; width: 30px; height: 22px; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 6px rgba(13,27,46,.18)); transition: transform .35s var(--ease); }
+.ba-water { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(.55); transition: transform .5s var(--ease); }
+.ba:hover .ba-water, .ba:focus-within .ba-water { transform: translateY(-3px) scaleY(1); }
+.ba:active .ba-handle { transform: translate(-50%, -50%) scale(1.08); }
+.ba:has(.ba-range:focus-visible) { outline: 2px solid #0071e5; outline-offset: 3px; }
+.ba-tag { position: absolute; bottom: .55rem; padding: .18rem .45rem; border-radius: 2px; background: rgba(255,255,255,.88); color: #0d1b2e; font-size: .6rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1.4; pointer-events: none; }
