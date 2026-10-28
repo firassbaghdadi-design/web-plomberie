@@ -24,7 +24,7 @@ export function Motion() {
       seenTimer = window.setTimeout(() => {
         root.classList.add("seen");
         try { sessionStorage.setItem("truelle-seen", "1"); } catch {}
-      }, reduce ? 0 : 2300);
+      }, reduce ? 900 : 3100);
     }
 
     // Apparitions et compteurs

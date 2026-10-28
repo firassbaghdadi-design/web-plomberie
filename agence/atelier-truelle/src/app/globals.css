@@ -140,7 +140,7 @@
   background: var(--terre);
   color: var(--paper);
   pointer-events: none;
-  animation: curtain-up 0.95s var(--out) 1.25s forwards;
+  animation: curtain-up 0.95s var(--out) 2.05s forwards;
 }
 .curtain .count {
   position: absolute;
@@ -151,7 +151,7 @@
   line-height: 0.8;
   letter-spacing: -0.04em;
   counter-reset: n var(--n);
-  animation: count 1.1s linear forwards;
+  animation: count 1.9s linear forwards;
 }
 .curtain .count::before {
   content: counter(n);
@@ -185,6 +185,81 @@
 html.seen .curtain,
 html.skip-curtain .curtain {
   display: none;
+}
+
+/* Gâchée : la truelle du logo touille le ciment dans un seau (environ 0,8 s de plus que le rideau d'origine) */
+.curtain .stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+.gachee {
+  width: clamp(9rem, 20vw, 13rem);
+  height: auto;
+  overflow: visible;
+  animation: gachee-in 0.6s var(--out) both;
+}
+@keyframes gachee-in {
+  from { opacity: 0; transform: translateY(12px); }
+}
+.gachee .gachee-sweep,
+.gachee .gachee-tilt {
+  transform-box: view-box;
+  transform-origin: 100px 96px;
+}
+.gachee .gachee-sweep {
+  animation: gachee-sweep 0.8s ease-in-out infinite alternate;
+}
+.gachee .gachee-tilt {
+  animation: gachee-tilt 0.8s ease-in-out -0.2s infinite alternate;
+}
+.gachee .gachee-waves {
+  animation: gachee-waves 1.1s linear infinite;
+}
+.gachee .gachee-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gachee-ripple 1.2s var(--out) infinite;
+}
+.gachee .gachee-ripple-2 {
+  animation-delay: 0.6s;
+}
+.gachee .gachee-drop {
+  opacity: 0;
+  animation: gachee-drop 1.6s var(--ease) 0.35s infinite;
+}
+.gachee .gachee-drop-2 {
+  --dx: 7px;
+  animation-delay: 0.85s;
+}
+.gachee .gachee-drop-3 {
+  --dx: -3px;
+  animation-delay: 1.3s;
+}
+@keyframes gachee-sweep {
+  from { transform: translateX(-11px); }
+  to { transform: translateX(11px); }
+}
+@keyframes gachee-tilt {
+  from { transform: rotate(-26deg); }
+  to { transform: rotate(26deg); }
+}
+@keyframes gachee-waves {
+  to { transform: translateX(-40px); }
+}
+@keyframes gachee-ripple {
+  from { transform: scale(0.5); opacity: 1; }
+  to { transform: scale(2.8); opacity: 0; }
+}
+@keyframes gachee-drop {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 1; }
+  40% { transform: translate(calc(var(--dx, -6px) * 0.6), -15px); opacity: 1; }
+  62%, 100% { transform: translate(var(--dx, -6px), 2px); opacity: 0; }
+}
+@keyframes curtain-hide {
+  to { visibility: hidden; }
 }
 
 /* =========================================================
@@ -906,9 +981,27 @@ html:not(.js-ready) .manifesto .w {
   html {
     scroll-behavior: auto;
   }
-  .curtain,
   .cursor {
     display: none !important;
+  }
+  /* Version fixe : le seau et la truelle plantée dans le ciment, sans mouvement, puis le rideau disparaît sans glisser */
+  .curtain {
+    animation: curtain-hide 0s 0.9s forwards;
+  }
+  .curtain .count {
+    display: none;
+  }
+  .curtain .word span,
+  .gachee,
+  .gachee * {
+    animation: none !important;
+  }
+  .gachee .gachee-ripple,
+  .gachee .gachee-drop {
+    opacity: 0;
+  }
+  .gachee .gachee-tilt {
+    transform: rotate(-20deg);
   }
   .mask > span,
   .fade-in {

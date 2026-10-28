@@ -5,6 +5,7 @@ import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/caveat/index.css";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
+import { Gachee } from "@/components/Gachee";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { Cursor } from "@/components/Cursor";
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Aller au contenu
         </a>
         <div className="curtain" aria-hidden="true">
-          <p className="word"><span>Atelier Truelle</span></p>
+          <div className="stage">
+            <Gachee />
+            <p className="word"><span>Atelier Truelle</span></p>
+          </div>
           <p className="count" />
         </div>
         <div className="progress" aria-hidden="true" />
