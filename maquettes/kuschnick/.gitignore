@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+public/photos/*
+!public/photos/.gitkeep
+.env*.local
+public/releve/
+public/releve-site-actuel.txt
