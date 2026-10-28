@@ -6,6 +6,9 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 
 - Pexels 8990559 (portrait d'un ouvrier en casque jaune et gilet) : ne plus jamais l'utiliser.
 - Pexels 11645013 et 8486972 : refusées par Firas pour Atelier Truelle.
+- Pexels 18947396 (menuisier en Inde, atelier de bois) : refusée par Firas le 28/10/2026, hors contexte (on est à Paris). Ne plus jamais l'utiliser.
+
+**Règle :** les personnes visibles doivent pouvoir être des artisans d'Île-de-France ; décor et atelier cohérents avec la France. En cas de doute sur une photo choisie à l'aveugle, préférer un cadrage sur les mains et l'outil.
 
 ## Utilisées
 
@@ -41,7 +44,7 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 17297265 : Somsou-Pons (toits)
 - 17842832 : Atelier Truelle (electricien)
 - 18369835 : Atelier Truelle (peintre)
-- 18947396 : Somsou-Pons (atelier-bois)
+- 5711890 : Somsou-Pons (atelier-bois, mains d'un menuisier au ciseau)
 - 19328898 : Somsou-Pons (facade)
 - 27928762 : Atelier Truelle (tableau)
 - 29181494 : Somsou-Pons (carreleur)
