@@ -6,7 +6,7 @@
 // Une image qui ne se télécharge pas n'arrête jamais le build : le site affiche alors une solution de repli.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-const SITE = "https://entreprise-clairon.fr";
+const SITE = process.env.CLAIRON_SOURCE ?? "https://entreprise-clairon.fr";
 const PAGES = ["/", "/plomberie/", "/couverture/", "/chauffage/", "/mentions-legales/"];
 const UA = { "User-Agent": "Mozilla/5.0 (compatible; maquette-build)", "Accept-Language": "fr-FR,fr" };
 const outDir = new URL("../public/photos/", import.meta.url);
@@ -61,8 +61,9 @@ const colors = new Map();
 const fonts = new Map();
 const images = new Map();
 let logo = null;
-const report = [];
-const say = (line) => { report.push(line); console.log(line); };
+const say = (line) => console.log(line);
+/** Listes de prestations des pages métier du site actuel (entre « Un service adapté à vos besoins » et l'appel au rendez-vous). */
+const original = {};
 
 say(`\n===== RELEVÉ DU SITE ACTUEL (${SITE}) =====`);
 for (const path of PAGES) {
@@ -71,14 +72,25 @@ for (const path of PAGES) {
     const html = await res.text();
     const title = (html.match(/<title>([^<]*)<\/title>/i) ?? [])[1] ?? "";
     say(`\n--- PAGE ${path} (${res.status}) title="${decode(title)}"`);
-    for (const line of text(html.match(/<body[\s\S]*<\/body>/i)?.[0] ?? html)) say(`  ${line}`);
-    const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => m[1]);
-    for (const href of [...html.matchAll(/<link[^>]+rel=["']?stylesheet[^>]*>/gi)].map((m) => (m[0].match(/href=["']([^"']+)/) ?? [])[1]).filter(Boolean)) {
-      try { css.push(await (await get(new URL(href, SITE + path).href)).text()); } catch { /* feuille illisible */ }
+    const lines = text(html.match(/<body[\s\S]*<\/body>/i)?.[0] ?? html);
+    for (const line of lines) say(`  ${line}`);
+    const from = lines.findIndex((l) => /^\[H2\] Un service adapt/i.test(l));
+    if (from >= 0) {
+      const items = [];
+      for (const l of lines.slice(from + 1)) {
+        if (/^\[H[1-6]\]/.test(l) || /rendez-vous|tous droits|mentions l/i.test(l)) break;
+        if (l.length <= 160 && !items.includes(l)) items.push(l);
+      }
+      if (items.length && items.length <= 14) original[path.replace(/\//g, "")] = items;
     }
-    css.push([...html.matchAll(/style="([^"]*)"/gi)].map((m) => m[1]).join(";"));
-    for (const c of css) {
-      for (const m of c.matchAll(/#[0-9a-f]{6}\b|#[0-9a-f]{3}\b|rgba?\([^)]+\)/gi)) colors.set(m[0].toLowerCase(), (colors.get(m[0].toLowerCase()) ?? 0) + 1);
+    // Poids : les styles écrits dans la page (thème du site) comptent davantage que les feuilles génériques.
+    const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => [m[1], 4]);
+    for (const href of [...html.matchAll(/<link[^>]+rel=["']?stylesheet[^>]*>/gi)].map((m) => (m[0].match(/href=["']([^"']+)/) ?? [])[1]).filter(Boolean)) {
+      try { css.push([await (await get(new URL(href, SITE + path).href)).text(), 1]); } catch { /* feuille illisible */ }
+    }
+    css.push([[...html.matchAll(/style="([^"]*)"/gi)].map((m) => m[1]).join(";"), 6]);
+    for (const [c, weight] of css) {
+      for (const m of c.matchAll(/#[0-9a-f]{6}\b|#[0-9a-f]{3}\b|rgba?\([^)]+\)/gi)) colors.set(m[0].toLowerCase(), (colors.get(m[0].toLowerCase()) ?? 0) + weight);
       for (const m of c.matchAll(/font-family\s*:\s*([^;}]+)/gi)) fonts.set(m[1].trim(), (fonts.get(m[1].trim()) ?? 0) + 1);
       for (const m of c.matchAll(/url\(["']?([^"')]+\.(?:jpe?g|png|webp|gif))/gi)) images.set(new URL(m[1], SITE + path).href, { alt: "(css)", page: path, hint: "" });
     }
@@ -110,7 +122,7 @@ for (const [url, info] of images) {
     const type = res.headers.get("content-type") ?? "";
     const buf = Buffer.from(await res.arrayBuffer());
     const [w, h] = dims(buf);
-    const isLogo = /logo/i.test(`${url} ${info.alt} ${info.hint}`);
+    const isLogo = /logo/i.test(`${url} ${info.alt} ${info.hint}`) && info.hint !== "icon" && w >= 80;
     say(`--- IMAGE ${w}x${h} ${Math.round(buf.length / 1024)} Ko ${type} ${url} alt="${info.alt}" page=${info.page}${isLogo ? " [LOGO]" : ""}`);
     if (!type.startsWith("image/")) continue;
     const ext = type.includes("png") ? "png" : type.includes("webp") ? "webp" : type.includes("svg") ? "svg" : type.includes("gif") ? "gif" : "jpg";
@@ -127,8 +139,30 @@ for (const [url, info] of images) {
   }
 }
 say(`===== FIN DU RELEVÉ : ${sitePhotos.length} photo(s) de l'entreprise, logo ${logo ? "trouvé" : "absent"} =====\n`);
-// Relevé temporaire, lisible sur le déploiement pour la relecture (retiré de la version livrée).
-writeFileSync(new URL("releve-site-actuel.txt", new URL("../public/", import.meta.url)), report.join("\n"));
+writeFileSync(new URL("../src/lib/original.generated.json", import.meta.url), JSON.stringify(original, null, 2) + "\n");
+say(`[site] listes reprises : ${Object.entries(original).map(([k, v]) => `${k} (${v.length})`).join(", ") || "aucune"}`);
+
+// Couleur d'accent : la couleur saturée la plus présente dans les feuilles de style du site actuel,
+// assombrie si besoin pour rester lisible sur fond blanc. À défaut, le bleu de globals.css reste en place.
+const toRgb = (c) => {
+  if (c.startsWith("#")) { const h = c.length === 4 ? [...c.slice(1)].map((x) => x + x).join("") : c.slice(1); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); }
+  const m = c.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < 0.6)) return null; return m.slice(0, 3).map(Number);
+};
+const hsl = ([r, g, b]) => {
+  r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn;
+  if (!d) return [0, 0, l]; const s = d / (1 - Math.abs(2 * l - 1));
+  const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; return [(h * 60 + 360) % 360, s, l];
+};
+const rgbOf = (h, s, l) => { const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = l - c / 2; const [r, g, b] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x]; return [r, g, b].map((v) => Math.round((v + m) * 255)); };
+const brand = [...colors].map(([c, n]) => ({ c, n, rgb: toRgb(c) })).filter((x) => x.rgb).map((x) => ({ ...x, hsl: hsl(x.rgb) })).filter((x) => x.hsl[1] > 0.28 && x.hsl[2] > 0.12 && x.hsl[2] < 0.78).sort((a, b) => b.n - a.n)[0];
+if (brand) {
+  const [h, s0] = brand.hsl;
+  const s = Math.min(s0, 0.72);
+  const l = Math.min(brand.hsl[2], 0.42);
+  const accent = rgbOf(h, s, l), deep = rgbOf(h, s, Math.max(0.16, l - 0.12)), tint = rgbOf(h, Math.min(s, 0.45), 0.965);
+  writeFileSync(new URL("../src/app/brand.generated.css", import.meta.url), `/* Généré au build depuis le site actuel : ${brand.c} (${brand.n} occurrences). */\n:root { --accent: ${accent.join(" ")}; --accent-deep: ${deep.join(" ")}; --accent-tint: ${tint.join(" ")}; }\n`);
+  say(`[site] couleur d'accent : ${brand.c} -> rgb(${accent.join(",")})`);
+} else say("[site] aucune couleur de charte trouvée : bleu par défaut");
 
 // Photos d'artisans au travail (Pexels, licence Pexels, créditées sur la page Mentions légales).
 const pexels = JSON.parse(readFileSync(new URL("../src/lib/pexels.json", import.meta.url), "utf8"));

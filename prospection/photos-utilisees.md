@@ -64,9 +64,16 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 34019842 : Martinet Thibault (toiture) — « Construction Worker on Roof Removing Debris »
 - 34792149 : Martinet Thibault (couvreur) — « Black and White Construction Worker on Rooftop »
 
+- 16209099 : Entreprise Clairon (toits) — « Man Working on Rooftop »
+- 5691640 : Entreprise Clairon (carrelage) — « Crop man repairing tiled wall in room »
+- 32990521 : Entreprise Clairon (chantier) — « Construction Worker at Indoor Renovation Site »
+- 14953886 : Entreprise Clairon (plans) — « Wrench and Pipes on Sketch »
+
 Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur propre site (aucune photo Pexels) ; Gaz Flash y ajoute deux photos Wikimedia Commons du 18e (voir plus bas).
 
 Martinet Thibault utilise les photos de son propre site (réalisations, logos) et cinq photos Pexels d'artisans au travail (ci-dessus), choisies par leur titre exact sur pexels.com.
+
+Entreprise Clairon utilise d'abord les photos de son propre site (récupérées au build) et quatre photos Pexels d'artisans au travail, choisies par leur titre exact.
 
 Seragaz utilise les photos de son propre site, des photos de lieux (Wikimedia Commons ci-dessous) et trois photos Pexels d'intervention (6474460, 12644994, 7937300), choisies par leur titre exact sur pexels.com.
 
