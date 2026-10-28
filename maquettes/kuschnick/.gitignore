@@ -6,5 +6,3 @@ next-env.d.ts
 public/photos/*
 !public/photos/.gitkeep
 .env*.local
-public/releve/
-public/releve-site-actuel.txt

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start -p 3366",
     "typecheck": "tsc --noEmit",
-    "prebuild": "node scripts/releve.mjs",
+    "prebuild": "node scripts/fetch-photos.mjs",
+    "fetch-photos": "node scripts/fetch-photos.mjs",
     "audit:seo": "node scripts/audit-seo.mjs http://localhost:3366 https://kuschnick.fr"
   },
   "dependencies": {

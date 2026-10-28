@@ -63,6 +63,12 @@ Chaque site a ses propres photos : une photo utilisée sur un site n'est jamais 
 - 32497162 : Martinet Thibault (salle-de-bains) — « Senior Man Conducting Bathroom Inspection with Device »
 - 34019842 : Martinet Thibault (toiture) — « Construction Worker on Roof Removing Debris »
 - 34792149 : Martinet Thibault (couvreur) — « Black and White Construction Worker on Rooftop »
+- 7816462 : Kuschnick (toits) — « Chimneys on the Rooftop at Dusk »
+- 5210901 : Kuschnick (outils) — « Close Up Photo of Vice Grip and Wrench »
+- 8488060 : Kuschnick (cle) — « Close Up Photo of Plumbers Wrench on Wooden Surface »
+- 4752984 : Kuschnick (radiateur) — « Rusty Steam Radiator on Wall »
+- 4394224 : Kuschnick (toiture) — « Detail of house roof with chimney and attic windows »
+- 4888598 : Kuschnick (atelier) — « A Man Working in His Workshop »
 
 - 16209099 : Entreprise Clairon (toits) — « Man Working on Rooftop »
 - 5691640 : Entreprise Clairon (carrelage) — « Crop man repairing tiled wall in room »
@@ -74,6 +80,8 @@ Gaz Flash et Entreprise Rousseau / Sandrin-Rousseau utilisent les photos de leur
 Martinet Thibault utilise les photos de son propre site (réalisations, logos) et cinq photos Pexels d'artisans au travail (ci-dessus), choisies par leur titre exact sur pexels.com.
 
 Entreprise Clairon utilise d'abord les photos de son propre site (récupérées au build) et quatre photos Pexels d'artisans au travail, choisies par leur titre exact.
+
+Kuschnick : le site actuel (kuschnick.fr) est un modèle WordPress « Divi Electrician » jamais rempli, ses images sont celles du modèle et ne sont pas reprises ; six photos Pexels (ci-dessus), choisies par leur titre exact sur pexels.com.
 
 Seragaz utilise les photos de son propre site, des photos de lieux (Wikimedia Commons ci-dessous) et trois photos Pexels d'intervention (6474460, 12644994, 7937300), choisies par leur titre exact sur pexels.com.
 
