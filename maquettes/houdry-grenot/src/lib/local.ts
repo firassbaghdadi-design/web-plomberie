@@ -194,7 +194,7 @@ export const localPages: Local[] = [
   local({
     slug: "plombier-paris-18",
     zone: "Paris 18e",
-    title: "Plombier Paris 18e : Montmartre | Houdry-Grenot",
+    title: "Plombier Paris 18e : Montmartre, Chapelle | Houdry-Grenot",
     description:
       "Plombier à Paris 18e, voisin du 17e : Houdry-Grenot dépanne et installe dans les immeubles de faubourg, ateliers et logements de Montmartre, depuis 1996.",
     h1: "Plombier Paris 18e : Montmartre, Clignancourt et la Butte",

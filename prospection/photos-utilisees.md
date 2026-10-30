@@ -129,3 +129,11 @@ Photos de l'entreprise en priorité : le logo et les photos de chantiers sont r�
 
 - 38510734 : SPC (couvreurs, repli) — « Workers applying roofing material on building »
 - 38524264 : SPC (couvreur, repli) — « Construction worker using drill for roofing »
+## houdry-grenot
+
+Photos du site de l'entreprise récupérées au build quand elles existent ; quatre photos Pexels choisies par leur titre exact :
+
+- 11299684 : Houdry-Grenot (facade) — « Typical French Residential Building »
+- 8486928 : Houdry-Grenot (cle) — « Handywoman Holding a Plumbers Wrench »
+- 34295401 : Houdry-Grenot (robinet) — « Modern Chrome Kitchen Faucet with Running Water »
+- 31213992 : Houdry-Grenot (lavabo) — « Water Flowing into a Bathroom Sink »
