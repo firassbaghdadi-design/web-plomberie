@@ -167,3 +167,11 @@ Monteil & Cie : aucune photo Pexels. Toutes les photos viennent du site actuel d
 - 21009067 : Charles Pereira (facade) — « Buildings with Apartments in Paris in France »
 
 Entreprise Charles Pereira n a pas de site : deux photos Pexels d immeubles parisiens, choisies par leur titre exact (non vérifiées visuellement, à contrôler).
+
+## bastien-trebulle
+
+Bastien & Trebulle utilise d'abord les photos de son propre site (accueil, histoire, pages de réalisations, récupérées au build) et trois photos Pexels de repli, choisies par leur titre exact :
+
+- 4494653 : Bastien & Trebulle (compteur) — « Close Up of Water Meter »
+- 16923121 : Bastien & Trebulle (toits) — « Roofs of Buildings in Paris »
+- 19328832 : Bastien & Trebulle (immeubles) — « Traditional Tenements in Paris »

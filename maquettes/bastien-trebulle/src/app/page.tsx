@@ -119,16 +119,16 @@ function Trades() {
 
 function Emergency() {
   return (
-    <section data-folio="04" data-rubrique="Dépannage" aria-labelledby="titre-urgence" className="bg-accent py-20 text-white sm:py-28">
+    <section data-folio="04" data-rubrique="Dépannage" aria-labelledby="titre-urgence" className="border-y border-line bg-accent-wash py-20 sm:py-28">
       <div className="wrap grid gap-12 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
-          <p className="label !text-white/70">Dépannage d&apos;urgence</p>
-          <h2 id="titre-urgence" className="mt-5 text-[2.2rem] !text-white sm:text-[3.4rem]">Dépannage d&apos;urgence 24h/24.</h2>
-          <p className="mt-6 max-w-xl text-white/80">Des compagnons de l&apos;entreprise, pas un centre d&apos;appels : intervention sous 2 heures en région parisienne, tarif forfaitaire annoncé à l&apos;avance, dimanches et jours fériés compris.</p>
+          <p className="label !text-accent">Dépannage d&apos;urgence</p>
+          <h2 id="titre-urgence" className="mt-5 text-[2.2rem] sm:text-[3.4rem]">Dépannage d&apos;urgence 24h/24.</h2>
+          <p className="mt-6 max-w-xl">Des compagnons de l&apos;entreprise, pas un centre d&apos;appels : intervention sous 2 heures en région parisienne, tarif forfaitaire annoncé à l&apos;avance, dimanches et jours fériés compris.</p>
         </div>
         <div className="lg:col-span-5">
-          <a href={`tel:${business.phoneTel}`} className="num block whitespace-nowrap text-[2.4rem] tracking-tight text-white sm:text-[3.4rem]" data-track="cta_tel">{business.phoneDisplay}</a>
-          <Link href={PATHS.emergency} className="mt-5 inline-flex items-center gap-3 text-white/85 underline decoration-white/40 underline-offset-8 transition hover:text-white">Les cas d&apos;intervention <ArrowIcon /></Link>
+          <a href={`tel:${business.phoneTel}`} className="num block whitespace-nowrap text-[2.4rem] tracking-tight text-accent sm:text-[3.4rem]" data-track="cta_tel">{business.phoneDisplay}</a>
+          <Link href={PATHS.emergency} className="mt-5 inline-flex items-center gap-3 text-ink underline decoration-accent/40 underline-offset-8 transition hover:text-accent">Les cas d&apos;intervention <ArrowIcon /></Link>
         </div>
       </div>
     </section>
