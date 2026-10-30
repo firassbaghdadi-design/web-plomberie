@@ -93,7 +93,7 @@ export const servicePages: Page[] = [
         ],
       },
       {
-        h2: "Comment se déroule une intervention ?",
+        h2: "Le déroulement d'une intervention",
         steps: [
           { t: "Votre appel ou votre demande", d: "Le service client note l'adresse, la nature du problème et, si vous le pouvez, des photos envoyées par le formulaire." },
           { t: "Le diagnostic sur place", d: "Un compagnon se déplace, repère l'origine du désordre et vous explique les options avant tout travail." },
@@ -127,7 +127,7 @@ export const servicePages: Page[] = [
   {
     path: PATHS.leak,
     zone: "Paris",
-    title: "Recherche de fuite Paris : sans destruction inutile | Monteil",
+    title: "Recherche de fuite Paris : sans casse inutile | Monteil",
     description:
       "Recherche de fuite à Paris par thermographie, écoute électro-acoustique, gaz traceur et inspection télévisuelle. Rapport détaillé. Monteil & Cie, depuis 1964.",
     h1: "Recherche de fuite à Paris, sans destruction inutile",
@@ -157,7 +157,7 @@ export const servicePages: Page[] = [
       {
         h2: "Quelles techniques emploie-t-on selon le cas ?",
         answer:
-          "Le choix dépend du matériau et de l'accès. La thermographie convient aux cloisons et aux dalles, l'écoute aux canalisations encastrées, le gaz traceur aux réseaux sous béton ou sous bitume, la caméra aux conduits d'évacuation que l'on peut parcourir.",
+          "Le choix dépend du matériau et de l'accès. La thermographie convient aux cloisons et aux dalles, l'écoute aux canalisations encastrées, le gaz traceur aux réseaux sous béton ou sous bitume, la caméra aux conduits d'évacuation que l'on peut parcourir, du moins invasif au plus précis.",
         steps: [
           { t: "Inspection thermographique", d: "Une caméra infrarouge détecte l'humidité derrière les cloisons, les dalles et les plafonds, sans destruction." },
           { t: "Écoute électro-acoustique", d: "Des capteurs très sensibles localisent la fuite dans une canalisation encastrée, à quelques centimètres près." },
@@ -221,7 +221,7 @@ export const servicePages: Page[] = [
       {
         h2: "Que faire quand la chaudière tombe en panne ?",
         answer:
-          "Vérifiez la pression et l'alimentation, puis appelez un technicien gaz plutôt que de démonter quoi que ce soit. Il diagnostique la panne, la répare ou remet l'installation en service. Selon les disponibilités, la maison intervient le jour même.",
+          "Vérifiez la pression et l'alimentation, puis appelez un technicien gaz plutôt que de démonter quoi que ce soit. Il diagnostique la panne, la répare ou remet l'installation en service. Selon les disponibilités, la maison annonce une intervention le jour même, sans garantie de délai.",
         paras: [
           "Une chaudière qui s'arrête, c'est souvent une pression qui chute, un circulateur fatigué ou un brûleur encrassé. Le technicien commence par contrôler en sécurité l'installation, explique l'origine de la panne et chiffre la réparation avant de la lancer.",
         ],
@@ -236,7 +236,7 @@ export const servicePages: Page[] = [
       {
         h2: "Pourquoi l'entretien annuel d'une chaudière est-il obligatoire ?",
         answer:
-          "Parce qu'une chaudière mal réglée consomme davantage et peut devenir dangereuse. Le contrôle annuel vérifie la combustion, l'évacuation des fumées et la sécurité de l'appareil, et vous remet une attestation utile pour votre assurance habitation.",
+          "Parce qu'une chaudière mal réglée consomme davantage et peut devenir dangereuse. Le contrôle annuel vérifie la combustion, l'évacuation des fumées et la sécurité de l'appareil, et vous remet une attestation, utile pour votre assurance habitation et pour votre bailleur éventuel.",
         paras: [
           "Pour une copropriété, le contrat d'entretien de la chaufferie collective se discute avec le syndic. Les contrats de maintenance préventive de la maison couvrent justement les installations d'immeuble, avec des interlocuteurs dédiés.",
         ],
@@ -275,7 +275,7 @@ export const servicePages: Page[] = [
   {
     path: PATHS.bathroom,
     zone: "Paris",
-    title: "Rénovation de salle de bains Paris : projet clé en main | Monteil",
+    title: "Rénovation de salle de bains Paris : clé en main | Monteil",
     description:
       "Rénovation de salle de bains à Paris : conception, carrelage, robinetterie, douche à l'italienne, un seul interlocuteur du devis à la réception. Monteil & Cie.",
     h1: "Rénovation de salle de bains à Paris, de A à Z",
@@ -297,7 +297,7 @@ export const servicePages: Page[] = [
       {
         h2: "Comment se déroule la rénovation d'une salle de bains ?",
         answer:
-          "Elle commence par une visite et un devis sur mesure, puis la démolition, la reprise des réseaux d'eau et d'évacuation, le carrelage, la pose des sanitaires et de la robinetterie. Un interlocuteur unique coordonne l'ensemble jusqu'à la réception.",
+          "Elle commence par une visite et un devis sur mesure, puis la démolition, la reprise des réseaux d'eau et d'évacuation, le carrelage, la pose des sanitaires et de la robinetterie. Un interlocuteur unique coordonne l'ensemble des étapes, du devis jusqu'à la réception.",
         steps: [
           { t: "La visite et le devis", d: "Le compagnon relève les contraintes de l'appartement et chiffre le projet sur mesure." },
           { t: "La démolition et les réseaux", d: "Reprise des arrivées d'eau froide et chaude et des évacuations, avec remplacement des tuyauteries en plomb si besoin." },
@@ -350,7 +350,7 @@ export const servicePages: Page[] = [
     zone: "Paris",
     title: "Plombier syndic copropriété Paris : astreinte 24h | Monteil",
     description:
-      "Plombier pour syndics et copropriétés à Paris : contrats de maintenance, astreinte 24 h sur 24, colonnes humides, repérage des réseaux. Monteil & Cie depuis 1964.",
+      "Plombier pour syndics et copropriétés à Paris : contrats de maintenance, astreinte 24 h sur 24, colonnes humides, repérage des réseaux. Monteil & Cie.",
     h1: "Plombier pour syndics et copropriétés à Paris",
     kicker: "Syndics · Paris",
     lead: "Contrats de maintenance, urgences à toute heure et interlocuteurs dédiés : le partenaire technique de syndics parisiens depuis des décennies.",
@@ -393,7 +393,7 @@ export const servicePages: Page[] = [
       {
         h2: "À qui s'adresser chez Monteil & Cie ?",
         answer:
-          "Au service client, qui traite les dépannages comme les travaux. Il centralise les demandes des syndics, planifie les compagnons et assure le suivi. Des interlocuteurs dédiés sont désignés pour chaque gestionnaire et répondent de 8 h à 19 h.",
+          "Au service client, qui traite les dépannages comme les travaux. Il centralise les demandes des syndics, planifie les compagnons et assure le suivi. Des interlocuteurs dédiés sont désignés pour chaque gestionnaire et répondent pendant les heures du service client, de 8 h à 19 h.",
         paras: [
           "Les références de la maison comptent des syndics, des hôtels, des gestionnaires immobiliers et des associations. Le site actuel cite aussi plusieurs adresses de chantiers parisiens, que la maison peut commenter à la demande.",
         ],
@@ -454,7 +454,7 @@ export const servicePages: Page[] = [
       {
         h2: "Peut-on travailler en présence d'amiante sans désamianter ?",
         answer:
-          "Oui, avec des compagnons habilités et un diagnostic préalable obligatoire, fourni avant toute intervention. Ces interventions, de sous-section 4, permettent de remplacer un réseau sans retirer l'amiante du bâtiment ; elles ne relèvent pas du désamiantage proprement dit.",
+          "Oui, avec des compagnons habilités et un diagnostic préalable obligatoire, fourni avant toute intervention. Ces interventions, de sous-section 4, permettent de remplacer un réseau sans retirer l'amiante du bâtiment ; elles ne relèvent pas du désamiantage proprement dit, qui est un autre métier.",
         paras: [
           "La maison a ainsi déposé et remplacé un réseau de canalisations en plafond d'un parking souterrain, avec un réseau neuf en PVC et une isolation thermique. Le chantier est présenté avec ses images avant et après sur la page des réalisations.",
         ],
@@ -496,7 +496,7 @@ export const servicePages: Page[] = [
   {
     path: PATHS.audit,
     zone: "Paris",
-    title: "Audit et repérage de réseaux Paris : état des lieux | Monteil",
+    title: "Audit et repérage de réseaux Paris : bilan | Monteil",
     description:
       "Audit et repérage des réseaux d'eau à Paris : cartographie des vannes, étiquetage réglementaire, bilan détaillé et rapport complet. Monteil & Cie, depuis 1964.",
     h1: "Audit et repérage des réseaux à Paris",
@@ -568,7 +568,7 @@ export const servicePages: Page[] = [
   {
     path: PATHS.roofing,
     zone: "Paris",
-    title: "Couvreur zingueur Paris : zinc, ardoise, étanchéité | Monteil",
+    title: "Couvreur zingueur Paris : zinc, ardoise, toit | Monteil",
     description:
       "Couvreur zingueur à Paris : réfection de toitures en zinc et ardoise, noues, chatières, étanchéité de terrasse et dépannage d'infiltration. Monteil & Cie.",
     h1: "Couvreur zingueur à Paris, zinc et ardoise",
@@ -598,7 +598,7 @@ export const servicePages: Page[] = [
       {
         h2: "Que faire en cas d'infiltration ou de tuile déplacée ?",
         answer:
-          "Protéger l'intérieur, photographier les dégâts et appeler. La maison propose un dépannage rapide en cas d'infiltration ou d'élément déplacé, avec une astreinte pour les syndics sous contrat. Une mise en sécurité précède la réparation définitive.",
+          "Protéger l'intérieur, photographier les dégâts et appeler. La maison propose un dépannage rapide en cas d'infiltration ou d'élément déplacé, avec une astreinte pour les syndics sous contrat. Une mise en sécurité précède la réparation définitive, que le couvreur chiffre après avoir vu la toiture.",
         paras: [
           "Une infiltration se révèle souvent par une tache au dernier étage. La recherche de fuite par thermographie peut alors confirmer que l'eau vient bien de la couverture et non d'une canalisation, avant d'engager les travaux.",
         ],
@@ -606,7 +606,7 @@ export const servicePages: Page[] = [
       {
         h2: "L'étanchéité d'une terrasse relève-t-elle aussi de la couverture ?",
         answer:
-          "Oui. La reprise d'étanchéité bicouche sur terrasses et toits-terrasses fait partie des prestations de la maison, précédée d'un diagnostic. Elle protège la structure et les logements situés dessous, notamment dans les immeubles dont la terrasse sert de toiture.",
+          "Oui. La reprise d'étanchéité bicouche sur terrasses et toits-terrasses fait partie des prestations de la maison, précédée d'un diagnostic. Elle protège la structure et les logements situés dessous, notamment dans les immeubles dont la terrasse sert de toiture, où chaque défaut se paie à l'étage.",
         list: [
           "Zinc et ardoise : noues, chatières, abergements, couvertines",
           "Étanchéité bicouche des terrasses et toits-terrasses",
@@ -704,7 +704,7 @@ export const servicePages: Page[] = [
 export const housePage: Page = {
   path: PATHS.house,
   zone: "Paris 11e",
-  title: "Plombier à Paris depuis 1964 : la maison Monteil",
+  title: "Plombier à Paris depuis 1964 : la maison Monteil & Cie",
   description:
     "Monteil & Cie, maison familiale de plomberie du 11e depuis 1964 : une quarantaine de compagnons, qualifications Qualibat et FFB, engagements, références.",
   h1: "Plombier à Paris depuis 1964, la maison Monteil",

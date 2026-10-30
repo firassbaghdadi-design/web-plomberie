@@ -54,7 +54,7 @@ export const localPages: Page[] = [
         ],
       },
       {
-        h2: "Qui s'occupe des petits immeubles de copropriété du Marais ?",
+        h2: "Les petits immeubles de copropriété du Marais",
         paras: [
           "Les immeubles du 3e sont souvent de petites copropriétés, avec peu de lots et un syndic bénévole ou professionnel. La maison, qui travaille avec des syndics parisiens, propose des contrats de maintenance préventive et le repérage des réseaux.",
           "Une colonne repérée et étiquetée se coupe sans tâtonner le jour où une fuite survient. C'est un gain de temps réel dans des bâtiments où personne ne se souvient du tracé d'origine.",
@@ -128,7 +128,7 @@ export const localPages: Page[] = [
         ],
       },
       {
-        h2: "Quel contrat pour une copropriété du 4e ?",
+        h2: "Un contrat pour une copropriété du 4e",
         paras: [
           "Beaucoup d'immeubles du 4e sont gérés par des syndics qui souhaitent une seule maison pour la plomberie, le chauffage et la toiture. Les contrats de maintenance préventive de Monteil & Cie répondent à ce besoin, avec des interlocuteurs dédiés.",
           "L'astreinte de nuit et de week-end, réservée aux copropriétés sous contrat, couvre les urgences de l'immeuble sans que les occupants aient à chercher un numéro au milieu de la nuit.",
@@ -162,7 +162,7 @@ export const localPages: Page[] = [
     zone: "Paris 10e",
     title: "Plombier Paris 10e : canal Saint-Martin, gares | Monteil",
     description:
-      "Plombier à Paris 10e, du canal Saint-Martin aux gares de l'Est et du Nord : fuite, dégât des eaux, chaudière collective et rez-de-chaussée commerçants. Monteil & Cie.",
+      "Plombier à Paris 10e, du canal Saint-Martin aux gares de l'Est et du Nord : fuite, dégât des eaux, chaudière collective et locaux commerciaux. Monteil & Cie.",
     h1: "Plombier à Paris 10e, du canal aux gares",
     kicker: "Plomberie · Paris 10e",
     lead: "Immeubles de rapport, rez-de-chaussée commerçants et appartements en étage : la plomberie d'un arrondissement dense, par une maison du 11e voisin.",
@@ -196,13 +196,13 @@ export const localPages: Page[] = [
       {
         h2: "Comment entretenir une chaudière collective dans un immeuble de rapport ?",
         answer:
-          "Par un contrat d'entretien annuel et une surveillance de la pression, du circulateur et de l'évacuation des fumées. Les techniciens gaz de la maison, habilités gaz naturel et propane, assurent dépannage et maintenance des installations d'immeuble.",
+          "Par un contrat d'entretien annuel et une surveillance de la pression, du circulateur et de l'évacuation des fumées. Les techniciens gaz de la maison, habilités gaz naturel et propane, assurent le dépannage et la maintenance des installations d'immeuble, de la chaufferie aux radiateurs.",
         paras: [
           "Beaucoup d'immeubles du 10e, construits au XIXe siècle autour des gares, ont gardé un chauffage central. Les réseaux de distribution et les radiateurs vieillissent avec la chaufferie : un désembouage, une purge ou un remplacement de circulateur se planifie mieux avant l'hiver.",
         ],
       },
       {
-        h2: "Quels travaux pour un local commercial au rez-de-chaussée ?",
+        h2: "Les locaux commerciaux au rez-de-chaussée",
         paras: [
           "Sous les logements, les commerces du 10e dépendent des mêmes colonnes. Une fuite dans le local d'un restaurateur ou d'un commerçant peut venir de l'étage au-dessus, et inversement. La maison intervient pour les uns et les autres, en coordonnant avec le syndic.",
           "Remplacement de sanitaires, reprise d'évacuations, création d'un point d'eau : les demandes se précisent par le formulaire, avec l'adresse et des photos du local.",
@@ -275,7 +275,7 @@ export const localPages: Page[] = [
         ],
       },
       {
-        h2: "Quel chauffage pour les immeubles collectifs du 12e ?",
+        h2: "Le chauffage des immeubles collectifs du 12e",
         paras: [
           "Les résidences de Bercy et les immeubles plus anciens du 12e se chauffent souvent par une chaufferie collective. Dépannage de chaudière gaz, entretien annuel réglementaire, prévention de la légionellose et réseaux de chauffage central sont des prestations de la maison.",
           "Pour un copropriétaire, le point d'entrée est le syndic : le contrat d'entretien se discute en assemblée générale, la maison fournissant les éléments techniques.",
