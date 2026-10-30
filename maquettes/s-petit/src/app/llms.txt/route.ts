@@ -12,7 +12,7 @@ export function GET() {
 ## Coordonnées
 - ${business.address.street}, ${business.address.postalCode} Paris
 - Téléphone : ${business.phoneDisplay}
-- Métro : ${business.metro}
+- Horaires : ${business.hours}
 - Zone : ${business.areaServed.join(", ")}
 - ${business.legalName}, ${business.rcs}, fondée en ${business.founded}
 
