@@ -140,7 +140,7 @@ Photos du site de l'entreprise récupérées au build quand elles existent ; qua
 - 31213992 : Houdry-Grenot (lavabo) — « Water Flowing into a Bathroom Sink »
 ## ebl
 
-- 6419128 : EBL (raccords) — « Plumber Installs Pipe Fittings »
+- 7937292 : EBL (raccords) — « Close-up of Pipes »
 - 7937299 : EBL (collecteur) — « Steel Underground Heating Manifolds »
 - 12105083 : EBL (outils) — « Close-up of Wrench and Tools »
 
