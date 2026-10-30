@@ -7,7 +7,7 @@
 - `prospection/references-design.md`
 - `prospection/standards-maquettes.md` : la Bible SEO, la règle Vercel–GitHub, le favicon et l'Open Graph.
 - `prospection/photos-utilisees.md` : le registre des photos et les photos bannies.
-- Les modèles de structure : `maquettes/kuschnick` et `maquettes/entreprise-clairon`. Ce sont des projets Next.js 14 App Router en TypeScript, avec Tailwind et fontsource.
+- L'outillage seulement (Next.js 14, scripts de prébuild, `site.ts`, `seo.ts`) peut se reprendre de `maquettes/kuschnick`. **Interdit de copier la mise en page, le héros ou les composants visuels d'une autre maquette** : lis la section « Correction du 30/10/2026 » de `gout-firas.md` et applique la direction artistique imposée.
 - Pour un slider avant/après : `maquettes/somsou-pons` et `maquettes/martinet-thibault`.
 
 ## 2. Exigences (non négociables)

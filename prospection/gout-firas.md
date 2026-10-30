@@ -72,3 +72,24 @@ Pistes par métier, à adapter (une seule par site) :
 - **Maison ancienne** : une frise chronologique dessinée comme un tuyau ou un trait d'architecte, qui avance avec les années.
 
 Règles : le concept reste fin et élégant (traits fins, couleurs de la charte), il ne gêne jamais la lecture, il fonctionne aussi sur mobile, et il n'est jamais réutilisé tel quel d'un site à l'autre.
+
+## Correction du 30/10/2026 : « tous les sites se ressemblent »
+
+Retour de Firas : on a abusé du minimalisme blanc, toutes les maquettes se ressemblent. Désormais :
+
+- **Épuré ne veut pas dire blanc et identique.** Le blanc façon Rousseau n'est qu'**une** direction parmi d'autres, et il est utilisé sur 1 maquette sur 6 au maximum.
+- **Chaque maquette a sa direction artistique**, choisie dans le catalogue ci-dessous. Deux maquettes envoyées dans le même mois n'ont jamais la même.
+- **Interdit de copier la structure d'une autre maquette** (héros, ordre des sections, composants). On repart d'une page blanche ; seules la Bible SEO et l'outillage (scripts, `site.ts`) se reprennent.
+- **Le héros doit avoir une composition propre** : pas de schéma répété du type « photo à droite + H1 à gauche + bouton ».
+- **Ce qui reste interdit** : les éléments qui font « maternelle » (voir la section « À bannir »).
+
+### Catalogue des directions artistiques
+| Code | Direction | Fond | Typo | Photos | Pour qui |
+|---|---|---|---|---|---|
+| A | **Éditorial sombre**, luxe | encre, anthracite | serif fine (Fraunces, Cormorant, Newsreader) + sans | plein cadre, contrastées | maisons anciennes, beaux quartiers |
+| B | **Couleur de marque pleine** | la couleur du logo en grands aplats sombres et profonds | sans grotesque | découpées, en duo avec la couleur | entreprises à identité forte |
+| C | **Immersif photo** | photos bord à bord, défilement cinématographique | sans fine en surimpression | grandes, en séquence | entreprises qui ont de belles photos de chantier |
+| D | **Typographique suisse** | blanc ou noir et une couleur vive | grotesque géante, chiffres énormes, grille visible | petites, cadrées serré | entreprises techniques, chiffres forts |
+| E | **Artisan chaleureux** | crème, pierre, terre cuite | serif chaleureuse | grain, lumière naturelle | entreprises familiales, savoir-faire |
+| F | **Plan d'ingénieur** | bleu de plan ou papier calque | mono et sans | intégrées dans des cadres techniques | maintenance, syndics, réseaux |
+| G | **Minimal blanc** (Rousseau) | blanc | sans fine | rares et grandes | 1 site sur 6 maximum |
