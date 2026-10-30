@@ -23,6 +23,8 @@
   - Ajoute des pages métier × zone (l'arrondissement + 4 ou 5 arrondissements ou communes voisines), avec des textes **tous différents**.
   - Ajoute une page contact et une page de mentions légales.
 - **Le favicon et le partage** : `src/app/icon.png`, `src/app/apple-icon.png` et les balises Open Graph.
+  - L'image `og:image` doit pointer vers l'adresse Vercel de la maquette, pas vers le futur domaine du client, qui n'existe pas encore. Exemple de code : `SHARE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? "https://"+… : SITE_URL`, comme dans `maquettes/kuschnick/src/lib/site.ts`.
+  - La balise canonical, elle, garde le vrai domaine du client.
 - **Les photos.**
   - Celles de l'entreprise d'abord, téléchargées par un script de prébuild au moment du build Vercel. Le container local n'a pas internet ; il a WebFetch et WebSearch.
   - Sinon des photos Pexels d'artisans plausibles pour l'Île-de-France, ou des gros plans de mains et d'outils, choisies sur leur titre exact (WebSearch `site:pexels.com`).
