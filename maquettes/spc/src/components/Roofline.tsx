@@ -66,7 +66,7 @@ function dormers() {
 
 export function Roofline({ photo }: { photo: Photo }) {
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMinYMin slice" className="absolute inset-0 h-full w-full overflow-visible" role="img" aria-label={`Les toits de zinc du 12e arrondissement. ${photo.alt}`}>
+    <svg viewBox={`0 90 ${W} ${H - 90}`} preserveAspectRatio="xMinYMin slice" className="absolute inset-0 h-full w-full overflow-visible" role="img" aria-label={`Les toits de zinc du 12e arrondissement. ${photo.alt}`}>
       <defs>
         <clipPath id="sous-les-toits">
           <path d={clip} />

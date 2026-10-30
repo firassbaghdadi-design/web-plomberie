@@ -139,8 +139,8 @@ function History() {
           <h2 id="titre-histoire" className="h2" data-reveal>Une entreprise «&nbsp;de quartier&nbsp;», à taille humaine.</h2>
           <ol className="mt-10 border-t border-line">
             {rows.map(([y, t], i) => (
-              <li key={y} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-4 border-b border-line py-6 sm:grid-cols-[9rem_minmax(0,1fr)]" data-reveal style={{ ["--d" as string]: `${i * 90}ms` }}>
-                <span className="num text-[1.6rem] font-extralight leading-none text-ink sm:text-[2.2rem]">{y}</span>
+              <li key={y} className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 border-b border-line py-6 sm:grid-cols-[10.5rem_minmax(0,1fr)]" data-reveal style={{ ["--d" as string]: `${i * 90}ms` }}>
+                <span className={`num font-extralight leading-none text-ink ${y.length > 4 ? "text-[1.15rem] sm:text-[1.5rem]" : "text-[1.6rem] sm:text-[2.2rem]"}`}>{y}</span>
                 <span>{t}</span>
               </li>
             ))}
@@ -203,8 +203,8 @@ function Quarters() {
         </div>
         <ul className="self-start border-t border-line xl:col-span-7">
           {zones.map((r, i) => (
-            <li key={r.zone} className="grid grid-cols-[5.2rem_minmax(0,1fr)] items-baseline gap-4 border-b border-line py-6 sm:grid-cols-[9rem_minmax(0,1fr)]" data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
-              <span className="num text-[1.7rem] font-extralight leading-none tracking-tight text-ink sm:text-[2.4rem]">{r.zone}</span>
+            <li key={r.zone} className="grid grid-cols-1 items-baseline gap-2 border-b border-line py-6 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-4" data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
+              <span className="num text-[1.7rem] font-extralight leading-none tracking-tight text-ink sm:text-[2.1rem]">{r.zone}</span>
               <span>
                 <span className="block text-[0.9rem] text-ink-faint">{r.label}</span>
                 <span className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
