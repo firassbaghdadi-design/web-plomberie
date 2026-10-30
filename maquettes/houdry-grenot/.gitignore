@@ -1,8 +1,0 @@
-node_modules
-.next
-out
-next-env.d.ts
-*.tsbuildinfo
-public/photos/*
-!public/photos/.gitkeep
-.env*.local
