@@ -39,12 +39,12 @@ function Hero() {
             </p>
           </div>
 
-          <h1 className="mt-10 text-[2.85rem] max-lg:order-2 font-light leading-[0.96] tracking-[-0.05em] sm:mt-16 sm:text-[4.9rem] lg:mt-auto lg:pt-14 lg:text-[clamp(4rem,6.1vw,6.4rem)]">
+          <h1 className="mt-8 text-[2.85rem] max-lg:order-2 font-light leading-[0.96] tracking-[-0.05em] sm:mt-16 sm:text-[4.9rem] lg:mt-auto lg:pt-14 lg:text-[clamp(4rem,6.1vw,6.4rem)]">
             <span className="line-up"><span>Plombier couvreur</span></span>
             <span className="line-up"><span className="text-copper" style={{ ["--d" as string]: "150ms" }}>à Paris 11e</span></span>
           </h1>
 
-          <p className="fade-in mt-14 max-w-[36rem] max-lg:order-4 lg:mt-9 text-[1.1rem] leading-relaxed sm:text-[1.2rem]" style={{ ["--d" as string]: "380ms" }}>
+          <p className="fade-in mt-12 max-w-[36rem] max-lg:order-4 lg:mt-9 text-[1.1rem] leading-relaxed sm:text-[1.2rem]" style={{ ["--d" as string]: "380ms" }}>
             <span className="smallcaps mr-2 text-[0.68rem] text-copper">Objet :</span>
             la plomberie, le toit, le chauffage et les conduits de votre immeuble, confiés à une maison du faubourg Saint-Antoine depuis 1957.
           </p>
@@ -68,7 +68,7 @@ function Hero() {
 
         <figure className="relative mt-10 max-lg:order-3 lg:col-span-5 lg:mt-0">
           <div data-mask className="h-full overflow-hidden rounded-[3px]">
-            <Img id="toits" alt={photoAlt("toits")} priority className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[36rem]" imgClassName="archive-to-color" />
+            <Img id="toits" alt={photoAlt("toits")} priority className="aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[36rem]" imgClassName="archive-to-color" />
           </div>
           <div className="absolute -bottom-9 left-4 sm:-bottom-10 lg:-left-12 lg:bottom-16">
             <Tampon className="h-24 w-24 drop-shadow-sm sm:h-28 sm:w-28" />

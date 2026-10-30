@@ -52,3 +52,6 @@ export const nav = [
   { href: PATHS.roofing, label: "Couverture" },
   { href: PATHS.heating, label: "Chauffage" },
 ];
+
+/** URL publique de la maquette (déploiement Vercel) : l'image de partage doit s'afficher quand on envoie le lien, même avant la mise en ligne sur le vrai domaine. */
+export const SHARE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : SITE_URL;

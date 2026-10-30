@@ -58,3 +58,6 @@ export const requestTypes = [
 ] as const;
 
 export type Faq = { q: string; a: string };
+
+/** URL publique de la maquette (déploiement Vercel) : l'image de partage doit s'afficher quand on envoie le lien, même avant la mise en ligne sur le vrai domaine. */
+export const SHARE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : SITE_URL;
