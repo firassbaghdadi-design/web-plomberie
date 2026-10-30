@@ -201,7 +201,7 @@ const heating: Page = {
   contactType: "chauffage",
   service: "Chauffage : chaudière, radiateurs, eau chaude",
   crumb: "Chauffage",
-  photo: "evier",
+  photo: "collecteur",
   facts: [
     { label: "Depuis", value: "1978" },
     { label: "Atelier", value: "Rue d'Alésia" },

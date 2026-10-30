@@ -172,7 +172,7 @@ export default function HomePage() {
               ))}
             </ol>
           </div>
-          <div className="lg:col-span-6"><Photo id="evier" className="aspect-[4/3] lg:aspect-[5/6]" caption="Des gestes précis, sous l'évier comme en chaufferie." /></div>
+          <div className="lg:col-span-6"><Photo id="collecteur" className="aspect-[4/3] lg:aspect-[5/6]" caption="Des gestes précis, du collecteur de chaufferie à l’évier." /></div>
         </div>
       </section>
 

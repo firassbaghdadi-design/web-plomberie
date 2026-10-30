@@ -85,7 +85,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Paris 15e",
     crumb: "Plombier Paris 15e",
-    photo: "evier",
+    photo: "collecteur",
     sections: [
       {
         h2: "Pourquoi appeler un plombier du 14e pour le 15e arrondissement ?",
@@ -266,7 +266,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Montrouge",
     crumb: "Plombier Montrouge",
-    photo: "evier",
+    photo: "collecteur",
     sections: [
       {
         h2: "Pourquoi appeler un plombier de la rue d'Alésia pour Montrouge ?",
