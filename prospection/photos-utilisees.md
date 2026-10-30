@@ -129,6 +129,7 @@ Photos de l'entreprise en priorité : le logo et les photos de chantiers sont r�
 
 - 38510734 : SPC (couvreurs, repli) — « Workers applying roofing material on building »
 - 38524264 : SPC (couvreur, repli) — « Construction worker using drill for roofing »
+
 ## houdry-grenot
 
 Photos du site de l'entreprise récupérées au build quand elles existent ; quatre photos Pexels choisies par leur titre exact :
