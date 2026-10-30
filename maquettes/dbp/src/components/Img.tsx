@@ -6,7 +6,7 @@ type Props = { id: string; alt: string; className?: string; imgClassName?: strin
 export function Img({ id, alt, className = "", imgClassName = "", priority, position }: Props) {
   const src = imgSrc(id);
   return (
-    <div className={`${/\babsolute\b/.test(className) ? "" : "relative"} overflow-hidden bg-copper-wash ${className}`}>
+    <div className={`${/\babsolute\b/.test(className) ? "" : "relative"} overflow-hidden bg-paper-2 ${className}`}>
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} decoding="async" style={position ? { objectPosition: position } : undefined} className={`absolute inset-0 h-full w-full object-cover ${imgClassName}`} />

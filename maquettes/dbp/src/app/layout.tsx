@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/urbanist/index.css";
+import "@fontsource-variable/schibsted-grotesk/index.css";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
@@ -9,6 +9,7 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { MockupBadge } from "@/components/MockupBadge";
 import { Motion } from "@/components/Motion";
+import { DockedDial } from "@/components/Thermostat";
 import { StickyCall } from "@/components/StickyCall";
 import { home } from "@/lib/content";
 import { businessNode, websiteNode } from "@/lib/seo";
@@ -16,7 +17,7 @@ import { GA_ID, INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: home.title, template: "%s | Kuschnick" },
+  title: { default: home.title, template: "%s | DBP" },
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
@@ -29,13 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-copper focus:px-5 focus:py-3 focus:font-medium focus:text-white">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-medium focus:text-white">
           Aller au contenu
         </a>
         <Header />
         <main id="contenu">{children}</main>
         <Footer />
         <StickyCall />
+        <DockedDial />
         {INDEXABLE ? null : <MockupBadge />}
         <JsonLd nodes={[businessNode, websiteNode]} />
         <Motion />

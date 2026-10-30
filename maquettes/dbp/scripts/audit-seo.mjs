@@ -1,10 +1,10 @@
-// Audit SEO de la maquette Kuschnick : node scripts/audit-seo.mjs http://localhost:3366 https://kuschnick.fr
+// Audit SEO de la maquette DBP : node scripts/audit-seo.mjs http://localhost:3388 https://dbp-plomberie-chauffage.fr
 // Contrôle chaque page du sitemap selon la Bible : title, description, H1, canonical, « En bref », JSON-LD, FAQ,
 // réponses des H2-questions, longueur du contenu, formulaire, liens internes, images, doublons.
 const base = process.argv[2];
-const siteUrl = (process.argv[3] ?? "https://kuschnick.fr").replace(/\/$/, "");
+const siteUrl = (process.argv[3] ?? "https://dbp-plomberie-chauffage.fr").replace(/\/$/, "");
 // Ville attendue dans le H1 : Paris (11e et arrondissements voisins)
-const cityRe = /paris/i;
+const cityRe = /paris|lilas|pr[eé]-saint-gervais|bagnolet/i;
 const CONTACT = /^\/contact/;
 const LIGHT = /^\/mentions-legales$/;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ");

@@ -9,12 +9,12 @@ export const metaFor = (path: string): Metadata => {
   return pageMeta({ title: p.title, description: p.description, path });
 };
 
-/** Gabarit commun : héros en-tête de lettre, puis les feuillets numérotés du carnet (En bref, questions, FAQ, adresse, voir aussi). */
+/** Gabarit commun : héros, puis les sections numérotées (En bref, questions, FAQ, adresse, voir aussi). */
 export function ContentPage({ path }: { path: string }) {
   const page = pageByPath(path);
   const crumbs = [{ name: "Accueil", href: "/" }, { name: page.crumb }];
   const nodes: object[] = [webPageNode({ title: page.title, description: page.description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: page.crumb, path }])];
-  if (page.service) nodes.push(serviceNode(page.service, path, page.brief, page.zone ?? "Paris 11e"));
+  if (page.service) nodes.push(serviceNode(page.service, path, page.brief, page.zone ?? "Paris 20e"));
   if (page.faq.length) nodes.push(faqNode(page.faq));
   const k = page.sections.length + 2;
   return (
