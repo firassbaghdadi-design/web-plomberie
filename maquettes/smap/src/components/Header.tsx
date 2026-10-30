@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header data-head className="head sticky top-0 z-50 border-b border-transparent bg-white">
       <div className="wrap flex h-[var(--head-h)] items-center justify-between gap-6">
-        <Link href="/" className="shrink-0" aria-label="Entreprise Clairon, accueil">
+        <Link href="/" className="shrink-0" aria-label="SMAP, accueil">
           <Logo />
         </Link>
         <nav aria-label="Navigation principale" className="hidden lg:block">
@@ -75,7 +75,7 @@ export function Header() {
           <a href={`tel:${business.phoneTel}`} className="btn-line num mt-10" data-track="cta_tel">
             {business.phoneDisplay}
           </a>
-          <p className="mt-4 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
+          <p className="mt-4 text-sm text-ink-faint">Paris 12e (75012)</p>
         </div>
       </div>
     </header>

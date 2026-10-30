@@ -145,3 +145,14 @@ Photos du site de l'entreprise récupérées au build quand elles existent ; qua
 - 12105083 : EBL (outils) — « Close-up of Wrench and Tools »
 
 EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leur titre exact sur pexels.com.
+## smap
+
+- 11269740 : SMAP (plan) — « Closeup of a Man Drawing a Floor Plan »
+- 7031878 : SMAP (bains) — « Contemporary bathroom with shower cabin and bath »
+- 6636300 : SMAP (bains2) — « Stylish interior of bathroom in modern apartment »
+- 5767799 : SMAP (chantier) — « Male builder with instrument in apartment »
+- 5691639 : SMAP (renovation) — « Crop man doing renovation in room »
+- 11299684 : SMAP (facade) — « Typical French Residential Building »
+- 3721272 : SMAP (cuivre) — « Copper Pipes on Black Background »
+
+SMAP utilise d abord les photos de son propre site (récupérées au build) ; les sept photos ci-dessus, choisies par leur titre exact (pages non visibles depuis le container), sont à vérifier à l oeil avant envoi.

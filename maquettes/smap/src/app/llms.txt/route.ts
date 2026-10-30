@@ -10,10 +10,10 @@ export function GET() {
 > ${home.brief}
 
 ## Coordonnées
-- ${business.address.street}, ${business.address.postalCode} Paris
+- Paris 12e (75012)
 - Téléphone : ${business.phoneDisplay}
 - E-mail : ${business.email}
-- Entreprise familiale créée en ${business.founded}
+- Créée en ${business.founded}, installée à Paris 12e
 - Métiers : ${business.trades.join(", ")}
 - Clientèle : ${business.clients}
 

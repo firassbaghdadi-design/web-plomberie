@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/hanken-grotesk/index.css";
+import "@fontsource-variable/outfit/index.css";
 import "./globals.css";
 import "./brand.generated.css";
 import { Analytics } from "@/components/Analytics";
@@ -10,7 +10,6 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { MockupBadge } from "@/components/MockupBadge";
 import { Motion } from "@/components/Motion";
-import { Plumb } from "@/components/Plumb";
 import { StickyCall } from "@/components/StickyCall";
 import { home } from "@/lib/content";
 import { businessNode, websiteNode } from "@/lib/seo";
@@ -18,7 +17,7 @@ import { GA_ID, INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: home.title, template: "%s | Entreprise Clairon" },
+  title: { default: home.title, template: "%s | SMAP" },
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
@@ -37,7 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <div className="relative">
           <main id="contenu">{children}</main>
-          <Plumb />
         </div>
         <Footer />
         <StickyCall />

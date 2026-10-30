@@ -16,7 +16,7 @@ export const localPages: Local[] = [
     zone: "Paris 12e",
     title: "Plombier Paris 12e : dépannage et installation | SMAP",
     description:
-      "Plombier dans le 12e arrondissement de Paris : SMAP intervient de Bercy à Nation pour fuites, sanitaires, canalisations et rénovations, depuis 2007.",
+      "Plombier dans le 12e arrondissement de Paris : SMAP intervient de Bercy à Nation pour fuites, sanitaires, canalisations et rénovations. Créée en 2007.",
     h1: "Plombier Paris 12e : de Bercy à la place de la Nation",
     kicker: "Plombier · Paris 12e",
     lead: "Bercy, Gare de Lyon, Daumesnil, Reuilly, Picpus, Nation : le 12e est le secteur de l'entreprise, celui où elle est installée.",
@@ -70,7 +70,7 @@ export const localPages: Local[] = [
     zone: "Paris 12e",
     title: "Rénovation d'appartement Paris 12e : salle de bains | SMAP",
     description:
-      "Rénovation d'appartement et de salle de bains à Paris 12e : SMAP dessine, chiffre et réalise votre projet avec la plomberie au cœur du chantier.",
+      "Rénovation d'appartement et de salle de bains à Paris 12e : SMAP dessine, chiffre et réalise votre projet, la plomberie au cœur du chantier, jusqu'au bout.",
     h1: "Rénovation d'appartement à Paris 12e : salle de bains et pièces d'eau",
     kicker: "Rénovation · Paris 12e",
     lead: "Avant le chantier, il y a un plan. Avant le plan, un relevé. SMAP conduit les trois dans le 12e arrondissement.",
@@ -296,7 +296,7 @@ export const localPages: Local[] = [
       {
         h2: "Pourquoi SMAP intervient-elle à Saint-Mandé ?",
         answer:
-          "Parce que la commune est limitrophe du 12e arrondissement, où l'entreprise est installée. Saint-Mandé se rejoint par le cours de Vincennes ou l'avenue du Général-de-Gaulle : l'équipe peut s'y rendre sans traverser Paris, ce qui facilite les rendez-vous et les retours sur un chantier.",
+          "Parce que la commune est limitrophe du 12e arrondissement, où l'entreprise est installée. Saint-Mandé se rejoint par le cours de Vincennes ou l'avenue du Général-de-Gaulle : l'équipe peut s'y rendre sans traverser tout Paris, ce qui facilite les rendez-vous de relevé, les visites de chantier et les retours après travaux.",
         paras: [
           "Saint-Mandé est une petite commune du Val-de-Marne, dense et résidentielle, en bordure du bois de Vincennes. On y trouve des immeubles de rapport du début du XXe siècle, des petits immeubles plus récents et des maisons dans les rues calmes.",
           "Cette variété de bâtiments donne des plomberies très différentes : colonnes communes dans les immeubles, branchements individuels dans les maisons.",
@@ -305,7 +305,7 @@ export const localPages: Local[] = [
       {
         h2: "Quels travaux dans les maisons et appartements de Saint-Mandé ?",
         answer:
-          "Réparation de fuites, remplacement de robinetterie et de sanitaires, reprise d'alimentations et d'évacuations anciennes, création ou rénovation d'une salle de bains. Dans une maison, on regarde aussi l'arrivée d'eau, le compteur et l'état des canalisations enterrées ou en sous-sol.",
+          "Réparation de fuites, remplacement de robinetterie et de sanitaires, reprise d'alimentations et d'évacuations anciennes, création ou rénovation d'une salle de bains. Dans une maison, on regarde aussi l'arrivée d'eau, le compteur et l'état des canalisations enterrées ou en sous-sol, souvent modifiées au fil des agrandissements.",
         paras: [
           "Une maison de la commune a souvent connu plusieurs agrandissements : une salle de bains ajoutée, une cuisine déplacée. La plomberie suit ces ajouts, parfois de façon peu logique, et un relevé permet de la remettre au clair avant de rénover.",
         ],

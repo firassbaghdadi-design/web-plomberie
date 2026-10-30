@@ -72,7 +72,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   return (
     <form onSubmit={onSubmit} noValidate className="rounded-[4px] border border-line bg-white p-6 sm:p-12">
       <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
-      <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de l'Entreprise Clairon.</p>
+      <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de de SMAP.</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">

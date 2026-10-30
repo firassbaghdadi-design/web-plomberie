@@ -1,10 +1,10 @@
-// Audit SEO de la maquette Entreprise Clairon : node scripts/audit-seo.mjs http://localhost:3000 https://entreprise-clairon.fr
+// Audit SEO de la maquette SMAP : node scripts/audit-seo.mjs http://localhost:3388 https://smap-renovation.fr
 // Contrôle chaque page du sitemap selon la Bible : title, description, H1, canonical, « En bref », JSON-LD, FAQ,
 // réponses des H2-questions, longueur du contenu, formulaire, liens internes, images, doublons.
 const base = process.argv[2];
-const siteUrl = (process.argv[3] ?? "https://entreprise-clairon.fr").replace(/\/$/, "");
+const siteUrl = (process.argv[3] ?? "https://smap-renovation.fr").replace(/\/$/, "");
 // Ville attendue dans le H1 : Paris ou l'une des communes desservies
-const cityRe = /paris|issy|vanves/i;
+const cityRe = /paris|saint-mand|charenton/i;
 const CONTACT = /^\/contact$/;
 const LIGHT = /^\/(mentions-legales|plan-du-site)$/;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ");

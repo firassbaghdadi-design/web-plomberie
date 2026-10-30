@@ -13,6 +13,9 @@ type Props = {
   scale?: string;
   caption?: string;
   priority?: boolean;
+  /** Photo de l'entreprise (site actuel) à la place d'une photo Pexels. */
+  src?: string;
+  altText?: string;
   className?: string;
 };
 
@@ -21,8 +24,8 @@ type Props = {
  * bulles d'axe, lignes de cote) se trace, puis la photo finie se dévoile dans le cadre. Le pilotage (variables --dr et --p)
  * est fait par Motion.tsx ; sans JavaScript, la photo est simplement visible.
  */
-export function PlanFigure({ id, ratio = "aspect-[4/3]", mode = "scroll", start = "Plan", end = "Chantier", scale = "1:50", caption, priority, className = "" }: Props) {
-  const alt = photoAlt(id);
+export function PlanFigure({ id, ratio = "aspect-[4/3]", mode = "scroll", start = "Plan", end = "Chantier", scale = "1:50", caption, priority, src, altText, className = "" }: Props) {
+  const alt = altText ?? photoAlt(id);
   return (
     <figure className={className}>
       <div className="plan" data-plan={mode}>
@@ -42,7 +45,12 @@ export function PlanFigure({ id, ratio = "aspect-[4/3]", mode = "scroll", start 
             <span className="plan-legend">Plan · échelle {scale}</span>
           </div>
           <div className="plan-photo">
-            <Img id={id} alt={alt} priority={priority} className="absolute inset-0 h-full w-full" />
+            {src ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={src} alt={alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+            ) : (
+              <Img id={id} alt={alt} priority={priority} className="absolute inset-0 h-full w-full" />
+            )}
           </div>
           <span className="plan-cut" aria-hidden="true" />
         </div>

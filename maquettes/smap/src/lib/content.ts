@@ -168,7 +168,7 @@ const maintenance: Page = {
   path: PATHS.maintenance,
   title: "Maintenance d'immeuble et de local à Paris 12e | SMAP",
   description:
-    "Maintenance à Paris 12e : SMAP entretient les installations de plomberie des immeubles, des commerces et des logements pour éviter pannes et fuites.",
+    "Maintenance à Paris 12e : SMAP entretient les installations de plomberie des immeubles, des commerces et des logements pour éviter les pannes et les fuites.",
   h1: "Maintenance de plomberie à Paris 12e : immeubles et locaux",
   kicker: "Maintenance",
   lead: "Entretenir, vérifier, réparer avant la panne : la maintenance garde les installations d'eau en bon état, sans mauvaise surprise.",

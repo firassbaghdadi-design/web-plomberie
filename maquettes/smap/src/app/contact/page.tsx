@@ -5,13 +5,13 @@ import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
 const path = PATHS.contact;
-const title = "Contact et devis : plombier couvreur Paris 15e | Clairon";
+const title = "Contact et devis : plombier et rénovation Paris 12e | SMAP";
 const description =
-  "Contactez l'Entreprise Clairon, plombier, couvreur et chauffagiste à Paris 15e : demande de devis ou d'intervention, 23 rue d'Ouessant, 01 47 83 88 40.";
+  "Contactez SMAP, plomberie, rénovation et maintenance à Paris 12e : demande de devis ou d'intervention par formulaire, photos jointes, ou au 01 42 49 20 14.";
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour un devis ou une intervention de plombier, couvreur ou chauffagiste à Paris 15e, remplissez ce formulaire : type de demande, coordonnées, adresse du lieu et, si vous le souhaitez, jusqu'à quatre photos. Votre demande arrive directement à l'Entreprise Clairon, 23 rue d'Ouessant. Pour une fuite, appelez plutôt le 01 47 83 88 40.";
+  "Pour un devis ou une intervention de plombier à Paris 12e, remplissez ce formulaire : type de demande, coordonnées, adresse du lieu et, si vous le souhaitez, jusqu'à quatre photos. Votre demande arrive directement chez SMAP. Pour une fuite, appelez plutôt le 01 42 49 20 14.";
 
 const faq: Faq[] = [
   {
@@ -20,11 +20,11 @@ const faq: Faq[] = [
   },
   {
     q: "Comment se passe la suite ?",
-    a: "L'entreprise reprend contact avec vous pour organiser le rendez-vous. Pour une urgence, comme une fuite active, le téléphone reste le moyen le plus direct : 01 47 83 88 40.",
+    a: "L'entreprise reprend contact avec vous pour organiser le rendez-vous. Pour une urgence, comme une fuite active, le téléphone reste le moyen le plus direct : 01 42 49 20 14.",
   },
   {
     q: "Je suis syndic ou gestionnaire : puis-je utiliser ce formulaire ?",
-    a: "Oui. Choisissez « Syndic, copropriété ou professionnel », indiquez l'adresse de l'immeuble, la partie commune ou le lot concerné, et la personne à contacter sur place pour l'accès.",
+    a: "Oui. Choisissez « Copropriété, syndic ou professionnel », indiquez l'adresse de l'immeuble, la partie commune ou le lot concerné, et la personne à contacter sur place pour l'accès.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
             <p className="label mt-12 text-accent sm:mt-16">Organisez votre rendez-vous</p>
             <h1 className="mt-6 text-[2.5rem] sm:text-[3.8rem] xl:text-[4.4rem]">
-              <span className="line-up"><span>Contacter votre plombier, couvreur et chauffagiste à Paris 15e</span></span>
+              <span className="line-up"><span>Contacter votre plombier à Paris 12e</span></span>
             </h1>
             <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
           </div>
@@ -57,9 +57,9 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
           </div>
           <aside className="space-y-10 lg:col-span-4 lg:pt-4">
             <dl className="space-y-6 border-t border-line pt-6">
-              <div><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div><dt className="label">Métiers</dt><dd className="mt-2 text-ink">Plomberie, couverture, chauffage, petite maçonnerie</dd></div>
-              <div><dt className="label">Clientèle</dt><dd className="mt-2 text-ink">Particuliers, professionnels et syndics</dd></div>
+              <div><dt className="label">Secteur</dt><dd className="mt-2 text-ink">Paris 12e (75012)<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Voir sur la carte</a></dd></div>
+              <div><dt className="label">Métiers</dt><dd className="mt-2 text-ink">Plomberie, aménagement et rénovation, maintenance</dd></div>
+              <div><dt className="label">Clientèle</dt><dd className="mt-2 text-ink">Particuliers, professionnels et copropriétés</dd></div>
             </dl>
           </aside>
         </div>

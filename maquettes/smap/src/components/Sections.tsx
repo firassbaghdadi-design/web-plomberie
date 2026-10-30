@@ -85,7 +85,7 @@ export function PageHero({ page, crumbs }: { page: Page; crumbs: { name: string;
           </dl>
         </div>
         <div className="mt-10 max-lg:order-4 lg:col-span-5 lg:mt-0">
-          <PlanFigure id={photo} mode="auto" priority ratio="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]" end={page.zone ?? "Paris 12e"} caption={`SMAP · ${page.zone ?? "Paris 12e"}`} />
+          <PlanFigure id={photo} mode="auto" priority ratio="aspect-[16/10] lg:aspect-[4/5]" end={page.zone ?? "Paris 12e"} caption={`SMAP · ${page.zone ?? "Paris 12e"}`} />
         </div>
       </div>
     </section>
@@ -169,14 +169,14 @@ export function DeepContent({ sections }: { sections: Section[] }) {
 }
 
 /** Bandeau de fin de page : le chantier livré, dévoilé dans son cadre de plan. */
-export function PlanBand({ photo, zone }: { photo: string; zone?: string }) {
+export function PlanBand({ photo, zone, subject }: { photo: string; zone?: string; subject: string }) {
   return (
     <section aria-label="Du plan au chantier" className="border-t border-line py-16 sm:py-24">
       <div className="wrap grid items-end gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Label>Du plan au chantier</Label>
           <p className="mt-6 text-[1.5rem] font-light leading-snug text-ink sm:text-[2rem]" data-reveal>
-            Chaque intervention commence par un relevé sur place et se termine, une fois les travaux faits, par une pièce qui fonctionne.
+            {subject} : tout commence par un relevé sur place et tout se termine, une fois les travaux faits, par une pièce qui fonctionne.
           </p>
         </div>
         <div className="lg:col-span-7">
