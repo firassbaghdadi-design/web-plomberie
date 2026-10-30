@@ -152,8 +152,8 @@ EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leu
 - 6636300 : SMAP (bains2) — « Stylish interior of bathroom in modern apartment »
 - 5767799 : SMAP (chantier) — « Male builder with instrument in apartment »
 - 5691639 : SMAP (renovation) — « Crop man doing renovation in room »
-- 11299684 : SMAP (facade) — « Typical French Residential Building »
-- 3721272 : SMAP (cuivre) — « Copper Pipes on Black Background »
+- 4054542 : SMAP (facade) — « Photo Of Building Exterior During Daytime »
+- 5534767 : SMAP (cuivre) — « Person Holding Wrench »
 
 SMAP utilise d abord les photos de son propre site (récupérées au build) ; les sept photos ci-dessus, choisies par leur titre exact (pages non visibles depuis le container), sont à vérifier à l oeil avant envoi.
 
