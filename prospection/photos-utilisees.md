@@ -156,3 +156,7 @@ EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leu
 - 3721272 : SMAP (cuivre) — « Copper Pipes on Black Background »
 
 SMAP utilise d abord les photos de son propre site (récupérées au build) ; les sept photos ci-dessus, choisies par leur titre exact (pages non visibles depuis le container), sont à vérifier à l oeil avant envoi.
+
+## monteil
+
+Monteil & Cie : aucune photo Pexels. Toutes les photos viennent du site actuel de l entreprise (monteil-info.fr : équipe, cordiste, recherche de fuite, dix couples avant / après), téléchargées au build par maquettes/monteil/scripts/fetch-photos.mjs. Aucune photo du registre n est reprise.

@@ -27,8 +27,8 @@ function Hero() {
     <section className="relative">
       <div className="wrap grid pb-16 pt-8 sm:pt-12 lg:min-h-[calc(100svh-var(--head-h))] lg:grid-cols-12 lg:gap-x-14 lg:pb-14 lg:pt-10">
         <div className="flex flex-col max-lg:contents lg:col-span-7">
-          <p className="fade-in text-[0.8rem] font-medium uppercase tracking-[0.22em] text-accent max-lg:order-1">Maison artisanale · Paris 11e · depuis {business.founded}</p>
-          <h1 className="hp hp-load mt-8 text-[2.9rem] font-light leading-[0.98] tracking-[-0.05em] max-lg:order-2 sm:mt-14 sm:text-[4.9rem] lg:mt-auto lg:pt-14 lg:text-[clamp(4rem,6vw,6.3rem)]">
+          <p className="fade-in text-[0.8rem] font-medium uppercase tracking-[0.22em] text-accent max-lg:order-1">Paris 11e · depuis {business.founded}</p>
+          <h1 className="hp hp-load mt-8 text-[2.9rem] font-light leading-[0.98] tracking-[-0.05em] max-lg:order-2 sm:mt-14 sm:text-[4.9rem] lg:mt-auto lg:pt-14 lg:text-[clamp(3.4rem,5vw,5.4rem)]">
             <span className="line-up"><span>Plombier chauffagiste</span></span>
             <span className="line-up"><span className="text-accent" style={{ ["--d" as string]: "150ms" }}>à Paris 11e</span></span>
           </h1>

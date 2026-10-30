@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-10-30T12:41:09.605Z",
+  "accent": "#0a6f9e",
+  "logo": null,
+  "photos": {
+    "equipe-paris": null,
+    "equipe-1": null,
+    "equipe-2": null,
+    "equipe-3": null,
+    "equipe-4": null,
+    "equipe-5": null,
+    "equipe-fuite": null,
+    "cordiste": null
+  },
+  "pairs": {
+    "colonne": null,
+    "sdb": null,
+    "sdb-prestige": null,
+    "vannes": null,
+    "couloir": null,
+    "plafond": null,
+    "parking": null,
+    "fonte": null,
+    "toiture": null,
+    "lucarne": null
+  }
+}
