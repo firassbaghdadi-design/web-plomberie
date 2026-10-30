@@ -7,7 +7,7 @@ import { ArrowIcon } from "./Icons";
 import { Img } from "./Img";
 
 /** Espace insécable avant « : ? ! ; » (typographie française). */
-export const fr = (t: string) => t.replace(/ ([:;?!»])/g, " $1").replace(/« /g, "« ");
+export const fr = (t: string) => t.replace(/ ([:;?!»])/g, " $1").replace(/« /g, "« ").replace(/Paris (\d)/g, "Paris\u00a0$1");
 export const pad = (n: number) => String(n).padStart(2, "0");
 
 export function Breadcrumbs({ items }: { items: { name: string; href?: string }[] }) {
@@ -31,7 +31,7 @@ export const contactHref = (type?: string) => `${PATHS.contact}${type ? `?demand
 export function CtaButtons({ contactType, label = "Demander un devis ou une intervention" }: { contactType?: string; label?: string }) {
   return (
     <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-      <Link href={contactHref(contactType)} className="btn-primary" data-track="cta_devis">
+      <Link href={contactHref(contactType)} className="btn-primary max-sm:!gap-2 max-sm:!px-[1.1rem] max-sm:!text-[0.86rem]" data-track="cta_devis">
         {label} <ArrowIcon />
       </Link>
       <a href={`tel:${business.phoneTel}`} className="group flex items-baseline gap-3 whitespace-nowrap" data-track="cta_tel">

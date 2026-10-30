@@ -8,7 +8,7 @@
   --ease: cubic-bezier(.2, .7, .2, 1);
   --eau: #1769a3;
   /* Abscisse du rail de la goutte : dans la marge gauche, alignée sur la colonne de texte du site. */
-  --rail-x: calc(max(0px, (100vw - 88rem) / 2) + var(--gutter) + .45rem);
+  --rail-x: calc(max(0px, (100vw - 88rem) / 2) + var(--gutter) + .4rem);
   --dot-y: 3.1rem;
 }
 @media (min-width: 1024px) { :root { --head-h: 5rem; --dot-y: 6.2rem; } }
@@ -26,7 +26,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
-  .tx { padding-left: calc(var(--gutter) + 1.9rem); padding-right: var(--gutter); }
+  .tx { padding-left: calc(var(--gutter) + 1.45rem); padding-right: var(--gutter); }
   @media (min-width: 1024px) { .tx { padding-left: calc(var(--gutter) + 2.6rem); } }
   .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.24em] text-ink-faint; font-variant-numeric: tabular-nums; }
   .num { font-variant-numeric: tabular-nums lining-nums; }
@@ -62,7 +62,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .station.is-in .station-pt::before { animation: ring 1.9s cubic-bezier(.15,.6,.25,1) both; }
 .station.is-in .station-pt::after { animation: ring 1.9s cubic-bezier(.15,.6,.25,1) .28s both; }
 .station.quiet .station-pt::before, .station.quiet .station-pt::after { animation: none; }
-@keyframes ring { 0% { transform: scale(1); opacity: .75; } 100% { transform: scale(15); opacity: 0; } }
+@keyframes ring { 0% { inset: -1px; opacity: .8; } 100% { inset: -54px; opacity: 0; } }
 
 /* La section se découvre dans le sillage de l'onde : un disque qui s'élargit depuis le point. */
 .js .wave { clip-path: circle(0px at var(--rail-x) var(--dot-y)); transition: clip-path 1.7s cubic-bezier(.22,.6,.2,1); }
