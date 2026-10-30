@@ -18,7 +18,7 @@ export function Header() {
 
   return (
     <header data-head className="head sticky top-0 z-50 bg-white">
-      <div className="wrap flex h-[var(--head-h)] items-center justify-between gap-3 sm:gap-6">
+      <div className="wrap flex h-[var(--head-h)] items-center justify-between gap-2 sm:gap-6">
         <Link href="/" className="shrink-0" aria-label="Bastien & Trebulle, accueil">
           <Logo />
         </Link>
@@ -38,7 +38,7 @@ export function Header() {
           <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] font-medium text-ink transition hover:text-accent 2xl:block" data-track="cta_tel">
             {business.phoneDisplay}
           </a>
-          <Link href={PATHS.contact} className="btn-primary !min-h-[2.5rem] !px-4 text-[0.84rem] sm:!px-5 sm:text-[0.88rem]">
+          <Link href={PATHS.contact} className="btn-primary !min-h-[2.5rem] !px-3.5 text-[0.8rem] sm:!px-5 sm:text-[0.88rem]">
             Devis gratuit
           </Link>
           <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="menu-mobile" className="flex h-10 w-8 items-center justify-end lg:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}>

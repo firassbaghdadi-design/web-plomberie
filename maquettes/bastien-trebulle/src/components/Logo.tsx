@@ -25,11 +25,11 @@ export function Logo() {
     return <img src={LOGO.src} alt="Bastien & Trebulle" width={LOGO.width} height={LOGO.height} className="h-9 w-auto lg:h-10" />;
   }
   return (
-    <span className="flex items-center gap-3">
-      <Mark className="h-9 w-9 shrink-0 lg:h-10 lg:w-10" />
+    <span className="flex items-center gap-2.5 sm:gap-3">
+      <Mark className="h-8 w-8 shrink-0 sm:h-9 sm:w-9 lg:h-10 lg:w-10" />
       <span className="flex flex-col leading-none">
-        <span className="text-[1.05rem] font-medium tracking-[0.06em] text-ink sm:text-[1.18rem]">BASTIEN &amp; TREBULLE</span>
-        <span className="mt-1.5 text-[0.56rem] font-medium uppercase tracking-[0.3em] text-ink-faint">Paris XVIe · depuis 1880</span>
+        <span className="text-[0.86rem] font-medium tracking-[0.04em] text-ink sm:text-[1.18rem] sm:tracking-[0.06em]">BASTIEN &amp; TREBULLE</span>
+        <span className="mt-1.5 text-[0.5rem] font-medium uppercase tracking-[0.24em] text-ink-faint sm:text-[0.56rem] sm:tracking-[0.3em]">Paris XVIe · depuis 1880</span>
       </span>
     </span>
   );

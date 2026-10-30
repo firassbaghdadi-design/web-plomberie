@@ -57,7 +57,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-copper-deep"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-accent-deep"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,7 +65,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-copper/40 bg-white px-3 text-ink hover:border-copper hover:bg-copper-wash disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-accent/40 bg-white px-3 text-ink hover:border-accent hover:bg-accent-wash disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>

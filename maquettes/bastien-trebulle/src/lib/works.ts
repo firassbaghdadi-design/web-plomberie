@@ -79,7 +79,7 @@ export const works: Work[] = [
     slug: "quai-de-seine",
     title: "Quai de Seine",
     place: "Paris",
-    trade: "Plomberie et salles de bains",
+    trade: "Plomberie et salle de bains",
     type: "Rénovation salle de bain",
     client: "Chantier réalisé pour le compte d'un particulier, sous la maîtrise d'œuvre du Cabinet VIDALENC.",
     context: "Dans un appartement quai de Seine, cette rénovation a mobilisé tout le savoir-faire de nos équipes pour concilier exigence technique, finitions soignées et confort d'usage. L'objectif : moderniser les installations, optimiser les réseaux et restituer un ensemble fonctionnel, propre et durable, en harmonie avec le lieu.",
