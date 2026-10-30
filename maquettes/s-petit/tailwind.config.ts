@@ -14,7 +14,7 @@ export default {
         paper: { DEFAULT: "#f8fafc", 2: "#eef2f6" },
         line: "#e2e8ee",
       },
-      fontFamily: { sans: ["'Onest Variable'", "system-ui", "sans-serif"] },
+      fontFamily: { sans: ["'Sora Variable'", "system-ui", "sans-serif"] },
       maxWidth: { site: "88rem" },
       boxShadow: { soft: "0 1px 2px rgba(16,28,39,.04), 0 14px 40px -22px rgba(16,28,39,.16)" },
     },

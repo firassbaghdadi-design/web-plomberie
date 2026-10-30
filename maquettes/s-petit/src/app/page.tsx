@@ -3,7 +3,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon } from "@/components/Icons";
 import { Img } from "@/components/Img";
 import { CtaBand, CtaButtons, FaqList, LocalBlock, Station, fr } from "@/components/Sections";
-import { home, homeFaq, quotes, trades } from "@/lib/content";
+import { home, homeFaq, trades } from "@/lib/content";
 import { photoAlt } from "@/lib/photos";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 import { PATHS, business } from "@/lib/site";
@@ -84,16 +84,6 @@ export default function HomePage() {
             <h2 id="titre-avis" className="sr-only">Les avis des clients</h2>
             <p className="num text-[6rem] font-extralight leading-none tracking-[-0.05em] text-ink sm:text-[9rem]">4,6<span className="text-[0.32em] tracking-normal text-ink-faint"> /5</span></p>
             <p className="mt-5 max-w-xs text-[0.95rem]">{business.googleCount} avis sur la fiche Google de l&apos;entreprise, relevé d&apos;{business.ratingDate}.</p>
-          </div>
-          <div className="xl:col-span-7">
-            <ul className="border-t border-line">
-              {quotes.map((q) => (
-                <li key={q.text} className="border-b border-line py-9">
-                  <blockquote className="max-w-2xl text-[1.3rem] font-light leading-snug tracking-[-0.012em] text-ink sm:text-[1.6rem]">« {q.text} »</blockquote>
-                  <p className="label mt-4">{q.source}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </Station>

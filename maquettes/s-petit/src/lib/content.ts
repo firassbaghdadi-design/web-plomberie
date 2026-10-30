@@ -18,13 +18,6 @@ export const trades = [
   { path: PATHS.heating, n: "03", title: "Chauffage et gaz", text: "Installations au gaz, chauffe-eau, radiateurs : un travail de professionnel du gaz." },
 ];
 
-/** Extraits d'avis publics (Pages Jaunes, octobre 2025 et juin 2025), reproduits tels quels, sans nom. */
-export const quotes = [
-  { text: "Remarquablement aimable, efficace, rapide et tout cela pour un prix raisonnable.", source: "Pages Jaunes, octobre 2025" },
-  { text: "Leur technicien est intervenu dans les heures qui ont suivi mon appel et il n'a pas hésité à revenir gratuitement pour rectifier une erreur.", source: "Pages Jaunes, octobre 2025" },
-  { text: "Ils ont étudié le projet dans les moindres détails et ont fait des propositions intéressantes. Les finitions sont impeccables.", source: "Pages Jaunes, juin 2025" },
-];
-
 export const homeFaq = [
   {
     q: "Où se trouve S. Petit et comment les joindre ?",

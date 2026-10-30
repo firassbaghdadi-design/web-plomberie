@@ -45,7 +45,6 @@ export default function LegalPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-6 max-w-3xl text-[0.95rem]">Les extraits d&apos;avis cités sur l&apos;accueil proviennent d&apos;avis publics de la fiche Pages Jaunes de l&apos;entreprise, reproduits sans nom d&apos;auteur.</p>
       </Station>
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Mentions légales", path }])]} />
     </>
