@@ -102,3 +102,13 @@ Photos de lieux réels, à ne pas reprendre sur un autre site :
 - Château de Vincennes 001.jpg : Seragaz (vincennes)
 - Paris, Schornsteine -- 2014 -- 1200.jpg (Dietmar Rabich, CC BY-SA 4.0) : Gaz Flash (héros, cheminées à Montmartre)
 - Toits de Montmartre.jpg (FreCha, CC BY-SA 4.0) : Gaz Flash (toits de Montmartre)
+
+## dbp
+
+DBP Plomberie-Chauffage n'a pas de site : aucune photo d'entreprise. Cinq photos Pexels, choisies par leur titre exact sur pexels.com.
+
+- 39885416 : DBP (hero-plomberie) — « Close-up of Plumber Working with Copper Pipe »
+- 32588548 : DBP (clef) — « Plumber Repairing Pipe with Wrench Indoors »
+- 36077581 : DBP (thermostat) — « Modern Home Thermostat Adjusted by Hand »
+- 4819052 : DBP (radiateur) — « Old radiator near windowsill at home in daylight »
+- 31543027 : DBP (immeuble) — « Elegant 19th Century Parisian Corner Building »
