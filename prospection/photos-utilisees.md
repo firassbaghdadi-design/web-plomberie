@@ -119,7 +119,7 @@ Aucune photo de l'entreprise (pas de site). Cinq photos Pexels, choisies par leu
 
 - 7836293 : S. Petit (robinet) — « Close Up Photo of Tap Faucet »
 - 7220892 : S. Petit (mains) — « A Person Holding Brown Doorknob » (titre de la page ; la photo montre les mains d'un plombier qui ajuste une canalisation sous un évier)
-- 39885416 : S. Petit (cuivre) — « Close-up of Plumber Working with Copper Pipe »
+- 4494662 : S. Petit (cuivre) — « Faucet Connected with Blue Pipe »
 - 31058041 : S. Petit (facade) — « Elegant Haussmann Building in Paris, France »
 - 34295406 : S. Petit (bain) — « Close-Up of Water Faucet Dripping in Bathroom »
 

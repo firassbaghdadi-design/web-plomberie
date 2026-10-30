@@ -200,7 +200,7 @@ export const servicePages: Page[] = [
     approach: "Pour le chauffage comme pour le gaz, on se déplace dans tout le 14e : de la porte d'Orléans jusqu'à Montparnasse.",
     photo: "cuivre",
     photoPos: "50% 40%",
-    caption: "Un tube de cuivre, du travail de précision",
+    caption: "Un robinet raccordé, du travail de précision",
     sections: [
       {
         h2: "Que faire en cas d'odeur de gaz dans un logement ?",

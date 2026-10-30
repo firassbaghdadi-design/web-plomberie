@@ -151,7 +151,7 @@ export const zonePages: Page[] = [
     approach: "Du 14e, le boulevard du Montparnasse mène directement au 6e : on y passe sans quitter le quartier.",
     photo: "cuivre",
     photoPos: "50% 35%",
-    caption: "Du cuivre, au millimètre",
+    caption: "Un raccord, au millimètre",
     sections: [
       {
         h2: "Quelles particularités pour un plombier dans le 6e arrondissement ?",
