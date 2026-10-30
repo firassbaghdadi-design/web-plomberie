@@ -122,3 +122,10 @@ Aucune photo de l'entreprise (pas de site). Cinq photos Pexels, choisies par leu
 - 39885416 : S. Petit (cuivre) — « Close-up of Plumber Working with Copper Pipe »
 - 31058041 : S. Petit (facade) — « Elegant Haussmann Building in Paris, France »
 - 34295406 : S. Petit (bain) — « Close-Up of Water Faucet Dripping in Bathroom »
+
+## SPC (Société Plomberie Couverture, Paris 12e)
+
+Photos de l'entreprise en priorité : le logo et les photos de chantiers sont récupérés au build sur spc-services.fr (page d'accueil, galerie photo, médiathèque WordPress), rangés dans l'ordre du site et choisis par mots-clés du nom de fichier (à vérifier sur la maquette en ligne). Deux photos Pexels de repli, affichées seulement si les photos de l'entreprise manquent, choisies par leur titre (non vues : à contrôler avant envoi) :
+
+- 38510734 : SPC (couvreurs, repli) — « Workers applying roofing material on building »
+- 38524264 : SPC (couvreur, repli) — « Construction worker using drill for roofing »
