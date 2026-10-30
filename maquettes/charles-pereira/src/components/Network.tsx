@@ -247,12 +247,10 @@ export function Network() {
         `<g class="raccord-g" data-i="end">${flange(endPt.x, endPt.y, 0, 0.01)}</g>`;
       paths = Array.from(svg.querySelectorAll<SVGPathElement>("path.tube"));
       const groups = Array.from(svg.querySelectorAll<SVGGElement>("g.raccord-g"));
+      let k = 0;
       nodes = groups
         .filter((g) => g.dataset.i !== "end")
-        .map((g) => ({ el: g, len: g.dataset.i === "hero" ? 0 : heroLen + lens[Number(g.dataset.i) - 0] ?? 0 }));
-      // lens est indexé sur les nœuds valides : on réaligne
-      let k = 0;
-      nodes = nodes.map((n) => (n.el.dataset.i === "hero" ? n : { el: n.el, len: lens[k++] }));
+        .map((g) => ({ el: g, len: g.dataset.i === "hero" ? 0 : heroLen + (lens[k++] ?? 0) }));
       void dirOf;
     };
 

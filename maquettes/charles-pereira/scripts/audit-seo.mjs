@@ -4,7 +4,7 @@
 const base = process.argv[2];
 const siteUrl = (process.argv[3] ?? "https://entreprise-charles-pereira.fr").replace(/\/$/, "");
 // Ville attendue dans le H1 : Paris (11e et arrondissements voisins)
-const cityRe = /paris/i;
+const cityRe = /paris|issy|boulogne/i;
 const CONTACT = /^\/contact/;
 const LIGHT = /^\/mentions-legales$/;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ");
