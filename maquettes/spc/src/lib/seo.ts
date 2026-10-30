@@ -22,15 +22,18 @@ export const businessNode = {
   "@type": ["LocalBusiness", "Plumber", "RoofingContractor"],
   "@id": businessId,
   name: business.name,
-  legalName: "Anciens Établissements Kuschnick",
+  alternateName: "SPC Services",
+  legalName: "Société Plomberie Couverture",
   url: `${SITE_URL}/`,
   telephone: business.phoneTel,
+  email: business.email,
   foundingDate: business.founded,
   identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: business.siren.replace(/\s/g, "") },
+  openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "17:30" }],
   hasMap: business.mapsUrl,
   address: { "@type": "PostalAddress", streetAddress: business.address.street, postalCode: business.address.postalCode, addressLocality: business.address.city, addressCountry: "FR" },
   areaServed: business.areaServed.map((name) => ({ "@type": "AdministrativeArea", name })),
-  knowsAbout: ["Plomberie", "Couverture", "Zinguerie", "Chauffage central", "Fumisterie", "Conduits de fumée"],
+  knowsAbout: ["Plomberie", "Plomberie d'immeuble", "Couverture", "Zinguerie", "Travaux sur corde", "Assainissement", "Curage de canalisations", "Pompes de relevage", "Rénovation de salle de bains"],
   contactPoint: { "@type": "ContactPoint", telephone: business.phoneTel, contactType: "customer service", availableLanguage: "French", url: `${SITE_URL}${PATHS.contact}` },
 };
 
@@ -59,7 +62,7 @@ export const faqNode = (faq: Faq[]) => ({
   mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
 });
 
-export const serviceNode = (name: string, path: string, description: string, area = "Paris 11e") => ({
+export const serviceNode = (name: string, path: string, description: string, area = "Paris 12e") => ({
   "@type": "Service",
   name,
   description,

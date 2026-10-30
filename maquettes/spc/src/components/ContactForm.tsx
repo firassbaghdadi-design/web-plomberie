@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-4 text-ink outline-none transition focus:border-copper focus:bg-white focus:ring-4 focus:ring-copper/15";
+const field = "mt-2 w-full rounded-xl border border-line bg-zinc-wash px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,8 +56,8 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[6px] border border-copper/30 bg-copper-wash p-10 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-copper text-copper">
+      <div role="status" className="rounded-[6px] border border-accent/30 bg-accent-wash p-10 text-center">
+        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
           <CheckIcon className="h-8 w-8" />
         </span>
         <h2 className="mt-6 text-3xl">Demande bien reçue.</h2>
@@ -72,7 +72,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   return (
     <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
       <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
-      <p className="mt-2 text-ink-soft">Votre demande arrive directement aux Anciens Établissements Kuschnick, rue Trousseau.</p>
+      <p className="mt-2 text-ink-soft">Votre demande arrive directement chez SPC, avenue du Général-Michel-Bizot.</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -134,7 +134,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#9c4a22]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[rgb(var(--accent))]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}

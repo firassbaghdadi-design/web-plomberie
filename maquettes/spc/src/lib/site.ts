@@ -42,6 +42,7 @@ export const PATHS = {
   roofing: "/couvreur-paris-12",
   drainage: "/assainissement-paris-12",
   homes: "/renovation-salle-de-bains-paris-12",
+  gallery: "/realisations",
 } as const;
 
 export const nav = [

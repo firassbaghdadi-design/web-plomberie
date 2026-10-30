@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { PATHS, business, nav } from "@/lib/site";
 import { ArrowIcon } from "./Icons";
 import { Logo } from "./Logo";
-import { Numeroteur } from "./Numeroteur";
 
 export function Header() {
   const pathname = usePathname();
@@ -17,9 +16,9 @@ export function Header() {
   }, [open]);
 
   return (
-    <header data-head data-home={pathname === "/" ? "true" : undefined} className="head sticky top-0 z-50 bg-white">
+    <header data-head className="head sticky top-0 z-50 bg-white">
       <div className="head-row wrap flex h-[var(--head-h)] items-center justify-between gap-3 sm:gap-6">
-        <Link href="/" className="shrink-0" aria-label="Anciens Établissements Kuschnick, accueil">
+        <Link href="/" className="shrink-0" aria-label="SPC, Société Plomberie Couverture, accueil">
           <Logo />
         </Link>
         <nav aria-label="Navigation principale" className="hidden lg:block">
@@ -34,8 +33,7 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex shrink-0 items-center gap-3 sm:gap-6">
-          <span className="hidden sm:inline-flex"><Numeroteur /></span>
-          <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] font-medium text-ink transition hover:text-copper-deep 2xl:block" data-track="cta_tel">
+                    <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] font-medium text-ink transition hover:text-accent-deep xl:block" data-track="cta_tel">
             {business.phoneDisplay}
           </a>
           <Link href={PATHS.contact} className="btn-primary !min-h-[2.5rem] !px-4 text-[0.84rem] sm:!px-5 sm:text-[0.88rem]">
@@ -55,8 +53,8 @@ export function Header() {
             {[{ href: "/", label: "Accueil" }, ...nav].map((n, i) => (
               <li key={n.href} className="border-b border-line">
                 <Link href={n.href} className="flex items-center justify-between py-4 text-[1.6rem] font-light tracking-tight text-ink">
-                  <span><span className="num mr-4 text-xs text-copper">N° {String(i).padStart(2, "0")}</span>{n.label}</span>
-                  <ArrowIcon className="h-4 w-4 text-copper" />
+                  <span><span className="num mr-4 text-xs text-accent">N{String(6 - i).padStart(2, "0")}</span>{n.label}</span>
+                  <ArrowIcon className="h-4 w-4 text-accent" />
                 </Link>
               </li>
             ))}

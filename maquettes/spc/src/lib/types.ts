@@ -35,9 +35,9 @@ export type Page = {
   ctaTitle: string;
   ctaText: string;
   related?: string[];
+  /** Thème de la photo du héros (couverture, plomberie, assainissement, particuliers) : photo de l'entreprise si possible. */
   photo: string;
-  photoPos?: string;
+  photoIndex?: number;
+  /** Texte alternatif de repli. */
   caption?: string;
-  /** Trois photos de réalisations de l'entreprise montrées sur la page. */
-  gallery?: string[];
 };
