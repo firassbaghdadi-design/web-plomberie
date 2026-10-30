@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Concept : le thermostat. --p (0 à 1) est la progression de la lecture ; l'accent passe du bleu froid (16°)
+   au rouge doux (21°). Motion.tsx met ces variables à jour au défilement ; sans JavaScript la page reste bleue. */
+:root {
+  --gutter: clamp(1rem, 4.4vw, 3.5rem);
+  --head-h: 4.25rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --accent: 30 102 150;
+  --accent-deep: 22 78 116;
+}
+@media (min-width: 1024px) { :root { --head-h: 5rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-white font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 400; letter-spacing: -0.04em; line-height: 1.03; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 600; color: #13171c; }
+::selection { background: rgb(var(--accent)); color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-variant-numeric: tabular-nums; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-deep; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent-deep; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { @apply text-accent-deep; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.1rem] sm:text-[2.8rem] lg:text-[3.3rem]; }
+  .prose-mt p + p { @apply mt-4; }
+  .answer { @apply mt-6 border-l border-accent pl-5 text-[1.14rem] leading-relaxed text-ink sm:text-[1.24rem]; }
+  .reponse-bref { @apply text-[1.26rem] leading-[1.55] text-ink sm:text-[1.55rem]; letter-spacing: -0.02em; }
+}
+
+/* ————— Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité) ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+
+/* ————— En-tête fin qui se compacte ————— */
+.head { transition: background-color .3s, box-shadow .3s; }
+.head .head-row { transition: height .45s var(--ease); }
+.head.is-solid { background-color: rgba(255,255,255,.94); backdrop-filter: saturate(1.3) blur(14px); box-shadow: 0 1px 0 #e2e7ec; }
+.head.is-solid .head-row { height: 3.9rem; }
+.nav-link { background: linear-gradient(rgb(var(--accent)), rgb(var(--accent))) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent-deep)); }
+
+.row-link .row-arrow { transition: transform .5s var(--ease), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent)); }
+.row-link .row-title { transition: color .3s; }
+.row-link:hover .row-title { color: rgb(var(--accent-deep)); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Concept : le thermostat ————— */
+/* Un cadran : anneau gradué de 16° à 21°, arc de progression, bouton qui tourne. Mis à jour par Motion.tsx. */
+.dial-arc { stroke-dasharray: 100 100; stroke-dashoffset: 100; }
+.dial-knob { transform-origin: 110px 110px; transform: rotate(-135deg); }
+.dial-fixed { transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.dial-fixed[data-hidden="true"] { opacity: 0; transform: translateY(8px) scale(.94); pointer-events: none; }
+
+/* Section : un filet fin se trace quand on y arrive, dans l'accent du moment. */
+.section-rule { height: 1px; background: #e2e7ec; position: relative; }
+.section-rule::after { content: ""; position: absolute; inset: 0; background: rgb(var(--accent)); transform: scaleX(.14); transform-origin: left; opacity: 0; transition: opacity .6s, transform 1.6s cubic-bezier(.45,.05,.2,1); animation: rule-safety 0s 3s forwards; }
+.js .section:not(.is-in) .section-rule::after { transform: scaleX(0); }
+.js .section.is-in .section-rule::after { opacity: 1; transform: scaleX(.14); animation: none; }
+@keyframes rule-safety { to { opacity: 1; transform: scaleX(.14); } }
+
+.facture-row { transition: background-color .4s; }
+.facture-row:hover { background-color: #f6f8fa; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+  .slow-zoom { animation: none; }
+}
