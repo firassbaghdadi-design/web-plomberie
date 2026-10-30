@@ -9,7 +9,7 @@ export const zonePages: Page[] = [
   {
     path: "/plombier-paris-13",
     zone: "Paris 13e",
-    title: "Plombier Paris 13e : fuite, sanitaires et dépannage | S. Petit",
+    title: "Plombier Paris 13e : fuite et dépannage | S. Petit",
     description:
       "Plombier pour le 13e arrondissement de Paris, voisin du 14e : fuites, sanitaires, chauffe-eau et salles de bains par S. Petit. Appelez le 01 45 42 42 84.",
     h1: "Plombier à Paris 13e, à côté du 14e",
@@ -73,9 +73,9 @@ export const zonePages: Page[] = [
   {
     path: "/plombier-paris-15",
     zone: "Paris 15e",
-    title: "Plombier Paris 15e : dépannage, sanitaires, salle de bains | S. Petit",
+    title: "Plombier Paris 15e : dépannage et salle de bains | S. Petit",
     description:
-      "Plombier pour Paris 15e, voisin du 14e : dépannage, sanitaires, chauffage et salle de bains par S. Petit, installé avenue Jean Moulin. Appelez le 01 45 42 42 84.",
+      "Plombier pour Paris 15e, voisin du 14e : dépannage, sanitaires, chauffage et salle de bains avec S. Petit, avenue Jean Moulin. Appelez le 01 45 42 42 84.",
     h1: "Plombier à Paris 15e, au plus près du 14e",
     kicker: "Plomberie · Paris 15e",
     lead: "Vaugirard, Convention, Beaugrenelle : le plus peuplé des arrondissements parisiens a besoin d'un plombier de proximité.",
@@ -137,9 +137,9 @@ export const zonePages: Page[] = [
   {
     path: "/plombier-paris-6",
     zone: "Paris 6e",
-    title: "Plombier Paris 6e : immeubles anciens et dépannage | S. Petit",
+    title: "Plombier Paris 6e : immeubles anciens, dépannage | S. Petit",
     description:
-      "Plombier pour le 6e arrondissement de Paris, au nord du 14e : immeubles anciens, escaliers étroits, fuites et sanitaires avec S. Petit. Appelez le 01 45 42 42 84.",
+      "Plombier pour le 6e arrondissement de Paris, au nord du 14e : immeubles anciens, escaliers étroits, fuites et sanitaires. S. Petit, appelez le 01 45 42 42 84.",
     h1: "Plombier à Paris 6e, du Luxembourg à Montparnasse",
     kicker: "Plomberie · Paris 6e",
     lead: "Pierre de taille, escaliers étroits, chambres de service : le 6e demande de la méthode et de la discrétion.",
@@ -203,8 +203,8 @@ export const zonePages: Page[] = [
     zone: "Montrouge",
     title: "Plombier Montrouge : proche du 14e, dépannage | S. Petit",
     description:
-      "Plombier pour Montrouge, commune des Hauts-de-Seine voisine du 14e : fuites, sanitaires, chauffage et gaz avec S. Petit. Appelez le 01 45 42 42 84.",
-    h1: "Plombier à Montrouge, voisin du 14e",
+      "Plombier pour Montrouge, commune des Hauts-de-Seine voisine de Paris 14e : fuites, sanitaires, chauffage et gaz avec S. Petit. Appelez le 01 45 42 42 84.",
+    h1: "Plombier à Montrouge, à côté de Paris 14e",
     kicker: "Plomberie · Montrouge",
     lead: "Une commune collée au 14e, des immeubles récents et des maisons de ville, un plombier à quelques minutes.",
     brief:
@@ -267,8 +267,8 @@ export const zonePages: Page[] = [
     zone: "Gentilly",
     title: "Plombier Gentilly : voisin du 14e et du 13e | S. Petit",
     description:
-      "Plombier pour Gentilly (Val-de-Marne), à la limite des 13e et 14e arrondissements de Paris : fuites, sanitaires, chauffage avec S. Petit. Appelez le 01 45 42 42 84.",
-    h1: "Plombier à Gentilly, aux portes du 14e",
+      "Plombier pour Gentilly (Val-de-Marne), à la limite des 13e et 14e arrondissements de Paris : fuites, sanitaires, chauffage. S. Petit, appelez le 01 45 42 42 84.",
+    h1: "Plombier à Gentilly, aux portes de Paris 14e",
     kicker: "Plomberie · Gentilly",
     lead: "Gentilly touche Paris par les 13e et 14e arrondissements : une adresse voisine pour un plombier de proximité.",
     brief:

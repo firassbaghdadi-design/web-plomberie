@@ -3,7 +3,7 @@ import type { Page } from "./types";
 
 /** Accueil : textes fixes de la page d'accueil (le site n'existait pas, tout vient des sources publiques). */
 export const home = {
-  title: "Plombier Paris 14e depuis 2007 : S. Petit, avenue Jean Moulin",
+  title: "Plombier Paris 14e depuis 2007 : S. Petit, Jean Moulin",
   description:
     "S. Petit, plombier à Paris 14e depuis 2007 : dépannage, salles de bains, chauffage et gaz. 4,6/5 sur 44 avis Google. 36 avenue Jean Moulin, 01 45 42 42 84.",
   h1: "Plombier à Paris 14e",
@@ -195,7 +195,7 @@ export const servicePages: Page[] = [
     zone: "Paris 14e",
     title: "Chauffage et gaz à Paris 14e : installation | S. Petit",
     description:
-      "Chauffage, chauffe-eau et installations au gaz à Paris 14e par un professionnel du gaz (PG). S. Petit, avenue Jean Moulin, depuis 2007. Appelez le 01 45 42 42 84.",
+      "Chauffage, chauffe-eau et gaz à Paris 14e par un professionnel du gaz (PG). S. Petit, avenue Jean Moulin, plombier depuis 2007. Appelez le 01 45 42 42 84.",
     h1: "Chauffage et gaz à Paris 14e : chauffe-eau, radiateurs",
     kicker: "Chauffage et gaz · Paris 14e",
     lead: "Chauffe-eau, radiateurs, raccordements au gaz : un travail encadré, réalisé par un professionnel du gaz.",
