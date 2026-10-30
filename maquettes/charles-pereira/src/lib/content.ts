@@ -8,7 +8,7 @@ import type { Page } from "./types";
  */
 
 export const home = {
-  title: "Plombier Paris 15e depuis 2008 | Charles Pereira",
+  title: "Plombier Paris 15e depuis 2008 | Entreprise Charles Pereira",
   description:
     "Plombier à Paris 15e depuis 2008, boulevard Garibaldi : plomberie, recherche de fuite, débouchage et chauffe-eau. Entreprise Charles Pereira, devis gratuit.",
   brief:
@@ -48,7 +48,7 @@ export const servicePages: Page[] = [
     zone: "Paris 15e",
     title: "Plombier Paris 15e : installation et dépannage | Pereira",
     description:
-      "Plombier à Paris 15e depuis 2008, boulevard Garibaldi : installation, remplacement de canalisations, sanitaires et robinetterie pour particuliers et copropriétés.",
+      "Plombier à Paris 15e depuis 2008, boulevard Garibaldi : installation, remplacement de canalisations, sanitaires et robinetterie pour particuliers et syndics.",
     h1: "Plombier à Paris 15e, boulevard Garibaldi",
     kicker: "Plomberie · Paris 15e",
     lead: "Installation, remplacement, réparation : le plombier du boulevard Garibaldi, pour les appartements, les commerces et les parties communes.",
@@ -85,7 +85,7 @@ export const servicePages: Page[] = [
       {
         h2: "Pourquoi faire appel à un plombier installé dans le quartier ?",
         answer:
-          "Parce qu'un artisan du quartier connaît les immeubles, les copropriétés et les contraintes d'accès : cours étroites, ascenseurs réservés, horaires de gardien. Il se déplace plus vite, revient facilement, et son adresse est connue : le 26, boulevard Garibaldi.",
+          "Parce qu'un artisan du quartier connaît les immeubles, les copropriétés et les contraintes d'accès : cours étroites, ascenseurs réservés, horaires de gardien. Il se déplace plus vite, revient facilement, et son adresse est connue et vérifiable : le 26, boulevard Garibaldi.",
         paras: [
           "Une entreprise inscrite au registre depuis 2008 laisse des traces vérifiables : une adresse, un numéro d'immatriculation, des clients voisins. C'est une garantie simple, que ne donne pas un numéro anonyme trouvé au hasard d'une recherche en ligne.",
           "Pour les travaux qui demandent plusieurs visites, la proximité compte aussi : repasser prendre une mesure, rapporter une pièce, vérifier un joint le lendemain ne coûte pas une demi-journée de trajet.",
@@ -182,7 +182,7 @@ export const servicePages: Page[] = [
     path: PATHS.drain,
     slug: "debouchage-canalisation-paris-15",
     zone: "Paris 15e",
-    title: "Débouchage canalisation Paris 15e : évier, WC, douche | Pereira",
+    title: "Débouchage canalisation Paris 15e : évier, WC | Pereira",
     description:
       "Évier, douche ou WC bouché à Paris 15e ? L'Entreprise Charles Pereira débouche les canalisations et recherche la cause de l'engorgement. Devis gratuit en ligne.",
     h1: "Débouchage de canalisation à Paris 15e",
@@ -250,7 +250,7 @@ export const servicePages: Page[] = [
     zone: "Paris 15e",
     title: "Chauffe-eau et chauffage Paris 15e | Entreprise Pereira",
     description:
-      "Chauffe-eau en panne ou radiateurs à reprendre à Paris 15e ? L'Entreprise Charles Pereira, plombier chauffagiste du boulevard Garibaldi, intervient. Devis gratuit.",
+      "Chauffe-eau en panne ou radiateurs à reprendre à Paris 15e ? L'Entreprise Charles Pereira, plombier du boulevard Garibaldi, intervient. Devis gratuit.",
     h1: "Chauffe-eau et chauffage à Paris 15e",
     kicker: "Chauffage · Paris 15e",
     lead: "Un ballon d'eau chaude qui lâche, un radiateur qui reste froid : le plombier du boulevard Garibaldi remet l'eau chaude et la chaleur en route.",

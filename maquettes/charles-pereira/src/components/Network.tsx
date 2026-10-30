@@ -131,18 +131,26 @@ export function Network() {
       // — Héros : bandeau en dents de scie qui traverse l'écran, de droite à gauche
       const art = root.querySelector<HTMLElement>("[data-art]");
       let heroPts = 0;
+      let valveAt = -1;
       if (art) {
         const a = rel(art.getBoundingClientRect());
         const r = Math.min(a.r, W - (wide ? 40 : 12));
-        const s = wide ? Math.min(150, (r - xA) / 8.4) : Math.min(60, (r - xA) / 5);
-        const top = a.t + 16;
+        const top = a.t + 14;
         cur = { x: r, y: top };
         pts.push(cur);
         glyph.push(flange(cur.x, cur.y, -30, half + 2.2));
-        const rem = r - xA;
-        const n = Math.max(1, Math.round(rem / (2 * s)));
-        const sp = rem / (2 * n);
-        for (let i = 0; i < n; i++) { go("DL", sp); go("UL", sp); }
+        // Tracé en dents de scie, aux longueurs inégales, avec deux retombées verticales : une vraie conduite, pas un ressort.
+        const seq = [1.2, -0.7, 0.5, -1.1, 1.5, -0.8, "V", 0.6, -1.0, 1.0, -0.9, "V", 0.9, -0.9] as (number | "V")[];
+        const units = seq.reduce<number>((t, u) => (u === "V" ? t : t + Math.abs(u)), 0);
+        const sp = (r - xA) / units;
+        const hop = wide ? 30 : 16;
+        let longest = { i: -1, v: 0 };
+        seq.forEach((u) => {
+          if (u === "V") { go("V", hop); return; }
+          if (Math.abs(u) > longest.v && u > 0) longest = { i: pts.length - 1, v: Math.abs(u) };
+          go(u > 0 ? "DL" : "UL", Math.abs(u) * sp);
+        });
+        valveAt = longest.i;
         heroPts = pts.length;
       } else {
         pts.push(cur);
@@ -179,8 +187,10 @@ export function Network() {
       // Bout de ligne : on termine la conduite par une bride, sous le dernier raccord
       const lastTarget = nutYs.filter((y) => !Number.isNaN(y)).pop();
       if (lastTarget !== undefined) {
-        // la conduite finit sur la dernière section : on remplace le retour en gouttière par un bouchon
-        go("V", 0);
+        // la conduite finit sur la dernière section : on supprime le retour en gouttière, un bouchon ferme la ligne
+        pts.pop();
+        dirOf.pop();
+        cur = pts[pts.length - 1];
       }
       if (pts.length < 2) { svg.innerHTML = ""; paths = []; nodes = []; segs = []; return; }
 
@@ -198,7 +208,7 @@ export function Network() {
         const hs = segs.slice(0, heroPts - 1);
         hs.forEach((sg, i) => {
           const mid = { x: (sg.a.x + sg.b.x) / 2, y: (sg.a.y + sg.b.y) / 2 };
-          if (i === Math.floor(hs.length / 2) && sg.uy > 0) glyph.push(valve(mid.x, mid.y, half));
+          if (i === valveAt) glyph.push(valve(mid.x, mid.y, half));
           else if (i % 2 === 0) glyph.push(collar(mid, sg.ux, sg.uy, half));
           else {
             const q = { x: sg.a.x + sg.ux * sg.len * 0.3, y: sg.a.y + sg.uy * sg.len * 0.3 };
@@ -244,13 +254,12 @@ export function Network() {
         `<path class="tube" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="${dB}"/>` +
         `<g class="raccord-g" data-i="hero">${glyph.join("")}</g>` +
         nodeSvg.join("") +
-        `<g class="raccord-g" data-i="end">${flange(endPt.x, endPt.y, 0, 0.01)}</g>`;
+        `<g class="raccord-g" data-i="end">${flange(endPt.x, endPt.y, 90, half + 2.4)}${flange(endPt.x, endPt.y - 7, 90, half + 1.2)}</g>`;
       paths = Array.from(svg.querySelectorAll<SVGPathElement>("path.tube"));
       const groups = Array.from(svg.querySelectorAll<SVGGElement>("g.raccord-g"));
       let k = 0;
       nodes = groups
-        .filter((g) => g.dataset.i !== "end")
-        .map((g) => ({ el: g, len: g.dataset.i === "hero" ? 0 : heroLen + (lens[k++] ?? 0) }));
+        .map((g) => ({ el: g, len: g.dataset.i === "hero" ? 0 : g.dataset.i === "end" ? total - 1 : lens[k++] ?? 0 }));
       void dirOf;
     };
 

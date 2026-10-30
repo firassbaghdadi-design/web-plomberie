@@ -8,7 +8,7 @@ import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 const path = PATHS.contact;
 const title = "Contact : plombier à Paris 15e, devis gratuit | Pereira";
 const description =
-  "Contactez l'Entreprise Charles Pereira, 26 boulevard Garibaldi, Paris 15e : plomberie, fuite, débouchage et chauffe-eau. Devis gratuit, photos acceptées en ligne.";
+  "Contactez l'Entreprise Charles Pereira, 26 boulevard Garibaldi, Paris 15e : plomberie, fuite, débouchage et chauffe-eau. Devis gratuit, photos acceptées.";
 export const metadata = pageMeta({ title, description, path });
 
 const brief =

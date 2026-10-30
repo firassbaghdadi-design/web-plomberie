@@ -14,7 +14,7 @@ export const localPages: Page[] = [
     zone: "Paris 7e",
     title: "Plombier Paris 7e : fuite, sanitaires, chauffe-eau | Pereira",
     description:
-      "Plombier pour le 7e arrondissement, voisin du 15e : fuite, sanitaires, chauffe-eau et débouchage par l'Entreprise Charles Pereira, depuis le boulevard Garibaldi.",
+      "Plombier pour le 7e arrondissement, voisin du 15e : fuite, sanitaires, chauffe-eau et débouchage par l'Entreprise Charles Pereira, du boulevard Garibaldi.",
     h1: "Plombier à Paris 7e, voisin du 15e",
     kicker: "Plomberie · Paris 7e",
     lead: "Des immeubles de pierre, des parquets et des moulures à protéger : un plombier du 15e qui travaille avec soin dans le 7e.",
@@ -75,7 +75,7 @@ export const localPages: Page[] = [
     zone: "Paris 14e",
     title: "Plombier Paris 14e : dépannage et installation | Pereira",
     description:
-      "Plombier pour le 14e, de Montparnasse à Alésia, par l'Entreprise Charles Pereira du 15e voisin : dépannage, débouchage, sanitaires et chauffe-eau. Devis gratuit.",
+      "Plombier pour le 14e, de Montparnasse à Alésia, par l'Entreprise Charles Pereira du 15e voisin : dépannage, débouchage, sanitaires, chauffe-eau. Devis gratuit.",
     h1: "Plombier à Paris 14e, de Montparnasse à Alésia",
     kicker: "Plomberie · Paris 14e",
     lead: "Petites surfaces, ateliers d'artistes, immeubles de rapport : le 14e a des installations à son image, variées.",
@@ -134,7 +134,7 @@ export const localPages: Page[] = [
     path: "/plombier-paris-16",
     slug: "plombier-paris-16",
     zone: "Paris 16e",
-    title: "Plombier Paris 16e : chauffe-eau, fuite, sanitaires | Pereira",
+    title: "Plombier Paris 16e : chauffe-eau, fuite, WC | Pereira",
     description:
       "Plombier pour le 16e, de Passy à Auteuil, par l'Entreprise Charles Pereira, voisine du boulevard Garibaldi : chauffe-eau, fuite, sanitaires et débouchage.",
     h1: "Plombier à Paris 16e, de Passy à Auteuil",
@@ -195,7 +195,7 @@ export const localPages: Page[] = [
     path: "/plombier-issy-les-moulineaux",
     slug: "plombier-issy-les-moulineaux",
     zone: "Issy-les-Moulineaux",
-    title: "Plombier Issy-les-Moulineaux : dépannage, sanitaires | Pereira",
+    title: "Plombier Issy-les-Moulineaux : fuite, sanitaires | Pereira",
     description:
       "Plombier à Issy-les-Moulineaux, commune voisine du 15e : l'Entreprise Charles Pereira intervient pour fuite, débouchage, sanitaires, chauffe-eau et chauffage.",
     h1: "Plombier à Issy-les-Moulineaux, voisin du 15e",

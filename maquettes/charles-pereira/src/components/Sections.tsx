@@ -62,7 +62,7 @@ export function PageHero({ page, crumbs, home = false }: { page: Page; crumbs: {
           <CtaButtons contactType={page.contactType} />
         </div>
         {facts.length ? (
-          <dl className="fade-in mt-12 grid max-w-3xl grid-cols-3 gap-x-4 border-t border-line pt-5 lg:mt-auto" style={{ ["--d" as string]: "550ms" }}>
+          <dl className="fade-in mt-12 hidden max-w-3xl grid-cols-3 sm:grid gap-x-4 border-t border-line pt-5 lg:mt-auto" style={{ ["--d" as string]: "550ms" }}>
             {facts.map((f) => (
               <div key={f.label}>
                 <dt className="label">{f.label}</dt>
@@ -72,7 +72,7 @@ export function PageHero({ page, crumbs, home = false }: { page: Page; crumbs: {
           </dl>
         ) : null}
       </div>
-      <div data-art aria-hidden="true" className={`wrap-flat w-full ${home ? "h-[110px] sm:h-[150px]" : "h-[96px] sm:h-[130px]"}`} />
+      <div data-art aria-hidden="true" className={`wrap-flat w-full ${home ? "h-[130px] sm:h-[200px]" : "h-[120px] sm:h-[180px]"}`} />
     </section>
   );
 }

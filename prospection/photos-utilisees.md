@@ -160,3 +160,10 @@ SMAP utilise d abord les photos de son propre site (récupérées au build) ; le
 ## monteil
 
 Monteil & Cie : aucune photo Pexels. Toutes les photos viennent du site actuel de l entreprise (monteil-info.fr : équipe, cordiste, recherche de fuite, dix couples avant / après), téléchargées au build par maquettes/monteil/scripts/fetch-photos.mjs. Aucune photo du registre n est reprise.
+
+## charles-pereira
+
+- 11299684 : Charles Pereira (immeuble) — « Typical French Residential Building »
+- 21009067 : Charles Pereira (facade) — « Buildings with Apartments in Paris in France »
+
+Entreprise Charles Pereira n a pas de site : deux photos Pexels d immeubles parisiens, choisies par leur titre exact (non vérifiées visuellement, à contrôler).
