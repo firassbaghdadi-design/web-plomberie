@@ -16,13 +16,13 @@ const files = JSON.parse(readFileSync(new URL("src/lib/photo-files.json", root),
 const ORIGIN = files.origin;
 
 async function get(url, kind = "text") {
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(25000) });
+      const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error(String(res.status));
       return kind === "text" ? await res.text() : Buffer.from(await res.arrayBuffer());
     } catch (error) {
-      if (attempt === 3) console.warn(`[photos] ${url} : ${error.message}`);
+      if (attempt === 2) console.warn(`[photos] ${url} : ${error.message}`);
     }
   }
   return null;
@@ -113,6 +113,7 @@ const imagesOf = (html) => {
   return found;
 };
 
+const DEADLINE = Date.now() + 110000; // le prébuild ne doit jamais retarder le déploiement
 const pages = {};
 let hero = null;
 let history = null;
@@ -120,7 +121,7 @@ const done = new Map(); // url d'origine -> chemin local (une image n'est télé
 let total = 0;
 async function fetchImage(url, name) {
   if (done.has(url)) return done.get(url);
-  if (total >= 140) return null;
+  if (total >= 140 || Date.now() > DEADLINE) return null;
   const buf = await get(url, "buffer");
   if (!buf) return null;
   try {
@@ -136,14 +137,15 @@ async function fetchImage(url, name) {
   }
 }
 
-for (const slug of files.pages) {
+async function doPage(slug) {
+  if (Date.now() > DEADLINE) return;
   const html = slug === "" ? home : await get(`${ORIGIN}/${slug}/`);
-  if (!html) continue;
+  if (!html) return;
   const urls = imagesOf(html).slice(0, slug === "" ? 12 : 9);
   const key = slug === "" ? "accueil" : slug;
+  const got = await Promise.all(urls.map(async (url, i) => ({ url, local: await fetchImage(url, `${key.slice(0, 40)}-${String(i + 1).padStart(2, "0")}`) })));
   const list = [];
-  for (const [i, url] of urls.entries()) {
-    const local = await fetchImage(url, `${key.slice(0, 40)}-${String(i + 1).padStart(2, "0")}`);
+  for (const { url, local } of got) {
     if (!local) continue;
     list.push(local);
     if (!hero && /excellence/i.test(decodeURIComponent(url))) hero = local;
@@ -151,6 +153,8 @@ for (const slug of files.pages) {
   }
   pages[key] = list;
 }
+const queue = [...files.pages];
+await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) await doPage(queue.shift()); }));
 console.log(`[photos] ${total} photos de l'entreprise, ${Object.keys(pages).length} pages`);
 
 /* ———————————————— 3. Photos Pexels de repli ———————————————— */
