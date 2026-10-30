@@ -13,7 +13,7 @@ export const localPages: Page[] = [
     zone: "Paris 19e",
     title: "Plombier chauffagiste Paris 19e : Buttes-Chaumont | DBP",
     description:
-      "Plombier chauffagiste à Paris 19e, à deux pas de la porte des Lilas : fuites, colonnes d'immeubles des années 1930, radiateurs et chaudière. DBP Plomberie-Chauffage.",
+      "Plombier chauffagiste à Paris 19e, près de la porte des Lilas : fuites, colonnes d'immeubles des années 1930, radiateurs et chaudière. DBP Plomberie-Chauffage.",
     h1: "Plombier chauffagiste à Paris 19e, côté Buttes-Chaumont",
     kicker: "Plomberie et chauffage · Paris 19e",
     lead: "Des villas des Buttes-Chaumont aux immeubles de la place des Fêtes : un plombier chauffagiste voisin, installé à la limite du 19e.",
@@ -55,6 +55,8 @@ export const localPages: Page[] = [
       },
       {
         h2: "Villa, pavillon ou cité du 19e : qu'est-ce qui change ?",
+        answer:
+          "Dans une petite maison, l'occupant est responsable de toute l'installation : compteur, canalisations, chaudière et radiateurs. Dans un immeuble collectif, il s'occupe de l'intérieur de son logement et la copropriété du reste. Indiquez dès l'appel si vous habitez une maison ou un appartement.",
         paras: [
           "Le 19e garde des villas et des cités aux maisons basses, héritées de l'ancien faubourg. Ces petites maisons ont leur propre compteur, leur propre chaudière, parfois une cave où passent les tuyaux : la chaudière individuelle et son entretien annuel y sont l'affaire du propriétaire.",
           "Dans un immeuble collectif, l'occupant s'occupe de l'intérieur de son logement, et la copropriété du reste. Cette frontière, qui sépare un radiateur d'une colonne, se pose dès l'appel : indiquez si vous habitez une maison ou un appartement.",
@@ -88,7 +90,7 @@ export const localPages: Page[] = [
     zone: "Paris 11e",
     title: "Plombier chauffagiste Paris 11e : Ménilmontant | DBP",
     description:
-      "Plombier chauffagiste à Paris 11e, côté Ménilmontant et Père-Lachaise : fuites, WC et lavabos bouchés, petites salles de bains, radiateurs. DBP Plomberie-Chauffage.",
+      "Plombier chauffagiste à Paris 11e, côté Ménilmontant : fuites, WC et lavabos bouchés, petites salles de bains, radiateurs et chaudière. DBP Plomberie-Chauffage.",
     h1: "Plombier chauffagiste à Paris 11e, côté Ménilmontant",
     kicker: "Plomberie et chauffage · Paris 11e",
     lead: "Des petits appartements sur cour aux anciens ateliers : un plombier chauffagiste qui connaît les logements compacts de l'est parisien.",
@@ -130,6 +132,8 @@ export const localPages: Page[] = [
       },
       {
         h2: "Chauffage individuel dans un petit logement : comment bien régler ?",
+        answer:
+          "Réglez chaque radiateur avec un robinet thermostatique plutôt que de tourner la chaudière au maximum. Laissez les radiateurs en fonte chauffer régulièrement, car ils montent lentement en température. Purgez-les chaque automne et vérifiez la pression : un circuit propre chauffe plus vite et consomme moins.",
         paras: [
           "Dans un deux-pièces du 11e, une petite chaudière individuelle ou un chauffage électrique suffit, à condition d'être bien réglé. Les radiateurs en fonte hérités de l'ancien chauffage collectif donnent une chaleur douce mais lente à monter : on les laisse chauffer régulièrement plutôt que de les pousser au maximum.",
           "Un robinet thermostatique par radiateur évite de surchauffer une chambre quand le salon réclame de la chaleur. DBP peut les poser et purger le circuit dans la même visite.",
@@ -205,6 +209,8 @@ export const localPages: Page[] = [
       },
       {
         h2: "Pourquoi faire venir un plombier de Paris pour une commune voisine ?",
+        answer:
+          "Parce que la distance est courte : la villa Gagliardini est à quelques minutes des Lilas par la porte des Lilas. Un voisin se déplace pour une petite intervention sans que le trajet pèse sur la demande, et connaît déjà le secteur, les accès et les stationnements.",
         paras: [
           "Les Lilas sont à quelques minutes de la villa Gagliardini : le trajet est celui d'un voisin, pas d'un déplacement lointain. L'entreprise connaît le secteur de la porte des Lilas, où le métro, le tramway et les rues se croisent.",
           "Pour fixer un rendez-vous, donnez l'adresse exacte, le type de logement et les photos du problème. L'équipe voit alors si la demande relève d'une intervention simple ou d'un devis plus complet.",
@@ -270,13 +276,15 @@ export const localPages: Page[] = [
       {
         h2: "Qui décide de remplacer une chaudière collective ?",
         answer:
-          "L'assemblée générale des copropriétaires, sur proposition du syndic et après devis. Le chauffagiste peut établir un diagnostic de l'état de la chaudière et des colonnes pour éclairer le vote. Aucune décision n'est prise par un seul copropriétaire.",
+          "L'assemblée générale des copropriétaires, sur proposition du syndic et après présentation de plusieurs devis. Le chauffagiste peut établir un diagnostic de l'état de la chaudière et des colonnes pour éclairer le vote. Aucune décision ne se prend à titre individuel, par un seul copropriétaire.",
         paras: [
           "Pour préparer ce vote, le syndic demande souvent plusieurs devis comparables. Donnez-lui l'âge de la chaudière, ses pannes récentes et la consommation des dernières années : un devis est plus juste quand il part de faits.",
         ],
       },
       {
         h2: "Une fuite dans les parties communes : comment réagir ?",
+        answer:
+          "Prévenez aussitôt le syndic ou le gardien, qui peut couper l'arrivée d'eau concernée. Photographiez la fuite, notez l'heure et protégez ce qui peut l'être. L'intervention sur une partie commune se fait sur ordre du syndic, avec un compte rendu daté remis à la copropriété.",
         paras: [
           "Si vous voyez de l'eau dans une cage d'escalier, une cave ou un local technique, prévenez le syndic ou le gardien, qui coupe l'arrivée concernée. Photographiez la fuite et notez l'heure : le plombier arrivera mieux préparé.",
           "L'intervention sur une partie commune se fait sur ordre du syndic. Le plombier remet un compte rendu daté, qui sert à la copropriété pour son assurance et son carnet d'entretien.",
@@ -310,7 +318,7 @@ export const localPages: Page[] = [
     zone: "Bagnolet",
     title: "Plombier chauffagiste à Bagnolet (93) : résidences | DBP",
     description:
-      "Plombier chauffagiste à Bagnolet, près de la porte de Bagnolet : colonnes d'évacuation, fuites en résidence, radiateurs, chaudière. DBP Plomberie-Chauffage, Paris 20e.",
+      "Plombier chauffagiste à Bagnolet, près de la porte de Bagnolet : colonnes d'évacuation, fuites en résidence, radiateurs et chaudière. DBP Plomberie-Chauffage.",
     h1: "Plombier chauffagiste à Bagnolet, près de la porte de Bagnolet",
     kicker: "Plomberie et chauffage · Bagnolet",
     lead: "Des résidences, des immeubles collectifs et des pavillons : un plombier chauffagiste voisin, à quelques minutes de la porte des Lilas.",
@@ -352,6 +360,8 @@ export const localPages: Page[] = [
       },
       {
         h2: "Pavillon à Bagnolet : par où commencer pour moderniser le chauffage ?",
+        answer:
+          "Par un état des lieux sur place : âge et type de la chaudière, nombre et état des radiateurs, qualité de l'isolation. Selon le résultat, un entretien suffit ou un remplacement s'impose. Le chauffagiste chiffre alors chaque option avant que vous ne décidiez de quoi que ce soit.",
         paras: [
           "Pour un pavillon, la première étape est un état des lieux : âge de la chaudière, nombre et état des radiateurs, qualité de l'isolation. Un chauffagiste voit sur place si un entretien suffit ou si un remplacement s'impose.",
           "Les aides à la rénovation énergétique existent, mais leurs conditions changent : renseignez-vous auprès des organismes officiels avant de signer un devis, et demandez à l'entreprise ce que son devis couvre exactement.",

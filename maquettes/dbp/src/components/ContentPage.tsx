@@ -23,7 +23,7 @@ export function ContentPage({ path }: { path: string }) {
       <Brief text={page.brief} />
       <DeepContent sections={page.sections} />
       <FaqList items={page.faq} title={page.faqTitle} n={pad(k)} />
-      <LocalBlock contactType={page.contactType} zone={page.zone} n={pad(k + 1)} />
+      <LocalBlock contactType={page.contactType} zone={page.zone} intro={page.localIntro} n={pad(k + 1)} />
       <SeeAlso paths={page.related} current={path} n={pad(k + 2)} />
       <CtaBand title={page.ctaTitle} text={page.ctaText} contactType={page.contactType} />
       <JsonLd nodes={nodes} />

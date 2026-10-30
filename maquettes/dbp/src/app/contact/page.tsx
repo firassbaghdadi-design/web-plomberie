@@ -8,7 +8,7 @@ import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 const path = PATHS.contact;
 const title = "Contact : plombier chauffagiste à Paris 20e, devis gratuit";
 const description =
-  "Contactez DBP Plomberie-Chauffage, 1 villa Gagliardini, Paris 20e : fuite, débouchage, radiateurs et chaudière. Devis gratuit, formulaire avec photos et téléphone.";
+  "Contactez DBP Plomberie-Chauffage, 1 villa Gagliardini, Paris 20e : fuite, débouchage, radiateurs, chaudière. Devis gratuit, formulaire avec photos, téléphone.";
 export const metadata = pageMeta({ title, description, path });
 
 const brief =

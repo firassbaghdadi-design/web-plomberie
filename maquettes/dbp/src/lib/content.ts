@@ -10,9 +10,9 @@ import type { Page } from "./types";
  */
 
 export const home = {
-  title: "Plombier chauffagiste Paris 20e depuis 2007 | DBP",
+  title: "Plombier chauffagiste Paris 20e depuis 2007 | DBP Plomberie",
   description:
-    "DBP Plomberie-Chauffage, plombier chauffagiste à Paris 20e depuis 2007, villa Gagliardini : fuites, débouchage, sanitaires, radiateurs et chaudière. Devis gratuit.",
+    "DBP Plomberie-Chauffage, plombier chauffagiste à Paris 20e depuis 2007, villa Gagliardini : fuites, débouchage, sanitaires, radiateurs, chaudière. Devis gratuit",
   brief:
     "DBP Plomberie-Chauffage est un plombier chauffagiste de Paris 20e, installé au 1, villa Gagliardini, près de la porte des Lilas, depuis 2007. L'entreprise intervient en plomberie, de la fuite au débouchage, puis en chauffage, des radiateurs à la chaudière, chez les particuliers comme dans les copropriétés du quartier.",
   faq: [
@@ -51,13 +51,14 @@ export const servicePages: Page[] = [
     zone: "Paris 20e",
     title: "Plombier Paris 20e : fuite, débouchage, sanitaires | DBP",
     description:
-      "Plombier à Paris 20e, villa Gagliardini : recherche de fuite, débouchage d'évier, de lavabo et de WC, sanitaires et robinetterie. DBP Plomberie-Chauffage, devis gratuit.",
+      "Plombier à Paris 20e, villa Gagliardini : recherche de fuite, débouchage d'évier, de lavabo et de WC, sanitaires, robinetterie. DBP Plomberie-Chauffage, devis.",
     h1: "Plombier à Paris 20e, près de la porte des Lilas",
     kicker: "16° · Plomberie",
     lead: "Une fuite, un évier bouché, un robinet qui goutte : le plombier du 20e qui commence par le dépannage, depuis 2007.",
     brief:
       "Pour un plombier à Paris 20e, DBP Plomberie-Chauffage intervient depuis le 1, villa Gagliardini, près de la porte des Lilas : recherche et réparation de fuites, débouchage d'éviers, de lavabos, de WC, de baignoires et de siphons, pose et remplacement de sanitaires et de robinetterie, pour les particuliers et les copropriétés.",
     contactType: "plomberie",
+    localIntro: "Pour un plombier du 20e, l'atelier est à deux pas : environ 300 mètres de la porte des Lilas, côté rue Haxo.",
     service: "Plomberie",
     crumb: "Plombier Paris 20e",
     photo: "plombier",
@@ -157,6 +158,7 @@ export const servicePages: Page[] = [
     brief:
       "Pour un chauffagiste à Paris 20e, DBP Plomberie-Chauffage s'occupe depuis le 1, villa Gagliardini des radiateurs et de la chaudière : purge et remplacement de radiateurs, robinets thermostatiques, entretien annuel, réglage et dépannage de chaudière, pour les appartements, les maisons et les copropriétés du quartier.",
     contactType: "chauffage",
+    localIntro: "Un chauffagiste du quartier : l'atelier se trouve près de la porte des Lilas, accessible en métro, en tramway ou à vélo.",
     service: "Chauffage",
     crumb: "Chauffagiste Paris 20e",
     photo: "thermostat",

@@ -164,14 +164,14 @@ const approach: Record<string, string> = {
   Bagnolet: "Bagnolet se rejoint depuis le 20e par la rue de Bagnolet et le boulevard Davout.",
 };
 
-export function LocalBlock({ contactType, zone = "Paris 20e", n }: { contactType?: string; zone?: string; n: string }) {
+export function LocalBlock({ contactType, zone = "Paris 20e", intro, n }: { contactType?: string; zone?: string; intro?: string; n: string }) {
   const cell = "border-t border-line pt-5";
   return (
     <Section n={n} rubrique="Adresse" labelledBy="titre-local">
       <div className="grid gap-14 xl:grid-cols-12">
         <div className="xl:col-span-6">
           <h2 id="titre-local" className="h2" data-reveal>1, villa Gagliardini, Paris 20e</h2>
-          <p className="mt-6 max-w-lg">{approach[zone] ?? approach["Paris 20e"]}</p>
+          <p className="mt-6 max-w-lg">{intro ?? approach[zone] ?? approach["Paris 20e"]}</p>
           <div className="mt-10"><CtaButtons contactType={contactType} /></div>
         </div>
         <dl className="grid gap-x-10 gap-y-9 self-start sm:grid-cols-2 xl:col-span-6">

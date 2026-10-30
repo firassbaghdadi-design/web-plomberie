@@ -8,7 +8,7 @@ import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 const path = PATHS.legal;
 const title = "Mentions légales et crédits | DBP Plomberie Paris 20e";
 const description =
-  "Mentions légales du site de DBP Plomberie-Chauffage, plombier chauffagiste à Paris 20e : éditeur, hébergement, données personnelles et crédits des photographies.";
+  "Mentions légales du site de DBP Plomberie-Chauffage, plombier chauffagiste à Paris 20e : éditeur, hébergement, données personnelles et crédits photos.";
 export const metadata = pageMeta({ title, description, path });
 
 export default function LegalPage() {

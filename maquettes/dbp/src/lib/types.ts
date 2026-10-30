@@ -26,6 +26,8 @@ export type Page = {
   lead: string;
   brief: string;
   contactType: string;
+  /** Phrase d'introduction du bloc adresse, propre à la page. */
+  localIntro?: string;
   service?: string;
   crumb: string;
   sections: Section[];

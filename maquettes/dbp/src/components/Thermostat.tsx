@@ -6,7 +6,7 @@
  */
 const CX = 110;
 const CY = 110;
-const R = 84;
+const R = 88;
 const point = (deg: number, r: number) => {
   const a = (deg * Math.PI) / 180;
   return [CX + r * Math.cos(a), CY + r * Math.sin(a)] as const;
@@ -24,9 +24,9 @@ export function Dial({ labels = false, className = "", ariaHidden = true }: { la
       <path d={ARC} stroke="#e2e7ec" strokeWidth="3" strokeLinecap="round" pathLength={100} />
       <path d={ARC} data-dial-arc className="dial-arc" stroke="rgb(var(--accent))" strokeWidth="3" strokeLinecap="round" pathLength={100} />
       {TICKS.map(({ t, deg }) => {
-        const [ax, ay] = point(deg, 67);
-        const [bx, by] = point(deg, 74);
-        const [lx, ly] = point(deg, 54);
+        const [ax, ay] = point(deg, 74);
+        const [bx, by] = point(deg, 80);
+        const [lx, ly] = point(deg, 64);
         return (
           <g key={t}>
             <line x1={ax} y1={ay} x2={bx} y2={by} stroke="#9aa3ac" strokeWidth="1.2" strokeLinecap="round" />
@@ -40,9 +40,9 @@ export function Dial({ labels = false, className = "", ariaHidden = true }: { la
         <circle cx={CX} cy={CY - R} r="7" fill="#fff" stroke="rgb(var(--accent))" strokeWidth="1.6" />
         <circle cx={CX} cy={CY - R} r="2.2" fill="rgb(var(--accent))" />
       </g>
-      <text x={CX} y={labels ? CY + 8 : CY + 5} textAnchor="middle" dominantBaseline="central" fontSize={labels ? 38 : 44} fill="#13171c" style={{ letterSpacing: "-0.04em", fontVariantNumeric: "tabular-nums" }} data-temp>16,0°</text>
+      <text x={CX} y={labels ? CY + 4 : CY + 4} textAnchor="middle" dominantBaseline="central" fontSize={labels ? 30 : 42} fill="#13171c" style={{ letterSpacing: "-0.04em", fontVariantNumeric: "tabular-nums" }} data-temp>16,0°</text>
       {labels ? (
-        <text x={CX} y={CY + 36} textAnchor="middle" fontSize="7.4" fill="#6a727b" style={{ letterSpacing: "0.22em", textTransform: "uppercase" }} data-dial-mood>Dépannage</text>
+        <text x={CX} y={CY + 26} textAnchor="middle" fontSize="7.4" fill="#6a727b" style={{ letterSpacing: "0.22em", textTransform: "uppercase" }} data-dial-mood>Dépannage</text>
       ) : null}
     </svg>
   );
