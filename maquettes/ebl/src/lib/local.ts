@@ -195,9 +195,9 @@ export const localPages: Local[] = [
   local({
     slug: "plombier-paris-13",
     zone: "Paris 13e",
-    title: "Plombier Paris 13e : Gobelins, Glacière, Butte-aux-Cailles | EBL",
+    title: "Plombier Paris 13e : Glacière et Butte-aux-Cailles | EBL",
     description:
-      "Plombier dans le 13e arrondissement de Paris : EBL, entreprise du 14e installée depuis 1978, intervient à la Glacière, à la Butte-aux-Cailles et près de Denfert.",
+      "Plombier dans le 13e arrondissement de Paris : EBL, entreprise du 14e installée depuis 1978, intervient à la Glacière, à la Butte-aux-Cailles, près d'Alésia.",
     h1: "Plombier Paris 13e : Glacière, Butte-aux-Cailles",
     kicker: "Plombier · Paris 13e",
     lead: "Au sud-est du 14e, la rue de la Santé et le boulevard Auguste-Blanqui mènent droit aux quartiers du 13e.",

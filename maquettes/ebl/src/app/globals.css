@@ -10,10 +10,10 @@
   --accent-deep: 18 78 100;
   --accent-tint: 237 245 248;
   --gutter: clamp(1.4rem, 4.2vw, 3.25rem);
-  --rail-h: min(calc(100svh - 12rem), 380px);
+  --rail-h: min(calc(100svh - 13rem), 300px);
   --rail-w: calc(var(--rail-h) * 100 / 490);
-  --rail-col: calc(var(--rail-w) + .6rem);
-  --wrap-r: .5rem;
+  --rail-col: calc(var(--rail-w) + .3rem);
+  --wrap-r: .35rem;
   --head-h: 4.25rem;
 }
 @media (min-width: 1024px) { :root { --head-h: 5.25rem; --rail-h: min(calc(100svh - 8rem), 600px); --rail-w: calc(var(--rail-h) * 200 / 490); --rail-col: calc(var(--rail-w) + 1.5rem); --wrap-r: var(--gutter); } }
@@ -116,3 +116,6 @@ details.faq[open] .faq-plus::after { transform: rotate(0deg); }
   .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
 }
 
+
+.shell > main { position: relative; z-index: 1; }
+@media (max-width: 639px) { .btn { padding-inline: 1.15rem; font-size: .86rem; gap: .6rem; } }

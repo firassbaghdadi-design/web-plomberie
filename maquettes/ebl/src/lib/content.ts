@@ -19,9 +19,9 @@ export const about = {
 export const home = {
   title: "Plombier à Paris 14e depuis 1978 : gaz et chauffage | EBL",
   description:
-    "EBL, Entreprise Bernard Lemaître : plombier à Paris 14e depuis 1978, rue d'Alésia. Plomberie, gaz et chauffage, certifié Professionnel du Gaz, de la cave aux toits.",
+    "EBL, plombier à Paris 14e depuis 1978, rue d'Alésia. Plomberie, gaz et chauffage, certifiée Professionnel du Gaz, de la cave aux toits des immeubles du 14e.",
   brief:
-    "EBL est un plombier installé au 5 rue d'Alésia, à Paris 14e, depuis 1978. L'Entreprise Bernard Lemaître réunit dix à dix-neuf salariés et détient la certification Professionnel du Gaz. Elle intervient en plomberie, en gaz et en chauffage, de la cave aux toits des immeubles du quartier. Appelez le 01 43 31 26 77 ou écrivez-nous.",
+    "EBL est un plombier installé au 5 rue d'Alésia, à Paris 14e, depuis 1978. L'Entreprise Bernard Lemaître réunit dix à dix-neuf salariés et détient la certification Professionnel du Gaz. Elle intervient en plomberie, en gaz et en chauffage, de la cave aux toits des immeubles du 14e. Appelez le 01 43 31 26 77 ou écrivez-nous.",
 };
 
 const plumbing: Page = {
@@ -110,7 +110,7 @@ const gas: Page = {
   path: PATHS.gas,
   title: "Plombier gaz à Paris 14e : Professionnel du Gaz | EBL",
   description:
-    "Plombier gaz à Paris 14e : EBL, certifiée Professionnel du Gaz, installe et entretient les systèmes au gaz et traite les fuites de gaz, rue d'Alésia depuis 1978.",
+    "Plombier gaz à Paris 14e : EBL, certifiée Professionnel du Gaz, installe et entretient les systèmes au gaz et traite les fuites, rue d'Alésia depuis 1978.",
   h1: "Plombier gaz à Paris 14e : Professionnel du Gaz",
   kicker: "Gaz",
   lead: "Installation, maintenance et sécurité des systèmes au gaz, par une entreprise certifiée Professionnel du Gaz.",
@@ -192,7 +192,7 @@ const heating: Page = {
   path: PATHS.heating,
   title: "Chauffagiste à Paris 14e : chaudière, eau chaude | EBL",
   description:
-    "Chauffagiste à Paris 14e : EBL, plombier rue d'Alésia depuis 1978, installe et entretient chaudières, radiateurs et production d'eau chaude des immeubles du quartier.",
+    "Chauffagiste à Paris 14e : EBL, plombier rue d'Alésia depuis 1978, installe et entretient chaudières, radiateurs et eau chaude des immeubles du quartier.",
   h1: "Chauffagiste à Paris 14e : chaudière, radiateurs, eau chaude",
   kicker: "Chauffage",
   lead: "Du radiateur qui ne chauffe plus au chauffe-eau à remplacer : la chaleur et l'eau chaude de l'immeuble, suivies par la même équipe.",

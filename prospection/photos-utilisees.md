@@ -138,3 +138,10 @@ Photos du site de l'entreprise récupérées au build quand elles existent ; qua
 - 8486928 : Houdry-Grenot (cle) — « Handywoman Holding a Plumbers Wrench »
 - 34295401 : Houdry-Grenot (robinet) — « Modern Chrome Kitchen Faucet with Running Water »
 - 31213992 : Houdry-Grenot (lavabo) — « Water Flowing into a Bathroom Sink »
+## ebl
+
+- 6419128 : EBL (raccords) — « Plumber Installs Pipe Fittings »
+- 7220892 : EBL (evier) — « A Person Holding Brown Doorknob »
+- 12105083 : EBL (outils) — « Close-up of Wrench and Tools »
+
+EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leur titre exact sur pexels.com.

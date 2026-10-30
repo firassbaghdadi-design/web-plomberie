@@ -7,7 +7,7 @@ import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 const path = PATHS.legal;
 const title = "Mentions légales d'EBL, plombier à Paris 14e, rue d'Alésia";
 const description =
-  "Mentions légales du site d'EBL, Entreprise Bernard Lemaître, plombier au 5 rue d'Alésia, Paris 14e : éditeur, identification au registre, hébergement et crédits photos.";
+  "Mentions légales du site d'EBL, Entreprise Bernard Lemaître, plombier au 5 rue d'Alésia, Paris 14e : éditeur, registre, hébergement et crédits photos.";
 export const metadata = pageMeta({ title, description, path });
 
 export default function LegalPage() {

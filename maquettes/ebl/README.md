@@ -1,51 +1,37 @@
-# Maquette — Entreprise Clairon (Paris 15e)
+# Maquette : EBL, Entreprise Bernard Lemaître (Paris 14e)
 
-Refonte multi-pages d'entreprise-clairon.fr, en Next.js 14 (App Router, TypeScript, Tailwind). Maquette privée : `noindex` et `Disallow: /` tant que `NEXT_PUBLIC_INDEXABLE` n'est pas à `true`. Badge « Maquette Atelier Truelle » en bas de page.
+Site multi-pages pour une entreprise de plomberie sans site actuel, en Next.js 14 (App Router, TypeScript, Tailwind). Maquette privée : `noindex` et `Disallow: /` tant que `NEXT_PUBLIC_INDEXABLE` n'est pas à `true`. `og:image` pointe vers l'URL Vercel (`SHARE_URL`), le canonical garde le domaine du client.
 
-## Concept : le fil à plomb (« d'aplomb depuis 1943 »)
+## Concept : la coupe d'immeuble
 
-« Plombier » vient du plomb (*plumbum*), le métal du fil à plomb qui dit si un mur est droit. `Plumb.tsx` : un fil fin accroché en haut de page descend dans la marge droite au rythme de la lecture ; le plomb oscille légèrement quand on fait défiler (pendule amorti), puis se stabilise. Chaque section numérotée allume un repère sur le fil ; en bas de page, le plomb se pose dans sa cible (« d'aplomb »). Sur l'accueil, `Skyline.tsx` dessine le quartier au trait (immeubles à toit brisé, tour Eiffel, tours du Front de Seine) et un fil tombe du sommet de la tour. Fonctionne sur mobile ; `prefers-reduced-motion` respecté (pas d'oscillation).
+`Immeuble.tsx` : un immeuble parisien dessiné en coupe, en traits fins (cave voûtée, rez-de-chaussée, trois étages, toit en zinc avec lucarnes et cheminées), et la colonne d'eau qui monte du compteur de la cave jusqu'aux toits. Chaque section est un étage (`data-floor`, de 0 à 5) : la colonne se remplit au défilement, l'étage atteint est teinté et son branchement et son appareil (robinet, radiateur, évier, baignoire, chauffe-eau) passent à la couleur d'accent. Le trait se dessine au chargement. Sur téléphone, seule la moitié droite du dessin est visible (colonne et appareils), par recadrage. `prefers-reduced-motion` respecté.
 
 ## Charte
 
-- Typographie : Hanken Grotesk (variable), titres en 250-300 ; aucune autre maquette du dépôt ne l'utilise.
-- Fond blanc, encre presque noire, gris « plomb » pour le fil, une seule couleur d'accent.
-- Couleur d'accent : le site actuel n'était pas lisible depuis l'environnement de travail. `scripts/fetch-site-photos.mjs` la calcule au build (couleur saturée la plus présente dans les styles du site, assombrie pour rester lisible) et écrit `src/app/brand.generated.css` ; à défaut, bleu `rgb(30 76 140)`.
-- Logo : téléchargé au build s'il existe sur le site actuel ; sinon le nom « CLAIRON » composé en capitales espacées (le site actuel affiche le nom en texte).
+- Police : Public Sans (variable), titres en 250-300.
+- Fond blanc, encre presque noire, une seule couleur d'accent : bleu d'eau `rgb(31 111 139)`. Aucun logo publié : couleur choisie pour la colonne d'eau, à confirmer.
+- Logo : sigle « EBL » en capitales espacées (aucun logo d'origine).
 
-## Pages
+## Sources des contenus
 
-| URL | Contenu |
-|---|---|
-| `/` | Accueil : textes « Qui sommes nous ? » et description du site actuel, métiers, quartier, clientèles |
-| `/plomberie`, `/couverture`, `/chauffage` | Pages du site actuel (`/plomberie/` etc., redirigées sans barre finale) : titre « Un service adapté à vos besoins », liste des prestations, « Organisez votre rendez-vous » ; textes complétés |
-| `/contact` | Seul formulaire du site (photos jointes, envoi Resend) |
-| `/mentions-legales`, `/plan-du-site` | |
-| `/plombier-paris-15`, `/couvreur-paris-15`, `/chauffagiste-paris-15`, `/renovation-salle-de-bains-paris-15`, `/plombier-syndic-copropriete-paris-15` | Métier × 15e |
-| `/plombier-paris-7`, `/plombier-paris-14`, `/plombier-paris-16`, `/plombier-issy-les-moulineaux`, `/plombier-vanves` | Arrondissements et communes voisins |
-
-## Repris du site actuel (relevé du 27 octobre 2026)
-
-Accueil : « Qui sommes nous ? » (entreprise familiale créée en 1943, 23 rue d'Ouessant, plomberie, couverture, chauffage et petite maçonnerie, compagnons qualifiés, particuliers, professionnels et syndics), balise description, coordonnées (01 47 83 88 40, info@clairon.org), « © Société Clairon ». Plomberie : Sanitaire, Robinetterie, Tuyauterie, Rénovation de salle de bains. Les listes des pages Couverture et Chauffage n'ont pas pu être lues : le build les reprend du site actuel (`src/lib/original.generated.json`) et les affiche s'il les trouve.
+Pages Jaunes (adresse, téléphone 01 43 31 26 77, horaires, « Professionnel du Gaz », prestation « fuite de gaz »), registre (SIREN 312 906 126, SARL à associé unique, création 1978, NAF 4322A), fiche Google (3,7/5, 3 avis, relevé du classement de prospection). Rien d'autre n'est affirmé : pas de prix, délai, client ni avis cité.
 
 ## À faire confirmer par l'entreprise
 
-- Date de création : « 1943 » sur le site (entreprise familiale), 1957 au registre. La maquette affiche 1943.
-- Horaires : non publiés ; la maquette dit « sur rendez-vous ».
-- Zone : 7e, 14e, 16e, Issy-les-Moulineaux et Vanves ne sont pas cités par l'entreprise ; les pages renvoient vers une confirmation.
-- Devis gratuit (bouton « Devis gratuit » du gabarit), listes Couverture et Chauffage, couleur et logo réels, repères de quartier (à faire relire).
-- Note Google (3,3/5 sur 36 avis) volontairement non affichée.
+- Date de création : 1er janvier 1978 (Pages Jaunes, registre) ou inscription au greffe le 2 juin 1978 (autre annuaire).
+- Certification Professionnel du Gaz (numéro à demander) et périmètre exact des appareils au gaz pris en charge.
+- Chauffage : le code NAF est « installation d'eau et de gaz » ; la page Chauffage est un prolongement prudent, à valider.
+- Zone d'intervention (15e, 6e, 13e, Montrouge, Malakoff) ; repères de quartier à faire relire par un habitant.
+- Second numéro 01 45 87 06 41 (fax sur Pages Jaunes) non publié ; adresse e-mail à fournir (variable `CONTACT_TO_EMAIL`, envoi par Resend).
+- Gérant (le registre donne J.-P. Lemaitre selon une source, Jean Lemaitre selon une autre) : nom du responsable de publication.
+- Numéro d'urgence gaz cité (0 800 47 33 33) : à vérifier avant mise en ligne.
+- Horaires : lundi-jeudi 8 h-12 h 30 / 13 h 30-18 h, vendredi jusqu'à 17 h (Pages Jaunes).
+- Photos : trois photos Pexels de mains et d'outils (pas de photo de l'entreprise).
 
-## Photos
+## Pages
 
-1. Photos de l'entreprise : récupérées au build sur le site actuel (plus de 700 × 450 px) ; la première remplace la photo du héros, toutes s'affichent dans « En images ».
-2. Pexels (`src/lib/pexels.json`, inscrites dans `prospection/photos-utilisees.md`) : 16209099, 5691640, 32990521, 14953886.
+`/`, `/plomberie`, `/gaz`, `/chauffage`, `/contact` (seul formulaire), `/mentions-legales`, `/plan-du-site`, et métier × zone : `/plombier-paris-14`, `/plombier-paris-15`, `/plombier-paris-6`, `/plombier-paris-13`, `/plombier-montrouge`, `/plombier-malakoff`.
 
-## Lancer et contrôler
+## Commandes
 
-```bash
-npm install
-npm run build          # prebuild : relevé du site actuel, photos, couleur
-npm start -- -p 3311
-node scripts/audit-seo.mjs http://localhost:3311   # 17 pages, 0 problème
-```
+`npm run build` (prébuild : téléchargement des photos), `npm run audit:seo` sur un serveur lancé (`node scripts/audit-seo.mjs http://localhost:3111 https://ebl-plomberie.fr`).
