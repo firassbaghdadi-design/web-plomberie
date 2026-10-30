@@ -38,7 +38,7 @@
 ## 3. Cohabitation (plusieurs agents en parallèle)
 - Ne touche **qu'à** `maquettes/<ton-slug>/` et **à ta propre section** à la fin de `prospection/photos-utilisees.md`, sous un titre `## <ton-slug>`. Ne modifie aucun autre fichier.
 - Commite **souvent**, avec seulement tes fichiers (`git add maquettes/<slug> prospection/photos-utilisees.md`). Pour pousser :
-  `git pull --rebase origin claude/plumbing-outreach-idf-yw3jbm && git push -u origin claude/plumbing-outreach-idf-yw3jbm`.
+  `git pull --rebase --autostash origin claude/plumbing-outreach-idf-yw3jbm && git push origin HEAD:claude/plumbing-outreach-idf-yw3jbm`. Si tu travailles dans un worktree, fais un `npm install` dans ton dossier.
   - En cas de rejet, recommence. En cas de conflit sur le registre des photos, garde les deux versions.
 - Le container peut redémarrer : un commit poussé ne se perd pas.
 - **Sandbox Vercel** : 4 appels `run_session_command` au maximum, puis arrête. Préfère un script de prébuild.
