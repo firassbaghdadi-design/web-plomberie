@@ -30,6 +30,7 @@
   - Sinon des photos Pexels d'artisans plausibles pour l'Île-de-France, ou des gros plans de mains et d'outils, choisies sur leur titre exact (WebSearch `site:pexels.com`).
   - **Jamais** une photo déjà présente dans le registre (fais `git pull` avant de choisir) ; jamais une photo bannie.
   - Les photos avant/après sont présentées en slider.
+- **Avant de livrer** : `git pull`, puis `grep -ohE "\b[0-9]{6,9}\b" prospection/photos-utilisees.md | sort | uniq -d` ne doit rien renvoyer qui te concerne.
 - **Aucun fait inventé.** Ce qui n'est pas sûr reste générique et va dans la liste « à confirmer ».
 - **La validation.**
   - `npm run build` passe.
