@@ -1,10 +1,6 @@
 {
   "pexels": {
-    "toits": { "id": 7816462, "title": "Chimneys on the Rooftop at Dusk", "author": "Pexels", "alt": "Souches de cheminée sur les toits au crépuscule" },
-    "outils": { "id": 5210901, "title": "Close Up Photo of Vice Grip and Wrench", "author": "Pexels", "alt": "Une pince-étau et une clé, les outils du plombier" },
-    "cle": { "id": 8488060, "title": "Close Up Photo of Plumbers Wrench on Wooden Surface", "author": "Pexels", "alt": "Une clé à molette de plombier ancienne posée sur un établi en bois" },
-    "radiateur": { "id": 4752984, "title": "Rusty Steam Radiator on Wall", "author": "Pexels", "alt": "Un radiateur en fonte ancien, raccordé au chauffage central d'un immeuble" },
-    "toiture": { "id": 4394224, "title": "Detail of house roof with chimney and attic windows", "author": "Pexels", "alt": "Détail d'une toiture avec souche de cheminée et fenêtres de toit" },
-    "atelier": { "id": 4888598, "title": "A Man Working in His Workshop", "author": "Pexels", "alt": "Un artisan au travail dans son atelier" }
+    "couvreurs": { "id": 38510734, "title": "Workers applying roofing material on building", "author": "Pexels", "alt": "Des couvreurs posent un revêtement sur une toiture" },
+    "couvreur": { "id": 38524264, "title": "Construction worker using drill for roofing", "author": "Pexels", "alt": "Un couvreur fixe un élément de toiture à la visseuse" }
   }
 }
