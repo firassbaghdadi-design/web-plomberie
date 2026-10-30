@@ -112,3 +112,13 @@ DBP Plomberie-Chauffage n'a pas de site : aucune photo d'entreprise. Cinq photos
 - 36077581 : DBP (thermostat) — « Modern Home Thermostat Adjusted by Hand »
 - 4819052 : DBP (radiateur) — « Old radiator near windowsill at home in daylight »
 - 31543027 : DBP (immeuble) — « Elegant 19th Century Parisian Corner Building »
+
+## s-petit
+
+Aucune photo de l'entreprise (pas de site). Cinq photos Pexels, choisies par leur titre exact sur pexels.com :
+
+- 7836293 : S. Petit (robinet) — « Close Up Photo of Tap Faucet »
+- 7220892 : S. Petit (mains) — « A Person Holding Brown Doorknob » (titre de la page ; la photo montre les mains d'un plombier qui ajuste une canalisation sous un évier)
+- 39885416 : S. Petit (cuivre) — « Close-up of Plumber Working with Copper Pipe »
+- 31058041 : S. Petit (facade) — « Elegant Haussmann Building in Paris, France »
+- 34295406 : S. Petit (bain) — « Close-Up of Water Faucet Dripping in Bathroom »
