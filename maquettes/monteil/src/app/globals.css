@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gutter: clamp(1rem, 4.4vw, 3.5rem);
+  --head-h: 4.1rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --accent: 10 111 158;
+  --accent-deep: 8 87 124;
+  --accent-wash: 237 245 249;
+  --ink: #0f1a24;
+}
+@media (min-width: 1280px) { :root { --head-h: 4.9rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-white font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 500; color: var(--ink); }
+::selection { background: rgb(var(--accent)); color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-variant-numeric: tabular-nums; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .btn { @apply inline-flex min-h-[3.2rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-deep; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent-deep; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { @apply text-accent-deep; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2rem] sm:text-[2.7rem] lg:text-[3.1rem]; }
+  .prose-mt p + p { @apply mt-4; }
+  .answer { @apply mt-6 border-l border-accent pl-5 text-[1.14rem] font-light leading-relaxed text-ink sm:text-[1.24rem]; }
+  .reponse-bref { @apply text-[1.24rem] font-light leading-[1.55] text-ink sm:text-[1.55rem]; letter-spacing: -0.012em; }
+}
+
+/* ————— Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité) ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+
+/* ————— En-tête fin qui se compacte ————— */
+.head { transition: background-color .3s, box-shadow .3s; box-shadow: 0 1px 0 rgb(var(--accent) / .0); }
+.head .head-row { transition: height .45s var(--ease); }
+.head.is-solid { background-color: rgba(255,255,255,.95); backdrop-filter: saturate(1.3) blur(14px); box-shadow: 0 1px 0 #e1e6ea; }
+.head.is-solid .head-row { height: 3.7rem; }
+.nav-link { background: linear-gradient(rgb(var(--accent)), rgb(var(--accent))) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent-deep)); }
+
+.row-link .row-arrow { transition: transform .5s var(--ease), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent)); }
+.row-link .row-title { transition: color .3s; }
+.row-link:hover .row-title { color: rgb(var(--accent-deep)); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Concept : le niveau à bulle —————
+   1. La fiole : une fine capsule posée sur le filet de l'en-tête. Sa bulle suit la lecture (Motion.tsx fixe --bx de -1 à 1)
+      et se centre entre les deux repères quand un titre est « d'aplomb » ; les repères prennent alors la couleur d'accent.
+   2. Le filet : sous chaque titre, un trait horizontal parfait se trace de gauche à droite, avec deux petits repères aux extrémités. */
+.vial {
+  --vw: clamp(190px, 46vw, 540px);
+  --half: calc(var(--vw) / 2 - 24px);
+  --bx: 0;
+  position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%);
+  width: var(--vw); height: 13px; border-radius: 999px; pointer-events: none;
+  border: 1px solid rgb(15 26 36 / .22);
+  background: linear-gradient(180deg, #fff 0%, rgb(var(--accent-wash)) 55%, #fff 100%);
+  box-shadow: 0 1px 0 #fff, inset 0 1px 1px rgb(15 26 36 / .06);
+  transition: border-color .5s;
+}
+.vial::before, .vial::after { content: ""; position: absolute; top: 2px; bottom: 2px; width: 1px; background: rgb(15 26 36 / .3); transition: background-color .4s, top .4s, bottom .4s; }
+.vial::before { left: calc(50% - 21px); }
+.vial::after { right: calc(50% - 21px); }
+.vial[data-true="1"] { border-color: rgb(var(--accent) / .55); }
+.vial[data-true="1"]::before, .vial[data-true="1"]::after { background: rgb(var(--accent)); top: 1px; bottom: 1px; }
+.vial-bubble {
+  position: absolute; top: 50%; left: calc(50% + var(--bx) * var(--half)); width: 30px; height: 7px; border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at 35% 30%, #fff 0%, rgb(var(--accent) / .22) 55%, rgb(var(--accent) / .45) 100%);
+  border: 1px solid rgb(var(--accent) / .6);
+}
+.vial[data-ready="0"] .vial-bubble { left: calc(50% + 0.9 * var(--half)); }
+
+.hp { position: relative; padding-bottom: 1.1rem; }
+.hp::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9px;
+  --c: rgb(var(--accent));
+  background:
+    linear-gradient(var(--c), var(--c)) 0 50% / 100% 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 0 / 1px 100% no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 1px 100% no-repeat;
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform 1.5s cubic-bezier(.5,0,.15,1) .15s;
+}
+.hp.is-in::after { transform: scaleX(1); }
+.js .hp:not(.is-in)::after { animation: hp-safety 0s 3.5s forwards; }
+.hp-load::after { animation: hp-draw 1.8s cubic-bezier(.5,0,.15,1) .9s both; transform: none; transition: none; }
+@keyframes hp-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes hp-safety { to { transform: scaleX(1); } }
+.hp-quiet { padding-bottom: 0; }
+.hp-quiet::after { display: none; }
+
+/* Comparateur avant / après */
+.ba-range { -webkit-appearance: none; appearance: none; background: transparent; touch-action: pan-y; }
+.ba-handle { position: absolute; top: 50%; left: 50%; width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #fff; color: var(--ink); box-shadow: 0 2px 10px rgb(15 26 36 / .25); transition: transform .3s var(--ease); }
+.ba:hover .ba-handle, .ba:focus-within .ba-handle { transform: scale(1.08); }
+.ba-cap { position: absolute; bottom: .9rem; font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 8px rgb(0 0 0 / .55); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+  .hp::after { transform: scaleX(1); }
+}
