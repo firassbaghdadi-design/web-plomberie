@@ -65,3 +65,6 @@ export const requestTypes = [
 ] as const;
 
 export type Faq = { q: string; a: string };
+
+/** Les images de partage (og:image) pointent vers l'URL Vercel de la maquette ; la balise canonical garde le domaine du client. */
+export const SHARE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : SITE_URL;

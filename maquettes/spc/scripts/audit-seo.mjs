@@ -1,12 +1,12 @@
-// Audit SEO de la maquette Kuschnick : node scripts/audit-seo.mjs http://localhost:3366 https://kuschnick.fr
+// Audit SEO de la maquette SPC : node scripts/audit-seo.mjs http://localhost:3366 https://spc-services.fr
 // Contrôle chaque page du sitemap selon la Bible : title, description, H1, canonical, « En bref », JSON-LD, FAQ,
 // réponses des H2-questions, longueur du contenu, formulaire, liens internes, images, doublons.
 const base = process.argv[2];
-const siteUrl = (process.argv[3] ?? "https://kuschnick.fr").replace(/\/$/, "");
+const siteUrl = (process.argv[3] ?? "https://spc-services.fr").replace(/\/$/, "");
 // Ville attendue dans le H1 : Paris (11e et arrondissements voisins)
-const cityRe = /paris/i;
+const cityRe = /paris|vincennes|saint-mand/i;
 const CONTACT = /^\/contact/;
-const LIGHT = /^\/mentions-legales$/;
+const LIGHT = /^\/(mentions-legales|realisations)$/;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ");
 const strip = (s) => dec(s.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<style[\s\S]*?<\/style>/g, " ").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 const sm = await (await fetch(`${base}/sitemap.xml`)).text();

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { INDEXABLE, LAST_UPDATED, PATHS, SITE_URL, business } from "./site";
+import { INDEXABLE, LAST_UPDATED, PATHS, SHARE_URL, SITE_URL, business } from "./site";
 import type { Faq } from "./site";
 
 type PageInput = { title: string; description: string; path: string };
@@ -11,8 +11,8 @@ export function pageMeta({ title, description, path }: PageInput): Metadata {
     description,
     alternates: { canonical: url },
     robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
-    openGraph: { type: "website", locale: "fr_FR", siteName: business.name, title, description, url, images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: `${business.name}, ${business.tagline}` }] },
-    twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/opengraph-image`] },
+    openGraph: { type: "website", locale: "fr_FR", siteName: business.name, title, description, url, images: [{ url: `${SHARE_URL}/opengraph-image`, width: 1200, height: 630, alt: `${business.name}, ${business.tagline}` }] },
+    twitter: { card: "summary_large_image", title, description, images: [`${SHARE_URL}/opengraph-image`] },
   };
 }
 

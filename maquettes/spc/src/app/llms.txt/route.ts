@@ -11,16 +11,18 @@ export function GET() {
 
 ## Coordonnées
 - ${business.address.street}, ${business.address.postalCode} Paris
-- Téléphone : ${business.phoneDisplay}
-- Métro : ${business.metro}
+- Téléphone : ${business.phoneDisplay} (portable ${business.mobileDisplay})
+- E-mail : ${business.email}
+- Horaires : ${business.hours}. ${business.emergency}
 - Zone : ${business.areaServed.join(", ")}
-- ${business.legalName}, ${business.rcs}, fondée en ${business.founded}
+- SIREN ${business.siren}
 
 ## Métiers
 ${trades.map((t) => `- ${t.title} : ${t.text}`).join("\n")}
 
 ## Pages
 ${allPages.map((p) => `- [${p.h1}](${SITE_URL}${p.path})`).join("\n")}
+- [Réalisations](${SITE_URL}${PATHS.gallery})
 - [Contact et devis gratuit](${SITE_URL}${PATHS.contact})
 `;
   return new Response(body, { headers: { "content-type": "text/plain; charset=utf-8" } });

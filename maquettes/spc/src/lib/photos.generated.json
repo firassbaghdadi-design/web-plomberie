@@ -1,1 +1,11 @@
-{ "generatedAt": null, "accent": "#1d5c86", "logo": null, "company": [], "pexels": {}, "pairs": [] }
+{
+  "generatedAt": "2026-10-30T06:36:58.354Z",
+  "accent": "#1d5c86",
+  "logo": null,
+  "company": [],
+  "pexels": {
+    "couvreurs": null,
+    "couvreur": null
+  },
+  "pairs": []
+}
