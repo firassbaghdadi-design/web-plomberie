@@ -10,7 +10,7 @@ import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 const path = PATHS.gallery;
 const title = "Réalisations : plomberie et couverture à Paris 12e | SPC";
 const description =
-  "Les chantiers de SPC à Paris 12e et alentour : plomberie d'immeuble, couverture, travaux sur corde, salles de bains. Photos de l'entreprise, reprises de son site.";
+  "Les chantiers de SPC à Paris 12e et alentour : plomberie d'immeuble, couverture, travaux sur corde, salles de bains. Photos reprises du site de l'entreprise.";
 export const metadata = pageMeta({ title, description, path });
 
 const brief =

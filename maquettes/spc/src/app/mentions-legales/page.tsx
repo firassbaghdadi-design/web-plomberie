@@ -6,7 +6,7 @@ import { PATHS, business } from "@/lib/site";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 
 const path = PATHS.legal;
-const title = "Mentions légales et crédits | SPC plombier couvreur Paris 12e";
+const title = "Mentions légales et crédits | SPC plombier Paris 12e";
 const description =
   "Mentions légales du site de SPC, Société Plomberie Couverture, plombier couvreur à Paris 12e : éditeur, hébergement, données personnelles et crédits photos.";
 export const metadata = pageMeta({ title, description, path });

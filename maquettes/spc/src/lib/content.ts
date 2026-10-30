@@ -192,7 +192,7 @@ const roofing: Page = {
 const drainage: Page = {
   path: PATHS.drainage,
   zone: "Paris 12e",
-  title: "Assainissement Paris 12e : curage, débouchage, relevage | SPC",
+  title: "Assainissement Paris 12e : curage, débouchage | SPC",
   description:
     "Assainissement à Paris 12e : curage, débouchage, dégorgement et inspection vidéo des canalisations, pompes de relevage, contrats d'entretien pour syndics.",
   h1: "Assainissement à Paris 12e, curage et pompes de relevage",
@@ -305,7 +305,7 @@ const homes: Page = {
     {
       h2: "Rénovez-vous aussi les cuisines ?",
       answer:
-        "Oui, la réfection de cuisine fait partie des prestations de SPC : déplacement ou création des arrivées d'eau et des évacuations, raccordement de l'évier, du lave-vaisselle et du lave-linge, reprise des canalisations vieillissantes cachées derrière les meubles.",
+        "Oui, la réfection de cuisine fait partie des prestations de SPC : déplacement ou création des arrivées d'eau et des évacuations, raccordement de l'évier, du lave-vaisselle et du lave-linge, reprise des canalisations vieillissantes cachées derrière les meubles. Le devis détaille chaque raccordement prévu.",
     },
   ],
   faq: [

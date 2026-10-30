@@ -126,7 +126,7 @@ export const localPages: Page[] = [
     zone: "Paris 20e",
     title: "Plombier Paris 20e : copropriétés et particuliers | SPC",
     description:
-      "Plombier pour le 20e arrondissement : plomberie de copropriété, rénovation de canalisations, raccordement de sanitaires et dépannage 6 h – minuit. Devis gratuit.",
+      "Plombier pour le 20e arrondissement : plomberie de copropriété, rénovation de canalisations, pose de sanitaires et dépannage 6 h – minuit. Devis gratuit.",
     h1: "Plombier à Paris 20e, copropriétés et particuliers",
     kicker: "Plomberie · Paris 20e",
     lead: "Des immeubles anciens de Charonne aux ensembles plus récents des portes, le 20e réunit toutes les générations de plomberie.",
@@ -295,7 +295,7 @@ export const localPages: Page[] = [
     zone: "Vincennes",
     title: "Couvreur Vincennes : toitures, gouttières, combles | SPC",
     description:
-      "Couvreur à Vincennes : rénovation de toiture partielle ou totale, entretien et démoussage, gouttières, fenêtres de toit et isolation des combles. Devis détaillé.",
+      "Couvreur à Vincennes : rénovation de toiture partielle ou totale, entretien et démoussage, gouttières, fenêtres de toit et isolation des combles. Devis gratuit.",
     h1: "Couvreur à Vincennes, maisons et immeubles",
     kicker: "Couverture · Vincennes",
     lead: "Maisons à toit de tuile ou d'ardoise, immeubles coiffés de zinc : à Vincennes, les toits changent d'une rue à l'autre.",
@@ -372,7 +372,7 @@ export const localPages: Page[] = [
       {
         h2: "SPC s'occupe-t-elle aussi des évacuations et des sous-sols ?",
         answer:
-          "Oui. Depuis 2010, l'entreprise réalise aussi l'assainissement : curage, débouchage, dégorgement et inspection vidéo des canalisations, entretien et remplacement des pompes de relevage. Une même entreprise suit donc le réseau d'eau du logement jusqu'au sous-sol de l'immeuble.",
+          "Oui. Depuis 2010, l'entreprise réalise aussi l'assainissement : curage, débouchage, dégorgement et inspection vidéo des canalisations, entretien et remplacement des pompes de relevage. Une même entreprise suit donc le réseau d'eau du logement jusqu'au sous-sol de l'immeuble, sans changer d'interlocuteur.",
         list: [
           "Curage et débouchage des canalisations communes",
           "Inspection vidéo avant travaux",
@@ -402,7 +402,7 @@ export const localPages: Page[] = [
   {
     path: "/couvreur-saint-mande",
     zone: "Saint-Mandé",
-    title: "Couvreur Saint-Mandé : zinc, balcons en plomb, cordistes | SPC",
+    title: "Couvreur Saint-Mandé : zinc, balcons en plomb | SPC",
     description:
       "Couvreur à Saint-Mandé : toitures en zinc, zinguerie, fenêtres de toit, balcons en plomb haussmanniens et travaux sur corde pour les accès difficiles. Devis.",
     h1: "Couvreur à Saint-Mandé, zinc et balcons en plomb",
