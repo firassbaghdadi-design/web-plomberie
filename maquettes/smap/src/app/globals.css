@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * --accent : couleur de la charte SMAP (canaux RVB), réécrite au build depuis le logo (brand.generated.css).
+ * --gutter : marge latérale.
+ */
+:root {
+  --accent: 14 98 112;
+  --accent-deep: 8 66 77;
+  --accent-tint: 236 244 245;
+  --gutter: clamp(1.4rem, 4.2vw, 3.25rem);
+  --head-h: 4.25rem;
+}
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-paper font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 500; }
+::selection { background: rgb(var(--accent)); color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* Petites capitales espacées : numéros de section, légendes */
+  .label { @apply text-[0.7rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-feature-settings: "tnum"; }
+  .num { font-feature-settings: "tnum", "lnum"; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-accent; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+  .link-line:hover { @apply text-accent; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.1rem] sm:text-[2.85rem] lg:text-[3.4rem]; }
+  .prose-c p + p { @apply mt-4; }
+  .answer { @apply mt-6 text-[1.18rem] font-light leading-relaxed text-ink sm:text-[1.3rem]; }
+  .reponse-bref { @apply text-[1.3rem] font-light leading-[1.55] text-ink sm:text-[1.7rem]; letter-spacing: -0.012em; }
+}
+
+/* Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité). */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+/* Photos dévoilées de haut en bas, comme un fil qui descend (masque appliqué aux enfants). */
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+/* Titre du héros : lignes qui montent */
+.line-up { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+/* En-tête : se cache en descendant, filet fin une fois la page défilée */
+.head { transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background-color .3s; }
+.head.is-hidden { transform: translate3d(0, -100%, 0); }
+.head.is-solid { border-color: #e6e6e3; background-color: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(14px); }
+.nav-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent)); }
+
+.row-link .row-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent)); }
+.row-link .row-title { transition: color .3s, transform .5s cubic-bezier(.2,.7,.2,1); }
+.row-link:hover .row-title { color: rgb(var(--accent)); transform: translateX(4px); }
+.img-zoom img { transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
+.img-zoom:hover img { transform: scale(1.035); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+}
+
+
+/* ————— Du plan au chantier ————— */
+
+/* Chaque section s'ouvre sur un trait de cote : numéro, intitulé, échelle, ligne cotée qui se trace. */
+.plan-rule { display: flex; max-width: 34rem; align-items: center; gap: .9rem; }
+.plan-rule .plan-line { position: relative; height: 11px; flex: 1; transform-origin: left; background:
+  linear-gradient(rgb(var(--accent) / .55), rgb(var(--accent) / .55)) 0 0 / 1px 100% no-repeat,
+  linear-gradient(rgb(var(--accent) / .55), rgb(var(--accent) / .55)) 100% 0 / 1px 100% no-repeat,
+  linear-gradient(rgb(var(--accent) / .55), rgb(var(--accent) / .55)) 0 50% / 100% 1px no-repeat; }
+.js [data-reveal] .plan-line { transform: scaleX(0); transition: transform 1.6s cubic-bezier(.2,.7,.2,1) .2s; animation: line-safety 0s 3s forwards; }
+.js [data-reveal].is-in .plan-line { transform: none; animation: none; }
+@keyframes line-safety { to { transform: none; } }
+
+/*
+ * La figure « plan → chantier » : un cadre de plan (quadrillage, axes en trait mixte, bulles d'axe, lignes de cote)
+ * dans lequel la photo finie se dévoile de gauche à droite. --dr : tracé des traits (0 à 1) ; --p : photo dévoilée (0 à 1).
+ * Motion.tsx pilote les deux au défilement (ou à l'ouverture pour le héros). Sans JavaScript : tout est visible.
+ */
+@property --p { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --dr { syntax: "<number>"; inherits: true; initial-value: 1; }
+.plan { --p: 1; --dr: 1; --c: 1.7rem; position: relative; padding: var(--c) 0 0 var(--c); }
+.js .plan:not(.is-set) { --p: 0; --dr: 0; animation: plan-safety 0s 4.5s forwards; }
+.plan.is-set { animation: none; }
+@keyframes plan-safety { to { --p: 1; --dr: 1; } }
+
+.plan-box { position: relative; overflow: hidden; background: rgb(var(--accent-tint)); }
+.plan-sheet { position: absolute; inset: 0; background-image:
+  linear-gradient(rgb(var(--accent) / .20) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--accent) / .20) 1px, transparent 1px),
+  linear-gradient(rgb(var(--accent) / .08) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--accent) / .08) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px; opacity: calc(.35 + var(--dr) * .65); }
+.plan-axis-x, .plan-axis-y { position: absolute; transform-origin: 0 0; background-repeat: repeat; }
+.plan-axis-x { left: 0; right: 0; top: 50%; height: 1px; transform: scaleX(var(--dr));
+  background-image: repeating-linear-gradient(90deg, rgb(var(--accent)) 0 16px, transparent 16px 20px, rgb(var(--accent)) 20px 23px, transparent 23px 27px); }
+.plan-axis-y { top: 0; bottom: 0; left: 38%; width: 1px; transform: scaleY(var(--dr));
+  background-image: repeating-linear-gradient(180deg, rgb(var(--accent)) 0 16px, transparent 16px 20px, rgb(var(--accent)) 20px 23px, transparent 23px 27px); }
+.plan-bubble { position: absolute; display: grid; width: 1.35rem; height: 1.35rem; place-items: center; border: 1px solid rgb(var(--accent)); border-radius: 50%; background: #fff; font-size: .6rem; font-weight: 500; color: rgb(var(--accent)); opacity: var(--dr); }
+.plan-legend { position: absolute; left: .9rem; bottom: .75rem; font-size: .62rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgb(var(--accent)); opacity: var(--dr); }
+.plan-photo { position: absolute; inset: 0; clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0); }
+.plan-photo > div { transform: scale(calc(1.07 - var(--p) * .07)); transform-origin: 30% 50%; }
+.plan-cut { position: absolute; top: 0; bottom: 0; left: calc(var(--p) * 100%); width: 1px; background: rgb(var(--accent)); opacity: calc(min(var(--p), 1 - var(--p)) * 12); box-shadow: 0 0 0 3px rgb(var(--accent) / .08); }
+
+/* Lignes de cote : trait, deux ticks obliques à 45°, deux traits d'attache, légende qui passe de « plan » à « chantier ». */
+.cote { position: absolute; font-size: .62rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgb(var(--accent)); }
+.cote-h { left: var(--c); right: 0; top: 0; height: var(--c); }
+.cote-v { left: 0; top: var(--c); bottom: 0; width: var(--c); }
+.cote i { position: absolute; background: rgb(var(--accent) / .75); }
+.cote-h .l { left: 0; right: 0; top: .6rem; height: 1px; transform: scaleX(var(--dr)); transform-origin: left; }
+.cote-v .l { top: 0; bottom: 0; left: .6rem; width: 1px; transform: scaleY(var(--dr)); transform-origin: top; }
+.cote-h .a, .cote-h .b { top: .6rem; width: .55rem; height: 1px; opacity: var(--dr); }
+.cote-h .a { left: -.27rem; transform: rotate(-45deg); }
+.cote-h .b { right: -.27rem; transform: rotate(-45deg); }
+.cote-v .a, .cote-v .b { left: .6rem; width: 1px; height: .55rem; opacity: var(--dr); }
+.cote-v .a { top: -.27rem; transform: rotate(-45deg); }
+.cote-v .b { bottom: -.27rem; transform: rotate(-45deg); }
+.cote-h .x, .cote-h .y { top: .25rem; bottom: 0; width: 1px; background: rgb(var(--accent) / .45); transform: scaleY(var(--dr)); transform-origin: top; }
+.cote-h .x { left: 0; } .cote-h .y { right: 0; }
+.cote-v .x, .cote-v .y { left: .25rem; right: 0; height: 1px; background: rgb(var(--accent) / .45); transform: scaleX(var(--dr)); transform-origin: left; }
+.cote-v .x { top: 0; } .cote-v .y { bottom: 0; }
+.cote-h .t { position: absolute; left: 50%; top: .6rem; display: grid; transform: translate(-50%, -50%); background: #fff; padding: 0 .6rem; white-space: nowrap; }
+.cote-h .t span { grid-area: 1 / 1; text-align: center; }
+.cote-h .t span:first-child { opacity: calc(1 - var(--p) * 3); }
+.cote-h .t span:last-child { opacity: clamp(0, calc(var(--p) * 3 - 1.4), 1); }
+.cote-v .t { position: absolute; left: .6rem; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); background: #fff; padding: 0 .6rem; white-space: nowrap; opacity: var(--dr); }
+@media (max-width: 480px) { .plan { --c: 1.45rem; } .cote { font-size: .56rem; letter-spacing: .14em; } .plan-axis-y { left: 30%; } }
+
+/* Bandeau « du plan au chantier » : trois étapes, trois cadres */
+.step-rule { height: 1px; transform-origin: left; background: rgb(var(--accent) / .5); }
+.js [data-reveal] .step-rule { transform: scaleX(0); transition: transform 1.4s cubic-bezier(.2,.7,.2,1) .2s; animation: line-safety 0s 3s forwards; }
+.js [data-reveal].is-in .step-rule { transform: none; animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .plan { --p: 1 !important; --dr: 1 !important; }
+  .plan-line, .step-rule { transform: none !important; }
+}
+.plan-bubble.b-a { left: .5rem; top: calc(50% - .675rem); }
+.plan-bubble.b-b { right: .5rem; top: calc(50% - .675rem); }
+.plan-bubble.b-1 { top: .5rem; left: calc(38% - .675rem); }
+.plan-bubble.b-2 { bottom: .5rem; left: calc(38% - .675rem); }
+@media (max-width: 480px) { .plan-bubble.b-1, .plan-bubble.b-2 { left: calc(30% - .675rem); } }

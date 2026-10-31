@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gutter: clamp(1rem, 4.2vw, 3.25rem);
+  --head-h: 4.5rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-white font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 500; color: #0d1b2e; }
+::selection { background: #0071e5; color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #0071e5; outline-offset: 3px; border-radius: 4px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-variant-numeric: tabular-nums; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-blue text-white hover:bg-blue-deep; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-blue hover:text-blue-deep; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { @apply text-blue-deep; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.1rem] sm:text-[2.85rem] lg:text-[3.3rem]; }
+  .prose-mt p + p { @apply mt-4; }
+  .answer { @apply mt-6 border-l border-blue pl-5 text-[1.16rem] font-light leading-relaxed text-ink sm:text-[1.28rem]; }
+  .reponse-bref { @apply text-[1.28rem] font-light leading-[1.55] text-ink sm:text-[1.6rem]; letter-spacing: -0.01em; }
+  .original { @apply relative; }
+}
+
+/* ————— Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité) ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.1); } to { transform: scale(1); } }
+
+/* ————— En-tête fin qui se compacte ; son filet bas est le canal ————— */
+.head { transition: background-color .3s, box-shadow .3s; }
+.head .head-row { transition: height .45s var(--ease); }
+.head.is-solid { background-color: rgba(255,255,255,.94); backdrop-filter: saturate(1.4) blur(14px); }
+.head.is-solid .head-row { height: 4rem; }
+.nav-link { background: linear-gradient(#0071e5, #0071e5) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #0057b8; }
+
+.row-link .row-arrow { transition: transform .5s var(--ease), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: #0071e5; }
+.row-link .row-title { transition: color .3s, transform .5s var(--ease); }
+.row-link:hover .row-title { color: #0057b8; transform: translateX(4px); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Concept : le canal et ses écluses ————— */
+
+/* 1. Le canal, filet bas de l'en-tête : l'eau avance avec la lecture et ouvre chaque écluse (une par section). */
+.canal { position: absolute; left: 0; right: 0; bottom: -1px; height: 13px; transform: translateY(50%); pointer-events: none; }
+.canal::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #e5eaf1; }
+.canal-water { position: absolute; left: 0; top: calc(50% - 1px); height: 2px; width: 100%; background: linear-gradient(90deg, #8ec0f5, #0071e5); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform .25s linear; }
+.canal-gate { position: absolute; top: 0; width: 13px; height: 13px; margin-left: -6.5px; pointer-events: auto; }
+.canal-gate i { position: absolute; left: 6px; top: 1px; width: 1px; height: 6px; background: #b6c1cf; transform-origin: 50% 100%; transition: transform .6s var(--ease), background-color .4s; }
+.canal-gate i + i { top: 6px; transform-origin: 50% 0; }
+.canal-gate i:first-child { transform: rotate(-38deg); }
+.canal-gate i:last-child { transform: rotate(38deg); }
+.canal-gate.is-open i { background: #0071e5; }
+.canal-gate.is-open i:first-child { transform: rotate(-88deg) translateY(-1px); }
+.canal-gate.is-open i:last-child { transform: rotate(88deg) translateY(1px); }
+.canal-gate b { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 500; font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: #0057b8; background: #fff; padding: 2px 6px; border: 1px solid #e5eaf1; border-radius: 3px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.canal-gate:hover b { opacity: 1; }
+.canal:not(.is-ready) { visibility: hidden; }
+
+/* 2. La marque d'écluse devant chaque titre de section : le sas se remplit quand la section arrive. */
+.lock { width: 26px; height: 26px; flex-shrink: 0; overflow: visible; }
+.lock .lock-water { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(.18); transition: transform 1.6s cubic-bezier(.3,.6,.2,1) .15s; }
+.lock .lock-gate { transition: transform .8s var(--ease) 1.2s; transform-box: fill-box; transform-origin: 50% 0; }
+.lock.is-in .lock-water { transform: scaleY(1); }
+.lock.is-in .lock-gate-out { transform: scaleY(.35); }
+.js .lock:not(.is-in) .lock-water { animation: lock-safety 0s 3s forwards; }
+@keyframes lock-safety { to { transform: scaleY(1); } }
+
+/* 3. Les cinq générations : cinq sas en escalier que l'eau remplit l'un après l'autre au chargement. */
+.gen { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.gen-sas { position: relative; height: calc(30px + var(--i) * 7px); margin-top: calc((4 - var(--i)) * 7px); border-bottom: 1px solid #c7d0dc; }
+.gen-sas::before { content: ""; position: absolute; left: 0; bottom: 0; height: calc(100% + 10px); width: 1px; background: #c7d0dc; }
+.gen-sas:last-child::after { content: ""; position: absolute; right: 0; bottom: 0; height: calc(100% + 10px); width: 1px; background: #c7d0dc; }
+.gen-water { position: absolute; inset: auto 1px 0 1px; height: 78%; background: linear-gradient(to bottom, rgba(0,113,229,.22), rgba(0,113,229,.08)); border-top: 1.5px solid #0071e5; transform-origin: bottom; animation: gen-fill 1.1s cubic-bezier(.3,.6,.2,1) both; animation-delay: calc(500ms + var(--i) * 420ms); }
+@keyframes gen-fill { from { transform: scaleY(0); opacity: .2; } to { transform: none; opacity: 1; } }
+.gen-gate { position: absolute; left: -1px; bottom: 0; width: 3px; height: 100%; background: #0d1b2e; transform-origin: top; animation: gen-open .7s var(--ease) both; animation-delay: calc(250ms + var(--i) * 420ms); }
+@keyframes gen-open { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+.gen-year { animation: fade-in 1s var(--ease) both; animation-delay: calc(700ms + var(--i) * 420ms); }
+
+/* Photos de l'entreprise : petites images d'archive, jamais agrandies au-delà de leur taille réelle */
+.archive img { image-rendering: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+  .lock .lock-water { transform: none; }
+}
+
+/* 4. Le bief : chaque séparation de section est une marche d'écluse. Le niveau d'eau descend d'un cran
+   au droit de la porte (alignée sur le sas du libellé), puis l'eau file vers la droite quand la section arrive. */
+section:has(> .bief) { position: relative; }
+.bief { --gx: calc(max(0px, (100% - 86rem) / 2) + var(--gutter) + 21px); position: absolute; top: 0; left: 0; right: 0; height: 9px; pointer-events: none; }
+.bief::before { content: ""; position: absolute; left: 0; top: 0; width: var(--gx); height: 1px; background: #e5eaf1; }
+.bief::after { content: ""; position: absolute; left: var(--gx); top: 0; width: 1px; height: 9px; background: #aab4c2; }
+.bief i { position: absolute; left: var(--gx); right: 0; top: 8px; height: 1px; background: #e5eaf1; }
+.bief b { position: absolute; left: var(--gx); right: 0; top: 7.5px; height: 2px; background: linear-gradient(90deg, #0071e5, rgba(0,113,229,.25) 45%, rgba(0,113,229,0) 85%); transform-origin: left; transform: scaleX(0); transition: transform 2.2s cubic-bezier(.3,.6,.15,1) .2s; }
+.bief.is-in b { transform: scaleX(1); }
+.js .bief:not(.is-in) b { animation: bief-safety 0s 3s forwards; }
+@keyframes bief-safety { to { transform: scaleX(1); } }
+.bief-mist::before { background: #e5eaf1; }
+
+/* ————— Avant / après : les montages de l'entreprise, à deux fois leur taille au plus ————— */
+.ba-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem 1.25rem; }
+@media (min-width: 640px) { .ba-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ba-grid.ba-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ba img { image-rendering: auto; }
+.ba-line { position: absolute; top: 0; bottom: 0; width: 1px; margin-left: -.5px; background: rgba(255,255,255,.95); box-shadow: 0 0 0 .5px rgba(13,27,46,.12); pointer-events: none; }
+.ba-handle { position: absolute; top: 50%; left: 50%; width: 30px; height: 22px; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 6px rgba(13,27,46,.18)); transition: transform .35s var(--ease); }
+.ba-water { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(.55); transition: transform .5s var(--ease); }
+.ba:hover .ba-water, .ba:focus-within .ba-water { transform: translateY(-3px) scaleY(1); }
+.ba:active .ba-handle { transform: translate(-50%, -50%) scale(1.08); }
+.ba:has(.ba-range:focus-visible) { outline: 2px solid #0071e5; outline-offset: 3px; }
+.ba-tag { position: absolute; bottom: .55rem; padding: .18rem .45rem; border-radius: 2px; background: rgba(255,255,255,.88); color: #0d1b2e; font-size: .6rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1.4; pointer-events: none; }

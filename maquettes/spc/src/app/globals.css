@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ————————————————————————————————————————————————————————————————
+   SPC · direction « couleur de marque pleine »
+   Concept : la coupe d'immeuble. La page se lit comme le relevé d'un architecte,
+   du faîtage (+24,00) à la cave (−3,50). Chaque section porte sa cote de niveau,
+   et la couleur du logo s'assombrit à mesure qu'on descend : bleu zinc sous le toit,
+   ardoise aux étages, presque noir à la cave.
+   ———————————————————————————————————————————————————————————————— */
+
+:root {
+  --gutter: clamp(1rem, 4.6vw, 4.5rem);
+  --head-h: 4.5rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  /* couleur par défaut ; remplacée dans <html style> par la couleur du logo lue au build */
+  --accent: 29 92 134;
+  --accent-deep: 21 66 96;
+  --accent-wash: 240 245 248;
+  --accent-light: 160 186 204;
+  --deep: 13 40 59;
+  --abyss: 6 18 27;
+}
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
+@media (min-width: 1280px) { :root { --gutter: clamp(5.5rem, 7vw, 7rem); } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; background: rgb(var(--abyss)); }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply font-sans antialiased; background: rgb(var(--deep)); color: rgb(255 255 255 / .78); font-size: 1.0625rem; line-height: 1.68; font-weight: 400; font-stretch: 100%; }
+h1, h2, h3 { color: #fff; font-weight: 620; font-stretch: 112%; letter-spacing: -0.038em; line-height: .98; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 600; color: #fff; }
+::selection { background: #fff; color: rgb(var(--deep)); }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 2px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .eyebrow { @apply text-[0.72rem] font-medium uppercase tracking-[0.2em]; color: rgb(var(--accent-light)); font-stretch: 108%; }
+  .label { @apply text-[0.72rem] font-medium uppercase tracking-[0.16em]; color: rgb(255 255 255 / .55); font-stretch: 108%; }
+  .display { font-weight: 640; font-stretch: 116%; letter-spacing: -0.045em; line-height: .9; color: #fff; }
+
+  .btn { @apply inline-flex min-h-[3.4rem] items-center justify-center gap-3 px-6 py-3 text-center sm:whitespace-nowrap sm:px-7 sm:py-0 text-[0.95rem] font-semibold transition duration-300; border-radius: 2px; font-stretch: 106%; }
+  .btn-solid { @apply btn; background: #fff; color: rgb(var(--deep)); }
+  .btn-solid:hover { background: rgb(var(--accent-light)); }
+  .btn-solid svg { transition: transform .4s var(--ease); }
+  .btn-solid:hover svg { transform: translateX(4px); }
+  .btn-ghost { @apply btn; color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .35); }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 1px #fff; }
+  /* sur fond clair (formulaire, zinc) */
+  .btn-ink { @apply btn; background: rgb(var(--deep)); color: #fff; }
+  .btn-ink:hover { background: rgb(var(--accent)); }
+
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-white; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 3px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { color: rgb(var(--accent-light)); background-size: 0 1px; background-position: 100% 100%; }
+
+  .h2 { @apply text-[2.35rem] sm:text-[3.4rem] lg:text-[4.4rem]; }
+  .h2-sm { @apply text-[1.9rem] sm:text-[2.6rem] lg:text-[3rem]; }
+  .prose-mt p + p { @apply mt-4; }
+  .answer { @apply mt-7 pl-5 text-[1.16rem] leading-relaxed text-white sm:text-[1.3rem]; border-left: 3px solid rgb(var(--accent-light)); font-weight: 400; }
+  .reponse-bref { @apply text-[1.35rem] leading-[1.4] text-white sm:text-[2rem] lg:text-[2.35rem]; font-weight: 450; letter-spacing: -0.018em; font-stretch: 104%; }
+  .rule { border-color: rgb(255 255 255 / .16); }
+}
+
+/* ————— Cote de niveau (le triangle du relevé d'architecte) ————— */
+.cote { display: inline-flex; align-items: center; gap: .7rem; font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgb(var(--accent-light)); font-stretch: 108%; font-variant-numeric: tabular-nums; }
+.cote-mark { position: relative; width: 13px; height: 12px; flex: none; }
+.cote-mark::before { content: ""; position: absolute; left: 0; top: 0; border-left: 6.5px solid transparent; border-right: 6.5px solid transparent; border-top: 9px solid currentColor; }
+.cote-mark::after { content: ""; position: absolute; left: -5px; right: -5px; bottom: 0; height: 1px; background: currentColor; }
+.cote-val { color: #fff; letter-spacing: .04em; }
+
+/* ————— Les étages : aplats de la couleur du logo, de plus en plus profonds ————— */
+.etage { position: relative; isolation: isolate; }
+.etage-zinc { background: #e9eef1; color: #2e3a44; }
+.etage-zinc h2, .etage-zinc h3, .etage-zinc strong { color: rgb(var(--deep)); }
+.etage-zinc .cote { color: rgb(var(--accent)); }
+.etage-zinc .cote-val { color: rgb(var(--deep)); }
+.etage-zinc .rule { border-color: rgb(13 40 59 / .14); }
+.etage-zinc .label { color: #5d6a75; }
+.etage-zinc .link-line { color: rgb(var(--deep)); }
+.etage-zinc .link-line:hover { color: rgb(var(--accent)); }
+.etage-zinc .answer { color: rgb(var(--deep)); border-color: rgb(var(--accent)); }
+/* le plancher : un trait épais qui sépare deux niveaux, comme sur une coupe */
+.plancher { height: 6px; background: rgb(255 255 255 / .9); }
+
+/* les joints debout du zinc, en texture discrète */
+.seams { background-image: repeating-linear-gradient(90deg, transparent 0 calc(var(--seam, 56px) - 1px), rgb(255 255 255 / .045) calc(var(--seam, 56px) - 1px) var(--seam, 56px)); }
+
+/* ————— Photos découpées : la silhouette d'un toit à la Mansart, souches de cheminée comprises ————— */
+.mansard { clip-path: polygon(0 100%, 0 30%, 11% 11%, 20% 11%, 20% 3%, 29% 3%, 29% 11%, 67% 11%, 67% 0, 78% 0, 78% 11%, 89% 11%, 100% 30%, 100% 100%); }
+.lucarne { clip-path: polygon(0 100%, 0 26%, 50% 0, 100% 26%, 100% 100%); }
+.duo { overflow: hidden; background: rgb(var(--accent)); }
+.duo img { mix-blend-mode: luminosity; filter: grayscale(1) contrast(1.12) brightness(1.08); }
+.duo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgb(var(--deep) / .55)); pointer-events: none; }
+.natural img { transition: transform 1.2s var(--ease), filter .8s; }
+.natural:hover img { transform: scale(1.03); }
+
+/* ————— Héros ————— */
+.hero { background: rgb(var(--deep)); }
+.hero-sky { background: radial-gradient(120% 80% at 80% 0%, rgb(var(--accent) / .55), transparent 60%); }
+.rise { animation: rise 1.6s cubic-bezier(.2,.75,.15,1) .2s both; }
+@keyframes rise { from { clip-path: inset(100% 0 0 0); transform: translate3d(0, 40px, 0); } to { clip-path: inset(-10% 0 0 0); transform: none; } }
+.rise img { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) .2s both; }
+@keyframes slow-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+.descente { transform-origin: 50% 0; animation: drop 1.6s cubic-bezier(.5,0,.2,1) 1.2s both; }
+@keyframes drop { from { transform: scaleY(0); } to { transform: none; } }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 105%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+
+/* ————— Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 22px, 0); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+/* ————— En-tête ————— */
+.head { transition: background-color .35s, box-shadow .35s; }
+.head .head-row { transition: height .45s var(--ease); }
+.head.is-solid { background-color: rgb(var(--deep) / .92); backdrop-filter: saturate(1.2) blur(14px); box-shadow: 0 1px 0 rgb(255 255 255 / .1); }
+.head.is-solid .head-row { height: 4rem; }
+.nav-link { background: linear-gradient(#fff, #fff) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #fff; }
+
+/* ————— Les métiers : une coupe, un niveau par métier ————— */
+.floor { transition: background-color .5s var(--ease); }
+.floor:hover { background-color: rgb(255 255 255 / .04); }
+.floor .floor-arrow { transition: transform .5s var(--ease); }
+.floor:hover .floor-arrow { transform: translateX(8px); }
+.floor .floor-photo { transition: opacity .6s var(--ease), transform .8s var(--ease); }
+
+.row-link .row-arrow { transition: transform .5s var(--ease); }
+.row-link:hover .row-arrow { transform: translateX(6px); }
+.row-link:hover .row-title { color: rgb(var(--accent-light)); }
+.row-title { transition: color .3s; }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— L'altimètre : la cote courante, fixe sur grand écran ————— */
+.alti { transition: opacity .5s; position: fixed; right: max(1rem, calc((100vw - 92rem) / 2 + 1rem)); top: 50%; z-index: 45; transform: translateY(-50%); height: min(60vh, 34rem); width: 2rem; pointer-events: none; mix-blend-mode: normal; }
+.alti-scale { position: absolute; right: .5rem; top: 0; bottom: 0; width: 9px; background-image: repeating-linear-gradient(180deg, rgb(255 255 255 / .35) 0 1px, transparent 1px 12px); }
+.alti-scale::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: rgb(255 255 255 / .35); }
+.alti-mark { position: absolute; right: .5rem; top: 0; width: 22px; height: 2px; background: #fff; transform: translateY(var(--y, 0)); transition: transform .25s linear; }
+.alti-text { position: absolute; right: 2.2rem; top: 0; transform: translateY(calc(var(--y, 0) - 50%)); transition: transform .25s linear; white-space: nowrap; text-align: right; font-size: .68rem; line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; font-stretch: 108%; font-variant-numeric: tabular-nums; color: rgb(255 255 255 / .6); }
+.alti-text b { display: block; color: #fff; font-weight: 600; font-size: .82rem; letter-spacing: .04em; }
+.alti.is-off { opacity: 0; }
+.alti.on-light .alti-scale, .alti.is-off { opacity: 0; }
+.alti.on-light .alti-scale::before { filter: invert(1) brightness(.3); }
+.alti.on-light .alti-mark { background: rgb(var(--deep)); }
+.alti.on-light .alti-text { color: rgb(var(--deep) / .7); }
+.alti.on-light .alti-text b { color: rgb(var(--deep)); }
+
+/* Slider avant / après */
+.ba { position: relative; overflow: hidden; touch-action: pan-y; user-select: none; }
+.ba-after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px; background: #fff; }
+.ba-handle::after { content: ""; position: absolute; top: 50%; left: 50%; width: 2.8rem; height: 2.8rem; margin: -1.4rem; border: 2px solid #fff; background: rgb(var(--deep) / .5); backdrop-filter: blur(6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
