@@ -1,29 +1,43 @@
 type Props = {
-  n: string;
+  /** Température de la section, « 16,0 » à « 21,0 » : elle remplace le numéro de section. */
+  t: string;
   rubrique: string;
   children: React.ReactNode;
   id?: string;
   className?: string;
   labelledBy?: string;
   ariaLabel?: string;
-  tone?: "white" | "paper";
+  tone?: "white" | "black";
 };
 
+/** Température de la i-ème section sur n, de 16,0° à 21,0°. */
+export const heat = (i: number, n: number) => (16 + (5 * i) / Math.max(1, n - 1)).toFixed(1).replace(".", ",");
+
 /**
- * Une section : filet fin qui se trace dans l'accent du moment, numéro et rubrique en légende, puis le contenu.
- * Sur téléphone, la légende passe au-dessus du contenu.
+ * Une section d'affiche : un filet noir épais, la température en très grand dans les trois premières colonnes
+ * (collée en haut de l'écran pendant la lecture), la rubrique en petit dessous, le contenu sur les neuf autres.
  */
-export function Section({ n, rubrique, children, id, className = "", labelledBy, ariaLabel, tone = "white" }: Props) {
+export function Section({ t, rubrique, children, id, className = "", labelledBy, ariaLabel, tone = "white" }: Props) {
+  const [whole, dec] = t.split(",");
+  const black = tone === "black";
   return (
-    <section id={id} aria-labelledby={labelledBy} aria-label={ariaLabel} className={`section relative ${tone === "paper" ? "bg-paper" : "bg-white"} ${className}`}>
+    <section id={id} aria-labelledby={labelledBy} aria-label={ariaLabel} className={`relative ${black ? "bg-ink text-white" : "bg-white"} ${className}`}>
       <div className="wrap">
-        <div className="section-rule" aria-hidden="true" />
-        <div className="grid lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-x-12 xl:grid-cols-[13rem_minmax(0,1fr)] xl:gap-x-16">
-          <p className="flex items-baseline gap-3 pt-6 lg:block lg:pt-24">
-            <span className="num block text-[0.95rem] text-accent">{n}</span>
-            <span className="label lg:mt-3 lg:block">{rubrique}</span>
-          </p>
-          <div className="min-w-0 pb-20 pt-6 sm:pb-28 sm:pt-8 lg:pt-24">{children}</div>
+        <div className={`h-[3px] ${black ? "bg-white" : "bg-ink"}`} aria-hidden="true" />
+        <div className="cols pb-20 pt-5 sm:pb-28 lg:pt-6">
+          <div className="col-span-4 md:col-span-6 lg:col-span-3">
+            <div className="lg:sticky lg:top-[calc(var(--head-h)+1.5rem)]">
+              <p className="flex items-end justify-between gap-4 lg:block" aria-hidden="true">
+                <span className="giant block text-[5.2rem] sm:text-[6.5rem] lg:text-[clamp(6rem,8.4vw,9rem)]">
+                  {whole}
+                  <span className="text-[0.42em] tracking-[-0.04em]">,{dec}</span>
+                  <span className="deg">°</span>
+                </span>
+              </p>
+              <p className={`meta mt-4 border-t pt-2 ${black ? "border-white/30 text-white/70" : "border-ink/20 text-ink-faint"}`}>{rubrique}</p>
+            </div>
+          </div>
+          <div className={`col-span-4 mt-10 min-w-0 md:col-span-6 lg:col-span-9 lg:mt-0 ${black ? "[&_h2]:text-white [&_h3]:text-white" : ""}`}>{children}</div>
         </div>
       </div>
     </section>

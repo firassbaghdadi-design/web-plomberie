@@ -35,38 +35,39 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section>
-        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in mt-12 sm:mt-16"><span className="label !text-accent">Contact · devis gratuit</span></p>
-            <h1 className="mt-6 text-[2.5rem] sm:text-[3.6rem] xl:text-[4.2rem]">
-              <span className="line-up"><span>Contact&nbsp;: plombier chauffagiste à Paris 20e</span></span>
-            </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+        <div className="wrap">
+          <div className="border-b border-ink py-3"><Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} /></div>
+          <div className="cols items-end pt-6 lg:pt-8">
+            <div className="col-span-4 md:col-span-6 lg:col-span-8">
+              <p className="meta text-heat-deep">Contact · devis gratuit</p>
+              <h1 className="mt-5 text-[2.7rem] sm:text-[4rem] lg:text-[clamp(4rem,6.4vw,6.8rem)]">Contact&nbsp;: plombier chauffagiste à Paris 20e</h1>
+            </div>
+            <div className="col-span-4 mt-10 md:col-span-6 lg:col-span-4 lg:mt-0">
+              <p className="meta-faint border-t-2 border-ink pt-2">Téléphone</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-2 block whitespace-nowrap text-[2.6rem] font-semibold tracking-[-0.05em] transition-colors hover:text-heat-deep lg:text-[clamp(2.4rem,3.4vw,3.6rem)]" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="meta-faint mt-1">{business.address.street}, {business.address.postalCode} Paris</p>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Téléphone</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] tracking-tight text-ink transition hover:text-accent-deep" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
-          </div>
+          <div className="draw mt-8 h-1 bg-ink" aria-hidden="true" />
+          <p className="reponse-bref fade-in max-w-[60rem] pb-16 pt-6 lg:pb-24" style={{ ["--d" as string]: "200ms" }}>{brief}</p>
         </div>
       </section>
-      <Section n="01" rubrique="Votre demande" ariaLabel="Formulaire de demande">
+      <Section t="18,5" rubrique="Votre demande" ariaLabel="Formulaire de demande">
         <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
           <div className="xl:col-span-8">
             <ContactForm defaultType={demande} />
           </div>
           <aside className="space-y-8 xl:col-span-4 xl:pt-4">
             <dl className="space-y-6">
-              <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Transports</dt><dd className="mt-2 text-ink">{business.metro}</dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 2007</dd></div>
+              <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Adresse</dt><dd className="mt-2 font-medium">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
+              <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Transports</dt><dd className="mt-2 font-medium">{business.metro}</dd></div>
+              <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Horaires</dt><dd className="mt-2 font-medium">{business.hours}</dd></div>
+              <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 2007</dd></div>
             </dl>
           </aside>
         </div>
       </Section>
-      <FaqList items={faq} title="Avant d'envoyer votre demande" n="02" />
+      <FaqList items={faq} title="Avant d'envoyer votre demande" t="21,0" />
       <JsonLd nodes={nodes} />
     </>
   );

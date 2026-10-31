@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
+const field = "mt-1.5 w-full border-0 border-b-2 border-ink bg-transparent px-0 py-3 text-[1.1rem] font-medium text-ink outline-none transition-colors focus:border-heat";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,8 +56,8 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[6px] border border-accent/30 bg-paper p-10 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
+      <div role="status" className="border-t-4 border-ink py-10">
+        <span className="flex h-14 w-14 items-center justify-center bg-ink text-heat">
           <CheckIcon className="h-8 w-8" />
         </span>
         <h2 className="mt-6 text-3xl">Demande bien reçue.</h2>
@@ -70,11 +70,11 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
-      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="border-t-4 border-ink pt-6">
+      <h2 className="text-[2.4rem] sm:text-[3.4rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre demande arrive directement aux DBP Plomberie-Chauffage, villa Gagliardini.</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>
             Votre demande
@@ -134,7 +134,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#9c4a22]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 border-ink accent-[#0b0b0b]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}
@@ -143,7 +143,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
       <div aria-live="polite">
         {status === "error" ? (
-          <p className="mt-6 rounded-2xl border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#7a271a]">
+          <p className="mt-6 border-l-4 border-[#b42318] bg-[#fef3f2] p-4 text-sm text-[#7a271a]">
             {serverMessage} Vous pouvez nous joindre au{" "}
             <a href={`tel:${business.phoneTel}`} className="font-medium underline">
               {business.phoneDisplay}
@@ -153,7 +153,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         ) : null}
       </div>
 
-      <button type="submit" disabled={status === "sending"} className="btn-primary mt-8 w-full sm:w-auto disabled:opacity-70">
+      <button type="submit" disabled={status === "sending"} className="btn-primary mt-10 w-full sm:w-auto disabled:opacity-70">
         {status === "sending" ? "Envoi en cours…" : "Envoyer ma demande"}
       </button>
     </form>

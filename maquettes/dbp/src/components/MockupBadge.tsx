@@ -1,7 +1,7 @@
-/** Badge discret : la maquette est privée et non référencée. */
+/** Mention discrète : la maquette est privée et non référencée. */
 export function MockupBadge() {
   return (
-    <p className="pointer-events-none fixed bottom-[4.9rem] left-3 z-[60] rounded-full border border-line bg-white/90 px-3 py-1 text-[0.68rem] tracking-wide text-ink-faint backdrop-blur md:bottom-4">
+    <p className="pointer-events-none fixed bottom-[3.4rem] right-0 z-[61] bg-ink px-2.5 py-1 text-[0.66rem] font-medium text-white md:bottom-0">
       Maquette Atelier Truelle
     </p>
   );

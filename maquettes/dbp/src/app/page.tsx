@@ -4,7 +4,7 @@ import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Section } from "@/components/Section";
 import { CtaBand, FaqList, LocalBlock, contactHref, fr } from "@/components/Sections";
-import { Dial } from "@/components/Thermostat";
+import { Scale } from "@/components/Thermostat";
 import { home, trades } from "@/lib/content";
 import { localPages } from "@/lib/local";
 import { photoAlt } from "@/lib/photos";
@@ -13,61 +13,69 @@ import { faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
 export const metadata = pageMeta({ title: home.title, description: home.description, path: "/" });
 
+/**
+ * Le héros est une affiche suisse : une bande d'informations, le titre en grotesque géante, une petite photo serrée,
+ * puis l'échelle des températures, de 16 à 21, chaque chiffre plus grand que le précédent : la chaleur qui monte.
+ */
 function Hero() {
+  const strip = ["Plomberie · Chauffage", "Paris 20e · 75020", "1, villa Gagliardini · depuis 2007", "48°52′ N · 2°24′ E"];
   return (
     <section className="relative">
-      <div className="wrap grid pb-20 pt-8 sm:pt-12 lg:min-h-[calc(100svh-var(--head-h))] lg:grid-cols-12 lg:gap-x-14 lg:pb-16 lg:pt-10">
-        <div className="flex flex-col max-lg:contents lg:col-span-7">
-          <p className="fade-in label max-lg:order-1">Paris 20e · villa Gagliardini · depuis 2007</p>
+      <div className="wrap flex flex-col lg:min-h-[calc(100svh-var(--head-h))]">
+        <ul className="cols gap-y-1 border-b border-ink py-2.5 lg:py-3">
+          {strip.map((s, i) => (
+            <li key={s} className={`fade-in meta col-span-2 md:col-span-3 ${i > 1 ? "max-md:text-ink-faint" : ""} ${i === 3 ? "lg:text-right" : ""}`} style={{ ["--d" as string]: `${i * 60}ms` }}>{s}</li>
+          ))}
+        </ul>
 
-          <h1 className="mt-8 text-[2.9rem] leading-[0.96] tracking-[-0.055em] max-lg:order-2 sm:text-[5rem] lg:mt-auto lg:pt-14 lg:text-[clamp(4rem,6.2vw,6.6rem)]">
-            <span className="line-up"><span>Plombier chauffagiste</span></span>
-            <span className="line-up"><span className="text-accent" style={{ ["--d" as string]: "150ms" }}>à Paris 20e</span></span>
+        <div className="cols items-start pt-6 lg:pt-8">
+          <h1 className="col-span-4 text-[13.2vw] leading-[0.9] tracking-[-0.06em] md:col-span-6 md:text-[9.6vw] lg:col-span-10 lg:text-[clamp(4.4rem,7.6vw,8rem)]">
+            <span className="rise"><span>Plombier chauffagiste</span></span>
+            <span className="rise"><span style={{ ["--d" as string]: "120ms" }}>à Paris 20e</span></span>
           </h1>
-
-          <p className="fade-in mt-10 max-w-[34rem] text-[1.1rem] leading-relaxed max-lg:order-4 sm:text-[1.2rem] lg:mt-9" style={{ ["--d" as string]: "380ms" }}>
-            De la fuite au radiateur, du dépannage au confort : une entreprise de quartier, installée près de la porte des Lilas.
+          <figure className="fade-in col-span-1 row-start-2 mt-7 md:col-span-1 lg:col-span-2 lg:col-start-11 lg:row-start-1 lg:mt-2" style={{ ["--d" as string]: "500ms" }}>
+            <Img id="plombier" alt={photoAlt("plombier")} priority className="aspect-square" position="50% 40%" />
+            <figcaption className="meta-faint mt-1.5 hidden lg:block">Fig. 1 — Le cuivre, à la main</figcaption>
+          </figure>
+          <p className="fade-in col-span-3 row-start-2 mt-7 text-[1.02rem] leading-snug md:col-span-3 lg:col-span-4 lg:row-start-2 lg:mt-10 lg:text-[1.22rem]" style={{ ["--d" as string]: "420ms" }}>
+            {fr("De la fuite au radiateur, du dépannage au confort : une entreprise de quartier, installée près de la porte des Lilas.")}
           </p>
-
-          <div className="fade-in mt-10 flex flex-wrap items-center gap-x-8 gap-y-5 max-lg:order-5" style={{ ["--d" as string]: "520ms" }}>
-            <Link href={contactHref()} className="btn-primary" data-track="cta_devis">
+          <div className="fade-in col-span-4 mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 md:col-span-6 lg:col-span-6 lg:col-start-6 lg:row-start-2 lg:mt-10" style={{ ["--d" as string]: "560ms" }}>
+            <Link href={contactHref()} className="btn-primary max-sm:w-full" data-track="cta_devis">
               Demander un devis ou une intervention <ArrowIcon />
             </Link>
-            <a href={`tel:${business.phoneTel}`} className="group flex items-baseline gap-3" data-track="cta_tel">
-              <span className="label">Tél.</span>
-              <span className="num whitespace-nowrap text-[1.4rem] tracking-tight text-ink transition group-hover:text-accent-deep">{business.phoneDisplay}</span>
+            <a href={`tel:${business.phoneTel}`} className="num whitespace-nowrap text-[1.5rem] font-semibold tracking-[-0.045em] transition-colors hover:text-heat-deep" data-track="cta_tel">
+              {business.phoneDisplay}
             </a>
           </div>
-
-          <dl className="fade-in mt-14 grid grid-cols-3 border-t border-line max-lg:order-6 lg:mt-16" style={{ ["--d" as string]: "700ms" }}>
-            <div className="pr-3 pt-5"><dt className="label">Depuis</dt><dd className="num mt-1.5 text-[1.5rem] leading-none text-ink sm:text-[2.1rem]">2007</dd></div>
-            <div className="pr-3 pt-5"><dt className="label">Équipe</dt><dd className="num mt-1.5 text-[1.5rem] leading-none text-ink sm:text-[2.1rem]">10 à 19</dd></div>
-            <div className="pr-3 pt-5"><dt className="label">Métiers</dt><dd className="num mt-1.5 text-[1.5rem] leading-none text-ink sm:text-[2.1rem]">2</dd></div>
-          </dl>
         </div>
 
-        <figure className="relative mt-12 max-lg:order-3 lg:col-span-5 lg:mt-0">
-          <div data-mask className="h-full overflow-hidden rounded-[3px]">
-            <Img id="plombier" alt={photoAlt("plombier")} priority className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[36rem]" imgClassName="slow-zoom" position="50% 40%" />
-          </div>
-          <div data-hero-dial className="absolute -bottom-10 left-3 sm:-bottom-12 sm:left-6 lg:-left-16 lg:bottom-14">
-            <Dial labels ariaHidden={false} className="h-36 w-36 drop-shadow-[0_14px_30px_rgba(19,23,28,.18)] sm:h-44 sm:w-44 lg:h-56 lg:w-56" />
-          </div>
-          <figcaption className="mt-3 flex justify-end gap-4 text-[0.78rem] text-ink-faint lg:justify-between">
-            <span className="hidden lg:inline">Le thermostat monte avec la page : de 16° à 21°</span>
-            <span className="num">48°52′ N · 2°24′ E</span>
-          </figcaption>
-        </figure>
+        <div className="mt-10 lg:mt-auto lg:pt-10">
+          <Scale />
+        </div>
       </div>
     </section>
   );
 }
 
+/** En-tête de section pleine largeur : le filet épais, la température et la rubrique sur une ligne. */
+function Head({ t, rubrique, light = false }: { t: string; rubrique: string; light?: boolean }) {
+  return (
+    <>
+      <div className={`h-[3px] ${light ? "bg-white" : "bg-ink"}`} aria-hidden="true" />
+      <p className={`meta flex justify-between pt-2.5 ${light ? "text-white/70" : "text-ink-faint"}`}>
+        <span className="num"><span className={light ? "text-white" : "text-ink"}>{t}</span><span className="deg">°</span></span>
+        <span>{rubrique}</span>
+      </p>
+    </>
+  );
+}
+
 function Welcome() {
   return (
-    <Section n="01" rubrique="En bref" ariaLabel="En bref">
-      <p className="reponse-bref max-w-4xl">{home.brief}</p>
-      <p className="mt-8 max-w-2xl text-[1.02rem]">
+    <Section t="16,0" rubrique="En bref" ariaLabel="En bref">
+      <p className="reponse-bref max-w-[54rem]">{home.brief}</p>
+      <p className="mt-8 max-w-[36rem] text-ink-soft">
         Pour une fuite, un évier bouché, un radiateur froid ou une chaudière à entretenir, un seul numéro : le{" "}
         <a href={`tel:${business.phoneTel}`} className="link-line num">{business.phoneDisplay}</a>.
       </p>
@@ -75,131 +83,164 @@ function Welcome() {
   );
 }
 
-/** Du dépannage au confort : chaque ligne porte un degré, comme un thermostat qui monte de 16° à 21°. */
+/** Du dépannage au confort : un tableau d'affiche, chaque ligne porte son degré en très grand. */
 function Trades() {
   return (
-    <Section n="02" rubrique="Du dépannage au confort" labelledBy="titre-metiers">
-      <h2 id="titre-metiers" className="h2 max-w-3xl" data-reveal>Deux métiers, de 16° à 21°.</h2>
-      <p className="mt-6 max-w-2xl" data-reveal>On commence par ce qui presse, une fuite ou un évier bouché, et on finit par ce qui rend un logement agréable : des radiateurs qui chauffent partout et une chaudière suivie.</p>
-      <div className="mt-12">
-        <ul className="border-t border-line">
-          {trades.map((t, i) => (
-            <li key={t.n} data-reveal style={{ ["--d" as string]: `${i * 80}ms` }} className="border-b border-line">
-              <Link href={t.href} className="facture-row row-link grid grid-cols-[3.2rem_minmax(0,1fr)_1.5rem] items-start gap-x-4 gap-y-2 py-7 md:grid-cols-[5rem_minmax(0,1.1fr)_minmax(0,1.3fr)_minmax(0,0.9fr)_2rem] md:gap-6 md:py-8">
-                <span className="num pt-1.5 text-[1.05rem] text-accent">{t.n}</span>
-                <span className="row-title text-[1.55rem] leading-tight text-ink sm:text-[1.9rem]">{t.title}</span>
-                <span className="col-start-2 text-[0.98rem] md:col-start-auto md:pt-1.5">{t.text}</span>
-                <span className="col-start-2 text-[0.85rem] text-ink-faint md:col-start-auto md:pt-2">{t.who}</span>
-                <ArrowIcon className="row-arrow col-start-3 row-start-1 mt-2 h-5 w-5 text-ink-faint md:col-start-auto md:row-start-auto" />
+    <section aria-labelledby="titre-metiers" className="bg-white">
+      <div className="wrap pb-20 sm:pb-28">
+        <Head t="17,0" rubrique="Du dépannage au confort" />
+        <div className="cols mt-8 lg:mt-10">
+          <h2 id="titre-metiers" className="h2 col-span-4 md:col-span-6 lg:col-span-7" data-reveal>Deux métiers, de 16° à 21°.</h2>
+          <p className="col-span-4 mt-6 text-ink-soft md:col-span-4 lg:col-span-4 lg:col-start-9 lg:mt-2" data-reveal>On commence par ce qui presse, une fuite ou un évier bouché, et on finit par ce qui rend un logement agréable : des radiateurs qui chauffent partout et une chaudière suivie.</p>
+        </div>
+        <ul className="mt-12 border-t-2 border-ink">
+          {trades.map((t) => (
+            <li key={t.n} className="border-b border-ink/25">
+              <Link href={t.href} className="row-invert cols items-end py-4 lg:py-5">
+                <span className="giant col-span-2 text-[4.6rem] md:col-span-2 lg:col-span-3 lg:text-[clamp(6rem,8.6vw,9rem)]">
+                  {t.n.replace("°", "")}<span className="deg">°</span>
+                </span>
+                <span className="row-ink col-span-2 pb-1 text-[1.3rem] font-semibold leading-[1.05] tracking-[-0.035em] md:col-span-3 lg:col-span-4 lg:text-[2.1rem]">{t.title}</span>
+                <span className="col-span-4 mt-3 md:col-span-5 md:col-start-3 lg:col-span-4 lg:mt-0 lg:pb-1.5">
+                  <span className="row-soft block text-[0.98rem] text-ink-soft">{t.text}</span>
+                  <span className="meta-faint row-soft mt-1 block">{t.who}</span>
+                </span>
+                <span className="col-span-1 hidden justify-end pb-2 lg:flex"><ArrowIcon className="row-arrow h-7 w-7" /></span>
               </Link>
             </li>
           ))}
         </ul>
-        <p className="mt-4 flex justify-between text-[0.8rem] text-ink-faint">
+        <p className="meta-faint mt-3 flex justify-between">
           <span>Devis gratuit sur demande</span>
           <span className="num">Paris 20e et voisins</span>
         </p>
       </div>
-    </Section>
+    </section>
   );
 }
 
-/** L'entreprise : les faits du registre en lignes pointillées. */
+/** L'entreprise, sur noir : les faits du registre en chiffres forts. */
 function House() {
+  const figures = [
+    { big: "2007", label: "Fondée en" },
+    { big: "10–19", label: "Salariés, selon le registre" },
+    { big: "1", label: "Villa Gagliardini, l'atelier" },
+    { big: "2", label: "Métiers : l'eau et la chaleur" },
+  ];
   const rows = [
-    ["Fondée en", "2007"],
     ["Forme", "Société à responsabilité limitée"],
-    ["Équipe", "10 à 19 salariés"],
-    ["Atelier", "1, villa Gagliardini"],
     ["Registre", "RCS Paris 494 580 095"],
   ];
   return (
-    <Section n="03" rubrique="L'entreprise" labelledBy="titre-maison" tone="paper">
-      <div className="grid gap-14 xl:grid-cols-12">
-        <div className="xl:col-span-6">
-          <h2 id="titre-maison" className="h2" data-reveal>Une entreprise du 20e, depuis 2007.</h2>
-          <p className="mt-6 max-w-xl" data-reveal>
+    <section aria-labelledby="titre-maison" className="bg-ink text-white">
+      <div className="wrap pb-20 pt-0 sm:pb-28">
+        <Head t="18,0" rubrique="L'entreprise" light />
+        <div className="cols mt-8 lg:mt-10">
+          <h2 id="titre-maison" className="h2 col-span-4 !text-white md:col-span-6 lg:col-span-7" data-reveal>Une entreprise du 20e, depuis 2007.</h2>
+          <p className="col-span-4 mt-6 text-white/75 md:col-span-4 lg:col-span-4 lg:col-start-9 lg:mt-2" data-reveal>
             DBP Plomberie-Chauffage est installée villa Gagliardini, une petite voie privée proche de la porte des Lilas. L&apos;entreprise y rassemble une équipe de dix à dix-neuf personnes, selon le registre public, pour deux métiers qui vont ensemble : l&apos;eau et la chaleur.
           </p>
-          <dl className="mt-10 max-w-xl">
-            {rows.map(([k, v]) => (
-              <div key={k} className="flex items-baseline gap-3 py-2.5">
-                <dt className="shrink-0 text-ink-faint">{k}</dt>
-                <span className="mb-[0.3em] h-px flex-1 border-b border-dotted border-ink/25" aria-hidden="true" />
-                <dd className="num shrink-0 text-ink">{v}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-8 text-sm text-ink-faint">
-            Note de {business.rating.value}/5 sur <a href={business.googleUrl} target="_blank" rel="noopener" className="link-line text-sm">Google</a> ({business.rating.count} avis, relevé d&apos;{business.rating.date}).
-          </p>
         </div>
-        <figure className="xl:col-span-5 xl:col-start-8">
-          <div data-mask className="overflow-hidden rounded-[3px]">
-            <Img id="cle" alt={photoAlt("cle")} className="aspect-[4/5]" />
+        <dl className="cols mt-14 gap-y-10">
+          {figures.map((f, i) => (
+            <div key={f.label} className="col-span-2 flex flex-col-reverse justify-end border-t border-white/40 pt-3 md:col-span-3" data-reveal style={{ ["--d" as string]: `${i * 90}ms` }}>
+              <dt className="meta mt-4 text-white/70">{f.label}</dt>
+              <dd className="giant text-[3.6rem] sm:text-[5rem] lg:text-[clamp(5rem,7.4vw,8rem)]">{f.big}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="cols mt-14 items-end">
+          <figure className="col-span-2 md:col-span-2 lg:col-span-2">
+            <Img id="cle" alt={photoAlt("cle")} className="aspect-[4/5]" position="50% 50%" />
+            <figcaption className="meta mt-2 text-white/60">Fig. 2 — Une clé, un raccord</figcaption>
+          </figure>
+          <div className="col-span-4 mt-8 md:col-span-4 lg:col-span-6 lg:col-start-7 lg:mt-0">
+            <dl className="border-t border-white/40">
+              {rows.map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-4 border-b border-white/20 py-2.5">
+                  <dt className="meta text-white/60">{k}</dt>
+                  <dd className="num text-right font-medium">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="meta mt-5 text-white/60">
+              Note de {business.rating.value}/5 sur <a href={business.googleUrl} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-heat">Google</a> ({business.rating.count} avis, relevé d&apos;{business.rating.date}).
+            </p>
           </div>
-          <figcaption className="mt-3 text-[0.78rem] text-ink-faint">Une clé, un raccord : le métier commence par les mains</figcaption>
-        </figure>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-/** Le confort, à 21° : le chauffage en grand format. */
+/** Le confort, à 19° : les chiffres du réglage, en grand. */
 function Comfort() {
-  return (
-    <Section n="04" rubrique="Le confort" labelledBy="titre-confort">
-      <div className="grid gap-12 xl:grid-cols-12 xl:items-center">
-        <figure className="xl:col-span-6">
-          <div data-mask className="overflow-hidden rounded-[3px]">
-            <Img id="thermostat" alt={photoAlt("thermostat")} className="aspect-[4/3]" />
-          </div>
-          <figcaption className="mt-3 text-[0.78rem] text-ink-faint">19° dans les pièces de vie, 16 à 17° dans les chambres</figcaption>
-        </figure>
-        <div className="xl:col-span-5 xl:col-start-8">
-          <h2 id="titre-confort" className="h2" data-reveal>Puis le chauffage, pour que ça tienne.</h2>
-          <p className="mt-6" data-reveal>Un radiateur purgé, un robinet thermostatique, une chaudière entretenue chaque année : le confort tient à ces détails. Chaque degré de moins sur la consigne économise environ 7 % d&apos;énergie, selon l&apos;ADEME.</p>
-          <Link href={PATHS.heating} className="link-line mt-8 text-[0.95rem]">Le chauffage à Paris 20e <ArrowIcon className="h-3.5 w-3.5" /></Link>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-function Quarters() {
-  const rows = [
-    { zone: "20e", text: "Le quartier de l'atelier : Belleville, Gambetta, Saint-Fargeau, la porte des Lilas.", href: PATHS.plumbing, label: "Plombier Paris 20e" },
-    ...localPages.map((p) => ({ zone: p.zone!.startsWith("Paris ") ? p.zone!.replace("Paris ", "") : "93", text: p.lead.split(":")[0].split(".")[0], href: p.path, label: p.crumb })),
+  const figs = [
+    { big: "19", unit: "°", label: "Pièces de vie" },
+    { big: "16–17", unit: "°", label: "Chambres" },
+    { big: "−7", unit: " %", label: "D'énergie par degré en moins, selon l'ADEME" },
   ];
   return (
-    <Section n="05" rubrique="Quartiers" labelledBy="titre-quartiers" tone="paper">
-      <div className="grid gap-12 xl:grid-cols-12">
-        <div className="xl:col-span-5">
-          <h2 id="titre-quartiers" className="h2" data-reveal>Le 20e, et les voisins.</h2>
-          <p className="mt-6 max-w-md" data-reveal>De la porte des Lilas, le 19e et le 11e sont à quelques stations, Les Lilas, Le Pré-Saint-Gervais et Bagnolet de l&apos;autre côté du périphérique.</p>
-          <figure className="mt-12 hidden xl:block">
-            <div data-mask className="overflow-hidden rounded-[3px]">
-              <Img id="immeuble" alt={photoAlt("immeuble")} className="aspect-[5/4]" />
-            </div>
-            <figcaption className="mt-3 text-[0.78rem] text-ink-faint">Des immeubles parisiens à régler, étage par étage</figcaption>
+    <Section t="19,0" rubrique="Le confort" labelledBy="titre-confort">
+      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_9rem] lg:grid-cols-[minmax(0,1fr)_12rem]">
+        <div>
+          <h2 id="titre-confort" className="h2 max-w-[44rem]" data-reveal>Puis le chauffage, pour que ça tienne.</h2>
+          <p className="mt-6 max-w-[38rem] text-ink-soft" data-reveal>Un radiateur purgé, un robinet thermostatique, une chaudière entretenue chaque année : le confort tient à ces détails. Chaque degré de moins sur la consigne économise environ 7 % d&apos;énergie, selon l&apos;ADEME.</p>
+        </div>
+        <figure className="w-28 md:w-auto">
+          <Img id="thermostat" alt={photoAlt("thermostat")} className="aspect-square" position="50% 50%" />
+          <figcaption className="meta-faint mt-1.5">Fig. 3 — La consigne</figcaption>
+        </figure>
+      </div>
+      <dl className="mt-12 grid gap-y-8 border-t-2 border-ink sm:grid-cols-3">
+        {figs.map((f, i) => (
+          <div key={f.label} className="flex flex-col-reverse justify-end pt-3 sm:pr-6" data-reveal style={{ ["--d" as string]: `${i * 90}ms` }}>
+            <dt className="meta mt-3 text-ink-faint">{f.label}</dt>
+            <dd className="giant text-[4.4rem] sm:text-[4rem] lg:text-[clamp(4.6rem,6vw,6.6rem)]">{f.big}<span className={f.unit === "°" ? "deg" : "text-[0.5em] tracking-[-0.03em]"}>{f.unit}</span></dd>
+          </div>
+        ))}
+      </dl>
+      <Link href={PATHS.heating} className="link-line mt-10 text-[1rem]">Le chauffage à Paris 20e <ArrowIcon className="h-3.5 w-3.5" /></Link>
+    </Section>
+  );
+}
+
+const CODES: Record<string, string> = { "Paris 19e": "75019", "Paris 11e": "75011", "Les Lilas": "93260", "Le Pré-Saint-Gervais": "93310", Bagnolet: "93170" };
+
+/** Les quartiers : une planche de six cases, chacune son code postal en très grand. */
+function Quarters() {
+  const tiles = [
+    { code: "75020", text: "Le quartier de l'atelier : Belleville, Gambetta, Saint-Fargeau, la porte des Lilas.", href: PATHS.plumbing, label: "Plombier Paris 20e" },
+    ...localPages.map((p) => ({ code: CODES[p.zone!] ?? "", text: p.lead.split(":")[0].split(".")[0], href: p.path, label: p.crumb })),
+  ];
+  return (
+    <section aria-labelledby="titre-quartiers" className="bg-white">
+      <div className="wrap pb-20 sm:pb-28">
+        <Head t="20,0" rubrique="Quartiers" />
+        <div className="cols mt-8 items-end lg:mt-10">
+          <h2 id="titre-quartiers" className="h2 col-span-4 md:col-span-6 lg:col-span-6" data-reveal>Le 20e, et les voisins.</h2>
+          <p className="col-span-3 mt-6 text-ink-soft md:col-span-4 lg:col-span-4 lg:col-start-7 lg:mt-0" data-reveal>De la porte des Lilas, le 19e et le 11e sont à quelques stations, Les Lilas, Le Pré-Saint-Gervais et Bagnolet de l&apos;autre côté du périphérique.</p>
+          <figure className="col-span-1 mt-6 md:col-span-2 lg:col-span-2 lg:mt-0">
+            <Img id="immeuble" alt={photoAlt("immeuble")} className="aspect-[3/4]" position="50% 30%" />
+            <figcaption className="meta-faint mt-1.5 hidden md:block">Fig. 4 — Un angle parisien</figcaption>
           </figure>
         </div>
-        <ul className="self-start border-t border-line xl:col-span-7">
-          {rows.map((r, i) => (
-            <li key={r.href} className="border-b border-line" data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
-              <Link href={r.href} className="row-link grid grid-cols-[4.2rem_minmax(0,1fr)_1.25rem] items-baseline gap-4 py-6 sm:grid-cols-[6rem_minmax(0,1fr)_1.25rem]">
-                <span className="num text-[1.7rem] leading-none tracking-tight text-ink sm:text-[2.2rem]">{r.zone}</span>
-                <span className="row-title block">
-                  <span className="block text-[1.05rem] text-ink">{r.label}</span>
-                  <span className="mt-1 block text-[0.92rem] text-ink-faint">{r.text}</span>
+        <ul className="cols mt-12 gap-y-0">
+          {tiles.map((r) => (
+            <li key={r.href} className="col-span-4 md:col-span-3 lg:col-span-4">
+              <Link href={r.href} className="cell-link block border-t-2 border-ink pb-10 pt-3">
+                <span className="flex items-start justify-between">
+                  <span className="cell-big giant block text-[clamp(4.4rem,22vw,5.6rem)] md:text-[clamp(4rem,9vw,6.4rem)] lg:text-[clamp(5rem,6.6vw,7rem)]">{r.code}</span>
+                  <ArrowIcon className="cell-arrow mt-1 h-6 w-6 -rotate-45" />
                 </span>
-                <ArrowIcon className="row-arrow h-4 w-4 text-ink-faint" />
+                <span className="mt-4 block text-[1.2rem] font-semibold tracking-[-0.025em]">{r.label}</span>
+                <span className="mt-1 block max-w-[24rem] text-[0.95rem] text-ink-soft">{r.text}</span>
               </Link>
             </li>
           ))}
         </ul>
       </div>
-    </Section>
+    </section>
   );
 }
 
@@ -212,8 +253,8 @@ export default function HomePage() {
       <House />
       <Comfort />
       <Quarters />
-      <FaqList items={home.faq} title="Les questions qu'on nous pose" n="06" />
-      <LocalBlock n="07" />
+      <FaqList items={home.faq} title="Les questions qu'on nous pose" t="20,5" />
+      <LocalBlock t="20,8" />
       <CtaBand title={fr("Du dépannage au confort : parlons de votre logement.")} text="Une fuite, un radiateur, une chaudière : décrivez-nous le besoin." />
       <JsonLd nodes={[webPageNode({ title: home.title, description: home.description, path: "/" }), faqNode(home.faq)]} />
     </>

@@ -51,13 +51,13 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
+          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden border border-ink bg-white">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-accent-deep"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center bg-ink text-lg leading-none text-white hover:bg-heat-deep"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,7 +65,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-accent/40 bg-white px-3 text-ink hover:border-accent hover:bg-paper disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 border-2 border-ink bg-white px-3 text-ink hover:bg-ink hover:text-white disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>

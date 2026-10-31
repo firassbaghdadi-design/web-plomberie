@@ -1,27 +1,25 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Charte DBP. L'entreprise n'a ni site ni logo public : l'accent est imposé par le concept du thermostat.
- * Il passe du bleu froid (#1e6696, 6,1:1 sur blanc) au rouge doux (#bc4840, 5,0:1) au fil de la page ;
- * la valeur courante vit dans la variable CSS --accent (mise à jour par Motion.tsx), jamais figée dans une classe.
+ * Charte DBP, direction D « Typographique suisse » : noir, blanc et un seul rouge-orange chaleur.
+ * L'entreprise n'a ni site ni logo public : le rouge-orange vient du concept (la chaleur qui monte de 16° à 21°).
+ * heat (#ff4a00) ne sert qu'aux grands chiffres et aux filets (3,3:1 sur blanc, 6,3:1 sur noir) ;
+ * heat-deep (#c43000, 5,4:1 sur blanc) sert aux petits textes et aux survols.
  */
-const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
-
 export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#13171c", soft: "#474f58", faint: "#6a727b" },
-        accent: { DEFAULT: v("accent"), deep: v("accent-deep") },
-        paper: { DEFAULT: "#f6f8fa", 2: "#eef2f5" },
-        line: "#e2e7ec",
+        ink: { DEFAULT: "#0b0b0b", soft: "#3a3a3a", faint: "#6b6b6b" },
+        heat: { DEFAULT: "#ff4a00", deep: "#c43000" },
+        paper: { DEFAULT: "#ffffff", 2: "#f2f2f0" },
+        line: "#d9d9d6",
       },
       fontFamily: {
-        sans: ["'Schibsted Grotesk Variable'", "system-ui", "sans-serif"],
+        sans: ["'Geist Variable'", "Helvetica Neue", "Arial", "sans-serif"],
       },
-      maxWidth: { site: "88rem" },
-      boxShadow: { soft: "0 1px 2px rgba(19,23,28,.04), 0 18px 44px -22px rgba(19,23,28,.2)" },
+      maxWidth: { site: "96rem" },
     },
   },
   plugins: [],
