@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-zinc-wash px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
+const field = "mt-2 w-full rounded-[2px] border border-line bg-zinc-wash px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,11 +56,11 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[6px] border border-accent/30 bg-accent-wash p-10 text-center">
+      <div role="status" className="bg-white p-10 text-center text-ink-soft">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
           <CheckIcon className="h-8 w-8" />
         </span>
-        <h2 className="mt-6 text-3xl">Demande bien reçue.</h2>
+        <h2 className="mt-6 text-3xl !text-brand-deep">Demande bien reçue.</h2>
         <p className="mt-3">Merci, votre message est arrivé dans la boîte de l'entreprise. Pour une urgence, appelez le {business.phoneDisplay}.</p>
       </div>
     );
@@ -70,8 +70,8 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
-      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="bg-white p-6 text-ink-soft shadow-soft sm:p-12">
+      <h2 className="text-3xl !text-brand-deep sm:text-[2.6rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre demande arrive directement chez SPC, avenue du Général-Michel-Bizot.</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -153,7 +153,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         ) : null}
       </div>
 
-      <button type="submit" disabled={status === "sending"} className="btn-primary mt-8 w-full sm:w-auto disabled:opacity-70">
+      <button type="submit" disabled={status === "sending"} className="btn-ink mt-8 w-full sm:w-auto disabled:opacity-70">
         {status === "sending" ? "Envoi en cours…" : "Envoyer ma demande"}
       </button>
     </form>

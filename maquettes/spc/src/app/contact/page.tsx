@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Niveau } from "@/components/Niveau";
+import { Etage } from "@/components/Etage";
 import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
@@ -34,39 +34,40 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   const nodes = [webPageNode({ title, description, path }, "ContactPage"), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Contact", path }]), faqNode(faq)];
   return (
     <>
-      <section>
-        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
+      <section className="hero relative overflow-hidden" data-cote="+24,00" data-level="Faîtage">
+        <div className="hero-sky pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="wrap relative grid gap-x-16 pb-16 pt-[calc(var(--head-h)+1.5rem)] sm:pb-20 lg:grid-cols-12 lg:pt-[calc(var(--head-h)+2.5rem)]">
           <div className="lg:col-span-8">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in mt-10 text-[0.82rem] text-accent sm:mt-14">Contact · devis gratuit</p>
-            <h1 className="mt-6 text-[2.5rem] sm:text-[3.6rem] xl:text-[4.2rem]">
+            <p className="cote fade-in mt-10 sm:mt-14" aria-hidden="true"><span className="cote-mark" /><span className="cote-val">+24,00</span><span>Contact · devis gratuit</span></p>
+            <h1 className="mt-6 text-[2.6rem] sm:text-[3.8rem] xl:text-[4.9rem]">
               <span className="line-up"><span>Contact&nbsp;: plombier couvreur à Paris 12e</span></span>
             </h1>
             <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
+          <div className="fade-in mt-12 self-end border-t-2 border-white pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
             <p className="label">Téléphone</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent-deep" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
+            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-semibold tracking-tight text-white [font-stretch:110%] transition hover:text-brand-light" data-track="cta_tel">{business.phoneDisplay}</a>
+            <p className="mt-1 text-sm text-white/60">{business.address.street}, {business.address.postalCode} Paris</p>
           </div>
         </div>
       </section>
-      <Niveau n="07" level="Votre demande" ariaLabel="Formulaire de demande">
+      <Etage cote="+12,00" level="Votre demande" depth={0.3} ariaLabel="Formulaire de demande">
         <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
           <div className="xl:col-span-8">
             <ContactForm defaultType={demande} />
           </div>
           <aside className="space-y-8 xl:col-span-4 xl:pt-4">
             <dl className="space-y-6">
-              <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Téléphones</dt><dd className="mt-2 text-ink"><a href={`tel:${business.phoneTel}`} className="num">{business.phoneDisplay}</a><br /><a href={`tel:${business.mobileTel}`} className="num">{business.mobileDisplay}</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">E-mail</dt><dd className="mt-2 text-ink"><a href={`mailto:${business.email}`} className="link-line">{business.email}</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}<br /><span className="text-sm text-ink-soft">{business.emergency}</span></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Métro</dt><dd className="mt-2 text-ink">{business.metro}</dd></div>
+              <div className="border-t-2 border-white pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-white">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
+              <div className="border-t-2 border-white pt-5"><dt className="label">Téléphones</dt><dd className="mt-2 text-white"><a href={`tel:${business.phoneTel}`} className="num">{business.phoneDisplay}</a><br /><a href={`tel:${business.mobileTel}`} className="num">{business.mobileDisplay}</a></dd></div>
+              <div className="border-t-2 border-white pt-5"><dt className="label">E-mail</dt><dd className="mt-2 text-white"><a href={`mailto:${business.email}`} className="link-line">{business.email}</a></dd></div>
+              <div className="border-t-2 border-white pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-white">{business.hours}<br /><span className="text-sm text-white/65">{business.emergency}</span></dd></div>
+              <div className="border-t-2 border-white pt-5"><dt className="label">Métro</dt><dd className="mt-2 text-white">{business.metro}</dd></div>
             </dl>
           </aside>
         </div>
-      </Niveau>
+      </Etage>
       <FaqList items={faq} title="Avant d'envoyer votre demande" i={7} />
       <JsonLd nodes={nodes} />
     </>

@@ -1,9 +1,10 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Charte SPC. L'accent est la couleur du logo de l'entreprise, lue au build sur spc-services.fr
- * (scripts/fetch-photos.mjs, assombrie si besoin pour un contraste d'au moins 4,8:1 sur blanc) et injectée en variables CSS.
- * Encre gris-zinc, filets couleur zinc clair : le métal des toits du 12e.
+ * Charte SPC, direction « couleur de marque pleine ».
+ * La couleur du logo (lue au build sur spc-services.fr par scripts/fetch-photos.mjs, bleu zinc par défaut) est déclinée
+ * en aplats de plus en plus profonds : `brand` (la couleur du logo), `deep` (l'ardoise), `abyss` (la cave).
+ * Le texte est blanc ; le zinc clair sert aux filets et aux textes secondaires.
  */
 const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
@@ -12,16 +13,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#17191c", soft: "#4c5259", faint: "#737a82" },
+        brand: { DEFAULT: v("accent"), deep: v("deep"), abyss: v("abyss"), light: v("accent-light"), mid: v("accent-deep") },
         accent: { DEFAULT: v("accent"), deep: v("accent-deep"), wash: v("accent-wash") },
-        zinc: { DEFAULT: "#9aa3ab", light: "#c9cfd4", wash: "#f4f6f7" },
-        line: "#e3e7ea",
+        ink: { DEFAULT: "#0d1822", soft: "#46525d", faint: "#6b7682" },
+        zinc: { DEFAULT: "#a9b5be", light: "#cfd7dd", wash: "#eef2f4" },
+        line: "#dbe2e7",
       },
       fontFamily: {
-        sans: ["'Onest Variable'", "system-ui", "sans-serif"],
+        sans: ["'Archivo Variable'", "system-ui", "sans-serif"],
       },
-      maxWidth: { site: "88rem" },
-      boxShadow: { soft: "0 1px 2px rgba(23,25,28,.04), 0 14px 40px -20px rgba(23,25,28,.14)" },
+      maxWidth: { site: "92rem" },
+      boxShadow: { soft: "0 1px 2px rgba(13,24,34,.05), 0 24px 60px -30px rgba(13,24,34,.35)" },
     },
   },
   plugins: [],

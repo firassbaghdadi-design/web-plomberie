@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-/** Apparitions au défilement, eau qui descend dans chaque tronçon de la descente, en-tête qui se compacte. Relancé à chaque page. */
+/** Apparitions au défilement, en-tête qui se compacte. Relancé à chaque page. */
 export function Motion() {
   const pathname = usePathname();
   useEffect(() => {
     document.documentElement.classList.add("js");
-    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], .niveau"));
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
       { rootMargin: "0px 0px -10% 0px", threshold: 0.02 },

@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/onest/index.css";
+import "@fontsource-variable/archivo/wdth.css";
 import "./globals.css";
+import { Altimetre } from "@/components/Altimetre";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -15,13 +16,20 @@ import { businessNode, websiteNode } from "@/lib/seo";
 import { GA_ID, INDEXABLE, SITE_URL } from "@/lib/site";
 import { ACCENT } from "@/lib/photos";
 
-/** Variables CSS de l'accent (couleur du logo), en triplets RGB pour Tailwind. */
+/** Variables CSS de la couleur du logo et de ses aplats profonds (ardoise, cave), en triplets RGB pour Tailwind. */
 function accentVars(hex: string) {
   const n = parseInt(hex.replace("#", ""), 16);
   const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  const mix = (c: number, k: number) => Math.round(c * k);
-  const wash = (c: number) => Math.round(255 - (255 - c) * 0.07);
-  return { "--accent": `${r} ${g} ${b}`, "--accent-deep": `${mix(r, 0.72)} ${mix(g, 0.72)} ${mix(b, 0.72)}`, "--accent-wash": `${wash(r)} ${wash(g)} ${wash(b)}` } as React.CSSProperties;
+  const t = (k: number) => `${Math.round(r * k)} ${Math.round(g * k)} ${Math.round(b * k)}`;
+  const toWhite = (k: number) => `${Math.round(r + (255 - r) * k)} ${Math.round(g + (255 - g) * k)} ${Math.round(b + (255 - b) * k)}`;
+  return {
+    "--accent": `${r} ${g} ${b}`,
+    "--accent-deep": t(0.72),
+    "--accent-wash": toWhite(0.93),
+    "--accent-light": toWhite(0.58),
+    "--deep": t(0.44),
+    "--abyss": t(0.2),
+  } as React.CSSProperties;
 }
 
 export const metadata: Metadata = {
@@ -30,7 +38,7 @@ export const metadata: Metadata = {
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0d2a3b" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -39,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-medium focus:text-white">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:bg-white focus:px-5 focus:py-3 focus:font-semibold focus:text-brand-deep">
           Aller au contenu
         </a>
         <Header />
@@ -48,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StickyCall />
         {INDEXABLE ? null : <MockupBadge />}
         <JsonLd nodes={[businessNode, websiteNode]} />
+        <Altimetre />
         <Motion />
         <Suspense fallback={null}>
           <Analytics />
