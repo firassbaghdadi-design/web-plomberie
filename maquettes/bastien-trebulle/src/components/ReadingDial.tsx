@@ -45,7 +45,7 @@ export function ReadingDial() {
         <g ref={needle} transform="rotate(-135 20 20)"><line x1="20" y1="22" x2="20" y2="8.5" stroke="#a8873f" strokeWidth="1.6" strokeLinecap="round" /></g>
         <circle cx="20" cy="20" r="2" fill="#a8873f" />
       </svg>
-      <span className={`hidden max-w-[10rem] truncate text-[0.78rem] text-ink-faint transition-opacity duration-500 group-hover:text-accent xl:inline ${rub ? "opacity-100" : "opacity-0"}`}>
+      <span className={`hidden max-w-[10rem] truncate text-[0.78rem] text-fg-faint transition-opacity duration-500 group-hover:text-accent xl:inline ${rub ? "opacity-100" : "opacity-0"}`}>
         <span className="num mr-2 text-accent">N° {rub?.n}</span>{rub?.label}
       </span>
     </a>

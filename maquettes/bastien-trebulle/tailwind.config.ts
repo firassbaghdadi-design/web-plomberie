@@ -1,9 +1,9 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Charte Bastien & Trebulle. L'accent est le bleu nuit du site actuel (#232F63), relevé sur le logo au build
- * (scripts/fetch-photos.mjs) et injecté en variables CSS. Le laiton n'existe que dans le compteur lui-même : c'est la
- * matière de l'objet, pas une seconde couleur de charte. Encre bleu-noir, filets gris clair, fond blanc.
+ * Charte Bastien & Trebulle, direction A « éditorial sombre » : fond d'encre, ivoire, laiton.
+ * Le laiton est l'unique accent : c'est la matière du compteur, l'objet précieux de la maquette.
+ * La couleur du logo (bleu nuit, relevée au build) n'apparaît que sur les rouleaux décimaux (--logo).
  */
 const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
@@ -12,17 +12,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#13171f", soft: "#4a505c", faint: "#6f7683" },
-        accent: { DEFAULT: v("accent"), deep: v("accent-deep"), wash: v("accent-wash") },
-        brass: { DEFAULT: "#a8873f", light: "#e3cb94", deep: "#6e5521" },
-        paper: "#f8f8f6",
-        line: "#e4e6ea",
+        bg: "#0c0d0f",
+        coal: "#131417",
+        raise: "#1a1b1f",
+        fg: { DEFAULT: "#ede7db", soft: "#bfb8ab", faint: "#8f897e" },
+        accent: { DEFAULT: v("accent"), deep: v("accent-deep") },
+        brass: { DEFAULT: "#c8a565", light: "#ead39c", deep: "#7c612f" },
+        logo: v("logo"),
+        line: { DEFAULT: "#2a2a2f", strong: "#45434a" },
       },
       fontFamily: {
         sans: ["'Instrument Sans Variable'", "system-ui", "sans-serif"],
+        serif: ["'Cormorant Garamond Variable'", "Georgia", "serif"],
       },
-      maxWidth: { site: "88rem" },
-      boxShadow: { soft: "0 1px 2px rgba(19,23,31,.04), 0 14px 40px -20px rgba(19,23,31,.16)" },
+      maxWidth: { site: "92rem" },
+      boxShadow: { deep: "0 1px 0 rgba(237,231,219,.04) inset, 0 40px 80px -40px rgba(0,0,0,.8)" },
     },
   },
   plugins: [],

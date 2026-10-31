@@ -21,7 +21,7 @@ export function Timeline() {
       {rows.map((r, i) => (
         <li key={r.v} className="grid items-center gap-x-10 gap-y-3 border-b border-line py-8 sm:grid-cols-[minmax(0,20rem)_1fr]" data-reveal style={{ ["--d" as string]: `${i * 70}ms` }}>
           <Drums value={r.v} size="clamp(2.4rem, 7vw, 3.4rem)" />
-          <div><p className="text-[1.25rem] text-ink">{r.t}</p><p className="mt-1 max-w-xl">{r.d}</p></div>
+          <div><p className="text-[1.25rem] text-fg">{r.t}</p><p className="mt-1 max-w-xl">{r.d}</p></div>
         </li>
       ))}
     </ol>
@@ -40,7 +40,7 @@ function History({ n }: { n: string }) {
             <div><p className="label mb-3">Générations</p><Drums value="5" size="3rem" /></div>
             <div><p className="label mb-3">Depuis</p><Drums value={String(year - 1880)} size="3rem" unit="ans" /></div>
           </div>
-          <Img photo={photo} className="mt-10 aspect-[4/3] rounded-[4px]" />
+          <Img photo={photo} className="mt-10 aspect-[4/3]" />
         </div>
       </div>
     </Folio>
@@ -61,16 +61,16 @@ function Works({ n }: { n: string }) {
                 <p className="label !text-accent">{w.trade}</p>
                 <h3 className="mt-4 text-[1.8rem] sm:text-[2.2rem]">{w.title}</h3>
                 <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
-                  <div><dt className="label">Lieu</dt><dd className="mt-1 text-ink">{w.place}</dd></div>
-                  <div><dt className="label">Type</dt><dd className="mt-1 text-ink">{w.type}</dd></div>
+                  <div><dt className="label">Lieu</dt><dd className="mt-1 text-fg">{w.place}</dd></div>
+                  <div><dt className="label">Type</dt><dd className="mt-1 text-fg">{w.type}</dd></div>
                 </dl>
-                <p className="mt-6 text-sm text-ink-faint">{w.client}</p>
-                <p className="num mt-6 text-sm text-ink-faint">Réalisation {String(i + 1).padStart(2, "0")} / 20</p>
+                <p className="mt-6 text-sm text-fg-faint">{w.client}</p>
+                <p className="num mt-6 text-sm text-fg-faint">Réalisation {String(i + 1).padStart(2, "0")} / 20</p>
               </div>
               <div className="space-y-5 lg:col-span-7">
                 <div className="grid grid-cols-3 gap-3">
                   {(ph.length ? ph : [{ src: null, alt: "", credit: "none" as const }]).map((p, j) => (
-                    <Img key={j} photo={p} alt={`${w.title}, ${w.trade.toLowerCase()}, ${w.place}`} className={j === 0 && ph.length > 1 ? "col-span-3 aspect-[16/9] rounded-[4px]" : "aspect-[4/3] rounded-[4px] " + (ph.length <= 1 ? "col-span-3" : "")} />
+                    <Img key={j} photo={p} alt={`${w.title}, ${w.trade.toLowerCase()}, ${w.place}`} className={j === 0 && ph.length > 1 ? "col-span-3 aspect-[16/9]" : "aspect-[4/3] " + (ph.length <= 1 ? "col-span-3" : "")} />
                   ))}
                 </div>
                 <p>{w.context}</p>
@@ -85,8 +85,8 @@ function Works({ n }: { n: string }) {
         <ul className="mt-6 grid border-t border-line sm:grid-cols-2">
           {works.filter((w) => !w.context).map((w) => (
             <li key={w.slug} className="flex items-baseline justify-between gap-4 border-b border-line py-4 sm:odd:pr-8 sm:even:pl-8">
-              <span className="text-ink">{w.title}</span>
-              <span className="shrink-0 text-sm text-ink-faint">{w.place} · {w.trade.split(" et ")[0]}</span>
+              <span className="text-fg">{w.title}</span>
+              <span className="shrink-0 text-sm text-fg-faint">{w.place} · {w.trade.split(" et ")[0]}</span>
             </li>
           ))}
         </ul>
@@ -130,7 +130,7 @@ function Emergency({ n }: { n: string }) {
         <div data-reveal><p className="label mb-4">Jours par semaine</p><Drums value="7" size="3.6rem" unit="j" /><p className="mt-5 text-sm">Avec un tarif forfaitaire annoncé à l&apos;avance.</p></div>
       </div>
       <p className="mt-14">
-        <a href={`tel:${business.phoneTel}`} className="num text-[2rem] tracking-tight text-ink transition hover:text-accent sm:text-[3rem]" data-track="cta_tel">{business.phoneDisplay}</a>
+        <a href={`tel:${business.phoneTel}`} className="num text-[2rem] tracking-tight text-fg transition hover:text-accent sm:text-[3rem]" data-track="cta_tel">{business.phoneDisplay}</a>
         <Link href={PATHS.contact} className="link-line ml-6 hidden text-sm sm:inline">ou un devis par écrit</Link>
       </p>
     </Folio>

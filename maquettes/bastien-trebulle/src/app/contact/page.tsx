@@ -45,8 +45,8 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
           </div>
           <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
             <p className="label">Urgence 24h/24</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.3rem] tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">Bureau : {business.phoneOfficeDisplay}</p>
+            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.3rem] tracking-tight text-fg transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
+            <p className="mt-1 text-sm text-fg-faint">Bureau : {business.phoneOfficeDisplay}</p>
           </div>
         </div>
       </section>
@@ -57,9 +57,9 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
           </div>
           <aside className="space-y-8 xl:col-span-4 xl:pt-4">
             <dl className="space-y-6">
-              <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Courriel</dt><dd className="mt-2"><a href={`mailto:${business.email}`} className="text-ink transition hover:text-accent">{business.email}</a></dd></div>
-              <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
+              <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-fg">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
+              <div className="border-t border-line pt-5"><dt className="label">Courriel</dt><dd className="mt-2"><a href={`mailto:${business.email}`} className="text-fg transition hover:text-accent">{business.email}</a></dd></div>
+              <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-fg">{business.hours}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 1880<br />Note de {reputation.rating}/5 sur Google ({reputation.reviews} avis, relevé du {reputation.date})</dd></div>
             </dl>
           </aside>

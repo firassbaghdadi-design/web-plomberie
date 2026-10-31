@@ -4,7 +4,7 @@ export const alt = "Bastien & Trebulle, plombier couvreur à Paris 16e depuis 18
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const ACCENT = "#232f63";
+const ACCENT = "#c8a565";
 
 export default function OpengraphImage() {
   const ticks = Array.from({ length: 60 }, (_, i) => {
@@ -14,12 +14,12 @@ export default function OpengraphImage() {
   });
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", background: "#ffffff", padding: 70, color: "#13171f", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", background: "#0c0d0f", padding: 70, color: "#ede7db", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 600 }}>
-          <div style={{ fontSize: 22, letterSpacing: 6, color: "#6f7683" }}>BASTIEN &amp; TREBULLE</div>
-          <div style={{ fontSize: 84, fontWeight: 400, letterSpacing: -3, lineHeight: 1.02, marginTop: 28 }}>Plombier couvreur</div>
-          <div style={{ fontSize: 84, fontWeight: 400, letterSpacing: -3, lineHeight: 1.1, color: ACCENT }}>à Paris 16e</div>
-          <div style={{ fontSize: 26, color: "#4a505c", marginTop: 34 }}>Depuis 1880 · 4,6/5 sur Google, 205 avis</div>
+          <div style={{ fontSize: 22, letterSpacing: 6, color: "#8f897e" }}>BASTIEN &amp; TREBULLE</div>
+          <div style={{ fontSize: 84, fontWeight: 300, letterSpacing: -2, lineHeight: 1.02, marginTop: 28 }}>Plombier couvreur</div>
+          <div style={{ fontSize: 84, fontWeight: 300, letterSpacing: -2, lineHeight: 1.1, color: ACCENT }}>à Paris 16e</div>
+          <div style={{ fontSize: 26, color: "#bfb8ab", marginTop: 34 }}>Depuis 1880 · 4,6/5 sur Google, 205 avis</div>
         </div>
         <div style={{ display: "flex", position: "relative", width: 500, height: 500 }}>
           <svg width="500" height="500" viewBox="0 0 500 500">
