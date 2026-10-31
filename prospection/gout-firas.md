@@ -93,3 +93,14 @@ Retour de Firas : on a abusé du minimalisme blanc, toutes les maquettes se ress
 | E | **Artisan chaleureux** | crème, pierre, terre cuite | serif chaleureuse | grain, lumière naturelle | entreprises familiales, savoir-faire |
 | F | **Plan d'ingénieur** | bleu de plan ou papier calque | mono et sans | intégrées dans des cadres techniques | maintenance, syndics, réseaux |
 | G | **Minimal blanc** (Rousseau) | blanc | sans fine | rares et grandes | 1 site sur 6 maximum |
+
+## Règle du 31/10/2026 : les vraies photos d'abord (prioritaire sur tout le reste)
+
+Retour de Firas sur SPC (héros fait d'une silhouette de toit dessinée et de traits de cote) : « ce type de visuel n'attire pas, il faut de vraies photos ».
+
+- **Le héros est construit autour d'une vraie photo, grande** : chantier, artisan au travail, toit ou immeuble parisien. Jamais un dessin, une silhouette, un schéma ou un aplat à la place de la photo.
+- **Ordre des sources** : 1) les photos du site actuel de l'entreprise, aspirées au build et réutilisées ; 2) leur fiche Google et leurs réseaux, si les images sont accessibles ; 3) Pexels (artisans plausibles pour l'Île-de-France).
+- **Chaque section importante a sa photo.** Les photos de réalisations de l'entreprise sont mises en avant, en grand.
+- **Le concept dessiné (traits, cotes, schémas, compteurs) reste un accent discret**, jamais la norme ni le visuel principal. Une petite touche, pas le décor.
+- Ce qui vaut pour toutes les directions du catalogue : même en « typographique » ou en « couleur de marque », la photo reste grande et présente.
+- **Avant de montrer une maquette à Firas** : la vérifier **en ligne**, avec les vraies photos chargées. Ne jamais lui envoyer une capture où les photos manquent.
