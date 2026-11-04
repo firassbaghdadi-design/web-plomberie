@@ -3,7 +3,7 @@ import { allPages } from "@/lib/pages";
 import { photoFor } from "@/lib/photos";
 import { PATHS, business, type Faq } from "@/lib/site";
 import type { Page, Section } from "@/lib/types";
-import { Decoupe } from "./Decoupe";
+import { Img } from "./Img";
 import { COTES, Etage, coteAt } from "./Etage";
 import { ArrowIcon } from "./Icons";
 
@@ -46,7 +46,7 @@ export function CtaButtons({ contactType, label = "Demander un devis ou une inte
   );
 }
 
-/** Héros des pages : le faîtage. Titre en grotesque large, photo découpée dans une lucarne, faits clés en pied. */
+/** Héros des pages : le faîtage. Titre en grotesque large, grande photo en couleurs naturelles, faits clés en pied. */
 export function PageHero({ page, crumbs }: { page: Page; crumbs: { name: string; href?: string }[] }) {
   const facts = page.facts ?? [];
   const photo = photoFor(page.photo, page.photoIndex ?? 0, page.caption);
@@ -71,7 +71,7 @@ export function PageHero({ page, crumbs }: { page: Page; crumbs: { name: string;
           </div>
         </div>
         <figure className="lg:col-span-5">
-          <div className="rise"><Decoupe photo={photo} shape="lucarne" priority className="aspect-[4/5] w-full sm:aspect-[5/4] lg:aspect-[4/5]" /></div>
+          <Img photo={photo} priority className="hero-photo aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[4/5]" />
           <figcaption className="mt-3 flex items-center justify-between gap-4 text-[0.78rem] text-white/55">
             <span>{photo.credit === "spc" ? "Photo de l'entreprise SPC" : photo.alt}</span>
             <span className="num hidden shrink-0 sm:inline">{page.zone ?? "Paris 12e"}</span>

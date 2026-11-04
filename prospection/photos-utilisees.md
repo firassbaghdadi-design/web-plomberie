@@ -129,6 +129,8 @@ Photos de l'entreprise en priorité : le logo et les photos de chantiers sont r�
 
 - 38510734 : SPC (couvreurs, repli) — « Workers applying roofing material on building »
 - 38524264 : SPC (couvreur, repli) — « Construction worker using drill for roofing »
+- 16934179 : SPC (bande plein cadre « toits », toujours affichée) — « Aerial Panorama of Rooftops in Paris »
+- 34204439 : SPC (toits, repli de la section histoire) — « Charming Paris Rooftops on a Sunny Day »
 
 
 ## ebl

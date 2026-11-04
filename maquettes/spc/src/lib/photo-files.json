@@ -1,6 +1,28 @@
 {
   "pexels": {
-    "couvreurs": { "id": 38510734, "title": "Workers applying roofing material on building", "author": "Pexels", "alt": "Des couvreurs posent un revêtement sur une toiture" },
-    "couvreur": { "id": 38524264, "title": "Construction worker using drill for roofing", "author": "Pexels", "alt": "Un couvreur fixe un élément de toiture à la visseuse" }
+    "couvreurs": {
+      "id": 38510734,
+      "title": "Workers applying roofing material on building",
+      "author": "Pexels",
+      "alt": "Des couvreurs posent un revêtement sur une toiture"
+    },
+    "couvreur": {
+      "id": 38524264,
+      "title": "Construction worker using drill for roofing",
+      "author": "Pexels",
+      "alt": "Un couvreur fixe un élément de toiture à la visseuse"
+    },
+    "toits": {
+      "id": 16934179,
+      "title": "Aerial Panorama of Rooftops in Paris",
+      "author": "Pexels",
+      "alt": "Les toits de Paris, leurs brisis de zinc et leurs souches de cheminée"
+    },
+    "toits-soleil": {
+      "id": 34204439,
+      "title": "Charming Paris Rooftops on a Sunny Day",
+      "author": "Pexels",
+      "alt": "Toits d'immeubles parisiens au soleil"
+    }
   }
 }

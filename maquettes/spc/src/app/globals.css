@@ -4,10 +4,10 @@
 
 /* ————————————————————————————————————————————————————————————————
    SPC · direction « couleur de marque pleine »
-   Concept : la coupe d'immeuble. La page se lit comme le relevé d'un architecte,
-   du faîtage (+24,00) à la cave (−3,50). Chaque section porte sa cote de niveau,
-   et la couleur du logo s'assombrit à mesure qu'on descend : bleu zinc sous le toit,
-   ardoise aux étages, presque noir à la cave.
+   De vraies photos de toits et de chantiers, en grand, posées sur des aplats de la couleur du logo.
+   Objet signature : la plaque de zinc gravée de SPC, vissée sur la photo du héros.
+   Accent discret : la cote de niveau de chaque section, du faîtage (+24,00) à la cave,
+   et la couleur du logo qui s'assombrit à mesure qu'on descend.
    ———————————————————————————————————————————————————————————————— */
 
 :root {
@@ -89,24 +89,14 @@ a, button { -webkit-tap-highlight-color: transparent; }
 /* les joints debout du zinc, en texture discrète */
 .seams { background-image: repeating-linear-gradient(90deg, transparent 0 calc(var(--seam, 56px) - 1px), rgb(255 255 255 / .045) calc(var(--seam, 56px) - 1px) var(--seam, 56px)); }
 
-/* ————— Photos découpées : la silhouette d'un toit à la Mansart, souches de cheminée comprises ————— */
-.mansard { clip-path: polygon(0 100%, 0 30%, 11% 11%, 20% 11%, 20% 3%, 29% 3%, 29% 11%, 67% 11%, 67% 0, 78% 0, 78% 11%, 89% 11%, 100% 30%, 100% 100%); }
-.lucarne { clip-path: polygon(0 100%, 0 26%, 50% 0, 100% 26%, 100% 100%); }
-.duo { overflow: hidden; background: rgb(var(--accent)); }
-.duo img { mix-blend-mode: luminosity; filter: grayscale(1) contrast(1.12) brightness(1.08); }
-.duo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgb(var(--deep) / .55)); pointer-events: none; }
-.natural img { transition: transform 1.2s var(--ease), filter .8s; }
+/* ————— Photos ————— */
+.natural img { transition: transform 1.2s var(--ease); }
 .natural:hover img { transform: scale(1.03); }
 
 /* ————— Héros ————— */
 .hero { background: rgb(var(--deep)); }
 .hero-sky { background: radial-gradient(120% 80% at 80% 0%, rgb(var(--accent) / .55), transparent 60%); }
-.rise { animation: rise 1.6s cubic-bezier(.2,.75,.15,1) .2s both; }
-@keyframes rise { from { clip-path: inset(100% 0 0 0); transform: translate3d(0, 40px, 0); } to { clip-path: inset(-10% 0 0 0); transform: none; } }
-.rise img { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) .2s both; }
 @keyframes slow-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
-.descente { transform-origin: 50% 0; animation: drop 1.6s cubic-bezier(.5,0,.2,1) 1.2s both; }
-@keyframes drop { from { transform: scaleY(0); } to { transform: none; } }
 
 .line-up { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
 .line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
@@ -168,3 +158,29 @@ details.faq[open] .faq-plus::after { transform: rotate(0deg); }
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ————— L'objet signature : la plaque de zinc gravée, vissée sur la photo ————— */
+.plaque { width: 17.5rem; padding: 3px; border-radius: 3px; background: linear-gradient(145deg, #eef2f4, #6f7b84 48%, #c4ccd2 70%, #5b666f); box-shadow: 0 40px 70px -28px rgb(0 0 0 / .75), 0 10px 22px -10px rgb(0 0 0 / .5); transform: rotate(-1.2deg); animation: plaque-in 1.4s cubic-bezier(.2,.75,.15,1) .9s both; }
+@keyframes plaque-in { from { opacity: 0; transform: translate3d(0, 24px, 0) rotate(-4deg); } to { opacity: 1; transform: rotate(-1.2deg); } }
+.plaque-face { position: relative; overflow: hidden; border-radius: 2px; padding: 1.6rem 1.7rem 1.45rem; text-align: center; color: #3f4a53;
+  background:
+    repeating-linear-gradient(90deg, rgb(255 255 255 / .09) 0 1px, transparent 1px 2px, rgb(0 0 0 / .04) 2px 3px),
+    radial-gradient(120% 90% at 20% 0%, rgb(255 255 255 / .55), transparent 55%),
+    radial-gradient(80% 60% at 100% 100%, rgb(var(--accent) / .22), transparent 70%),
+    linear-gradient(160deg, #d7dde1 0%, #aab4bb 38%, #c9d0d5 58%, #949fa7 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .8), inset 0 -2px 4px rgb(0 0 0 / .28), inset 0 0 0 1px rgb(0 0 0 / .12); }
+/* reflet qui passe une fois sur le métal */
+.plaque-face::after { content: ""; position: absolute; inset: -40% -60%; background: linear-gradient(105deg, transparent 42%, rgb(255 255 255 / .55) 50%, transparent 58%); transform: translateX(-60%); animation: plaque-sheen 2.6s cubic-bezier(.4,0,.2,1) 1.9s both; pointer-events: none; }
+@keyframes plaque-sheen { to { transform: translateX(60%); } }
+.plaque-face p { text-shadow: 0 1px 0 rgb(255 255 255 / .6), 0 -1px 0 rgb(0 0 0 / .28); }
+.plaque-small { font-size: .6rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; font-stretch: 112%; }
+.plaque-small sup { font-size: .7em; }
+.plaque-name { margin: .5rem 0 .2rem; font-size: 3.4rem; line-height: .9; font-weight: 760; font-stretch: 125%; letter-spacing: .02em; color: #36414a; }
+.plaque-rule { height: 0; margin: .65rem auto .7rem; width: 70%; border-top: 1px solid rgb(0 0 0 / .25); border-bottom: 1px solid rgb(255 255 255 / .6); text-shadow: none !important; }
+.plaque-year { margin-top: .55rem; font-size: .72rem; font-style: italic; font-weight: 500; letter-spacing: .04em; color: #46525b; }
+.plaque-vis { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fbfcfd, #9aa5ad 45%, #5d6870 100%); box-shadow: 0 1px 1px rgb(0 0 0 / .45), inset 0 -1px 1px rgb(0 0 0 / .3); }
+.plaque-vis::after { content: ""; position: absolute; left: 1.5px; right: 1.5px; top: 50%; height: 1.4px; margin-top: -.7px; background: #4b555d; box-shadow: 0 1px 0 rgb(255 255 255 / .5); }
+
+/* ————— Grandes photos ————— */
+.hero-photo img { animation: slow-zoom 18s cubic-bezier(.2,.6,.3,1) both; }
+.shade-b::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .15), transparent 30%, transparent 60%, rgb(var(--deep) / .55)); pointer-events: none; }

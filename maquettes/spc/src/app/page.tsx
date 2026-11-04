@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { Decoupe } from "@/components/Decoupe";
+import { Plaque } from "@/components/Plaque";
 import { Etage, depthColor } from "@/components/Etage";
 import { ArrowIcon } from "@/components/Icons";
 import { Img } from "@/components/Img";
@@ -8,102 +8,84 @@ import { JsonLd } from "@/components/JsonLd";
 import { CtaBand, FaqList, contactHref, fr } from "@/components/Sections";
 import { home, trades } from "@/lib/content";
 import { localPages } from "@/lib/local";
-import { beforeAfter, galleryPhotos, photoFor } from "@/lib/photos";
+import { beforeAfter, galleryPhotos, pexelsPhoto, photoFor } from "@/lib/photos";
 import { PATHS, business } from "@/lib/site";
 import { faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
 export const metadata = pageMeta({ title: home.title, description: home.description, path: "/" });
 
-/** La règle de la coupe : les cotes de l'immeuble, du faîtage à la cave, posées le long de la photo du héros. */
-const RULER = [
-  { cote: "+24,00", level: "Faîtage", at: 0 },
-  { cote: "+21,40", level: "Toiture", at: 13 },
-  { cote: "+12,00", level: "Étages", at: 42 },
-  { cote: "±0,00", level: "Rue", at: 76 },
-  { cote: "−3,50", level: "Cave", at: 100 },
-];
-
-function Ruler({ className = "" }: { className?: string }) {
-  return (
-    <div className={`pointer-events-none ${className}`} aria-hidden="true">
-      <div className="relative h-full">
-        <span className="absolute inset-y-0 left-0 w-px bg-white/50" />
-        <span className="absolute inset-y-0 left-0 w-2.5" style={{ backgroundImage: "repeating-linear-gradient(180deg, rgb(255 255 255 / .4) 0 1px, transparent 1px 14px)" }} />
-        {RULER.map((r, i) => (
-          <span key={r.cote} className="fade-in absolute left-0 flex -translate-y-1/2 items-center gap-2.5" style={{ top: `${r.at}%`, ["--d" as string]: `${700 + i * 140}ms` }}>
-            <span className="h-[2px] w-5 bg-white" />
-            <span className="num whitespace-nowrap text-[0.66rem] font-semibold uppercase leading-tight tracking-[0.1em] text-white [font-stretch:108%]">
-              {r.cote}<span className="block font-medium text-white/60">{r.level}</span>
-            </span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
+/**
+ * Le héros : une vraie photo de toit ou de chantier, en grand et en couleurs naturelles.
+ * Un aplat bleu de la marque s'y pose en bas à gauche et porte le titre ; la plaque de zinc gravée de SPC
+ * est vissée sur la photo. La cote « +24,00 » n'est qu'un détail.
+ */
 function Hero() {
-  const photo = photoFor("couverture", 0, "Couvreurs de SPC sur un toit de zinc du 12e arrondissement");
+  const photo = photoFor("couverture", 0, "Couvreurs de SPC sur un toit du 12e arrondissement");
   const metrics = [
     { v: business.founded, l: "dans le 12e depuis" },
     { v: "6 h – 0 h", l: "dépannage annoncé 7 j/7" },
     { v: `${business.rating.value}/5`, l: `${business.rating.count} avis Google · ${business.rating.date}` },
   ];
   return (
-    <section className="hero relative overflow-hidden" data-cote="+24,00" data-level="Faîtage" data-hero>
-      <div className="hero-sky pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="seams pointer-events-none absolute inset-0" style={{ ["--seam" as string]: "72px" }} aria-hidden="true" />
+    <section className="hero relative overflow-hidden" data-cote="+24,00" data-level="Faîtage">
+      {/* la photo, bord à bord */}
+      <div className="relative h-[46svh] min-h-[19rem] lg:absolute lg:inset-0 lg:h-auto">
+        <Img photo={photo} priority className="hero-photo shade-b absolute inset-0" position="50% 35%" />
+      </div>
+      <Plaque className="absolute right-4 top-[calc(var(--head-h)+0.75rem)] z-10 origin-top-right scale-[.6] sm:scale-75 lg:right-[var(--gutter)] lg:top-[calc(var(--head-h)+2.5rem)] lg:scale-100" />
 
-      <div className="wrap relative grid pt-[calc(var(--head-h)+1.75rem)] lg:min-h-[100svh] lg:grid-cols-12 lg:gap-x-10 lg:pt-[calc(var(--head-h)+2rem)]">
-        {/* Le toit découpé : une photo dans la silhouette d'un comble à la Mansart, posée sur l'aplat bleu */}
-        <div className="relative order-1 mt-10 lg:order-none lg:col-span-5 lg:col-start-8 lg:row-span-3 lg:mt-0">
-          <div className="relative ml-[5.6rem] aspect-[5/4] sm:ml-28 sm:aspect-[4/3] lg:ml-0 lg:aspect-auto lg:h-full lg:min-h-[34rem]">
-            <div className="rise absolute inset-0"><Decoupe photo={photo} priority className="absolute inset-0" position="50% 40%" /></div>
-            {/* la descente d'eau pluviale, du chéneau jusqu'en bas de l'écran */}
-            <span className="descente absolute -bottom-px left-0 top-[30%] w-[3px] bg-white" aria-hidden="true" />
-          </div>
-          <Ruler className="absolute bottom-0 left-0 top-0 lg:-left-[5.5rem] lg:top-0" />
-        </div>
-
-        <div className="relative z-10 lg:col-span-7 lg:col-start-1 lg:row-start-1">
-          <p className="cote fade-in flex-wrap !text-[0.68rem] sm:!text-[0.76rem]" style={{ ["--d" as string]: "100ms" }}>
+      {/* l'aplat de la marque, qui porte le titre */}
+      <div className="relative lg:flex lg:min-h-[100svh] lg:items-end">
+        <div className="relative -mt-14 bg-brand-deep px-[var(--gutter)] pb-10 pt-8 sm:mx-[var(--gutter)] sm:-mt-24 sm:px-10 lg:mx-0 lg:mt-0 lg:w-[min(54rem,57vw)] lg:pb-10 lg:pl-[max(var(--gutter),calc((100vw-92rem)/2+var(--gutter)))] lg:pr-12 lg:pt-10">
+          <p className="cote fade-in !text-[0.68rem] sm:!text-[0.74rem]">
             <span className="cote-mark" />
-            <span className="cote-val">SPC</span>
+            <span className="cote-val">+24,00</span>
             <span>Société Plomberie Couverture</span>
           </p>
-          <h1 className="display mt-6 text-[clamp(3rem,13.4vw,4.4rem)] sm:mt-9 sm:text-[5.6rem] lg:text-[clamp(5rem,7.3vw,8.8rem)]">
-            <span className="line-up"><span>Plombier</span></span>
-            <span className="line-up"><span style={{ ["--d" as string]: "110ms" }}>couvreur</span></span>
-            <span className="line-up"><span className="text-brand-light" style={{ ["--d" as string]: "220ms" }}>à Paris 12e</span></span>
+          <h1 className="display mt-5 text-[clamp(2.9rem,13vw,4.4rem)] sm:text-[5.2rem] lg:text-[clamp(3.8rem,5.1vw,6.2rem)]">
+            <span className="line-up"><span>Plombier couvreur</span></span>
+            <span className="line-up"><span className="text-brand-light" style={{ ["--d" as string]: "140ms" }}>à Paris 12e</span></span>
           </h1>
-        </div>
-
-        <div className="fade-in relative z-10 order-2 mt-9 lg:order-none lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:mt-10 lg:self-start" style={{ ["--d" as string]: "450ms" }}>
-          <p className="max-w-[38rem] text-[1.08rem] leading-relaxed text-white/85 sm:text-[1.18rem]">
-            Du faîtage à la cave&nbsp;: couvreurs zingueurs, cordistes et plombiers d&apos;immeuble, réunis dans une entreprise du 12e depuis {business.founded}.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
+          <div className="fade-in mt-6" style={{ ["--d" as string]: "420ms" }}>
+            <p className="max-w-[34rem] text-[1.06rem] leading-relaxed text-white/85 sm:text-[1.16rem]">
+              Du faîtage à la cave&nbsp;: couvreurs zingueurs, cordistes et plombiers d&apos;immeuble, réunis dans une entreprise du 12e depuis {business.founded}.
+            </p>
+          </div>
+          <div className="fade-in mt-7 flex flex-wrap items-center gap-x-8 gap-y-5" style={{ ["--d" as string]: "520ms" }}>
             <Link href={contactHref()} className="btn-solid" data-track="cta_devis">Demander un devis ou une intervention <ArrowIcon /></Link>
             <a href={`tel:${business.phoneTel}`} className="group flex items-baseline gap-3" data-track="cta_tel">
               <span className="label">Tél.</span>
               <span className="num whitespace-nowrap text-[1.45rem] font-semibold tracking-tight text-white [font-stretch:108%] group-hover:text-brand-light">{business.phoneDisplay}</span>
             </a>
           </div>
+          <dl className="fade-in mt-8 grid grid-cols-3 border-t border-white/25" style={{ ["--d" as string]: "650ms" }}>
+            {metrics.map((m, i) => (
+              <div key={m.l} className={`pt-4 ${i ? "border-l border-white/20 pl-3 sm:pl-6" : "pr-3"}`}>
+                <dt className="sr-only">{m.l}</dt>
+                <dd>
+                  <span className="num block whitespace-nowrap text-[1.15rem] font-bold leading-none text-white [font-stretch:116%] sm:text-[1.9rem]">{m.v}</span>
+                  <span className="mt-2 block text-[0.7rem] leading-snug text-white/60 sm:text-[0.8rem]">{m.l}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
-
-        <dl className="fade-in relative z-10 order-3 mt-12 grid grid-cols-3 border-t-2 border-white pb-10 lg:order-none lg:col-span-6 lg:col-start-1 lg:row-start-3 lg:mt-10 lg:self-end lg:pb-10" style={{ ["--d" as string]: "650ms" }}>
-          {metrics.map((m, i) => (
-            <div key={m.l} className={`pt-4 ${i ? "border-l border-white/20 pl-3 sm:pl-6" : "pr-3"}`}>
-              <dt className="sr-only">{m.l}</dt>
-              <dd>
-                <span className="num block whitespace-nowrap text-[1.2rem] font-bold leading-none text-white [font-stretch:116%] sm:text-[2.2rem]">{m.v}</span>
-                <span className="mt-2 block text-[0.72rem] leading-snug text-white/60 sm:text-[0.82rem]">{m.l}</span>
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <p className="absolute bottom-4 right-[var(--gutter)] hidden text-[0.74rem] text-white/80 lg:block">{photo.credit === "spc" ? "Photo de l'entreprise SPC" : photo.alt}</p>
       </div>
     </section>
+  );
+}
+
+/** Bande plein cadre : les toits de Paris, en très grand, entre deux aplats. */
+function Toits() {
+  const photo = pexelsPhoto("toits", "Les toits de Paris, leurs brisis de zinc et leurs souches de cheminée");
+  return (
+    <figure className="relative">
+      <Img photo={photo} className="h-[62vh] min-h-[22rem] w-full lg:h-[86vh]" position="50% 45%" />
+      <figcaption className="absolute bottom-0 left-[var(--gutter)] bg-brand-deep px-5 py-4 text-[0.82rem] text-white/85 sm:px-7">
+        <span className="cote !text-[0.68rem]"><span className="cote-mark" /><span className="cote-val">+21,40</span><span>Les toits de l&apos;est parisien</span></span>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -150,6 +132,7 @@ function Trades() {
 }
 
 function Expertise() {
+  const photo = photoFor("plomberie", 0, "Un couvreur de SPC fixe un élément de toiture");
   const steps = [
     { t: "Expertise", d: "Chaque intervention commence par une visite et un état des lieux professionnel." },
     { t: "Devis détaillé", d: "Les travaux classés selon leur nécessité, avec un échelonnement possible dans le temps." },
@@ -164,15 +147,21 @@ function Expertise() {
       </div>
       <p className="display num mt-16 whitespace-nowrap text-[clamp(4.4rem,20vw,17rem)] text-brand-light" data-reveal>6 h – 0 h</p>
       <p className="mt-4 text-[0.95rem] text-white/65">Dépannage annoncé tous les jours, week-ends et jours fériés compris</p>
-      <ol className="mt-14 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((s, i) => (
-          <li key={s.t} className="border-t-2 border-white py-6" data-reveal style={{ ["--d" as string]: `${i * 80}ms` }}>
-            <span className="num text-[0.8rem] font-semibold text-brand-light">0{i + 1}</span>
-            <p className="mt-3 text-[1.35rem] font-semibold text-white [font-stretch:110%]">{s.t}</p>
-            <p className="mt-2">{s.d}</p>
-          </li>
-        ))}
-      </ol>
+      <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-14">
+        <figure className="lg:col-span-6">
+          <Img photo={photo} className="aspect-[4/3] lg:aspect-[5/4]" />
+          <figcaption className="mt-3 text-[0.78rem] text-white/55">{photo.credit === "spc" ? "Photo de l'entreprise SPC" : photo.alt}</figcaption>
+        </figure>
+        <ol className="grid gap-x-8 self-start sm:grid-cols-2 lg:col-span-6">
+          {steps.map((s, i) => (
+            <li key={s.t} className="border-t-2 border-white py-6" data-reveal style={{ ["--d" as string]: `${i * 80}ms` }}>
+              <span className="num text-[0.8rem] font-semibold text-brand-light">0{i + 1}</span>
+              <p className="mt-3 text-[1.35rem] font-semibold text-white [font-stretch:110%]">{s.t}</p>
+              <p className="mt-2">{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
     </Etage>
   );
 }
@@ -188,7 +177,7 @@ function History() {
     <Etage cote="±0,00" level="Rez-de-chaussée" depth={0.64} labelledBy="titre-histoire">
       <div className="grid gap-14 lg:grid-cols-12">
         <figure className="lg:col-span-5">
-          <Decoupe photo={photo} shape="lucarne" className="aspect-[4/5]" />
+          <Img photo={photo} className="aspect-[4/5] lg:aspect-[3/4]" />
           <figcaption className="mt-3 text-[0.78rem] text-white/55">{photo.credit === "spc" ? "Photo de l'entreprise SPC" : photo.alt}</figcaption>
         </figure>
         <div className="lg:col-span-7">
@@ -280,6 +269,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Welcome />
+      <Toits />
       <Trades />
       <Expertise />
       <History />

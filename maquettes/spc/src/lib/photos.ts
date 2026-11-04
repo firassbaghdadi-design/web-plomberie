@@ -37,7 +37,13 @@ export function photoFor(theme: string, n = 0, fallbackAlt = "Chantier de l'entr
   const pool = themed.length > n ? themed : companyPhotos;
   const c = pool.length ? pool[n % pool.length] : undefined;
   if (c) return { src: c.src, alt: altOf(c, fallbackAlt), credit: "spc" };
-  const key = theme === "couverture" || n % 2 === 0 ? "couvreurs" : "couvreur";
+  const key = theme === "couverture" ? (n % 2 === 0 ? "couvreurs" : "toits-soleil") : "couvreur";
+  const src = m.pexels?.[key] ?? null;
+  return { src, alt: pexelsFiles[key]?.alt ?? fallbackAlt, credit: src ? "pexels" : "none" };
+}
+
+/** Une photo Pexels précise (toits de Paris), toujours téléchargée au build, même quand l'entreprise a ses photos. */
+export function pexelsPhoto(key: string, fallbackAlt = "Les toits de Paris"): Photo {
   const src = m.pexels?.[key] ?? null;
   return { src, alt: pexelsFiles[key]?.alt ?? fallbackAlt, credit: src ? "pexels" : "none" };
 }
