@@ -16,9 +16,9 @@ export const STEPS = [
 /** Taille de chaque chiffre, en part de la largeur de l'échelle (cqw) : une progression géométrique, la chaleur qui monte. */
 const SIZES = [5.8, 7.5, 9.7, 12.6, 16.4, 21.3];
 
-export function Scale() {
+export function Scale({ light = false }: { light?: boolean }) {
   return (
-    <div className="relative [container-type:inline-size]" role="img" aria-label="Échelle de température, de 16 à 21 degrés : de la fuite à la chaudière">
+    <div className={`relative [container-type:inline-size] ${light ? "text-white" : ""}`} role="img" aria-label="Échelle de température, de 16 à 21 degrés : de la fuite à la chaudière">
       <div className="flex items-end justify-between" aria-hidden="true">
         {STEPS.map((s, i) => (
           <div key={s.t} className="flex flex-col items-start">
@@ -29,13 +29,13 @@ export function Scale() {
               </span>
             </span>
             <span className="flex h-9 flex-col items-start pt-[7px] lg:h-11 lg:pt-[9px]">
-              <span data-tick={s.t} className="scale-tick block h-2 w-px bg-ink" />
-              <span className="meta-faint mt-1.5 hidden whitespace-nowrap md:block">{s.label}</span>
+              <span data-tick={s.t} className={`scale-tick block h-2 w-px ${light ? "bg-white" : "bg-ink"}`} />
+              <span className={`meta mt-1.5 hidden whitespace-nowrap md:block ${light ? "text-white/80" : "text-ink-faint"}`}>{s.label}</span>
             </span>
           </div>
         ))}
       </div>
-      <div className="draw absolute inset-x-0 bottom-9 h-[3px] bg-ink lg:bottom-11 lg:h-1" style={{ ["--d" as string]: "100ms" }} aria-hidden="true" />
+      <div className={`draw absolute inset-x-0 bottom-9 h-[3px] lg:bottom-11 lg:h-1 ${light ? "bg-white" : "bg-ink"}`} style={{ ["--d" as string]: "100ms" }} aria-hidden="true" />
     </div>
   );
 }

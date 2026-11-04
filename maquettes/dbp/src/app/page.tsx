@@ -14,45 +14,56 @@ import { faqNode, pageMeta, webPageNode } from "@/lib/seo";
 export const metadata = pageMeta({ title: home.title, description: home.description, path: "/" });
 
 /**
- * Le héros est une affiche suisse : une bande d'informations, le titre en grotesque géante, une petite photo serrée,
- * puis l'échelle des températures, de 16 à 21, chaque chiffre plus grand que le précédent : la chaleur qui monte.
+ * Le héros est une affiche suisse construite autour d'une grande photo d'artisan au travail : une bande d'informations,
+ * le titre en grotesque géante, puis la photo en pleine largeur, sur laquelle l'échelle des températures,
+ * de 16 à 21, monte en blanc, chaque chiffre plus grand que le précédent : la chaleur qui monte.
  */
+function LeadCta({ className = "" }: { className?: string }) {
+  return (
+    <div className={className}>
+      <p className="text-[1.05rem] leading-snug lg:text-[1.15rem]">
+        {fr("De la fuite au radiateur, du dépannage au confort : une entreprise de quartier, installée près de la porte des Lilas.")}
+      </p>
+      <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-3">
+        <Link href={contactHref()} className="btn-primary max-sm:w-full" data-track="cta_devis">
+          Demander un devis ou une intervention <ArrowIcon />
+        </Link>
+        <a href={`tel:${business.phoneTel}`} className="num whitespace-nowrap text-[1.5rem] font-semibold tracking-[-0.045em] transition-colors hover:text-heat-deep" data-track="cta_tel">
+          {business.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   const strip = ["Plomberie · Chauffage", "Paris 20e · 75020", "1, villa Gagliardini · depuis 2007", "48°52′ N · 2°24′ E"];
   return (
     <section className="relative">
-      <div className="wrap flex flex-col lg:min-h-[calc(100svh-var(--head-h))]">
+      <div className="wrap flex flex-col pb-10 lg:min-h-[calc(100svh-var(--head-h))] lg:pb-6">
         <ul className="cols gap-y-1 border-b border-ink py-2.5 lg:py-3">
           {strip.map((s, i) => (
             <li key={s} className={`fade-in meta col-span-2 md:col-span-3 ${i > 1 ? "max-md:text-ink-faint" : ""} ${i === 3 ? "lg:text-right" : ""}`} style={{ ["--d" as string]: `${i * 60}ms` }}>{s}</li>
           ))}
         </ul>
 
-        <div className="cols items-start pt-6 lg:pt-8">
-          <h1 className="col-span-4 text-[13.2vw] leading-[0.9] tracking-[-0.06em] md:col-span-6 md:text-[9.6vw] lg:col-span-10 lg:text-[clamp(4.4rem,7.6vw,8rem)]">
+        <div className="cols items-end pt-5 lg:pt-6">
+          <h1 className="col-span-4 text-[13.2vw] leading-[0.9] tracking-[-0.06em] md:col-span-6 md:text-[9.6vw] lg:col-span-8 lg:text-[clamp(4rem,6.5vw,7rem)]">
             <span className="rise"><span>Plombier chauffagiste</span></span>
             <span className="rise"><span style={{ ["--d" as string]: "120ms" }}>à Paris 20e</span></span>
           </h1>
-          <figure className="fade-in col-span-1 row-start-2 mt-7 md:col-span-1 lg:col-span-2 lg:col-start-11 lg:row-start-1 lg:mt-2" style={{ ["--d" as string]: "500ms" }}>
-            <Img id="plombier" alt={photoAlt("plombier")} priority className="aspect-square" position="50% 40%" />
-            <figcaption className="meta-faint mt-1.5 hidden lg:block">Fig. 1 — Le cuivre, à la main</figcaption>
-          </figure>
-          <p className="fade-in col-span-3 row-start-2 mt-7 text-[1.02rem] leading-snug md:col-span-3 lg:col-span-4 lg:row-start-2 lg:mt-10 lg:text-[1.22rem]" style={{ ["--d" as string]: "420ms" }}>
-            {fr("De la fuite au radiateur, du dépannage au confort : une entreprise de quartier, installée près de la porte des Lilas.")}
-          </p>
-          <div className="fade-in col-span-4 mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 md:col-span-6 lg:col-span-6 lg:col-start-6 lg:row-start-2 lg:mt-10" style={{ ["--d" as string]: "560ms" }}>
-            <Link href={contactHref()} className="btn-primary max-sm:w-full" data-track="cta_devis">
-              Demander un devis ou une intervention <ArrowIcon />
-            </Link>
-            <a href={`tel:${business.phoneTel}`} className="num whitespace-nowrap text-[1.5rem] font-semibold tracking-[-0.045em] transition-colors hover:text-heat-deep" data-track="cta_tel">
-              {business.phoneDisplay}
-            </a>
-          </div>
+          <LeadCta className="fade-in hidden lg:col-span-4 lg:col-start-9 lg:block lg:pb-2" />
         </div>
 
-        <div className="mt-10 lg:mt-auto lg:pt-10">
-          <Scale />
-        </div>
+        <figure className="fade-in relative mt-6 flex-1 overflow-hidden lg:mt-8 lg:min-h-[26rem]" style={{ ["--d" as string]: "200ms" }}>
+          <Img id="plombier" alt={photoAlt("plombier")} priority className="aspect-[4/5] sm:aspect-[16/10] lg:absolute lg:inset-0 lg:aspect-auto" imgClassName="hero-zoom" position="50% 45%" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" aria-hidden="true" />
+          <figcaption className="meta absolute left-3 top-3 bg-white px-2 py-1 lg:left-4 lg:top-4">Fig. 1 — Le cuivre, à la main</figcaption>
+          <div className="absolute inset-x-3 bottom-2 lg:left-auto lg:right-6 lg:bottom-4 lg:w-[56%]">
+            <Scale light />
+          </div>
+        </figure>
+        <div className="lg:hidden"><LeadCta className="fade-in mt-7" /></div>
       </div>
     </section>
   );
@@ -90,8 +101,14 @@ function Trades() {
       <div className="wrap pb-20 sm:pb-28">
         <Head t="17,0" rubrique="Du dépannage au confort" />
         <div className="cols mt-8 lg:mt-10">
-          <h2 id="titre-metiers" className="h2 col-span-4 md:col-span-6 lg:col-span-7" data-reveal>Deux métiers, de 16° à 21°.</h2>
-          <p className="col-span-4 mt-6 text-ink-soft md:col-span-4 lg:col-span-4 lg:col-start-9 lg:mt-2" data-reveal>On commence par ce qui presse, une fuite ou un évier bouché, et on finit par ce qui rend un logement agréable : des radiateurs qui chauffent partout et une chaudière suivie.</p>
+          <div className="col-span-4 md:col-span-6 lg:col-span-6">
+            <h2 id="titre-metiers" className="h2" data-reveal>Deux métiers, de 16° à 21°.</h2>
+            <p className="mt-6 max-w-[30rem] text-ink-soft" data-reveal>On commence par ce qui presse, une fuite ou un évier bouché, et on finit par ce qui rend un logement agréable : des radiateurs qui chauffent partout et une chaudière suivie.</p>
+          </div>
+          <figure className="col-span-4 mt-10 md:col-span-6 lg:col-span-6 lg:col-start-7 lg:mt-0">
+            <Img id="radiateur" alt={photoAlt("radiateur")} className="aspect-[4/3]" position="50% 50%" />
+            <figcaption className="meta-faint mt-2">Fig. 2 — Un radiateur ancien, à remettre en route</figcaption>
+          </figure>
         </div>
         <ul className="mt-12 border-t-2 border-ink">
           {trades.map((t) => (
@@ -150,11 +167,11 @@ function House() {
           ))}
         </dl>
         <div className="cols mt-14 items-end">
-          <figure className="col-span-2 md:col-span-2 lg:col-span-2">
-            <Img id="cle" alt={photoAlt("cle")} className="aspect-[4/5]" position="50% 50%" />
-            <figcaption className="meta mt-2 text-white/60">Fig. 2 — Une clé, un raccord</figcaption>
+          <figure className="col-span-4 md:col-span-6 lg:col-span-6">
+            <Img id="cle" alt={photoAlt("cle")} className="aspect-[4/3]" position="50% 50%" />
+            <figcaption className="meta mt-2 text-white/60">Fig. 3 — Une clé, un raccord : le métier commence par les mains</figcaption>
           </figure>
-          <div className="col-span-4 mt-8 md:col-span-4 lg:col-span-6 lg:col-start-7 lg:mt-0">
+          <div className="col-span-4 mt-8 md:col-span-6 lg:col-span-5 lg:col-start-8 lg:mt-0">
             <dl className="border-t border-white/40">
               {rows.map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-4 border-b border-white/20 py-2.5">
@@ -182,14 +199,14 @@ function Comfort() {
   ];
   return (
     <Section t="19,0" rubrique="Le confort" labelledBy="titre-confort">
-      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_9rem] lg:grid-cols-[minmax(0,1fr)_12rem]">
+      <div className="grid gap-10 xl:grid-cols-2 xl:items-end">
         <div>
           <h2 id="titre-confort" className="h2 max-w-[44rem]" data-reveal>Puis le chauffage, pour que ça tienne.</h2>
           <p className="mt-6 max-w-[38rem] text-ink-soft" data-reveal>Un radiateur purgé, un robinet thermostatique, une chaudière entretenue chaque année : le confort tient à ces détails. Chaque degré de moins sur la consigne économise environ 7 % d&apos;énergie, selon l&apos;ADEME.</p>
         </div>
-        <figure className="w-28 md:w-auto">
-          <Img id="thermostat" alt={photoAlt("thermostat")} className="aspect-square" position="50% 50%" />
-          <figcaption className="meta-faint mt-1.5">Fig. 3 — La consigne</figcaption>
+        <figure>
+          <Img id="thermostat" alt={photoAlt("thermostat")} className="aspect-[4/3]" position="50% 50%" />
+          <figcaption className="meta-faint mt-2">Fig. 4 — 19° dans les pièces de vie, 16 à 17° dans les chambres</figcaption>
         </figure>
       </div>
       <dl className="mt-12 grid gap-y-8 border-t-2 border-ink sm:grid-cols-3">
@@ -218,11 +235,13 @@ function Quarters() {
       <div className="wrap pb-20 sm:pb-28">
         <Head t="20,0" rubrique="Quartiers" />
         <div className="cols mt-8 items-end lg:mt-10">
-          <h2 id="titre-quartiers" className="h2 col-span-4 md:col-span-6 lg:col-span-6" data-reveal>Le 20e, et les voisins.</h2>
-          <p className="col-span-3 mt-6 text-ink-soft md:col-span-4 lg:col-span-4 lg:col-start-7 lg:mt-0" data-reveal>De la porte des Lilas, le 19e et le 11e sont à quelques stations, Les Lilas, Le Pré-Saint-Gervais et Bagnolet de l&apos;autre côté du périphérique.</p>
-          <figure className="col-span-1 mt-6 md:col-span-2 lg:col-span-2 lg:mt-0">
-            <Img id="immeuble" alt={photoAlt("immeuble")} className="aspect-[3/4]" position="50% 30%" />
-            <figcaption className="meta-faint mt-1.5 hidden md:block">Fig. 4 — Un angle parisien</figcaption>
+          <div className="col-span-4 md:col-span-6 lg:col-span-5">
+            <h2 id="titre-quartiers" className="h2" data-reveal>Le 20e, et les voisins.</h2>
+            <p className="mt-6 max-w-[30rem] text-ink-soft" data-reveal>De la porte des Lilas, le 19e et le 11e sont à quelques stations, Les Lilas, Le Pré-Saint-Gervais et Bagnolet de l&apos;autre côté du périphérique.</p>
+          </div>
+          <figure className="col-span-4 mt-10 md:col-span-6 lg:col-span-7 lg:col-start-6 lg:mt-0">
+            <Img id="immeuble" alt={photoAlt("immeuble")} className="aspect-[16/10]" position="50% 35%" />
+            <figcaption className="meta-faint mt-2">Fig. 5 — Des immeubles parisiens à régler, étage par étage</figcaption>
           </figure>
         </div>
         <ul className="cols mt-12 gap-y-0">

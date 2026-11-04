@@ -69,12 +69,12 @@ export function PageHero({ page, crumbs }: { page: Page; crumbs: { name: string;
         </div>
 
         <div className="cols items-end pt-6 lg:pt-8">
-          <p className={`col-span-3 md:col-span-4 lg:col-span-8 ${long ? "text-[19vw] md:text-[17vw] lg:text-[clamp(8rem,15vw,15rem)]" : "text-[38vw] md:text-[30vw] lg:text-[clamp(11rem,23vw,22rem)]"}`} aria-hidden="true">
+          <p className={`col-span-4 md:col-span-6 lg:col-span-5 ${long ? "text-[23vw] md:text-[17vw] lg:text-[clamp(7rem,10.4vw,10.5rem)]" : "text-[30vw] md:text-[24vw] lg:text-[clamp(10rem,17vw,17rem)]"}`} aria-hidden="true">
             <span className="rise"><span className="giant block">{fig.main}<span className={fig.heat ? "deg" : "text-[0.45em] tracking-[-0.04em]"}>{fig.suffix}</span></span></span>
           </p>
-          <figure className="col-span-1 md:col-span-2 lg:col-span-2 lg:col-start-11">
-            <Img id={page.photo} alt={photoAlt(page.photo)} priority className="aspect-square" position={page.photoPos} />
-            <figcaption className="meta-faint mt-2 hidden md:block">Fig. 1 — {page.caption ?? photoAlt(page.photo)}</figcaption>
+          <figure className="col-span-4 mt-6 md:col-span-6 lg:col-span-7 lg:col-start-6 lg:mt-0">
+            <Img id={page.photo} alt={photoAlt(page.photo)} priority className="aspect-[4/3] lg:aspect-[16/10]" imgClassName="hero-zoom" position={page.photoPos} />
+            <figcaption className="meta-faint mt-2">Fig. 1 — {page.caption ?? photoAlt(page.photo)}</figcaption>
           </figure>
         </div>
 

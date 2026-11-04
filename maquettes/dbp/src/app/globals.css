@@ -108,9 +108,10 @@ details.faq summary::-webkit-details-marker { display: none; }
 details.faq .faq-sign { transition: transform .4s var(--ease), color .2s; }
 details.faq[open] .faq-sign { transform: rotate(45deg); color: #ff4a00; }
 
-/* Photos : petites, cadrées serré, en noir et blanc ; la couleur revient au survol. */
-.photo-bw img { filter: grayscale(1) contrast(1.08); transition: filter .6s var(--ease); }
-.photo-bw:hover img { filter: none; }
+/* Photos : de vraies photos, en couleur et en grand (règle du 31/10). Le héros zoome lentement à l'arrivée. */
+.photo-bw img { transition: transform 1.2s var(--ease); }
+.hero-zoom { animation: hero-zoom 9s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
