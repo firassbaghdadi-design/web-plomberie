@@ -104,3 +104,15 @@ Retour de Firas sur SPC (héros fait d'une silhouette de toit dessinée et de tr
 - **Le concept dessiné (traits, cotes, schémas, compteurs) reste un accent discret**, jamais la norme ni le visuel principal. Une petite touche, pas le décor.
 - Ce qui vaut pour toutes les directions du catalogue : même en « typographique » ou en « couleur de marque », la photo reste grande et présente.
 - **Avant de montrer une maquette à Firas** : la vérifier **en ligne**, avec les vraies photos chargées. Ne jamais lui envoyer une capture où les photos manquent.
+
+## Retour du 04/11/2026 : la référence, c'est Bastien & Trebulle (direction A)
+
+« Bravo, c'est ce que je cherche. Des choses dignes d'un Awwwards qui font waouh. Chaque site doit être créatif comme ça. »
+Capture validée : `prospection/references/bastien-trebulle-valide-par-firas.png`. Elle montre un fond encre, une serif fine, un H1 étagé dont la dernière ligne est en italique laiton, et un compteur d'eau en laiton travaillé comme un objet précieux.
+
+- **Le niveau attendu sur chaque site** : un objet signature réalisé avec un soin d'orfèvre (matières, reflets, détails), une composition de magazine et une typographie sublime. On vise le niveau d'un site primé, jamais celui d'un « gabarit ».
+- **Différence avec le refus de SPC** : le compteur Bastien est un *objet riche et crédible*, et c'est ce qui plaît. Les dessins plats (silhouettes, traits de cote, schémas vides) n'attirent pas. Le héros s'appuie donc soit sur une vraie photo spectaculaire, soit sur un objet signature de ce niveau, jamais sur un schéma plat. Les vraies photos restent obligatoires dans le reste du site.
+
+## Exception « mascotte » (04/11/2026)
+
+Si l'entreprise a une **mascotte ou un personnage dans son logo** (exemple : M. Fabulet), on l'utilise **à l'identique**, comme pièce maîtresse animée du héros, parce que c'est ce qui attire. Cette exception passe avant la règle « pas de dessin animé ». Le reste du site garde le niveau premium.
