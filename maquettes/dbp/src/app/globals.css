@@ -113,6 +113,16 @@ details.faq[open] .faq-sign { transform: rotate(45deg); color: #ff4a00; }
 .hero-zoom { animation: hero-zoom 9s cubic-bezier(.2,.6,.3,1) both; }
 @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: none; } }
 
+/* ————— L'objet signature : le thermostat rond ————— */
+/* Bague : métal brossé = reflets coniques (la lumière vient d'en haut à gauche) + stries concentriques très fines. */
+.roundstat-ring {
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.07) 0 .6px, rgba(0,0,0,.05) .6px 1.3px),
+    conic-gradient(from 200deg, #f6f7f8, #a7abb0 9%, #e9ebed 17%, #7f8388 27%, #cfd2d5 36%, #f9fafb 44%, #8d9196 55%, #c6c9cc 64%, #6f7378 74%, #dcdfe1 84%, #a2a6ab 92%, #f6f7f8);
+  box-shadow: inset 0 2px 1px rgba(255,255,255,.9), inset 0 -3px 4px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.4);
+}
+.roundstat-needle { transform-box: view-box; transform-origin: 200px 200px; will-change: transform; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
   .js [data-reveal] { opacity: 1; transform: none; }

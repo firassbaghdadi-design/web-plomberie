@@ -4,6 +4,7 @@ import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Section } from "@/components/Section";
 import { CtaBand, FaqList, LocalBlock, contactHref, fr } from "@/components/Sections";
+import { RoundStat } from "@/components/RoundStat";
 import { Scale } from "@/components/Thermostat";
 import { home, trades } from "@/lib/content";
 import { localPages } from "@/lib/local";
@@ -59,8 +60,11 @@ function Hero() {
           <Img id="plombier" alt={photoAlt("plombier")} priority className="aspect-[4/5] sm:aspect-[16/10] lg:absolute lg:inset-0 lg:aspect-auto" imgClassName="hero-zoom" position="50% 45%" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" aria-hidden="true" />
           <figcaption className="meta absolute left-3 top-3 bg-white px-2 py-1 lg:left-4 lg:top-4">Fig. 1 — Le cuivre, à la main</figcaption>
-          <div className="absolute inset-x-3 bottom-2 lg:left-auto lg:right-6 lg:bottom-4 lg:w-[56%]">
+          <div className="absolute inset-x-3 bottom-2 lg:left-6 lg:right-auto lg:bottom-4 lg:w-[52%]">
             <Scale light />
+          </div>
+          <div className="fade-in absolute left-1/2 top-[13%] w-[64%] -translate-x-1/2 sm:top-[10%] sm:w-[40%] lg:left-auto lg:right-[5%] lg:top-1/2 lg:w-[clamp(17rem,25vw,24rem)] lg:-translate-y-1/2 lg:translate-x-0" style={{ ["--d" as string]: "350ms" }}>
+            <RoundStat />
           </div>
         </figure>
         <div className="lg:hidden"><LeadCta className="fade-in mt-7" /></div>
