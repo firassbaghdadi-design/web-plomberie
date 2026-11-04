@@ -170,3 +170,18 @@ Bastien & Trebulle utilise d'abord les photos de son propre site (accueil, histo
 - 4494653 : Bastien & Trebulle (compteur) — « Close Up of Water Meter »
 - 16923121 : Bastien & Trebulle (toits) — « Roofs of Buildings in Paris »
 - 19328832 : Bastien & Trebulle (immeubles) — « Traditional Tenements in Paris »
+
+## m-fabulet
+
+M. Fabulet Couverture utilise d'abord les photos de son propre site (couverture-mfabulet.fr : photos des métiers, trois réalisations, un couple avant / après), récupérées au build. La mascotte vient du logo (capture fournie par Firas, détourée). Les photos de couvreur-fabulet-92.fr ne sont pas reprises : ce site appartient à Robert Fabulet, Nanterre, autre SIRET (lien à confirmer). Photos Pexels (héros et replis), choisies par leur titre exact, non vues depuis le container, à contrôler en ligne :
+
+- 9431615 : M. Fabulet (heros) — « Handyman putting Roof Tiles on Roof »
+- 31771167 : M. Fabulet (tuiles-pose) — « Installation of Red Clay Roof Tiles on New Building »
+- 31763541 : M. Fabulet (tuiles-chantier) — « Roof Installation with Terracotta Tiles in Progress »
+- 8491084 : M. Fabulet (ferme-bois) — « Wooden Frame of A House Ceiling Under Construction »
+- 15456627 : M. Fabulet (ferme-ciel) — « Wooden Skeletal Structure of Roof under Blue Sky »
+- 37499254 : M. Fabulet (charpentier) — « Construction Worker Inspecting Roof Frame Outdoors »
+- 18335689 : M. Fabulet (combles) — « Attic under Construction »
+- 11912130 : M. Fabulet (toit-velux) — « Brown Tiled Roofing »
+- 31161405 : M. Fabulet (tuiles-gros-plan) — « Close-up of Red Clay Roof Tiles Pattern »
+- 31762405 : M. Fabulet (toit-briques) — « Roofer Performing Maintenance on Red Brick Building »

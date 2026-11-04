@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gutter: clamp(1.1rem, 4.6vw, 4rem);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --apex: 63%;
+  --eave: 24%;
+}
+@media (max-width: 767px) { :root { --apex: 66%; --eave: 15%; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-creme font-serif text-ink-soft antialiased; font-size: 1.07rem; line-height: 1.72; font-weight: 380; font-optical-sizing: auto; }
+h1, h2, h3 { @apply text-ink; font-weight: 340; letter-spacing: -0.022em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 560; color: #2A1D13; }
+em { font-style: italic; }
+::selection { background: #6B4423; color: #F4ECDF; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #9A4A1F; outline-offset: 3px; border-radius: 2px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* petites capitales du compagnon : étiquettes, numéros, légendes */
+  .cap { @apply text-[0.72rem] uppercase tracking-[0.26em] text-ink-faint; font-weight: 480; font-variant-numeric: lining-nums tabular-nums; }
+  .mark { font-variant-numeric: lining-nums; font-style: italic; font-weight: 300; }
+  .btn { @apply inline-flex min-h-[3.3rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.98rem] transition duration-300; font-weight: 470; }
+  .btn-bois { @apply btn bg-bois text-creme hover:bg-bois-deep; box-shadow: inset 0 -2px 0 rgba(0,0,0,.18), 0 12px 30px -16px rgba(62,39,22,.7); }
+  .btn-line { @apply btn border border-bois/30 text-bois-deep hover:border-bois hover:bg-bois hover:text-creme; }
+  .btn-creme { @apply btn bg-creme text-bois-deep hover:bg-white; }
+  .link-u { @apply inline-flex items-center gap-2 whitespace-nowrap text-bois-deep; font-weight: 470; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-u:hover { color: #9A4A1F; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.2rem] sm:text-[3rem] lg:text-[3.6rem]; }
+  .prose-f p + p { @apply mt-5; }
+  .answer { @apply mt-7 text-[1.2rem] leading-[1.6] text-ink sm:text-[1.36rem]; font-weight: 340; }
+  .reponse-bref { @apply text-[1.32rem] leading-[1.55] text-ink sm:text-[1.75rem] lg:text-[2rem]; font-weight: 320; letter-spacing: -0.01em; }
+}
+
+/* ————— Grain photographique : un voile très léger, comme un tirage ————— */
+.grain { isolation: isolate; }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .16; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .14 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.warm img { filter: sepia(.1) saturate(1.04) contrast(1.02); }
+
+/* ————— Apparitions douces : invisibles seulement si le JS tourne, toujours visibles après 3 s ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 22px, 0); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+.js [data-photo] img { transform: scale(1.1); transition: transform 2.4s cubic-bezier(.2,.65,.2,1); }
+.js [data-photo].is-in img { transform: scale(1); }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
+.line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 108%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+
+/* ————— Le pignon : la photo du héros est découpée en forme de toit ————— */
+.pignon { clip-path: polygon(0 var(--eave), var(--apex) 0, 100% var(--eave), 100% 100%, 0 100%); }
+.pignon-photo img { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; transform-origin: 60% 40%; }
+@keyframes slow-zoom { from { transform: scale(1.1); } to { transform: scale(1.0); } }
+
+/* ————— La ferme de charpente du logo : elle s'assemble pièce par pièce, puis les tuiles se posent —————
+   Chaque pièce (entrait, arbalétriers, poinçon, contrefiches) est un trait qui se dessine ; --i règle l'ordre. */
+.js .ferme .piece { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js .ferme .tile { opacity: 0; transform: translate3d(0, -14px, 0); transform-box: fill-box; }
+.js .ferme.is-in .piece, .js .ferme-auto .piece { animation: piece-draw 1.1s cubic-bezier(.6,.05,.25,1) both; animation-delay: calc(var(--start, 0s) + var(--i) * 260ms); }
+.js .ferme.is-in .tile, .js .ferme-auto .tile { animation: tile-drop .7s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(var(--start, 0s) + 1.7s + var(--i) * 70ms); }
+@keyframes piece-draw { to { stroke-dashoffset: 0; } }
+@keyframes tile-drop { to { opacity: 1; transform: none; } }
+.js .ferme:not(.is-in):not(.ferme-auto) .piece { animation: piece-draw 0s 3s forwards; }
+.js .ferme:not(.is-in):not(.ferme-auto) .tile { animation: tile-drop 0s 3s forwards; }
+
+/* ————— La mascotte du logo, à l'identique : elle entre avec sa planche, se pose, lève le pouce ————— */
+.m-enter { animation: m-enter 1.9s cubic-bezier(.22,.8,.25,1) .35s both; }
+.m-bob { transform-origin: 50% 100%; animation: m-walk .38s ease-in-out .35s 5 alternate; }
+.m-pose { transform-origin: 46% 100%; animation: m-settle .8s cubic-bezier(.3,1.4,.5,1) 2.15s both, m-thumb 1s cubic-bezier(.4,1.6,.5,1) 2.95s both; }
+.m-idle { transform-origin: 50% 100%; animation: m-idle 6s ease-in-out 4.2s infinite; }
+.m-shadow { animation: m-shadow 1.9s cubic-bezier(.22,.8,.25,1) .35s both; }
+@keyframes m-enter { from { transform: translate3d(-115%, 0, 0); } to { transform: none; } }
+@keyframes m-walk { from { transform: translateY(0) rotate(-1.6deg); } to { transform: translateY(-9px) rotate(1.4deg); } }
+@keyframes m-settle { 0% { transform: none; } 35% { transform: scale(1.035, .955); } 70% { transform: scale(.99, 1.015); } 100% { transform: none; } }
+@keyframes m-thumb { 0% { transform: none; } 40% { transform: rotate(-3deg) translateY(-6px); } 100% { transform: none; } }
+@keyframes m-idle { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) rotate(.4deg); } }
+@keyframes m-shadow { from { opacity: 0; transform: translateX(-115%) scaleX(.6); } to { opacity: 1; transform: none; } }
+/* L'éclat du pouce levé : trois rayons orange, fins, qui jaillissent puis s'effacent. */
+.gleam span { position: absolute; left: 50%; top: 50%; width: 2px; height: 26%; border-radius: 2px; background: #D9822B; transform-origin: 50% 100%; opacity: 0; animation: gleam 1.3s cubic-bezier(.2,.8,.3,1) 3.15s both, gleam 1.3s cubic-bezier(.2,.8,.3,1) 9s both; }
+.gleam span:nth-child(1) { --r: -42deg; }
+.gleam span:nth-child(2) { --r: 0deg; }
+.gleam span:nth-child(3) { --r: 42deg; }
+@keyframes gleam { 0% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-10%) scaleY(.2); } 35% { opacity: 1; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-30%) scaleY(1); } 100% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-75%) scaleY(.4); } }
+
+/* ————— En-tête ————— */
+.head { transition: background-color .35s, box-shadow .35s, transform .45s var(--ease); }
+.head.is-solid { background-color: rgba(244,236,223,.92); backdrop-filter: saturate(1.2) blur(14px); box-shadow: 0 1px 0 #DDCCB3; }
+.nav-link { background: linear-gradient(#B4532A, #B4532A) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; padding-bottom: 2px; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #9A4A1F; }
+
+/* ————— Lignes de métiers ————— */
+.trade .trade-photo { clip-path: inset(0 0 0 100%); transition: clip-path .9s cubic-bezier(.7,0,.2,1); }
+.trade:hover .trade-photo, .trade:focus-visible .trade-photo { clip-path: inset(0 0 0 0); }
+.trade .trade-arrow { transition: transform .5s var(--ease); }
+.trade:hover .trade-arrow { transform: translateX(8px); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 22% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Avant / après ————— */
+.ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 48px; height: 100vh; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .m-idle, .gleam span { animation: none !important; }
+  .js [data-reveal], .js [data-photo] img { opacity: 1; transform: none; }
+  .ferme .piece { stroke-dashoffset: 0; }
+  .ferme .tile { opacity: 1; transform: none; }
+}
