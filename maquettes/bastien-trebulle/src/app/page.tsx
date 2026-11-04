@@ -81,7 +81,7 @@ function Welcome() {
 
 /** Une planche photo bord à bord, légendée comme dans une revue. */
 function Plate() {
-  const photo = photoFor({ theme: "toits" });
+  const photo = photoFor({ theme: "couverture", n: 5 });
   return (
     <figure className="relative">
       <div data-mask className="overflow-hidden">
@@ -130,11 +130,17 @@ function Trades() {
       <ul className="mt-14 grid gap-px bg-line sm:grid-cols-2">
         {trades.map((t, i) => (
           <li key={t.n} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="bg-bg">
-            <Link href={t.href} className="row-link group relative flex h-full flex-col p-7 sm:p-10 lg:min-h-[22rem] lg:p-12">
-              <span className="serif text-[4rem] font-light italic leading-none text-brass/80 transition group-hover:text-brass-light sm:text-[5.5rem]">{roman(i + 1)}</span>
-              <span className="row-title serif mt-8 text-[2rem] leading-tight text-fg transition sm:text-[2.5rem]">{t.title}</span>
+            <Link href={t.href} className="row-link group relative flex h-full flex-col">
+              <span className="relative block overflow-hidden">
+                <Img photo={photoFor({ theme: i === 2 ? "couverture" : "plomberie", n: i === 2 ? 6 : 4 + i })} alt={`${t.title}, un chantier de Bastien & Trebulle à Paris`} className="aspect-[16/10] transition duration-700 group-hover:scale-[1.03]" />
+                <span className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true" />
+                <span className="serif absolute bottom-5 left-7 text-[4rem] font-light italic leading-none text-brass-light sm:left-10 sm:text-[5.5rem] lg:left-12">{roman(i + 1)}</span>
+              </span>
+              <span className="flex flex-1 flex-col p-7 sm:p-10 lg:p-12">
+              <span className="row-title serif text-[2rem] leading-tight text-fg transition sm:text-[2.5rem]">{t.title}</span>
               <span className="mt-4 max-w-md text-[0.98rem]">{t.text}</span>
               <span className="mt-auto flex items-center gap-3 pt-8 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-fg-faint">Lire la rubrique <ArrowIcon className="row-arrow h-4 w-4" /></span>
+              </span>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-brass transition-all duration-700 group-hover:w-full" aria-hidden="true" />
             </Link>
           </li>
@@ -198,6 +204,12 @@ function History() {
   return (
     <Folio n="06" rubrique="Notre histoire" labelledBy="titre-histoire" tone="paper" wide>
       <h2 id="titre-histoire" className="h2 max-w-5xl" data-reveal>Cinq générations, deux maisons, <em>une seule exigence.</em></h2>
+      <figure className="mt-14">
+        <div data-mask className="overflow-hidden">
+          <Img photo={photoFor({ theme: "histoire" })} className="aspect-[4/3] sm:aspect-[21/9]" imgClassName="slow-zoom" />
+        </div>
+        <figcaption className="serif mt-4 text-[1rem] italic text-fg-faint">Planche III. {photoFor({ theme: "histoire" }).alt}.</figcaption>
+      </figure>
       <div className="mt-14 grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="prose-mt cols-2" data-reveal>

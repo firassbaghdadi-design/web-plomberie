@@ -100,7 +100,6 @@ export function MeterFace({ className = "" }: { className?: string }) {
         <Drums value="1880" size="15.5cqw" />
         <span className="serif italic text-brass" style={{ fontSize: "max(0.7rem, 3.4cqw)" }}>m³</span>
       </div>
-      <p className="serif absolute left-1/2 top-[59.5%] -translate-x-1/2 whitespace-nowrap italic text-fg-soft" style={{ fontSize: "max(0.6rem, 2.9cqw)" }}>cinq générations d&apos;artisans</p>
       <div className="absolute left-[30%] top-[66.5%] w-[15%]">
         <Gauge value={4.6} max={5} className="h-auto w-full" label="Cadran de la note Google : 4,6 sur 5" />
         <p className="num mt-[0.4cqw] text-center tracking-[0.12em] text-fg-faint" style={{ fontSize: "max(0.45rem, 1.8cqw)" }}>4,6 / 5</p>
