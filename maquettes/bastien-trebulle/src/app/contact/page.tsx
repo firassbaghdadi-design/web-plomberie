@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs, FaqList, Folio } from "@/components/Sections";
+import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, reputation, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
@@ -11,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre Bastien & Trebulle, plombier et couvreur à Paris 16e, écrivez via ce formulaire : type de demande, coordonnées, adresse du lieu concerné et jusqu'à quatre photos. Le site actuel annonce une réponse sous 24 à 48 heures ouvrées. Pour une urgence, appelez directement le 01 45 24 77 89.";
+  "Décrivez votre besoin, joignez jusqu'à quatre photos : réponse sous 24 à 48 heures ouvrées. Pour une urgence, appelez directement le 01 45 24 77 89.";
 
 const faq: Faq[] = [
   {
@@ -34,37 +34,33 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section>
-        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 pt-6 sm:pt-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in mt-10 flex items-center gap-3 sm:mt-14"><span className="h-px w-8 bg-accent" aria-hidden="true" /><span className="label !text-accent">Contact · devis gratuit</span></p>
-            <h1 className="mt-6 text-[2.5rem] sm:text-[3.6rem] xl:text-[4.2rem]">
+            <p className="fade-in mt-8 flex items-center gap-3"><span className="h-px w-8 bg-accent" aria-hidden="true" /><span className="label !text-accent">Contact · devis gratuit</span></p>
+            <h1 className="mt-5 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contact&nbsp;: plombier couvreur à Paris 16e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="fade-in mt-5 text-fg-soft" style={{ ["--d" as string]: "200ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "300ms" }}>
+              <p className="label">Urgence 24h/24</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-3 block whitespace-nowrap text-[2rem] tracking-tight text-fg transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="mt-1 text-sm text-fg-faint">Bureau : {business.phoneOfficeDisplay}</p>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Urgence 24h/24</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.3rem] tracking-tight text-fg transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-fg-faint">Bureau : {business.phoneOfficeDisplay}</p>
-          </div>
-        </div>
-      </section>
-      <Folio n="01" rubrique="Votre demande" ariaLabel="Formulaire de demande">
-        <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
-          <div className="xl:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-8 xl:col-span-4 xl:pt-4">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6">
               <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-fg">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Courriel</dt><dd className="mt-2"><a href={`mailto:${business.email}`} className="text-fg transition hover:text-accent">{business.email}</a></dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-fg">{business.hours}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 1880<br />Note de {reputation.rating}/5 sur Google ({reputation.reviews} avis, relevé du {reputation.date})</dd></div>
             </dl>
-          </aside>
+          </div>
         </div>
-      </Folio>
+      </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" n="02" />
       <JsonLd nodes={nodes} />
     </>
