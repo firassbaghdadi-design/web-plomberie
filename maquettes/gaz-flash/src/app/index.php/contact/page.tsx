@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
-import { CallStrip, Eyebrow, Faq, HoursSlate, PageHead, SeeAlso } from "@/components/ui";
+import { Breadcrumb, CallStrip, Eyebrow, Faq, RevealLines, SeeAlso, splitTitle } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
 import { AccessSketch } from "@/components/Sketches";
-import { PATHS, business, google } from "@/lib/site";
-import { pageMeta, pageNodes } from "@/lib/seo";
+import { PATHS, business, google, pageInfo } from "@/lib/site";
+import { pageCrumbs, pageMeta, pageNodes } from "@/lib/seo";
 
 const path = PATHS.contact;
 export const metadata = pageMeta(path);
@@ -13,11 +13,19 @@ export default function ContactPage() {
   const { address } = business;
   return (
     <>
-      <PageHead path={path} wide={false} aside={<HoursSlate />} />
-
-      <section className="wrap mt-16">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-          <div>
+      <section className="wrap pt-28 sm:pt-32" data-pipe-start="">
+        <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+          <div className="lg:col-start-1 lg:row-start-1">
+            <Breadcrumb items={pageCrumbs(path)} />
+            <h1 className="mt-6 max-w-[30ch] text-[clamp(1.9rem,3.4vw,2.8rem)]">
+              <RevealLines lines={splitTitle(pageInfo(path).h1)} />
+            </h1>
+            <p className="mt-4 text-ink-soft">Décrivez votre besoin : l'équipe Gaz Flash vous répond, ou appelez le standard.</p>
+          </div>
+          <div id="formulaire" className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <ContactForm />
+          </div>
+          <div className="lg:col-start-1 lg:row-start-2">
             <Eyebrow>Le plus simple</Eyebrow>
             <h2 className="mt-1">Nous joindre</h2>
             <dl className="mt-5 space-y-6">
@@ -63,7 +71,6 @@ export default function ContactPage() {
               </div>
             </dl>
           </div>
-          <ContactForm />
         </div>
       </section>
 
