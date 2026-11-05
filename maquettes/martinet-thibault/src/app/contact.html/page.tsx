@@ -1,4 +1,3 @@
-import { Bief } from "@/components/Bief";
 import { ContactForm } from "@/components/ContactForm";
 import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
@@ -15,7 +14,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre Martinet Thibault Entreprise, plombier et couvreur à Paris 10e, appelez le standard au 01 48 24 80 57 ou envoyez ce formulaire : type de demande, coordonnées, adresse du lieu concerné et jusqu'à quatre photos. Votre demande arrive au 34, passage du Désir et rejoint le service concerné.";
+  "Décrivez votre besoin, joignez jusqu'à quatre photos : l'entreprise vous répond, ou appelez le standard au 01 48 24 80 57.";
 
 const faq: Faq[] = [
   {
@@ -38,29 +37,24 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section>
-        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 pt-6 sm:pt-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="label mt-12 text-blue-deep sm:mt-16">Contacts · devis gratuit</p>
-            <h1 className="mt-6 text-[2.5rem] sm:text-[3.7rem] xl:text-[4.3rem]">
+            <p className="label mt-6 text-blue-deep">Contacts · devis gratuit</p>
+            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contact&nbsp;: plombier et couvreur à Paris 10e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
+              <p className="label">Standard</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-3 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-blue-deep" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="mt-1 text-sm text-ink-faint">{business.hours}</p>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Standard</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-blue-deep" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">{business.hours}</p>
-          </div>
-        </div>
-      </section>
-      <section className="py-14 sm:py-20">
-      <Bief />
-        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-10 lg:col-span-4 lg:pt-4">
+          <aside className="space-y-10 lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <div>
               <Ecluse n="01">Contacts</Ecluse>
               <ul className="mt-5 border-t border-line">
