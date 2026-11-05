@@ -16,7 +16,7 @@ export default function LegalPage() {
       <section className="pt-[6.4rem] sm:pt-[7.5rem]">
         <div className="wrap pb-12">
           <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Mentions légales" }]} />
-          <h1 className="mt-10 text-[2.4rem] sm:text-[3.6rem]">Mentions légales, La Garenne-Colombes</h1>
+          <h1 className="mt-10 text-[2.6rem] leading-[1] sm:text-[4.2rem]">Mentions légales, La Garenne-Colombes</h1>
           <p className="reponse-bref mt-8 max-w-4xl">
             Ce site présente M. Fabulet Couverture, entreprise artisanale de couverture et de charpente installée au 13, boulevard de la République à La Garenne-Colombes. Vous trouverez ici les informations sur l&apos;éditeur, l&apos;hébergeur, le traitement des données envoyées par le formulaire et les crédits des photographies.
           </p>
@@ -33,12 +33,12 @@ export default function LegalPage() {
         </>],
         ["Crédits", <>
           <p key="e">Logo et mascotte : M. Fabulet Couverture. Photos de chantier : site de l&apos;entreprise (couverture-mfabulet.fr). Photos d&apos;illustration : Pexels, licence Pexels.</p>
-          <ul key="f" className="mt-5 border-t border-line">
-            {pexelsCredits.map((c) => <li key={c.key} className="border-b border-line py-3 text-[0.95rem]">« {c.title} », photo Pexels n° {c.id}</li>)}
+          <ul key="f" className="mt-5 border-t border-creme/15">
+            {pexelsCredits.map((c) => <li key={c.key} className="border-b border-creme/15 py-3 text-[0.95rem]">« {c.title} », photo Pexels n° {c.id}</li>)}
           </ul>
         </>],
       ].map(([label, body], i) => (
-        <section key={String(label)} className={`py-12 sm:py-16 ${i % 2 === 0 ? "bg-papier" : ""}`}>
+        <section key={String(label)} className={`py-12 sm:py-16 ${i % 2 === 0 ? "bg-nuit-2/60" : ""}`}>
           <div className="wrap grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-3"><SectionHead n={i + 1} label={String(label)} /></div>
             <div className="prose-f max-w-3xl lg:col-span-9">{body}</div>

@@ -24,33 +24,36 @@ export function ContentPage({ path }: { path: string }) {
   const nodes: object[] = [webPageNode({ title: page.title, description: page.description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: page.crumb, path }])];
   if (page.service) nodes.push(serviceNode(page.service, path, page.brief, page.zone ?? "La Garenne-Colombes"));
   if (page.faq.length) nodes.push(faqNode(page.faq));
-  let n = page.sections.length + 2;
+  const isWorks = path === PATHS.works;
+  let n = page.sections.length + (isWorks ? 3 : 2);
   return (
     <>
       <PageHero page={page} />
       <Brief text={page.brief} />
-      {path === PATHS.works ? (
-        <section className="pb-6">
+      {isWorks ? (
+        <section className="pb-10">
           <div className="wrap">
+            <SectionHead n={2} label="Le carnet de chantier" />
+            <div className="mt-12" />
             <BeforeAfter caption="Travaux sur toiture et cheminée, avant et après (photos de l'entreprise)" />
-            <ul className="mt-14 grid gap-8 md:grid-cols-3">
+            <ul className="mt-16 grid gap-x-8 gap-y-14 md:grid-cols-3">
               {WORKS.map((w, i) => (
-                <li key={w.id} className={i === 1 ? "md:mt-16" : ""} data-reveal style={{ ["--d" as string]: `${i * 120}ms` }}>
-                  <Img id={w.id} alt={photoAlt(w.id)} className="aspect-[4/5] w-full rounded-[2px] shadow-photo" />
-                  <div className="mt-4 flex gap-3"><span className="mark text-tuile">{["I", "II", "III"][i]}</span><span className="text-[1.15rem] text-ink">{w.title}</span></div>
+                <li key={w.id} className={i === 1 ? "md:mt-24" : ""} data-reveal style={{ ["--d" as string]: `${i * 120}ms` }}>
+                  <Img id={w.id} alt={photoAlt(w.id)} className="aspect-[4/5] w-full shadow-photo" />
+                  <div className="mt-5 flex items-baseline gap-4 border-t border-creme/15 pt-4"><span className="num text-[1.4rem]">{["I", "II", "III"][i]}</span><span className="font-serif text-[1.45rem] leading-[1.15] text-creme">{w.title}</span></div>
                 </li>
               ))}
             </ul>
           </div>
         </section>
       ) : null}
-      <DeepContent sections={page.sections} />
+      <DeepContent sections={page.sections} start={isWorks ? 3 : 2} />
       {page.kind === "zone" ? (
-        <section className="py-16 sm:py-24">
+        <section className="bg-nuit-2/60 py-20 sm:py-32">
           <div className="wrap">
             <SectionHead n={n++} label="Les métiers" />
-            <h2 className="h2 mt-6 max-w-[20ch]">Nos six métiers à {page.zone}</h2>
-            <div className="mt-10"><TradesList zone={page.zone} /></div>
+            <h2 className="h2 mt-14 max-w-[16ch]">Nos six métiers <span className="disp-i">à {page.zone}</span></h2>
+            <div className="mt-16"><TradesList zone={page.zone} /></div>
             <div className="mt-12"><span className="cap">Autres communes desservies</span><div className="mt-4"><ZonesList current={path} /></div></div>
           </div>
         </section>

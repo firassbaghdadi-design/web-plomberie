@@ -42,22 +42,22 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
   return (
     <fieldset className="sm:col-span-2 min-w-0">
-      <legend className="block text-sm text-ink">
-        Photos <span className="font-normal text-ink-soft">(facultatif, {MAX_PHOTOS} maximum)</span>
+      <legend className="block text-[0.72rem] uppercase tracking-[0.2em] text-creme-soft">
+        Photos <span className="normal-case tracking-normal text-creme-faint">(facultatif, {MAX_PHOTOS} maximum)</span>
       </legend>
-      <p id="photos-hint" className="mt-1 text-sm text-ink-soft">
+      <p id="photos-hint" className="mt-1 text-sm text-creme-faint">
         Une photo vaut mieux qu'un long message : la fuite, la tache au plafond, le radiateur, la souche de cheminée. Nous les recevons avec votre demande.
       </p>
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
+          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-[2px] border border-creme/15 bg-nuit-deep">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-tuile-deep"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-nuit-deep text-lg leading-none text-creme hover:bg-cuivre-deep"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,14 +65,14 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-tuile/40 bg-white px-3 text-ink hover:border-tuile hover:bg-creme-2 disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-[2px] border border-dashed border-cuivre/50 bg-nuit-deep/60 px-3 text-creme hover:border-cuivre hover:bg-nuit-3 disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>
         ) : null}
       </div>
       <input ref={input} type="file" accept="image/*" multiple className="sr-only" tabIndex={-1} onChange={onFiles} aria-label="Choisir des photos à joindre" />
-      <p role="status" aria-live="polite" className="mt-2 text-sm text-[#b42318]">
+      <p role="status" aria-live="polite" className="mt-2 text-sm text-[#ff9b85]">
         {message}
       </p>
     </fieldset>

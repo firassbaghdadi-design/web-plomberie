@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/literata/opsz.css";
-import "@fontsource-variable/literata/opsz-italic.css";
+import "@fontsource-variable/bodoni-moda/opsz.css";
+import "@fontsource-variable/bodoni-moda/opsz-italic.css";
+import "@fontsource-variable/schibsted-grotesk/wght.css";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#F4ECDF" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#1d130d" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {["corps", "tete", "planche", "bras"].map((n) => <link key={n} rel="preload" href={`/brand/mascotte/${n}.png`} as="image" />)}
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-bois focus:px-5 focus:py-3 focus:text-creme">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-cuivre focus:px-5 focus:py-3 focus:text-nuit-deep">
           Aller au contenu
         </a>
         <Header />

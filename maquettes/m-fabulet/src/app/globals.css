@@ -2,77 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ————— Atelier nuit : bois brûlé, lumière cuivre, texte crème ————— */
 :root {
-  --gutter: clamp(1.1rem, 4.6vw, 4rem);
+  --gutter: clamp(1.1rem, 4.4vw, 4.5rem);
   --ease: cubic-bezier(.2, .7, .2, 1);
-  --apex: 63%;
-  --eave: 24%;
+  color-scheme: dark;
 }
-@media (max-width: 767px) { :root { --apex: 66%; --eave: 15%; } }
 
-html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; background: #1d130d; }
 html, body { overflow-x: clip; max-width: 100%; }
-body { @apply bg-creme font-serif text-ink-soft antialiased; font-size: 1.07rem; line-height: 1.72; font-weight: 380; font-optical-sizing: auto; }
-h1, h2, h3 { @apply text-ink; font-weight: 340; letter-spacing: -0.022em; line-height: 1.04; }
+body { @apply font-sans text-creme-soft antialiased; font-size: 1.04rem; line-height: 1.7; font-weight: 400; }
+/* Le bois de l'atelier : un voile de chaleur très lent en haut de page, et un grain fin partout. */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(120% 70% at 85% -10%, rgba(217,130,43,.09), transparent 60%), radial-gradient(90% 60% at -10% 110%, rgba(122,65,25,.12), transparent 60%), #1d130d; }
+h1, h2, h3 { @apply font-serif text-creme; font-weight: 400; letter-spacing: -0.018em; line-height: 1.02; font-optical-sizing: auto; }
 h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
-strong { font-weight: 560; color: #2A1D13; }
-em { font-style: italic; }
-::selection { background: #6B4423; color: #F4ECDF; }
+strong { font-weight: 600; color: #F2E7D5; }
+::selection { background: #D9822B; color: #140d08; }
 a, button { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid #9A4A1F; outline-offset: 3px; border-radius: 2px; }
+:focus-visible { outline: 2px solid #EFA75C; outline-offset: 3px; border-radius: 2px; }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
-  /* petites capitales du compagnon : étiquettes, numéros, légendes */
-  .cap { @apply text-[0.72rem] uppercase tracking-[0.26em] text-ink-faint; font-weight: 480; font-variant-numeric: lining-nums tabular-nums; }
-  .mark { font-variant-numeric: lining-nums; font-style: italic; font-weight: 300; }
-  .btn { @apply inline-flex min-h-[3.3rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.98rem] transition duration-300; font-weight: 470; }
-  .btn-bois { @apply btn bg-bois text-creme hover:bg-bois-deep; box-shadow: inset 0 -2px 0 rgba(0,0,0,.18), 0 12px 30px -16px rgba(62,39,22,.7); }
-  .btn-line { @apply btn border border-bois/30 text-bois-deep hover:border-bois hover:bg-bois hover:text-creme; }
-  .btn-creme { @apply btn bg-creme text-bois-deep hover:bg-white; }
-  .link-u { @apply inline-flex items-center gap-2 whitespace-nowrap text-bois-deep; font-weight: 470; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
-  .link-u:hover { color: #9A4A1F; background-size: 0 1px; background-position: 100% 100%; }
-  .h2 { @apply text-[2.2rem] sm:text-[3rem] lg:text-[3.6rem]; }
+  /* petites capitales de légende, comme une page de revue */
+  .cap { @apply font-sans text-[0.7rem] uppercase tracking-[0.28em] text-creme-faint; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .num { @apply font-serif italic text-cuivre-light; font-weight: 400; font-variant-numeric: lining-nums; }
+  .disp-i { @apply font-serif italic text-cuivre-light; font-weight: 400; }
+  .rule { @apply h-px w-full bg-creme/15; }
+  .btn { @apply inline-flex min-h-[3.4rem] items-center justify-center gap-3 px-6 py-3 text-center leading-[1.35] sm:whitespace-nowrap sm:px-7 font-sans text-[0.8rem] uppercase tracking-[0.2em] transition duration-500; font-weight: 600; border-radius: 1px; }
+  .btn-cuivre { @apply btn text-nuit-deep; background: linear-gradient(180deg, #F0AC62 0%, #D9822B 55%, #C26F25 100%); box-shadow: inset 0 1px 0 rgba(255,236,206,.55), inset 0 -1px 0 rgba(90,45,10,.45), 0 20px 46px -20px rgba(217,130,43,.75); }
+  .btn-cuivre:hover { filter: brightness(1.08); box-shadow: inset 0 1px 0 rgba(255,236,206,.6), 0 24px 60px -18px rgba(217,130,43,.9); }
+  .btn-line { @apply btn border border-creme/25 text-creme hover:border-cuivre-light hover:text-cuivre-pale; }
+  .link-u { @apply inline-flex items-center gap-2 whitespace-nowrap text-creme; font-weight: 500; background: linear-gradient(#D9822B, #D9822B) 0 100% / 100% 1px no-repeat; padding-bottom: 3px; transition: background-size .5s var(--ease), color .3s; }
+  .link-u:hover { color: #F3C793; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.5rem] leading-[1] sm:text-[3.6rem] lg:text-[4.6rem]; }
   .prose-f p + p { @apply mt-5; }
-  .answer { @apply mt-7 text-[1.2rem] leading-[1.6] text-ink sm:text-[1.36rem]; font-weight: 340; }
-  .reponse-bref { @apply text-[1.32rem] leading-[1.55] text-ink sm:text-[1.75rem] lg:text-[2rem]; font-weight: 320; letter-spacing: -0.01em; }
+  .answer { @apply mt-8 font-serif text-[1.35rem] leading-[1.45] text-creme sm:text-[1.6rem]; font-weight: 400; }
+  .reponse-bref { @apply font-serif text-[1.45rem] leading-[1.38] text-creme sm:text-[2rem] lg:text-[2.45rem]; font-weight: 400; letter-spacing: -0.012em; }
+  /* Les photos de l'atelier : étalonnées chaudes et sombres, comme sous une lampe. */
+  .tirage img { filter: sepia(.22) saturate(.95) brightness(.8) contrast(1.08); }
+  .tirage-fort img { filter: sepia(.32) saturate(.9) brightness(.6) contrast(1.12); }
 }
 
-/* ————— Grain photographique : un voile très léger, comme un tirage ————— */
+/* ————— Grain photographique ————— */
 .grain { isolation: isolate; }
-.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .16; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .14 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.warm img { filter: sepia(.1) saturate(1.04) contrast(1.02); }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .22; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* Photo absente au build : un panneau de bois sombre éclairé en biais, jamais une zone vide. */
+.photo-vide { background: radial-gradient(90% 80% at 75% 20%, rgba(217,130,43,.16), transparent 60%), repeating-linear-gradient(97deg, rgba(255,220,180,.025) 0 2px, transparent 2px 11px), linear-gradient(160deg, #3a2819, #24170f 60%, #1a110b); }
 
 /* ————— Apparitions douces : invisibles seulement si le JS tourne, toujours visibles après 3 s ————— */
-.js [data-reveal] { opacity: 0; transform: translate3d(0, 22px, 0); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 1.2s var(--ease), transform 1.2s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
 .js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
 @keyframes reveal-safety { to { opacity: 1; transform: none; } }
-.js [data-photo] img { transform: scale(1.1); transition: transform 2.4s cubic-bezier(.2,.65,.2,1); }
+.js [data-photo] img { transform: scale(1.12); transition: transform 2.6s cubic-bezier(.2,.65,.2,1); }
 .js [data-photo].is-in img { transform: scale(1); }
 
-.line-up { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
-.line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
-@keyframes line-up { from { transform: translate3d(0, 108%, 0); } to { transform: none; } }
-.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+.line-up { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.line-up > span { display: block; animation: line-up 1.3s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.3s var(--ease) both; animation-delay: var(--d, 0ms); }
 @keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom img { animation: slow-zoom 18s cubic-bezier(.2,.6,.3,1) both; transform-origin: 55% 40%; }
+@keyframes slow-zoom { from { transform: scale(1.12); } to { transform: scale(1.0); } }
 
-/* ————— Le pignon : la photo du héros est découpée en forme de toit ————— */
-.pignon { clip-path: polygon(0 var(--eave), var(--apex) 0, 100% var(--eave), 100% 100%, 0 100%); }
-.pignon-photo img { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; transform-origin: 60% 40%; }
-@keyframes slow-zoom { from { transform: scale(1.1); } to { transform: scale(1.0); } }
+/* ————— Le halo de l'atelier derrière la mascotte : une lampe orange douce qui respire ————— */
+.halo { background: radial-gradient(closest-side, rgba(243,180,110,.78), rgba(217,130,43,.45) 34%, rgba(180,101,42,.16) 62%, transparent 100%); filter: blur(6px); animation: halo-in 1.8s var(--ease) .1s both, halo-breathe 7s ease-in-out 2s infinite; }
+@keyframes halo-in { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: none; } }
+@keyframes halo-breathe { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: .82; transform: scale(1.04); } }
+.sol { background: radial-gradient(closest-side, rgba(217,130,43,.28), rgba(217,130,43,.08) 55%, transparent); }
 
-/* ————— La ferme de charpente du logo : elle s'assemble pièce par pièce, puis les tuiles se posent —————
-   Chaque pièce (entrait, arbalétriers, poinçon, contrefiches) est un trait qui se dessine ; --i règle l'ordre. */
+/* ————— La ferme de charpente du logo, en trait de cuivre : elle se dessine pièce par pièce ————— */
 .js .ferme .piece { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.js .ferme .tile { opacity: 0; transform: translate3d(0, -14px, 0); transform-box: fill-box; }
-.js .ferme.is-in .piece, .js .ferme-auto .piece { animation: piece-draw 1.1s cubic-bezier(.6,.05,.25,1) both; animation-delay: calc(var(--start, 0s) + var(--i) * 260ms); }
-.js .ferme.is-in .tile, .js .ferme-auto .tile { animation: tile-drop .7s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(var(--start, 0s) + 1.7s + var(--i) * 70ms); }
+.js .ferme.is-in .piece, .js .ferme-auto .piece { animation: piece-draw 1.2s cubic-bezier(.6,.05,.25,1) both; animation-delay: calc(var(--start, 0s) + var(--i) * 220ms); }
 @keyframes piece-draw { to { stroke-dashoffset: 0; } }
-@keyframes tile-drop { to { opacity: 1; transform: none; } }
 .js .ferme:not(.is-in):not(.ferme-auto) .piece { animation: piece-draw 0s 3s forwards; }
-.js .ferme:not(.is-in):not(.ferme-auto) .tile { animation: tile-drop 0s 3s forwards; }
 
 /* ————— La mascotte en dessin animé (calques : scripts/split-mascot.cjs) —————
    Entrée : saut depuis le bord (mz-x + mz-y), écrasement à l'atterrissage (mz-sq), ombre qui s'écrase.
@@ -83,7 +88,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .mz-y { animation: mz-y .68s linear .2s both; }
 .mz-sq { transform-origin: 61% 100%; animation: mz-sq 1.3s linear .1s both; }
 .mz-breath { transform-origin: 61% 100%; animation: mz-breath 3.6s ease-in-out 1.6s infinite; }
-.mz-shadow { background: radial-gradient(closest-side, rgba(43,27,16,.55), rgba(43,27,16,.22) 60%, transparent); animation: mz-shadow 1.2s cubic-bezier(.3,.6,.4,1) .2s both; }
+.mz-shadow { background: radial-gradient(closest-side, rgba(5,2,0,.85), rgba(5,2,0,.4) 58%, transparent); animation: mz-shadow 1.2s cubic-bezier(.3,.6,.4,1) .2s both; }
 .mz-arm, .mz-arm-idle, .mz-arm-wave { transform-origin: 77.81% 50.91%; }
 .mz-arm { animation: mz-thumb .62s .92s both; }
 .mz-arm-idle { animation: mz-arm-idle 3.6s ease-in-out 1.6s infinite; }
@@ -141,21 +146,28 @@ a, button { -webkit-tap-highlight-color: transparent; }
 @keyframes mz-star { 0% { opacity: 0; transform: scale(0) rotate(-40deg); } 40% { opacity: 1; transform: scale(1.15) rotate(10deg); } 75% { opacity: 1; transform: scale(.95) rotate(0); } 100% { opacity: 0; transform: scale(.6) rotate(20deg); } }
 
 /* ————— En-tête ————— */
-.head { transition: background-color .35s, box-shadow .35s, transform .45s var(--ease); }
-.head.is-solid { background-color: rgba(244,236,223,.92); backdrop-filter: saturate(1.2) blur(14px); box-shadow: 0 1px 0 #DDCCB3; }
-.nav-link { background: linear-gradient(#B4532A, #B4532A) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; padding-bottom: 2px; }
-.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #9A4A1F; }
+.head { transition: background-color .4s, box-shadow .4s; }
+.head.is-solid { background-color: rgba(20,13,8,.86); backdrop-filter: saturate(1.2) blur(16px); box-shadow: 0 1px 0 rgba(242,231,213,.1); }
+.nav-link { background: linear-gradient(#D9822B, #D9822B) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; padding-bottom: 3px; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #F3C793; }
 
-/* ————— Lignes de métiers ————— */
-.trade .trade-photo { clip-path: inset(0 0 0 100%); transition: clip-path .9s cubic-bezier(.7,0,.2,1); }
-.trade:hover .trade-photo, .trade:focus-visible .trade-photo { clip-path: inset(0 0 0 0); }
-.trade .trade-arrow { transition: transform .5s var(--ease); }
-.trade:hover .trade-arrow { transform: translateX(8px); }
+/* ————— Cartes photo : la photo s'éclaire au survol ————— */
+.card .card-img img { transition: transform 1.4s var(--ease), filter .8s var(--ease); }
+.card:hover .card-img img, .card:focus-visible .card-img img { transform: scale(1.045); filter: sepia(.12) saturate(1) brightness(.92) contrast(1.06); }
+.card .card-arrow { transition: transform .5s var(--ease); }
+.card:hover .card-arrow { transform: translateX(8px); }
+.row-link .card-arrow { transition: transform .5s var(--ease); }
+.row-link:hover .card-arrow { transform: translateX(8px); }
+.row-link:hover .row-zone { color: #F3C793; }
 
 details.faq summary::-webkit-details-marker { display: none; }
-details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 22% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 24% auto; height: 1px; background: currentColor; }
 details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
 details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Formulaire sur fond sombre ————— */
+select option { background: #24170f; color: #F2E7D5; }
+input::placeholder, textarea::placeholder { color: #A08C75; }
 
 /* ————— Avant / après ————— */
 .ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 48px; height: 100vh; }
@@ -166,5 +178,4 @@ details.faq[open] .faq-plus::after { transform: rotate(0deg); }
   .mascotte { cursor: default; }
   .js [data-reveal], .js [data-photo] img { opacity: 1; transform: none; }
   .ferme .piece { stroke-dashoffset: 0; }
-  .ferme .tile { opacity: 1; transform: none; }
 }

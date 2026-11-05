@@ -1,17 +1,15 @@
 import { FermeMark } from "./Ferme";
 
-/** Le nom recomposé en typographie : « M. Fabulet » en brun bois, « Couverture » en petites capitales terre cuite. */
-export function Logo({ tone = "bois" }: { tone?: "bois" | "creme" }) {
-  const main = tone === "bois" ? "text-bois-deep" : "text-creme";
-  const sub = tone === "bois" ? "text-tuile-deep" : "text-orange-light";
+/** Le nom recomposé : « M. Fabulet » en grande serif crème, « Couverture » en petites capitales cuivre, la ferme du logo en trait fin. */
+export function Logo() {
   return (
     <span className="flex items-center gap-3">
-      <FermeMark className="h-[1.35rem] w-[2.7rem] shrink-0" tone={tone} />
+      <FermeMark className="h-[1.3rem] w-[2.6rem] shrink-0" auto start="0.2s" />
       <span className="flex flex-col leading-none">
-        <span className={`text-[1.32rem] tracking-[-0.01em] ${main}`} style={{ fontWeight: 520 }}>
+        <span className="font-serif text-[1.42rem] tracking-[-0.01em] text-creme" style={{ fontWeight: 500 }}>
           M.&thinsp;Fabulet
         </span>
-        <span className={`mt-1 text-[0.6rem] uppercase tracking-[0.42em] ${sub}`} style={{ fontWeight: 520 }}>
+        <span className="mt-1 font-sans text-[0.56rem] uppercase tracking-[0.5em] text-cuivre-light" style={{ fontWeight: 600 }}>
           Couverture
         </span>
       </span>

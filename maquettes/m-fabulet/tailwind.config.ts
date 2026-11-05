@@ -1,31 +1,27 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Charte M. Fabulet, direction E « Artisan chaleureux ».
- * Les deux couleurs du logo : le brun bois du nom (#6B4423) et l'orange de « Couverture » (#D9822B).
- * Autour : crème, papier, terre cuite. L'orange ne sert jamais au texte courant (contraste) : le texte d'accent
- * passe en terre cuite foncée (#9A4A1F, 5,2:1 sur crème).
+ * Charte M. Fabulet, direction « Atelier nuit » (éditorial sombre, refonte du 05/11/2026).
+ * Fond bois brûlé presque noir ; l'orange du logo (#D9822B) devient la lumière de l'atelier, en cuivre et orange chaud.
+ * Le crème est réservé au texte. Contrastes : crème 15:1, crème-soft 9:1, crème-faint 5,1:1, cuivre-light 7,6:1 sur nuit.
  */
 export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#2A1D13", soft: "#5B4636", faint: "#83705F" },
-        bois: { DEFAULT: "#6B4423", deep: "#3E2716", night: "#2B1B10" },
-        orange: { DEFAULT: "#D9822B", light: "#EDB173" },
-        tuile: { DEFAULT: "#B4532A", deep: "#9A4A1F" },
-        creme: { DEFAULT: "#F4ECDF", 2: "#EADDC8", 3: "#E0CFB4" },
-        papier: "#FBF7F0",
-        line: "#DDCCB3",
+        nuit: { DEFAULT: "#1d130d", deep: "#140d08", 2: "#24170f", 3: "#2e1f15", 4: "#3a2819" },
+        creme: { DEFAULT: "#F2E7D5", soft: "#CDBBA3", faint: "#A08C75" },
+        cuivre: { DEFAULT: "#D9822B", light: "#EFA75C", pale: "#F3C793", deep: "#B4652A", dark: "#7A4119" },
       },
       fontFamily: {
-        serif: ["'Literata Variable'", "Georgia", "serif"],
+        serif: ["'Bodoni Moda Variable'", "Didot", "Georgia", "serif"],
+        sans: ["'Schibsted Grotesk Variable'", "system-ui", "sans-serif"],
       },
-      maxWidth: { site: "90rem" },
+      maxWidth: { site: "94rem" },
       boxShadow: {
-        soft: "0 1px 2px rgba(42,29,19,.05), 0 18px 50px -24px rgba(42,29,19,.28)",
-        photo: "0 30px 80px -40px rgba(42,29,19,.55)",
+        photo: "0 40px 90px -40px rgba(0,0,0,.85)",
+        glow: "0 18px 50px -18px rgba(217,130,43,.55)",
       },
     },
   },
