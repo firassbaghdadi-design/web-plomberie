@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <link rel="preload" href="/brand/mascotte.png" as="image" />
+        {["corps", "tete", "planche", "bras"].map((n) => <link key={n} rel="preload" href={`/brand/mascotte/${n}.png`} as="image" />)}
       </head>
       <body>
         <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-bois focus:px-5 focus:py-3 focus:text-creme">

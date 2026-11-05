@@ -15,46 +15,52 @@ import { faqNode, pageMeta, webPageNode } from "@/lib/seo";
 export const metadata = pageMeta({ title: home.title, description: home.description, path: "/" });
 
 function Hero() {
+  const call = (track: string, extra = "") => (
+    <a href={`tel:${business.phoneTel}`} className={`btn-bois ${extra}`} data-track={track}><PhoneIcon className="h-5 w-5" /> Appeler le {business.phoneDisplay}</a>
+  );
   return (
-    <section className="relative pt-[5.6rem] lg:pt-[6.2rem]" aria-label="M. Fabulet Couverture">
-      <div className="wrap grid gap-6 lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-8">
+    <section className="relative overflow-hidden pt-[5.6rem] lg:pt-[5rem]" aria-label="M. Fabulet Couverture">
+      <div className="wrap grid lg:min-h-[min(calc(100svh-5rem),56rem)] lg:grid-cols-[minmax(0,1fr)_45%] lg:items-center lg:gap-10">
+        <div className="relative z-[6] lg:py-12">
           <p className="fade-in cap text-tuile-deep" style={{ ["--d" as string]: "100ms" }}>Artisan couvreur-charpentier<span className="hidden sm:inline"> · Hauts-de-Seine</span></p>
-          <h1 className="mt-4 text-[2.75rem] leading-[0.98] sm:text-[4.6rem] lg:text-[4.4rem] xl:text-[5.5rem] 2xl:text-[6.2rem]" style={{ fontWeight: 300 }}>
+          <h1 className="mt-4 text-[2.75rem] leading-[0.98] sm:text-[4.4rem] lg:text-[3.9rem] xl:text-[4.4rem] 2xl:text-[5.4rem]" style={{ fontWeight: 300 }}>
             <span className="line-up"><span style={{ ["--d" as string]: "150ms" }}>Couvreur à</span></span>
             <span className="line-up"><span className="italic text-tuile-deep" style={{ ["--d" as string]: "300ms", fontWeight: 280 }}>La Garenne-Colombes</span></span>
           </h1>
+          <div className="hidden lg:block">
+            <p className="fade-in mt-7 max-w-[38ch] text-[1.15rem] leading-[1.55] text-ink" style={{ ["--d" as string]: "600ms", fontWeight: 340 }}>
+              Entreprise artisanale et familiale : couverture, charpente, zinguerie, Velux. <span className="text-ink-faint">Devis et déplacement gratuits.</span>
+            </p>
+            <div className="fade-in mt-8 flex flex-wrap items-center gap-x-4 gap-y-3" style={{ ["--d" as string]: "750ms" }}>
+              {call("cta_tel_hero")}
+              <Link href={PATHS.contact} className="btn-line" data-track="cta_devis_hero">Demander un devis</Link>
+            </div>
+            <p className="fade-in cap mt-8 leading-[2]" style={{ ["--d" as string]: "900ms" }}>Artisan <span className="text-tuile">·</span> Installateur conseil expert Velux <span className="text-tuile">·</span> Garantie décennale Generali</p>
+          </div>
         </div>
-        <div className="fade-in hidden pb-2 lg:col-span-4 lg:block" style={{ ["--d" as string]: "700ms" }}>
-          <p className="max-w-[34ch] text-[1.02rem] leading-relaxed">Entreprise artisanale et familiale : couverture, charpente, zinguerie. Devis et déplacement gratuits.</p>
-          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Link href={PATHS.contact} className="btn-bois" data-track="cta_devis_hero">Demander un devis ou une intervention</Link>
+
+        {/* La scène : une grande photo de toit en forme de pignon, la mascotte debout devant, au premier plan. */}
+        <div className="relative mx-[calc(var(--gutter)*-1)] mt-6 h-[112vw] max-h-[44rem] sm:mx-0 sm:h-[86vw] lg:mt-0 lg:h-[min(calc(100svh-7rem),52rem)] lg:max-h-none lg:min-h-[34rem]">
+          <div className="absolute inset-x-0 bottom-[7%] top-[16%] lg:bottom-[5%] lg:top-[9%]">
+            <div className="pignon pignon-photo absolute inset-0 shadow-photo">
+              <Img id="heros" alt={photoAlt("heros")} className="absolute inset-0" priority position="50% 40%" />
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 z-[3] h-1/3 bg-gradient-to-t from-bois-night/45 to-transparent" />
+            </div>
+            <div className="pointer-events-none absolute inset-0"><FermeGable /></div>
+          </div>
+          <div className="absolute bottom-[3%] left-1/2 z-[5] w-[min(76%,calc(112vw*0.72))] -translate-x-[54%] sm:w-[62%] lg:bottom-[2.5%] lg:w-[min(96%,calc((min(100svh-7rem,52rem))*0.72))]">
+            <Mascotte />
           </div>
         </div>
       </div>
 
-      <div className="relative mt-6 sm:mt-8">
-        <div className="pignon pignon-photo relative mx-auto h-[88vw] max-h-[46rem] min-h-[20rem] w-full max-w-[120rem] sm:h-[60vw] lg:h-[calc(100svh-21.5rem)] lg:min-h-[27rem]">
-          <Img id="heros" alt={photoAlt("heros")} className="absolute inset-0" priority position="50% 40%" />
-          <span aria-hidden="true" className="absolute inset-x-0 bottom-0 z-[3] h-2/5 bg-gradient-to-t from-bois-night/60 to-transparent" />
-          <div className="absolute bottom-5 right-[var(--gutter)] z-[4] hidden text-right text-creme lg:block">
-            <a href={`tel:${business.phoneTel}`} className="block whitespace-nowrap text-[2rem] hover:text-orange-light" style={{ fontWeight: 300 }} data-track="cta_tel_hero">{business.phoneDisplay}</a>
-            <span className="cap text-creme/80">Artisan · Velux installateur conseil expert · Garantie décennale</span>
-          </div>
-        </div>
-        <div className="pointer-events-none absolute inset-0 mx-auto w-full max-w-[120rem]"><FermeGable /></div>
-        <div className="absolute bottom-[-1.2rem] left-[calc(var(--gutter)-0.4rem)] z-[5] w-[44vw] max-w-[22rem] sm:w-[30vw] lg:bottom-[0.4rem] lg:w-[min(21vw,calc((100svh-21.5rem)*0.6))]">
-          <Mascotte />
-        </div>
-      </div>
-
-      <div className="wrap pb-4 pt-12 lg:hidden">
+      <div className="wrap pb-4 pt-8 lg:hidden">
         <p className="fade-in text-[1.15rem] leading-[1.5] text-ink" style={{ ["--d" as string]: "900ms", fontWeight: 340 }}>
           Couverture, charpente, zinguerie, Velux, isolation et façade. <span className="text-ink-faint">Devis et déplacement gratuits.</span>
         </p>
-        <div className="fade-in mt-6 flex flex-wrap items-center gap-x-6 gap-y-4" style={{ ["--d" as string]: "1000ms" }}>
-          <Link href={PATHS.contact} className="btn-bois" data-track="cta_devis_hero_m">Demander un devis ou une intervention</Link>
-          <a href={`tel:${business.phoneTel}`} className="inline-flex items-center gap-3 whitespace-nowrap text-[1.4rem] text-bois-deep" style={{ fontWeight: 330 }} data-track="cta_tel_hero_m"><PhoneIcon className="h-5 w-5" /> {business.phoneDisplay}</a>
+        <div className="fade-in mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={{ ["--d" as string]: "1000ms" }}>
+          {call("cta_tel_hero_m")}
+          <Link href={PATHS.contact} className="btn-line" data-track="cta_devis_hero_m">Demander un devis ou une intervention</Link>
         </div>
         <p className="cap mt-7 leading-[2]">Artisan <span className="text-tuile">·</span> Installateur conseil expert Velux <span className="text-tuile">·</span> Garantie décennale Generali</p>
       </div>

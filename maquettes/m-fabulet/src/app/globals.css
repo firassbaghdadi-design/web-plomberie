@@ -74,24 +74,71 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .js .ferme:not(.is-in):not(.ferme-auto) .piece { animation: piece-draw 0s 3s forwards; }
 .js .ferme:not(.is-in):not(.ferme-auto) .tile { animation: tile-drop 0s 3s forwards; }
 
-/* ————— La mascotte du logo, à l'identique : elle entre avec sa planche, se pose, lève le pouce ————— */
-.m-enter { animation: m-enter 1.9s cubic-bezier(.22,.8,.25,1) .35s both; }
-.m-bob { transform-origin: 50% 100%; animation: m-walk .38s ease-in-out .35s 5 alternate; }
-.m-pose { transform-origin: 46% 100%; animation: m-settle .8s cubic-bezier(.3,1.4,.5,1) 2.15s both, m-thumb 1s cubic-bezier(.4,1.6,.5,1) 2.95s both; }
-.m-idle { transform-origin: 50% 100%; animation: m-idle 6s ease-in-out 4.2s infinite; }
-.m-shadow { animation: m-shadow 1.9s cubic-bezier(.22,.8,.25,1) .35s both; }
-@keyframes m-enter { from { transform: translate3d(-115%, 0, 0); } to { transform: none; } }
-@keyframes m-walk { from { transform: translateY(0) rotate(-1.6deg); } to { transform: translateY(-9px) rotate(1.4deg); } }
-@keyframes m-settle { 0% { transform: none; } 35% { transform: scale(1.035, .955); } 70% { transform: scale(.99, 1.015); } 100% { transform: none; } }
-@keyframes m-thumb { 0% { transform: none; } 40% { transform: rotate(-3deg) translateY(-6px); } 100% { transform: none; } }
-@keyframes m-idle { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) rotate(.4deg); } }
-@keyframes m-shadow { from { opacity: 0; transform: translateX(-115%) scaleX(.6); } to { opacity: 1; transform: none; } }
-/* L'éclat du pouce levé : trois rayons orange, fins, qui jaillissent puis s'effacent. */
-.gleam span { position: absolute; left: 50%; top: 50%; width: 2px; height: 26%; border-radius: 2px; background: #D9822B; transform-origin: 50% 100%; opacity: 0; animation: gleam 1.3s cubic-bezier(.2,.8,.3,1) 3.15s both, gleam 1.3s cubic-bezier(.2,.8,.3,1) 9s both; }
-.gleam span:nth-child(1) { --r: -42deg; }
-.gleam span:nth-child(2) { --r: 0deg; }
-.gleam span:nth-child(3) { --r: 42deg; }
-@keyframes gleam { 0% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-10%) scaleY(.2); } 35% { opacity: 1; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-30%) scaleY(1); } 100% { opacity: 0; transform: translate(-50%, -100%) rotate(var(--r)) translateY(-75%) scaleY(.4); } }
+/* ————— La mascotte en dessin animé (calques : scripts/split-mascot.cjs) —————
+   Entrée : saut depuis le bord (mz-x + mz-y), écrasement à l'atterrissage (mz-sq), ombre qui s'écrase.
+   Pouce : le bras pivote depuis la manche, « tchak », étoiles orange. Puis boucle discrète.
+   Pivots en % du cadre 374 × 495 : bras 77.81% 50.91%, planche 44.12% 48.08%, tête 60.43% 42.83%. */
+.mascotte { cursor: pointer; -webkit-user-select: none; user-select: none; }
+.mz-x { animation: mz-x .68s cubic-bezier(.2,.5,.35,1) .2s both; transform-origin: 60% 100%; }
+.mz-y { animation: mz-y .68s linear .2s both; }
+.mz-sq { transform-origin: 61% 100%; animation: mz-sq 1.3s linear .1s both; }
+.mz-breath { transform-origin: 61% 100%; animation: mz-breath 3.6s ease-in-out 1.6s infinite; }
+.mz-shadow { background: radial-gradient(closest-side, rgba(43,27,16,.55), rgba(43,27,16,.22) 60%, transparent); animation: mz-shadow 1.2s cubic-bezier(.3,.6,.4,1) .2s both; }
+.mz-arm, .mz-arm-idle, .mz-arm-wave { transform-origin: 77.81% 50.91%; }
+.mz-arm { animation: mz-thumb .62s .92s both; }
+.mz-arm-idle { animation: mz-arm-idle 3.6s ease-in-out 1.6s infinite; }
+.mz-plank { transform-origin: 44.12% 48.08%; animation: mz-plank 4.2s ease-in-out 1.7s infinite; }
+.mz-nod, .mz-head { transform-origin: 60.43% 42.83%; }
+.mz-nod { animation: mz-nod .7s cubic-bezier(.3,1.4,.5,1) 1.12s both; }
+.mz-head { animation: mz-tilt 6s ease-in-out 2s infinite; }
+.mz-wink { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); animation: mz-wink 6s 2.55s infinite; }
+@keyframes mz-x { from { transform: translate3d(72%, 0, 0) rotate(-7deg); } 70% { transform: translate3d(6%, 0, 0) rotate(-2deg); } to { transform: none; } }
+@keyframes mz-y {
+  0% { transform: translate3d(0, 0, 0); animation-timing-function: cubic-bezier(.33,.75,.6,1); }
+  48% { transform: translate3d(0, -13%, 0); animation-timing-function: cubic-bezier(.45,0,.75,.35); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes mz-sq {
+  0% { transform: none; } 6% { transform: scale(1.06, .93); } 12% { transform: scale(.93, 1.09); } 31% { transform: none; }
+  52% { transform: scale(.95, 1.06); } 60% { transform: scale(1.19, .81); } 66% { transform: scale(1.13, .87); }
+  75% { transform: scale(.95, 1.06); } 83% { transform: scale(1.03, .97); } 91% { transform: scale(.995, 1.008); } 100% { transform: none; }
+}
+@keyframes mz-shadow {
+  0% { opacity: .8; transform: none; } 28% { opacity: .3; transform: scale(.5); }
+  57% { opacity: 1; transform: scale(1.32, 1.15); } 72% { opacity: .85; transform: scale(.94); } 100% { opacity: .9; transform: none; }
+}
+@keyframes mz-thumb {
+  0% { transform: rotate(58deg); animation-timing-function: cubic-bezier(.55,0,.7,.4); }
+  20% { transform: rotate(52deg); animation-timing-function: cubic-bezier(.3,.8,.4,1); }
+  48% { transform: rotate(-16deg); animation-timing-function: ease-in-out; }
+  66% { transform: rotate(6deg); } 82% { transform: rotate(-2.5deg); } 100% { transform: none; }
+}
+@keyframes mz-wave {
+  0% { transform: none; } 28% { transform: rotate(32deg); animation-timing-function: cubic-bezier(.3,.8,.4,1); }
+  55% { transform: rotate(-14deg); } 72% { transform: rotate(5deg); } 87% { transform: rotate(-2deg); } 100% { transform: none; }
+}
+@keyframes mz-nod { 0% { transform: none; } 35% { transform: rotate(-3.5deg) translateY(-1%); } 100% { transform: none; } }
+@keyframes mz-breath { 0%, 100% { transform: none; } 50% { transform: scale(.996, 1.016); } }
+@keyframes mz-arm-idle { 0%, 100% { transform: none; } 50% { transform: rotate(-1.5deg); } }
+@keyframes mz-plank { 0%, 100% { transform: none; } 30% { transform: rotate(-1.1deg); } 70% { transform: rotate(.8deg); } }
+@keyframes mz-tilt { 0%, 100% { transform: none; } 8%, 16% { transform: rotate(-2.2deg); } 55% { transform: rotate(1.3deg); } }
+@keyframes mz-wink { 0% { transform: scaleY(0); } 3% { transform: scaleY(1); } 11% { transform: scaleY(1); } 14%, 100% { transform: scaleY(0); } }
+/* Éclat du pouce : quatre rayons qui jaillissent et deux étoiles qui pétillent, dans l'orange du logo. */
+.mz-spark .mz-rays line { opacity: 0; }
+.mz-spark .mz-star { opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+.mz-spark-in .mz-rays line { animation: mz-ray .7s cubic-bezier(.2,.8,.3,1) 1.18s both; }
+.mz-spark-in .mz-star-a { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) 1.22s both; }
+.mz-spark-in .mz-star-b { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) 1.34s both; }
+.is-wave .mz-arm-wave { animation: mz-wave .78s both; }
+.is-wave .mz-spark-again .mz-rays line { animation: mz-ray .7s cubic-bezier(.2,.8,.3,1) .36s both; }
+.is-wave .mz-spark-again .mz-star-a { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) .4s both; }
+.is-wave .mz-spark-again .mz-star-b { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) .5s both; }
+.mz-rays line { transform-box: fill-box; transform-origin: 50% 100%; }
+.mz-rays line:nth-child(2) { transform-origin: 0 100%; }
+.mz-rays line:nth-child(3) { transform-origin: 100% 100%; }
+.mz-rays line:nth-child(4) { transform-origin: 0 50%; }
+@keyframes mz-ray { 0% { opacity: 0; transform: scale(.2); } 30% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(.9) translate3d(0, -20%, 0); } }
+@keyframes mz-star { 0% { opacity: 0; transform: scale(0) rotate(-40deg); } 40% { opacity: 1; transform: scale(1.15) rotate(10deg); } 75% { opacity: 1; transform: scale(.95) rotate(0); } 100% { opacity: 0; transform: scale(.6) rotate(20deg); } }
 
 /* ————— En-tête ————— */
 .head { transition: background-color .35s, box-shadow .35s, transform .45s var(--ease); }
@@ -115,7 +162,8 @@ details.faq[open] .faq-plus::after { transform: rotate(0deg); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-  .m-idle, .gleam span { animation: none !important; }
+  .mascotte, .mascotte * { animation: none !important; }
+  .mascotte { cursor: default; }
   .js [data-reveal], .js [data-photo] img { opacity: 1; transform: none; }
   .ferme .piece { stroke-dashoffset: 0; }
   .ferme .tile { opacity: 1; transform: none; }
