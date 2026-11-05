@@ -1,6 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Section } from "@/components/Section";
 import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
@@ -12,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre DBP Plomberie-Chauffage, plombier chauffagiste à Paris 20e, appelez le 01 42 45 91 35 ou envoyez ce formulaire : type de demande, coordonnées, adresse du lieu concerné et jusqu'à quatre photos. Votre demande arrive à l'atelier de la villa Gagliardini, près de la porte des Lilas.";
+  "Décrivez votre besoin, joignez jusqu'à quatre photos : DBP vous répond, ou appelez le 01 42 45 91 35.";
 
 const faq: Faq[] = [
   {
@@ -35,38 +34,31 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section>
-        <div className="wrap">
-          <div className="border-b border-ink py-3"><Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} /></div>
-          <div className="cols items-end pt-6 lg:pt-8">
-            <div className="col-span-4 md:col-span-6 lg:col-span-8">
-              <p className="meta text-heat-deep">Contact · devis gratuit</p>
-              <h1 className="mt-5 text-[2.7rem] sm:text-[4rem] lg:text-[clamp(4rem,6.4vw,6.8rem)]">Contact&nbsp;: plombier chauffagiste à Paris 20e</h1>
-            </div>
-            <div className="col-span-4 mt-10 md:col-span-6 lg:col-span-4 lg:mt-0">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 pt-6 sm:pt-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
+            <div className="border-b border-ink py-3"><Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} /></div>
+            <p className="meta mt-6 text-heat-deep">Contact · devis gratuit</p>
+            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">Contact&nbsp;: plombier chauffagiste à Paris 20e</h1>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "200ms" }}>{brief}</p>
+            <div className="mt-8 hidden lg:block">
               <p className="meta-faint border-t-2 border-ink pt-2">Téléphone</p>
-              <a href={`tel:${business.phoneTel}`} className="num mt-2 block whitespace-nowrap text-[2.6rem] font-semibold tracking-[-0.05em] transition-colors hover:text-heat-deep lg:text-[clamp(2.4rem,3.4vw,3.6rem)]" data-track="cta_tel">{business.phoneDisplay}</a>
-              <p className="meta-faint mt-1">{business.address.street}, {business.address.postalCode} Paris</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-2 block whitespace-nowrap text-[2.4rem] font-semibold tracking-[-0.05em] transition-colors hover:text-heat-deep" data-track="cta_tel">{business.phoneDisplay}</a>
             </div>
           </div>
-          <div className="draw mt-8 h-1 bg-ink" aria-hidden="true" />
-          <p className="reponse-bref fade-in max-w-[60rem] pb-16 pt-6 lg:pb-24" style={{ ["--d" as string]: "200ms" }}>{brief}</p>
-        </div>
-      </section>
-      <Section t="18,5" rubrique="Votre demande" ariaLabel="Formulaire de demande">
-        <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
-          <div className="xl:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-8 xl:col-span-4 xl:pt-4">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6">
               <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Adresse</dt><dd className="mt-2 font-medium">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
               <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Transports</dt><dd className="mt-2 font-medium">{business.metro}</dd></div>
               <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Horaires</dt><dd className="mt-2 font-medium">{business.hours}</dd></div>
               <div className="border-t-2 border-ink pt-3"><dt className="meta-faint">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 2007</dd></div>
             </dl>
-          </aside>
+
+          </div>
         </div>
-      </Section>
+      </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" t="21,0" />
       <JsonLd nodes={nodes} />
     </>
