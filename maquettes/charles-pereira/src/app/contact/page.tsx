@@ -1,6 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Raccord } from "@/components/Raccord";
 import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
@@ -12,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre l'Entreprise Charles Pereira, plombier à Paris 15e, appelez le 01 42 51 42 42 ou envoyez ce formulaire : type de demande, coordonnées, adresse du lieu concerné et jusqu'à quatre photos. Votre demande arrive au 26, boulevard Garibaldi et reçoit une réponse de l'entreprise.";
+  "Décrivez votre besoin et joignez jusqu'à quatre photos : l'entreprise vous répond, ou appelez le 01 42 51 42 42.";
 
 const faq: Faq[] = [
   {
@@ -35,38 +34,33 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section className="relative z-10">
-        <div className="wrap grid gap-x-16 pb-6 pt-6 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 pt-6 sm:pt-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in mt-10 text-[0.72rem] font-medium uppercase tracking-[0.26em] text-accent sm:mt-14">Contact · devis gratuit</p>
-            <h1 className="mt-6 text-[clamp(2.5rem,7vw,5.2rem)] leading-[1]">
+            <p className="fade-in mt-6 text-[0.72rem] font-medium uppercase tracking-[0.26em] text-accent">Contact · devis gratuit</p>
+            <h1 className="mt-4 text-[clamp(2rem,5vw,3.2rem)] leading-[1.05]">
               <span className="line-up"><span>Contact&nbsp;: plombier à Paris 15e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "200ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "300ms" }}>
+              <p className="label">Téléphone</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-3 block whitespace-nowrap text-[2.2rem] font-extralight tracking-tight text-ink transition hover:text-accent-deep" data-track="cta_tel">{business.phoneDisplay}</a>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Téléphone</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent-deep" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
-          </div>
-        </div>
-        <div data-art aria-hidden="true" className="wrap-flat h-[96px] w-full sm:h-[130px]" />
-      </section>
-      <Raccord n="01" index={1} ariaLabel="Formulaire de demande">
-        <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
-          <div className="xl:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-8 xl:col-span-4 xl:pt-4">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
+            <a href={`tel:${business.phoneTel}`} className="num mb-6 block whitespace-nowrap text-[2rem] font-extralight tracking-tight text-ink lg:hidden" data-track="cta_tel">{business.phoneDisplay}</a>
             <dl className="space-y-6">
               <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Métro</dt><dd className="mt-2 text-ink">{business.metro}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 2008</dd></div>
             </dl>
-          </aside>
+          </div>
         </div>
-      </Raccord>
+      </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" n="02" index={2} />
       <JsonLd nodes={nodes} />
     </>
