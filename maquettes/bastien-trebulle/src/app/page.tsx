@@ -3,6 +3,7 @@ import { Drums } from "@/components/Drums";
 import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { MeterFace } from "@/components/MeterFace";
+import { HeroFilm } from "@/components/HeroFilm";
 import { CtaBand, FaqList, Folio, LocalBlock, Reputation, contactHref, roman } from "@/components/Sections";
 import { ArrowIcon } from "@/components/Icons";
 import { home, homeFaq, trades } from "@/lib/content";
@@ -43,9 +44,12 @@ function Hero() {
             <span className="line-up"><span className="italic text-brass-light" style={{ ["--d" as string]: "240ms" }}>à Paris 16e</span></span>
           </h1>
 
-          {/* l'objet précieux */}
-          <div className="object-in pointer-events-none relative z-0 mt-5 ml-auto w-[64vw] max-w-[23rem] sm:-mt-16 sm:w-[44vw] lg:col-span-5 lg:mt-0 lg:w-[min(34vw,31rem)] lg:max-w-none" style={{ ["--d" as string]: "350ms" }}>
-            <MeterFace />
+          {/* la planche filmée, avec le compteur de laiton posé dessus comme un bijou */}
+          <div className="object-in relative z-0 mt-8 lg:col-span-5 lg:mt-0" style={{ ["--d" as string]: "350ms" }}>
+            <HeroFilm />
+            <div className="pointer-events-none absolute -bottom-16 right-2 w-[40vw] max-w-[12rem] sm:-bottom-20 lg:-bottom-24 lg:-right-6 lg:w-[min(16vw,15rem)] lg:max-w-none">
+              <MeterFace />
+            </div>
           </div>
         </div>
 

@@ -93,7 +93,7 @@ export function MeterFace({ className = "" }: { className?: string }) {
       </svg>
 
       <div className="absolute left-1/2 top-[21%] -translate-x-1/2 text-center">
-        <p className="serif whitespace-nowrap tracking-[0.2em] text-fg" style={{ fontSize: "max(0.8rem, 4.4cqw)" }}>BASTIEN <em className="not-italic text-brass">&amp;</em> TREBULLE</p>
+        <p className="serif whitespace-nowrap tracking-[0.2em] text-fg" style={{ fontSize: "4.4cqw" }}>BASTIEN <em className="not-italic text-brass">&amp;</em> TREBULLE</p>
         <p className="mt-[0.8cqw] whitespace-nowrap uppercase tracking-[0.32em] text-fg-faint" style={{ fontSize: "max(0.45rem, 1.8cqw)" }}>Paris · MDCCCLXXX</p>
       </div>
       <div className="absolute left-1/2 top-[49%] flex -translate-x-1/2 -translate-y-1/2 items-end gap-[1.4cqw]">
