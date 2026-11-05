@@ -22,6 +22,7 @@
   - Reprends toutes les pages et tous les textes du site actuel, s'il existe.
   - Ajoute des pages métier × zone (l'arrondissement + 4 ou 5 arrondissements ou communes voisines), avec des textes **tous différents**.
   - Ajoute une page contact et une page de mentions légales.
+- **La page contact** : le formulaire doit être visible dès l'arrivée, sans défiler. Voir la section « Réflexe page contact » de `gout-firas.md`, avec pour modèle `maquettes/bastien-trebulle/src/app/contact/page.tsx`.
 - **Le favicon et le partage** : `src/app/icon.png`, `src/app/apple-icon.png` et les balises Open Graph.
   - L'image `og:image` doit pointer vers l'adresse Vercel de la maquette, pas vers le futur domaine du client, qui n'existe pas encore. Exemple de code : `SHARE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? "https://"+… : SITE_URL`, comme dans `maquettes/kuschnick/src/lib/site.ts`.
   - La balise canonical, elle, garde le vrai domaine du client.

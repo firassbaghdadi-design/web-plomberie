@@ -116,3 +116,11 @@ Capture validée : `prospection/references/bastien-trebulle-valide-par-firas.png
 ## Exception « mascotte » (04/11/2026)
 
 Si l'entreprise a une **mascotte ou un personnage dans son logo** (exemple : M. Fabulet), on l'utilise **à l'identique**, comme pièce maîtresse animée du héros, parce que c'est ce qui attire. Cette exception passe avant la règle « pas de dessin animé ». Le reste du site garde le niveau premium.
+
+## Réflexe « page contact » (05/11/2026, validé par Firas sur Bastien & Trebulle)
+
+Sur la page contact, **le formulaire est visible dès l'arrivée, sans défiler**.
+- **Sur ordinateur** : à gauche, un H1 compact (métier + zone), une phrase courte, le téléphone d'urgence, puis l'adresse, l'e-mail et les horaires. À droite, le formulaire, collé en haut de la page.
+- **Sur mobile** : le formulaire vient juste après le H1 et la phrase courte. Les coordonnées passent sous le formulaire, et la barre « Appeler » reste fixe en bas de l'écran.
+- **Pas de grand texte d'introduction** et rien qui pousse le formulaire vers le bas.
+- **Référence** : `maquettes/bastien-trebulle/src/app/contact/page.tsx`.
