@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs, FaqList, Station } from "@/components/Sections";
+import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
@@ -11,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre S. Petit, plombier à Paris 14e, appelez le 01 45 42 42 84 du lundi au jeudi de 7 h 30 à 17 h 20 et le vendredi jusqu'à 16 h 20, ou envoyez ce formulaire : type de demande, coordonnées, adresse du lieu concerné et jusqu'à quatre photos. Votre demande arrive au 36 avenue Jean Moulin.";
+  "Décrivez votre besoin, joignez jusqu'à quatre photos : l'entreprise vous répond, ou appelez le 01 45 42 42 84.";
 
 const faq: Faq[] = [
   {
@@ -35,37 +35,33 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
     <>
       <section data-station className="station" style={{ ["--dot-y" as string]: "2.55rem" }}>
         <span className="station-pt" aria-hidden="true" />
-        <div className="wrap tx grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 lg:grid-cols-12 lg:items-start pt-6 sm:pt-8">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in folio mt-10 sm:mt-14">Contact · devis gratuit</p>
-            <h1 className="mt-5 text-[2.5rem] sm:text-[3.6rem] xl:text-[4.4rem]">
+            <p className="fade-in folio mt-6">Contact · devis gratuit</p>
+            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contact&nbsp;: plombier à Paris 14e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
+              <p className="label">Téléphone</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-eau-deep" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Téléphone</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-eau-deep" data-track="cta_tel">{business.phoneDisplay}</a>
-            <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
-          </div>
-        </div>
-      </section>
-      <Station n="01" rubrique="Votre demande" ariaLabel="Formulaire de demande">
-        <div className="grid gap-12 xl:grid-cols-12 xl:gap-14">
-          <div className="xl:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-8 xl:col-span-4 xl:pt-4">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6">
               <div className="border-t border-line pt-5"><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Métro</dt><dd className="mt-2 text-ink">{business.metro}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
               <div className="border-t border-line pt-5"><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">{business.legalName}<br />{business.rcs}<br />Fondée en 2007</dd></div>
             </dl>
-          </aside>
+          </div>
         </div>
-      </Station>
+      </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" n="02" />
       <JsonLd nodes={nodes} />
     </>
