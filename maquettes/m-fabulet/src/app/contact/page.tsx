@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs, FaqList, SectionHead } from "@/components/Sections";
+import { Breadcrumbs, FaqList } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
 import { breadcrumbNode, faqNode, pageMeta, webPageNode } from "@/lib/seo";
 
@@ -11,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour joindre M. Fabulet Couverture, couvreur à La Garenne-Colombes, appelez le 01 47 82 82 18 ou le 06 70 74 73 64, ou envoyez ce formulaire : type de travaux, coordonnées, adresse du lieu et jusqu'à quatre photos. L'artisan vous rappelle pour fixer une visite et un devis gratuits.";
+  "Décrivez vos travaux, joignez jusqu'à quatre photos : l'artisan vous rappelle pour fixer une visite et un devis gratuits.";
 
 const faq: Faq[] = [
   {
@@ -34,35 +34,32 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section className="pt-[6.4rem] sm:pt-[7.5rem]">
-        <div className="wrap grid gap-10 pb-14 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 lg:grid-cols-12 lg:items-start pt-6 sm:pt-8">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in cap mt-10 text-tuile-deep">Contact · devis gratuit</p>
-            <h1 className="mt-5 text-[2.6rem] sm:text-[4rem] xl:text-[4.8rem]">
+            <p className="fade-in cap mt-6 text-tuile-deep">Contact · devis gratuit</p>
+            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contact, couvreur à La Garenne-Colombes</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-9" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-bois/25 pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
+              <span className="cap">Téléphone</span>
+              <a href={`tel:${business.phoneTel}`} className="mt-3 block whitespace-nowrap text-[2.4rem] text-bois-deep hover:text-tuile-deep" style={{ fontWeight: 300 }} data-track="cta_tel">{business.phoneDisplay}</a>
+              <a href={`tel:${business.mobileTel}`} className="block whitespace-nowrap text-[1.4rem] text-bois-deep hover:text-tuile-deep" style={{ fontWeight: 330 }}>{business.mobileDisplay}</a>
+              <div className="mt-3 text-[0.95rem] text-ink-faint">{business.address.street}, {business.address.postalCode} {business.address.city}</div>
+            </div>
           </div>
-          <div className="fade-in self-end border-t border-bois/25 pt-6 lg:col-span-4" style={{ ["--d" as string]: "400ms" }}>
-            <span className="cap">Téléphone</span>
-            <a href={`tel:${business.phoneTel}`} className="mt-3 block whitespace-nowrap text-[2.4rem] text-bois-deep hover:text-tuile-deep" style={{ fontWeight: 300 }} data-track="cta_tel">{business.phoneDisplay}</a>
-            <a href={`tel:${business.mobileTel}`} className="block whitespace-nowrap text-[1.4rem] text-bois-deep hover:text-tuile-deep" style={{ fontWeight: 330 }}>{business.mobileDisplay}</a>
-            <div className="mt-3 text-[0.95rem] text-ink-faint">{business.address.street}, {business.address.postalCode} {business.address.city}</div>
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
+            <ContactForm defaultType={demande} />
           </div>
-        </div>
-      </section>
-      <section className="bg-papier py-14 sm:py-20" aria-label="Formulaire de demande">
-        <div className="wrap grid gap-12 xl:grid-cols-12">
-          <div className="xl:col-span-8"><ContactForm defaultType={demande} /></div>
-          <aside className="space-y-7 xl:col-span-4 xl:pt-4">
-            <SectionHead n={1} label="L'atelier" />
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6">
               <div className="border-t border-bois/25 pt-4"><dt className="cap">Adresse</dt><dd className="mt-2 text-ink">{business.name}<br />{business.address.street}<br />{business.address.postalCode} {business.address.city}<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-u mt-2 text-sm">Itinéraire</a></dd></div>
               <div className="border-t border-bois/25 pt-4"><dt className="cap">E-mail</dt><dd className="mt-2 text-ink"><a href={`mailto:${business.email}`} className="hover:text-tuile-deep">{business.email}</a></dd></div>
               <div className="border-t border-bois/25 pt-4"><dt className="cap">Horaires</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
               <div className="border-t border-bois/25 pt-4"><dt className="cap">Entreprise</dt><dd className="mt-2 text-sm">Artisan, {business.rm}<br />Garantie décennale {business.insurer}<br />Installateur conseil expert Velux</dd></div>
             </dl>
-          </aside>
+          </div>
         </div>
       </section>
       <FaqList items={faq} n={2} title="Avant d'envoyer votre demande" />
