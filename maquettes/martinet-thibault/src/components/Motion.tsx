@@ -9,7 +9,7 @@ export function Motion() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add("js");
-    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], [data-mask], .lock, .bief"));
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], [data-mask], .lock, .bief, .gen"));
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
       { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },

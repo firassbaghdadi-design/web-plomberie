@@ -42,8 +42,8 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
   return (
     <fieldset className="sm:col-span-2 min-w-0">
-      <legend className="block text-sm font-medium text-ink">
-        Photos <span className="font-normal text-ink-soft">(facultatif, {MAX_PHOTOS} maximum)</span>
+      <legend className="block text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+        Photos <span className="font-normal normal-case tracking-normal text-ink-faint">(facultatif, {MAX_PHOTOS} maximum)</span>
       </legend>
       <p id="photos-hint" className="mt-1 text-sm text-ink-soft">
         Une photo vaut mieux qu'un long message : l'appareil, son étiquette, la fuite, l'endroit à équiper. Nous les recevons avec votre demande.
@@ -51,13 +51,13 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
+          <figure key={photo.id} className="relative h-16 w-16 overflow-hidden rounded-[2px] border border-line bg-cream-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-blue"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-brass"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,8 +65,8 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-blue/40 bg-white px-3 text-ink hover:border-blue hover:bg-water disabled:opacity-60">
-            <span aria-hidden="true" className="text-3xl leading-none">+</span>
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-16 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-[2px] border border-dashed border-brass/40 bg-cream-2 px-3 text-ink hover:border-brass hover:bg-water disabled:opacity-60">
+            <span aria-hidden="true" className="text-2xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>
         ) : null}

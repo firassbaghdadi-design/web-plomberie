@@ -28,9 +28,9 @@ export default function LegalPage() {
           <div>
             <h2 className="text-[1.6rem]">Photos</h2>
             <p className="mt-3">Les photos de réalisations, de la page Historique, de la page Services et de la page Contact, ainsi que les logos, sont celles du site actuel de l'entreprise. Photos libres de droits (licence Pexels) :</p>
-            <ul className="mt-4 border-t border-line">
+            <ul className="mt-4 border-t border-ink/15">
               {pexelsCredits.map((c) => (
-                <li key={c.key} className="border-b border-line py-3 text-[0.95rem]">« {c.title} », {c.author}, Pexels n° {c.id}</li>
+                <li key={c.key} className="border-b border-ink/15 py-3 text-[0.95rem]">« {c.title} », {c.author}, Pexels n° {c.id}</li>
               ))}
             </ul>
           </div>

@@ -20,10 +20,9 @@ export function Generations({ className = "" }: { className?: string }) {
           <li key={g.year} className="flex flex-col" style={{ ["--i" as string]: i }}>
             <div className="gen-sas" aria-hidden="true">
               <span className="gen-water" />
-              <span className="gen-gate" />
-            </div>
+                          </div>
             <div className="gen-year pr-2 pt-4">
-              <p className="num text-[1.25rem] font-light leading-none tracking-[-0.02em] text-ink sm:text-[1.9rem]">{g.year}</p>
+              <p className="serif num text-[1.35rem] font-light leading-none tracking-[-0.02em] text-ink sm:text-[2.1rem]">{g.year}</p>
               <p className="mt-2 text-[0.7rem] leading-snug text-ink-faint sm:text-[0.82rem]">
                 <span className="sm:hidden">{g.short}</span>
                 <span className="hidden sm:inline">{g.who}</span>

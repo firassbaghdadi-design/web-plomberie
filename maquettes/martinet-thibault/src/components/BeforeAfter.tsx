@@ -7,7 +7,7 @@ import { useState } from "react";
  * APRÈS à droite, séparés par un filet vertical. Deux calques de la même image : le calque « après » est
  * décalé pour ne montrer que la moitié droite ; le calque « avant », découpé par clip-path, ne montre que la
  * moitié gauche. Le filet (split, gap) est détecté au build par scripts/fetch-photos.mjs.
- * La poignée est une petite écluse : deux portes et le niveau d'eau, au bleu de l'entreprise.
+ * La poignée est un bouton de laiton patiné, comme une tête de robinet ancien.
  * Le curseur est un <input type="range"> invisible : clavier, souris et doigt fonctionnent.
  */
 export type Montage = { width: number; height: number; split: number; gap: number };
@@ -25,7 +25,7 @@ export function BeforeAfter({ src, width, height, split, gap, alt, priority }: P
 
   return (
     <figure
-      className="ba group relative w-full overflow-hidden rounded-[3px] bg-water"
+      className="ba group relative w-full overflow-hidden rounded-[2px] bg-water"
       // Jamais plus de deux fois la taille d'origine : l'image reste nette.
       style={{ aspectRatio: `${half} / ${height}`, maxWidth: `${half * 2}px` }}
     >
@@ -40,12 +40,17 @@ export function BeforeAfter({ src, width, height, split, gap, alt, priority }: P
       <span className="ba-tag right-2.5" aria-hidden="true">Après</span>
 
       <div className="ba-line" style={{ left: `${pos}%` }} aria-hidden="true">
-        <svg viewBox="0 0 30 22" className="ba-handle">
-          <rect x="0.5" y="0.5" width="29" height="21" rx="3" fill="#fff" stroke="rgba(13,27,46,.12)" />
-          <path className="ba-water" d="M8 13.5h14V18H8z" fill="rgba(0,113,229,.16)" />
-          <path className="ba-water" d="M8 13.5h14" stroke="#0071e5" strokeWidth="1.2" />
-          <path d="M8 4.5V18M22 4.5V18" stroke="#0d1b2e" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M4.5 9 2.5 11l2 2M25.5 9l2 2-2 2" stroke="#0071e5" strokeWidth="1.1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 34 34" className="ba-handle">
+          <defs>
+            <radialGradient id="ba-brass" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stopColor="#ecd8ae" />
+              <stop offset=".55" stopColor="#b08a52" />
+              <stop offset="1" stopColor="#7a5c30" />
+            </radialGradient>
+          </defs>
+          <circle cx="17" cy="17" r="16" fill="url(#ba-brass)" stroke="#5e4624" strokeWidth=".8" />
+          <circle cx="17" cy="17" r="12.5" fill="none" stroke="rgba(255,244,220,.55)" strokeWidth=".7" />
+          <path d="M14 12.5 9.5 17l4.5 4.5M20 12.5l4.5 4.5-4.5 4.5" stroke="#2a231c" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
 

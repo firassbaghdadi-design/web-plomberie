@@ -18,13 +18,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header data-head className="head sticky top-0 z-50 bg-white">
+    <header data-head className="head sticky top-0 z-50 bg-cream">
       <div className="head-row wrap flex h-[var(--head-h)] items-center justify-between gap-3 sm:gap-6">
         <Link href="/" className="shrink-0" aria-label="Martinet Thibault Entreprise, accueil">
           <Logo />
         </Link>
         <nav aria-label="Navigation principale" className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-[0.92rem] text-ink">
+          <ul className="flex items-center gap-9 text-[0.9rem] tracking-[0.01em] text-ink">
             {nav.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className="nav-link whitespace-nowrap py-1.5">
@@ -35,10 +35,10 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex shrink-0 items-center gap-3 sm:gap-6">
-          <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] font-medium text-ink transition hover:text-blue-deep xl:block" data-track="cta_tel">
+          <a href={`tel:${business.phoneTel}`} className="serif num hidden whitespace-nowrap text-[1.15rem] font-light text-ink transition hover:text-brass-deep xl:block" data-track="cta_tel">
             {business.phoneDisplay}
           </a>
-          <Link href={PATHS.contact} className="btn-primary !min-h-[2.5rem] !px-4 text-[0.85rem] sm:!px-5 sm:text-[0.88rem]">
+          <Link href={PATHS.contact} className="btn-primary !min-h-[2.6rem] !px-5 !text-[0.68rem] max-sm:!hidden">
             Devis gratuit
           </Link>
           <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="menu-mobile" className="flex h-10 w-8 items-center justify-end lg:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}>
@@ -50,14 +50,14 @@ export function Header() {
         </div>
       </div>
       <Canal />
-      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-white lg:hidden">
+      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-cream lg:hidden">
         <div className="wrap min-h-full py-8">
           <ul>
             {[{ href: "/", label: "Accueil" }, ...nav].map((n, i) => (
               <li key={n.href} className="border-b border-line">
-                <Link href={n.href} className="flex items-center justify-between py-4 text-[1.65rem] font-light tracking-tight text-ink">
+                <Link href={n.href} className="serif flex items-center justify-between py-4 text-[1.85rem] font-light tracking-tight text-ink">
                   <span><span className="num mr-4 text-xs text-ink-faint">0{i + 1}</span>{n.label}</span>
-                  <ArrowIcon className="h-4 w-4 text-blue" />
+                  <ArrowIcon className="h-4 w-4 text-brass" />
                 </Link>
               </li>
             ))}

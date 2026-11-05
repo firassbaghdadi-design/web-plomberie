@@ -11,7 +11,7 @@ export function Img({ id, alt, className = "", imgClassName = "", priority, posi
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} decoding="async" style={position ? { objectPosition: position } : undefined} className={`absolute inset-0 h-full w-full object-cover ${imgClassName}`} />
       ) : (
-        <div role="img" aria-label={alt} className="absolute inset-0 flex items-end bg-gradient-to-br from-water to-mist p-6">
+        <div role="img" aria-label={alt} className="absolute inset-0 flex items-end bg-gradient-to-br from-stone-2 via-stone to-mist p-6">
           <span className="label">{alt}</span>
         </div>
       )}

@@ -7,5 +7,5 @@ export function Realisation({ id }: { id: string }) {
   const src = imgSrc(id);
   const m = montageOf(id);
   if (src && m) return <BeforeAfter src={src} alt={photoAlt(id)} {...m} />;
-  return <div className="max-w-[300px] overflow-hidden rounded-[3px]"><Img id={id} alt={photoAlt(id)} className="aspect-square" /></div>;
+  return <div className="max-w-[300px] overflow-hidden rounded-[2px]"><Img id={id} alt={photoAlt(id)} className="aspect-square" /></div>;
 }

@@ -40,14 +40,14 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
         <div className="wrap grid gap-x-14 gap-y-10 pb-16 pt-6 sm:pt-8 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="label mt-6 text-blue-deep">Contacts · devis gratuit</p>
-            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
+            <p className="label mt-6 text-brass-deep">Contacts · devis gratuit</p>
+            <h1 className="mt-4 text-[2.3rem] leading-[1] sm:text-[3rem] xl:text-[3.5rem]" style={{ fontVariationSettings: '"opsz" 144' }}>
               <span className="line-up"><span>Contact&nbsp;: plombier et couvreur à Paris 10e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
-            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
+            <p className="fade-in mt-5 text-[1.05rem] leading-relaxed text-ink-soft sm:text-[1.12rem]" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-ink/15 pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
               <p className="label">Standard</p>
-              <a href={`tel:${business.phoneTel}`} className="num mt-3 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-blue-deep" data-track="cta_tel">{business.phoneDisplay}</a>
+              <a href={`tel:${business.phoneTel}`} className="serif num mt-3 block whitespace-nowrap text-[2.7rem] font-light tracking-tight text-ink transition hover:text-brass-deep" data-track="cta_tel">{business.phoneDisplay}</a>
               <p className="mt-1 text-sm text-ink-faint">{business.hours}</p>
             </div>
           </div>
@@ -57,23 +57,23 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
           <aside className="space-y-10 lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <div>
               <Ecluse n="01">Contacts</Ecluse>
-              <ul className="mt-5 border-t border-line">
+              <ul className="mt-5 border-t border-ink/15">
                 {contacts.map((c) => (
-                  <li key={c.service} className="border-b border-line py-4">
+                  <li key={c.service} className="border-b border-ink/15 py-4">
                     <p className="text-ink">{c.service}{c.name ? <span className="text-ink-faint"> · {c.name}</span> : null}</p>
-                    <a href={`tel:${c.phoneTel}`} className="num mt-1 inline-block whitespace-nowrap text-[1.25rem] font-light text-ink transition hover:text-blue-deep">{c.phoneDisplay}</a>
+                    <a href={`tel:${c.phoneTel}`} className="serif num mt-1 inline-block whitespace-nowrap text-[1.45rem] font-light text-ink transition hover:text-brass-deep">{c.phoneDisplay}</a>
                   </li>
                 ))}
               </ul>
               <p className="mt-4 text-sm">Mathieu Thibault, dirigeant et chargé d'affaires plomberie.</p>
             </div>
-            <dl className="space-y-6 border-t border-line pt-6">
+            <dl className="space-y-6 border-t border-ink/15 pt-6">
               <div><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.legalName}<br />{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
               <div><dt className="label">Heures d'ouverture</dt><dd className="mt-2 text-ink">{business.hours}</dd></div>
               <div><dt className="label">Entreprise</dt><dd className="mt-2 text-sm">SIRET {business.siret} · APE {business.ape}<br />TVA {business.vat}</dd></div>
             </dl>
             <figure data-mask className="max-w-[300px]">
-              <div className="overflow-hidden rounded-[3px]"><Img id="contact" alt={photoAlt("contact")} className="aspect-square" /></div>
+              <div className="overflow-hidden rounded-[2px]"><Img id="contact" alt={photoAlt("contact")} className="grain warm aspect-square" /></div>
             </figure>
           </aside>
         </div>
