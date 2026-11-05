@@ -40,7 +40,7 @@ function Hero() {
         <div className="relative flex flex-1 flex-col justify-center py-7 lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-6 lg:py-8">
           <h1 className="relative z-10 text-[3.4rem] leading-[0.9] tracking-[-0.02em] sm:text-[6rem] lg:col-span-7 lg:text-[clamp(5.6rem,8.4vw,9.6rem)]">
             <span className="line-up"><span>Plombier</span></span>{" "}
-            <span className="line-up pl-[11vw] lg:pl-[13vw]"><span style={{ ["--d" as string]: "120ms" }}>couvreur</span></span>{" "}
+            <span className="line-up"><span style={{ ["--d" as string]: "120ms" }}>couvreur</span></span>{" "}
             <span className="line-up"><span className="italic text-brass-light" style={{ ["--d" as string]: "240ms" }}>à Paris 16e</span></span>
           </h1>
 
