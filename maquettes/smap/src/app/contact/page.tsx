@@ -11,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Pour un devis ou une intervention de plombier à Paris 12e, remplissez ce formulaire : type de demande, coordonnées, adresse du lieu et, si vous le souhaitez, jusqu'à quatre photos. Votre demande arrive directement chez SMAP. Pour une fuite, appelez plutôt le 01 42 49 20 14.";
+  "Décrivez votre besoin, joignez jusqu'à quatre photos : SMAP vous répond, ou appelez le 01 42 49 20 14 pour une fuite.";
 
 const faq: Faq[] = [
   {
@@ -34,34 +34,30 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   return (
     <>
       <section>
-        <div className="wrap grid gap-x-16 pb-14 pt-6 sm:pb-20 sm:pt-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+        <div className="wrap grid gap-x-14 gap-y-10 pb-16 lg:grid-cols-12 lg:items-start pt-6 sm:pt-8">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="label mt-12 text-accent sm:mt-16">Organisez votre rendez-vous</p>
-            <h1 className="mt-6 text-[2.5rem] sm:text-[3.8rem] xl:text-[4.4rem]">
+            <p className="label mt-6 text-accent sm:mt-6">Organisez votre rendez-vous</p>
+            <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contacter votre plombier à Paris 12e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-8" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
+              <p className="label">Par téléphone</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
+              <a href={`mailto:${business.email}`} className="mt-1 inline-block text-sm text-ink-soft hover:text-accent">{business.email}</a>
+            </div>
           </div>
-          <div className="fade-in mt-12 self-end border-t border-line pt-6 lg:col-span-4 lg:mt-0" style={{ ["--d" as string]: "400ms" }}>
-            <p className="label">Par téléphone</p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
-            <a href={`mailto:${business.email}`} className="mt-1 inline-block text-sm text-ink-soft hover:text-accent">{business.email}</a>
-          </div>
-        </div>
-      </section>
-      <section className="border-t border-line py-14 sm:py-20">
-        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-8">
+          <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
             <ContactForm defaultType={demande} />
           </div>
-          <aside className="space-y-10 lg:col-span-4 lg:pt-4">
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6 border-t border-line pt-6">
               <div><dt className="label">Secteur</dt><dd className="mt-2 text-ink">Paris 12e (75012)<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Voir sur la carte</a></dd></div>
               <div><dt className="label">Métiers</dt><dd className="mt-2 text-ink">Plomberie, aménagement et rénovation, maintenance</dd></div>
               <div><dt className="label">Clientèle</dt><dd className="mt-2 text-ink">Particuliers, professionnels et copropriétés</dd></div>
             </dl>
-          </aside>
+          </div>
         </div>
       </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" />
