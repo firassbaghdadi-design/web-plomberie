@@ -7,8 +7,8 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#ffffff", padding: 72, color: "#1b1916" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", borderBottom: "2px solid #1b1916", paddingBottom: 18 }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#f5f0e6", padding: 72, color: "#1b1916" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", borderBottom: "4px solid #151311", paddingBottom: 18 }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 18, letterSpacing: 8, color: "#7c766e" }}>ANCIENS ÉTABLISSEMENTS</div>
             <div style={{ fontSize: 40, letterSpacing: 6, marginTop: 6 }}>KUSCHNICK</div>

@@ -315,8 +315,7 @@ export const localPages: Page[] = [
     contactType: "plomberie",
     service: "Plomberie",
     crumb: "Plombier Paris 20e",
-    photo: "toiture",
-    photoPos: "50% 40%",
+    photo: "panorama",
     caption: "Toits, souches et lucarnes des maisons de ville",
     facts: [
       { label: "Bâti", value: "Maisons, villas" },

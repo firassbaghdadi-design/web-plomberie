@@ -5,7 +5,7 @@ export function Tampon({ className = "h-28 w-28" }: { className?: string }) {
       <defs>
         <path id="tampon-cercle" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1 -90 0" />
       </defs>
-      <circle cx="60" cy="60" r="56" fill="rgba(255,255,255,.9)" stroke="#9c4a22" strokeWidth="1.2" />
+      <circle cx="60" cy="60" r="56" fill="rgba(245,240,230,.94)" stroke="#9c4a22" strokeWidth="1.2" />
       <circle cx="60" cy="60" r="35" fill="none" stroke="#9c4a22" strokeWidth=".7" />
       <text className="tampon-text" fill="#9c4a22">
         <textPath href="#tampon-cercle" startOffset="0">Anciens Éts Kuschnick · Paris XIe · Maison fondée ·</textPath>

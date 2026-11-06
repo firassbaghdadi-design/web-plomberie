@@ -58,8 +58,8 @@ export const servicePages: Page[] = [
     contactType: "plomberie",
     service: "Plomberie",
     crumb: "Plombier Paris 11e",
-    photo: "outils",
-    caption: "Pince-étau et clé : les outils du plombier",
+    photo: "tuyaux",
+    caption: "Canalisations apparentes, avant la reprise d'une colonne",
     facts: [
       { label: "Fondée en", value: "1957" },
       { label: "Atelier", value: "Rue Trousseau" },
@@ -134,8 +134,8 @@ export const servicePages: Page[] = [
     contactType: "couverture",
     service: "Couverture et zinguerie",
     crumb: "Couvreur Paris 11e",
-    photo: "toiture",
-    caption: "Une souche de cheminée et ses fenêtres de toit",
+    photo: "couvreur",
+    caption: "Sur le toit : la souche de cheminée, reprise à la main",
     facts: [
       { label: "Matériau", value: "Zinc" },
       { label: "Pour", value: "Copropriétés" },
@@ -278,8 +278,8 @@ export const servicePages: Page[] = [
     contactType: "fumisterie",
     service: "Fumisterie",
     crumb: "Fumisterie Paris 11e",
-    photo: "toits",
-    caption: "Les souches de cheminée, au crépuscule",
+    photo: "cheminees",
+    caption: "Les souches de cheminée d'un immeuble de rapport",
     facts: [
       { label: "Métier", value: "Fumiste" },
       { label: "Ouvrages", value: "Conduits" },

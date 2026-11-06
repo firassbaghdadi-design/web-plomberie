@@ -51,7 +51,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
+          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-[2px] border border-line bg-[#fbf8f2]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
@@ -65,7 +65,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-copper/40 bg-white px-3 text-ink hover:border-copper hover:bg-copper-wash disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-[2px] border border-dashed border-copper/50 bg-[#fbf8f2] px-3 text-ink hover:border-copper hover:bg-copper-wash disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>

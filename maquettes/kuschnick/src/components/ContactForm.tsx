@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-4 text-ink outline-none transition focus:border-copper focus:bg-white focus:ring-4 focus:ring-copper/15";
+const field = "mt-2 w-full rounded-[2px] border border-line bg-[#fbf8f2] px-4 py-3.5 text-ink outline-none transition focus:border-copper focus:bg-white focus:ring-4 focus:ring-copper/15";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,7 +56,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[6px] border border-copper/30 bg-copper-wash p-10 text-center">
+      <div role="status" className="border-t-[3px] border-ink bg-copper-wash p-10 text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-copper text-copper">
           <CheckIcon className="h-8 w-8" />
         </span>
@@ -70,11 +70,12 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
-      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="border-t-[3px] border-ink bg-[#fbf8f2] p-6 ring-1 ring-line sm:p-10">
+      <p className="kicker">Bon de demande</p>
+      <h2 className="mt-2 text-3xl sm:text-[2.5rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre demande arrive directement aux Anciens Établissements Kuschnick, rue Trousseau.</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>
             Votre demande
@@ -143,7 +144,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
       <div aria-live="polite">
         {status === "error" ? (
-          <p className="mt-6 rounded-2xl border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#7a271a]">
+          <p className="mt-6 rounded-[2px] border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#7a271a]">
             {serverMessage} Vous pouvez nous joindre au{" "}
             <a href={`tel:${business.phoneTel}`} className="font-medium underline">
               {business.phoneDisplay}

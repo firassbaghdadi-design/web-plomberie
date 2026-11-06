@@ -1,5 +1,10 @@
 {
   "pexels": {
+    "une": { "id": 32551182, "title": "Historic Rooftops of Paris Under Moody Skies", "author": "Pexels", "alt": "Les toits de zinc de Paris sous un ciel d'orage, souches de cheminée et lucarnes" },
+    "panorama": { "id": 16923125, "title": "Roofs of Buildings in City", "author": "Pexels", "alt": "Vue plongeante sur les toits de Paris, zinc et souches de cheminée" },
+    "cheminees": { "id": 11666835, "title": "Chimneys on Tenement", "author": "Pexels", "alt": "Les souches de cheminée d'un immeuble parisien" },
+    "couvreur": { "id": 18253918, "title": "Man in Shirt Working on Roof", "author": "Pexels", "alt": "Un artisan répare une souche de cheminée sur un toit de la ville" },
+    "tuyaux": { "id": 8488035, "title": "Metal Pipes on Wall", "author": "Pexels", "alt": "Des canalisations apparentes sur le mur d'un chantier" },
     "toits": { "id": 7816462, "title": "Chimneys on the Rooftop at Dusk", "author": "Pexels", "alt": "Souches de cheminée sur les toits au crépuscule" },
     "outils": { "id": 5210901, "title": "Close Up Photo of Vice Grip and Wrench", "author": "Pexels", "alt": "Une pince-étau et une clé, les outils du plombier" },
     "cle": { "id": 8488060, "title": "Close Up Photo of Plumbers Wrench on Wooden Surface", "author": "Pexels", "alt": "Une clé à molette de plombier ancienne posée sur un établi en bois" },

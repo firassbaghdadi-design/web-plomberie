@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { pageByPath } from "@/lib/pages";
+import { allPages, pageByPath } from "@/lib/pages";
 import { breadcrumbNode, faqNode, pageMeta, serviceNode, webPageNode } from "@/lib/seo";
 import { JsonLd } from "./JsonLd";
-import { Brief, CtaBand, DeepContent, FaqList, LocalBlock, PageHero, SeeAlso, pad } from "./Sections";
+import { Brief, CtaBand, DeepContent, FaqList, LocalBlock, PageHero, Reportage, SeeAlso, pad } from "./Sections";
 
 export const metaFor = (path: string): Metadata => {
   const p = pageByPath(path);
   return pageMeta({ title: p.title, description: p.description, path });
 };
 
-/** Gabarit commun : héros en-tête de lettre, puis les feuillets numérotés du carnet (En bref, questions, FAQ, adresse, voir aussi). */
+/** Gabarit commun : la « une » de la page, puis les rubriques numérotées du journal (En bref, articles, reportage photo, courrier des lecteurs, adresse, lire aussi). */
 export function ContentPage({ path }: { path: string }) {
   const page = pageByPath(path);
   const crumbs = [{ name: "Accueil", href: "/" }, { name: page.crumb }];
@@ -21,7 +21,7 @@ export function ContentPage({ path }: { path: string }) {
     <>
       <PageHero page={page} crumbs={crumbs} />
       <Brief text={page.brief} />
-      <DeepContent sections={page.sections} />
+      <DeepContent sections={page.sections} inset={<Reportage exclude={page.photo} seed={allPages.indexOf(page) * 3 + 1} />} />
       <FaqList items={page.faq} title={page.faqTitle} n={pad(k)} />
       <LocalBlock contactType={page.contactType} zone={page.zone} n={pad(k + 1)} />
       <SeeAlso paths={page.related} current={path} n={pad(k + 2)} />

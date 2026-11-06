@@ -1,6 +1,6 @@
 import { Feuillet } from "@/components/Feuillet";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs } from "@/components/Sections";
+import { Breadcrumbs, Letterhead } from "@/components/Sections";
 import { pexelsCredits } from "@/lib/photos";
 import { PATHS, business } from "@/lib/site";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
@@ -17,8 +17,9 @@ export default function LegalPage() {
       <section>
         <div className="wrap pb-12 pt-6 sm:pt-10">
           <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Mentions légales" }]} />
-          <h1 className="mt-12 text-[2.4rem] sm:text-[3.4rem]">Mentions légales, Paris 11e</h1>
-          <p className="reponse-bref mt-8 max-w-4xl">
+          <div className="mt-5"><Letterhead kicker="Mentions légales" /></div>
+          <h1 className="mt-10 text-[2.4rem] sm:text-[3.6rem]">Mentions légales, Paris 11e</h1>
+          <p className="reponse-bref chapeau mt-8 max-w-4xl">
             Ce site présente les Anciens Établissements Kuschnick, société anonyme fondée en 1957 et installée au 54, rue Trousseau à Paris 11e. Vous trouverez ici les informations sur l&apos;éditeur, l&apos;hébergeur, le traitement des données transmises par le formulaire de contact et les crédits des photographies utilisées.
           </p>
         </div>
