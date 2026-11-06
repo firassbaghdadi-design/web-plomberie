@@ -19,7 +19,7 @@ export function Skyline() {
   const cx = 600;
   return (
     <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice" className="block h-[300px] w-full sm:h-auto" role="img" aria-label="Dessin au trait du quartier : immeubles parisiens, la tour Eiffel et les tours du Front de Seine ; un fil à plomb tombe du sommet de la tour">
-      <g fill="none" stroke="#15171a" strokeOpacity=".32" strokeWidth="1" strokeLinejoin="round" vectorEffect="non-scaling-stroke">
+      <g fill="none" stroke="currentColor" strokeOpacity=".3" strokeWidth="1" strokeLinejoin="round" vectorEffect="non-scaling-stroke">
         {blocks.map(([x, w, h]) => (
           <g key={x}>
             <path d={mansard(x, w, h)} />
@@ -50,8 +50,8 @@ export function Skyline() {
       </g>
       {/* Le fil à plomb, du sommet de la tour jusqu'au sol */}
       <g className="sky-drop">
-        <path d={`M${cx} ${ground - 380} V${ground - 26}`} stroke="rgb(var(--accent))" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-        <path d={`M${cx - 5} ${ground - 26} H${cx + 5} V${ground - 23} Q${cx + 5} ${ground - 20} ${cx + 4} ${ground - 18} L${cx} ${ground - 4} L${cx - 4} ${ground - 18} Q${cx - 5} ${ground - 20} ${cx - 5} ${ground - 23} Z`} fill="rgb(var(--accent))" />
+        <path d={`M${cx} ${ground - 380} V${ground - 26}`} stroke="#cfae6e" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d={`M${cx - 5} ${ground - 26} H${cx + 5} V${ground - 23} Q${cx + 5} ${ground - 20} ${cx + 4} ${ground - 18} L${cx} ${ground - 4} L${cx - 4} ${ground - 18} Q${cx - 5} ${ground - 20} ${cx - 5} ${ground - 23} Z`} fill="#cfae6e" />
       </g>
     </svg>
   );

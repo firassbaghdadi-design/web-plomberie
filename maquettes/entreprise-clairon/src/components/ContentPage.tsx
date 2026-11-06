@@ -20,7 +20,7 @@ export function ContentPage({ path, children }: { path: string; children?: React
   return (
     <>
       <PageHero page={page} crumbs={crumbs} />
-      <Brief text={page.brief} />
+      <Brief text={page.brief} start />
       <DeepContent sections={page.sections} />
       {children}
       <FaqList items={page.faq} title={page.faqTitle} />

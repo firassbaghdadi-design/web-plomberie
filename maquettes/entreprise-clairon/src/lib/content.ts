@@ -131,7 +131,7 @@ const roofing: Page = {
   contactType: "couverture",
   service: "Couverture : entretien et réparation de toiture",
   crumb: "Couverture",
-  photo: "toits",
+  photo: "zinc",
   facts: [
     { label: "Depuis", value: "1943" },
     { label: "Toits de", value: "Paris 15e" },
@@ -213,7 +213,7 @@ const heating: Page = {
   contactType: "chauffage",
   service: "Chauffage : installation, réparation et entretien",
   crumb: "Chauffage",
-  photo: "plans",
+  photo: "chantier",
   facts: [
     { label: "Depuis", value: "1943" },
     { label: "Atelier", value: "Paris 15e" },

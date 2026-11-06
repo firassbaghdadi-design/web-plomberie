@@ -5,7 +5,7 @@ import { PATHS, business, nav } from "@/lib/site";
 export function Footer() {
   const link = "transition hover:text-accent";
   return (
-    <footer className="border-t border-line bg-mist pb-24 text-[0.95rem] md:pb-0">
+    <footer className="border-t border-white/15 bg-night-deep pb-24 text-[0.95rem] md:pb-0">
       <div className="wrap pt-16 sm:pt-24">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -13,7 +13,7 @@ export function Footer() {
             <p className="mt-6 max-w-sm">
               Plomberie, couverture, chauffage et petite maçonnerie, par une équipe de compagnons qualifiés installée rue d&apos;Ouessant, dans le 15e arrondissement.
             </p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-8 block whitespace-nowrap text-[2rem] font-extralight tracking-tight text-ink transition hover:text-accent sm:text-[2.5rem]" data-track="cta_tel">
+            <a href={`tel:${business.phoneTel}`} className="mt-8 block whitespace-nowrap font-mono text-[1.7rem] font-light tracking-[0.02em] text-ink transition hover:text-accent sm:text-[2.2rem]" data-track="cta_tel">
               {business.phoneDisplay}
             </a>
             <a href={`mailto:${business.email}`} className="mt-1 inline-block text-ink-soft transition hover:text-accent">{business.email}</a>
@@ -46,10 +46,11 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <p aria-hidden="true" className="mt-20 select-none whitespace-nowrap text-center text-[clamp(3.3rem,16.5vw,15.5rem)] font-extralight leading-[0.8] tracking-[0.12em] text-ink/90">
-          CLAIRON
-        </p>
-        <div className="mt-10 flex flex-col gap-3 border-t border-line py-8 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+        <div aria-hidden="true" className="mt-20 select-none">
+          <div className="cote mb-5"><i /><span>Entreprise Clairon · 23 rue d&apos;Ouessant · Paris 15e</span><i /></div>
+          <p className="whitespace-nowrap text-center text-[clamp(3.3rem,16.5vw,15.5rem)] font-extralight leading-[0.8] tracking-[0.12em] text-transparent [-webkit-text-stroke:1px_rgba(226,236,248,.55)]">CLAIRON</p>
+        </div>
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 py-8 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>© {business.legalName}. Tous droits réservés.</p>
           <p>D&apos;aplomb depuis {business.founded}.</p>
         </div>

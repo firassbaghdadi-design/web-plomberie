@@ -1,3 +1,4 @@
+import commons from "./commons.json";
 import pexels from "./pexels.json";
 import manifest from "./site-photos.generated.json";
 
@@ -11,4 +12,6 @@ export const logoFile = m.logo;
 /** Photos publiées par l'entreprise sur son site actuel (récupérées au build, plus grandes que 700 × 450 px). */
 export const sitePhotos = m.site;
 export const pexelsCredits = Object.entries(pexels).map(([id, c]) => ({ id, ...c }));
-export const photoAlt = (id: string) => (id in pexels ? pexels[id as PexelsId].alt : "Photo Entreprise Clairon");
+export const commonsCredits = Object.entries(commons).map(([id, c]) => ({ id, ...c }));
+export const photoAlt = (id: string) =>
+  id in commons ? commons[id as keyof typeof commons].alt : id in pexels ? pexels[id as PexelsId].alt : "Photo Entreprise Clairon";

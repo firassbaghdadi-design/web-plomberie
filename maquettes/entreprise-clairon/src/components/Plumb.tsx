@@ -120,9 +120,14 @@ export function Plumb() {
         <div ref={swing} className="plumb-swing">
           <i />
           <svg viewBox="0 0 14 24">
-            <path d="M7 0.6 L7 3" stroke="#6e737a" strokeWidth="1" />
-            <path d="M3.2 3 H10.8 L10.8 6.2 Q10.8 8 9.6 9.6 L7 23.2 L4.4 9.6 Q3.2 8 3.2 6.2 Z" fill="rgb(var(--accent))" />
-            <path d="M3.2 6.2 H10.8" stroke="#fff" strokeOpacity=".55" strokeWidth=".8" />
+            <defs>
+              <linearGradient id="pl-brass" x1="0" x2="1">
+                <stop offset="0" stopColor="#4a3814" /><stop offset=".3" stopColor="#f2deaa" /><stop offset=".55" stopColor="#b48d48" /><stop offset="1" stopColor="#3a2b10" />
+              </linearGradient>
+            </defs>
+            <path d="M7 0.6 L7 3" stroke="#a8874b" strokeWidth="1" />
+            <path d="M3.2 3 H10.8 L10.8 6.2 Q10.8 8 9.6 9.6 L7 23.2 L4.4 9.6 Q3.2 8 3.2 6.2 Z" fill="url(#pl-brass)" />
+            <path d="M3.2 6.2 H10.8" stroke="#2a1f0b" strokeOpacity=".5" strokeWidth=".6" />
           </svg>
         </div>
       </div>

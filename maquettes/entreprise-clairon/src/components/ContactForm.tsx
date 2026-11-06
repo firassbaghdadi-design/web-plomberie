@@ -9,8 +9,8 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-mist px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
-const label = "block text-sm font-medium text-ink";
+const field = "mt-2 w-full rounded-[2px] border border-white/15 bg-night-deep/60 px-4 py-3.5 text-ink outline-none transition placeholder:text-ink-faint focus:border-accent focus:ring-1 focus:ring-accent/60";
+const label = "block font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-soft";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -56,7 +56,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[4px] border border-accent/40 bg-accent-tint p-10 text-center">
+      <div role="status" className="border border-accent/40 bg-night-raised p-10 text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
           <CheckIcon className="h-8 w-8" />
         </span>
@@ -66,15 +66,16 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
     );
   }
 
-  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1.5 text-sm text-[#b42318]">{errors[key]}</p> : null);
+  const err = (key: keyof Errors) => (errors[key] ? <p id={`${key}-error`} className="mt-1.5 text-sm text-[#ff9b8f]">{errors[key]}</p> : null);
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[4px] border border-line bg-white p-6 sm:p-12">
-      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="frame-box border border-white/20 bg-night-raised/80 p-5 backdrop-blur sm:p-10">
+      <p className="label text-accent">Formulaire · demande de devis</p>
+      <h2 className="mt-3 text-3xl sm:text-[2.4rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de l'Entreprise Clairon.</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-7 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>
             Votre demande
@@ -106,7 +107,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div>
           <label htmlFor="email" className={label}>
-            E-mail <span className="font-normal text-ink-soft">(facultatif)</span>
+            E-mail <span className="normal-case tracking-normal text-ink-faint">(facultatif)</span>
           </label>
           <input id="email" name="email" type="email" autoComplete="email" className={field} {...aria("email")} />
           {err("email")}
@@ -134,7 +135,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#15171a]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#cfae6e]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}
@@ -143,7 +144,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
       <div aria-live="polite">
         {status === "error" ? (
-          <p className="mt-6 rounded-2xl border border-[#b42318]/30 bg-[#fef3f2] p-4 text-sm text-[#7a271a]">
+          <p className="mt-6 border border-[#ff9b8f]/40 bg-[#ff9b8f]/10 p-4 text-sm text-[#ffd6d0]">
             {serverMessage} Vous pouvez nous joindre au{" "}
             <a href={`tel:${business.phoneTel}`} className="font-medium underline">
               {business.phoneDisplay}
