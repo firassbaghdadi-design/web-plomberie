@@ -185,3 +185,10 @@ M. Fabulet Couverture utilise d'abord les photos de son propre site (couverture-
 - 11912130 : M. Fabulet (toit-velux) — « Brown Tiled Roofing »
 - 31161405 : M. Fabulet (tuiles-gros-plan) — « Close-up of Red Clay Roof Tiles Pattern »
 - 31762405 : M. Fabulet (toit-briques) — « Roofer Performing Maintenance on Red Brick Building »
+
+## kuschnick (v2 « Gazette 1957 », 06/11/2026)
+- 32551182 : Kuschnick (une) — toits sous un ciel d'orage
+- 16923125 : Kuschnick (reportage) — vue plongeante sur les toits
+- 11666835 : Kuschnick — souches de cheminée
+- 18253918 : Kuschnick — artisan sur un toit
+- 8488035 : Kuschnick — canalisations de chantier
