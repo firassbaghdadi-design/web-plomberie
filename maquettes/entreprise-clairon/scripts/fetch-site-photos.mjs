@@ -2,7 +2,7 @@
 // 1. lit le site actuel d'Entreprise Clairon (entreprise-clairon.fr) et écrit dans le journal de build un relevé
 //    des textes, couleurs, polices et images, pour la relecture de la maquette ;
 // 2. télécharge les images publiées par l'entreprise (logo, photos) : src/lib/site-photos.generated.json ;
-// 3. télécharge les photos du quartier (Wikimedia Commons, src/lib/commons.json) et d'artisans au travail (Pexels, src/lib/pexels.json).
+// 3. télécharge les photos d'artisans au travail (Pexels, src/lib/pexels.json).
 // Une image qui ne se télécharge pas n'arrête jamais le build : le site affiche alors une solution de repli.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
@@ -160,29 +160,9 @@ if (brand) {
   const s = Math.min(s0, 0.72);
   const l = Math.min(brand.hsl[2], 0.42);
   const accent = rgbOf(h, s, l), deep = rgbOf(h, s, Math.max(0.16, l - 0.12)), tint = rgbOf(h, Math.min(s, 0.45), 0.965);
-  // Version claire de la couleur, pour les cotes et les liens sur le fond bleu nuit du plan.
-  const hi = rgbOf(h, Math.min(s0, 0.62), 0.74);
-  writeFileSync(new URL("../src/app/brand.generated.css", import.meta.url), `/* Généré au build depuis le site actuel : ${brand.c} (${brand.n} occurrences). */\n:root { --accent: ${accent.join(" ")}; --accent-deep: ${deep.join(" ")}; --accent-tint: ${tint.join(" ")}; --accent-hi: ${hi.join(" ")}; }\n`);
+  writeFileSync(new URL("../src/app/brand.generated.css", import.meta.url), `/* Généré au build depuis le site actuel : ${brand.c} (${brand.n} occurrences). */\n:root { --accent: ${accent.join(" ")}; --accent-deep: ${deep.join(" ")}; --accent-tint: ${tint.join(" ")}; }\n`);
   say(`[site] couleur d'accent : ${brand.c} -> rgb(${accent.join(",")})`);
 } else say("[site] aucune couleur de charte trouvée : bleu par défaut");
-
-// Photos de lieux réels du quartier (Wikimedia Commons, licences libres créditées sur la page Mentions légales) : src/lib/commons.json
-const commons = JSON.parse(readFileSync(new URL("../src/lib/commons.json", import.meta.url), "utf8"));
-for (const [key, { file }] of Object.entries(commons)) {
-  const url = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=2400`;
-  manifest[key] = null;
-  for (let attempt = 1; attempt <= 3 && !manifest[key]; attempt++) {
-    try {
-      const res = await fetch(url, { headers: { "User-Agent": "clairon-maquette/1.0 (build; contact fb.baghdadi@gmail.com)" }, redirect: "follow", signal: AbortSignal.timeout(40000) });
-      const type = res.headers.get("content-type") ?? "";
-      if (!res.ok || !type.startsWith("image/")) throw new Error(`${res.status} ${type}`);
-      writeFileSync(new URL(`${key}.jpg`, outDir), Buffer.from(await res.arrayBuffer()));
-      manifest[key] = `/photos/${key}.jpg`;
-    } catch (e) {
-      if (attempt === 3) console.warn(`[commons] ${file} : ${e.message}`);
-    }
-  }
-}
 
 // Photos d'artisans au travail (Pexels, licence Pexels, créditées sur la page Mentions légales).
 const pexels = JSON.parse(readFileSync(new URL("../src/lib/pexels.json", import.meta.url), "utf8"));
@@ -202,4 +182,4 @@ for (const [key, { pexels: id }] of Object.entries(pexels)) {
   }
 }
 writeFileSync(new URL("../src/lib/site-photos.generated.json", import.meta.url), JSON.stringify({ photos: manifest, logo, site: sitePhotos }, null, 2) + "\n");
-console.log(`[photos] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(manifest).length} photos Commons et Pexels, ${sitePhotos.length} photo(s) du site actuel`);
+console.log(`[photos] ${Object.values(manifest).filter(Boolean).length}/${Object.keys(manifest).length} photos Pexels, ${sitePhotos.length} photo(s) du site actuel`);

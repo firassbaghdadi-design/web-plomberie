@@ -192,3 +192,9 @@ M. Fabulet Couverture utilise d'abord les photos de son propre site (couverture-
 - 11666835 : Kuschnick — souches de cheminée
 - 18253918 : Kuschnick — artisan sur un toit
 - 8488035 : Kuschnick — canalisations de chantier
+
+## entreprise-clairon (v2 « Plan d'ingénieur », 06/11/2026) — Wikimedia Commons, crédités en mentions légales
+- Eiffel Tower and roofs at sunset, Paris 8 September 2012.jpg (Francisco Gonzalez, CC BY 2.0) : Clairon (héros, vue depuis Montmartre)
+- Vista Paris 15.JPG (Hispalois, CC BY-SA 3.0) : Clairon (Javel)
+- Fameux toits en zinc de Paris.jpg (besopha, CC BY 2.0) : Clairon (zinc)
+- Mairie du 15e Arrondissement at night 140223 4.jpg (DXR, CC BY-SA 3.0) : Clairon (mairie du 15e)

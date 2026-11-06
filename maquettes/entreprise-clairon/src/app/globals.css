@@ -3,98 +3,45 @@
 @tailwind utilities;
 
 /*
- * Direction F, « plan d'ingénieur » : un tirage bleu nuit, des traits blancs très fins, des cotes dans la couleur
- * de la charte Clairon (--accent, éclaircie en --accent-hi pour le bleu), et un seul objet précieux : le fil à plomb en laiton.
- * --gutter : marge latérale. --plumb-x : position du fil, dans la marge droite, à l'extérieur du contenu.
+ * --accent : couleur de la charte Clairon (canaux RVB). --gutter : marge latérale.
+ * --plumb-x : position du fil à plomb, dans la marge droite, à l'extérieur du contenu.
  */
 :root {
   --accent: 30 76 140;
   --accent-deep: 20 52 98;
   --accent-tint: 238 243 249;
-  --accent-hi: 150 186 232;
-  --night: 8 21 38;
-  --hair: rgba(226, 236, 248, 0.16);
-  --hair-strong: rgba(226, 236, 248, 0.34);
-  --gutter: clamp(1rem, 4vw, 3.25rem);
-  --plumb-x: calc(max(0px, (100vw - 86rem) / 2) + var(--gutter) * 0.42);
-  --head-h: 4rem;
-  color-scheme: dark;
+  --gutter: clamp(1.4rem, 4.2vw, 3.25rem);
+  --plumb-x: calc(max(0px, (100vw - 84rem) / 2) + var(--gutter) * 0.42);
+  --head-h: 4.25rem;
 }
-@media (min-width: 1024px) { :root { --head-h: 5rem; } }
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
 
-html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; background: #081526; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
 html, body { overflow-x: clip; max-width: 100%; }
-body {
-  @apply bg-night font-sans text-ink-soft antialiased;
-  font-size: 1.0625rem; line-height: 1.7; font-weight: 400;
-  /* Quadrillage de tirage, à peine visible */
-  background-image:
-    linear-gradient(rgba(226, 236, 248, .028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(226, 236, 248, .028) 1px, transparent 1px),
-    linear-gradient(rgba(226, 236, 248, .02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(226, 236, 248, .02) 1px, transparent 1px);
-  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
-  background-position: -1px -1px;
-}
-h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.025em; line-height: 1.04; }
+body { @apply bg-paper font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.04; }
 h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
-strong { font-weight: 500; color: #eef2f7; }
-em { font-style: italic; }
-::selection { background: rgb(var(--accent-hi)); color: #081526; }
+strong { font-weight: 500; }
+::selection { background: rgb(var(--accent)); color: #fff; }
 a, button { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 1px solid rgb(var(--accent-hi)); outline-offset: 3px; border-radius: 1px; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 3px; }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
-  /* Mono en petites capitales espacées : numéros, légendes, cotes */
-  .label { @apply font-mono text-[0.68rem] font-normal uppercase tracking-[0.2em] text-ink-faint; }
+  /* Petites capitales espacées : numéros de section, légendes */
+  .label { @apply text-[0.7rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-feature-settings: "tnum"; }
   .num { font-feature-settings: "tnum", "lnum"; }
-  .mono { @apply font-mono; letter-spacing: 0.02em; }
-  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 whitespace-nowrap rounded-[2px] px-7 text-[0.92rem] font-medium tracking-[0.01em] transition duration-300; }
-  .btn-primary { @apply btn bg-[#f1ece1] text-night hover:bg-brass-light; box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
-  .btn-line { @apply btn border border-white/25 text-ink hover:border-accent hover:text-accent; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-accent; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent; }
   .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; }
   .link-line:hover { @apply text-accent; background-size: 0 1px; background-position: 100% 100%; }
-  .h2 { @apply text-[2.05rem] sm:text-[2.85rem] lg:text-[3.4rem]; }
+  .h2 { @apply text-[2.1rem] sm:text-[2.85rem] lg:text-[3.4rem]; }
   .prose-c p + p { @apply mt-4; }
-  .answer { @apply mt-6 text-[1.16rem] font-light leading-relaxed text-ink sm:text-[1.28rem]; }
-  .reponse-bref { @apply text-[1.28rem] font-light leading-[1.55] text-ink sm:text-[1.62rem]; letter-spacing: -0.012em; }
+  .answer { @apply mt-6 text-[1.18rem] font-light leading-relaxed text-ink sm:text-[1.3rem]; }
+  .reponse-bref { @apply text-[1.3rem] font-light leading-[1.55] text-ink sm:text-[1.7rem]; letter-spacing: -0.012em; }
 }
-
-/* ————— Cotes et cadres techniques ————— */
-/* Ligne de cote horizontale : un trait fin, deux traits d'about obliques, la valeur au milieu. */
-.cote { position: relative; display: flex; align-items: center; justify-content: center; height: 14px; color: rgb(var(--accent-hi)); }
-.cote::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; opacity: .55; }
-.cote > i { position: absolute; top: 1px; width: 1px; height: 12px; background: currentColor; transform: rotate(45deg); }
-.cote > i:first-child { left: 0; }
-.cote > i:last-of-type { right: 0; }
-.cote > span { position: relative; padding-inline: .7rem; background: #081526; font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; line-height: 1; white-space: nowrap; }
-
-/* Cadre de planche : filet, repères d'angle à l'extérieur. */
-.frame-box { position: relative; }
-.frame-box::after {
-  --c: rgba(226, 236, 248, .55);
-  content: ""; position: absolute; inset: -7px; pointer-events: none;
-  background:
-    linear-gradient(var(--c), var(--c)) top left / 15px 1px no-repeat,
-    linear-gradient(var(--c), var(--c)) top left / 1px 15px no-repeat,
-    linear-gradient(var(--c), var(--c)) top right / 15px 1px no-repeat,
-    linear-gradient(var(--c), var(--c)) top right / 1px 15px no-repeat,
-    linear-gradient(var(--c), var(--c)) bottom left / 15px 1px no-repeat,
-    linear-gradient(var(--c), var(--c)) bottom left / 1px 15px no-repeat,
-    linear-gradient(var(--c), var(--c)) bottom right / 15px 1px no-repeat,
-    linear-gradient(var(--c), var(--c)) bottom right / 1px 15px no-repeat;
-}
-.frame-box > .frame-img { outline: 1px solid var(--hair); outline-offset: -1px; }
-.frame-img img { filter: saturate(.92) contrast(1.03); }
-
-/* Cartouche : le tableau d'en-tête d'un plan */
-.cartouche { display: grid; border: 1px solid var(--hair-strong); }
-.cartouche > div { padding: .55rem .8rem; border-top: 1px solid var(--hair); }
-.cartouche > div:first-child { border-top: 0; }
-.cartouche dt { @apply label; font-size: .58rem; }
-.cartouche dd { @apply font-mono text-[0.8rem] text-ink; margin-top: .15rem; letter-spacing: .04em; }
 
 /* Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité). */
 .js [data-reveal] { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
@@ -112,37 +59,20 @@ a, button { -webkit-tap-highlight-color: transparent; }
 @keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
 .fade-in { animation: fade-in 1.2s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
 @keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
-.slow-zoom { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; }
-@keyframes slow-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
-/* Les cotes du héros se tracent */
-.draw { stroke-dasharray: var(--len, 600); stroke-dashoffset: var(--len, 600); animation: draw 1.8s cubic-bezier(.6,0,.2,1) forwards; animation-delay: var(--d, 600ms); }
-@keyframes draw { to { stroke-dashoffset: 0; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 
-/* ————— Le fil à plomb du héros, en laiton ————— */
-.bob-hang { transform-origin: 50% 0; animation: bob-settle 7s cubic-bezier(.3,.1,.3,1) .4s both; }
-@keyframes bob-settle {
-  0% { transform: rotate(4deg); }
-  18% { transform: rotate(-2.6deg); }
-  36% { transform: rotate(1.6deg); }
-  54% { transform: rotate(-.9deg); }
-  72% { transform: rotate(.45deg); }
-  88% { transform: rotate(-.15deg); }
-  100% { transform: rotate(0deg); }
-}
-
-/* En-tête : se cache en descendant, voile bleu une fois la page défilée */
+/* En-tête : se cache en descendant, filet fin une fois la page défilée */
 .head { transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background-color .3s; }
 .head.is-hidden { transform: translate3d(0, -100%, 0); }
-.head.is-solid { border-color: rgba(226, 236, 248, .1); background-color: rgba(8, 21, 38, .86); backdrop-filter: saturate(1.3) blur(14px); }
+.head.is-solid { border-color: #e6e6e3; background-color: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(14px); }
 .nav-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1), color .3s; }
-.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent-hi)); }
-/* Logo du site actuel, passé en clair pour le fond bleu */
-.logo-night { filter: grayscale(1) invert(1) brightness(1.15); mix-blend-mode: screen; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent)); }
 
 .row-link .row-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
-.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent-hi)); }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent)); }
 .row-link .row-title { transition: color .3s, transform .5s cubic-bezier(.2,.7,.2,1); }
-.row-link:hover .row-title { color: rgb(var(--accent-hi)); transform: translateX(4px); }
+.row-link:hover .row-title { color: rgb(var(--accent)); transform: translateX(4px); }
 .img-zoom img { transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
 .img-zoom:hover img { transform: scale(1.035); }
 
@@ -151,32 +81,31 @@ details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; posit
 details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
 details.faq[open] .faq-plus::after { transform: rotate(0deg); }
 
-/* ————— Le fil à plomb de la page : un cordon laiton dans la marge droite ————— */
+/* ————— Le fil à plomb ————— */
 .plumb { position: absolute; top: 0; bottom: 0; right: var(--plumb-x); width: 0; z-index: 20; pointer-events: none; }
 .plumb:not(.is-ready) { visibility: hidden; }
-.plumb-hook { position: absolute; left: -3.5px; top: var(--start, 0px); width: 7px; height: 7px; border: 1px solid #cfae6e; border-radius: 7px; background: #081526; }
-.plumb-cord { position: absolute; left: -0.5px; width: 1px; top: calc(var(--start, 0px) + 7px); height: calc(var(--y, 0px) - 7px); background: linear-gradient(#cfae6e, #8a6a32); opacity: .8; transition: height .7s cubic-bezier(.2,.7,.2,1); }
+.plumb-hook { position: absolute; left: -3.5px; top: var(--start, 0px); width: 7px; height: 7px; border: 1px solid #6e737a; border-radius: 7px; background: #fff; }
+.plumb-cord { position: absolute; left: -0.5px; width: 1px; top: calc(var(--start, 0px) + 7px); height: calc(var(--y, 0px) - 7px); background: #9a9ea4; transition: height .7s cubic-bezier(.2,.7,.2,1); }
 .plumb-bob { position: absolute; left: 0; top: calc(var(--start, 0px) + var(--y, 0px)); transition: top .7s cubic-bezier(.2,.7,.2,1); }
 .plumb-swing { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: rotate(var(--a, 0deg)); }
-.plumb-swing i { position: absolute; left: -0.5px; top: 0; width: 1px; height: 30px; background: #a8874b; }
-.plumb-swing svg { position: absolute; left: -7px; top: 28px; width: 14px; height: 26px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(0,0,0,.45)); }
+.plumb-swing i { position: absolute; left: -0.5px; top: 0; width: 1px; height: 34px; background: #9a9ea4; }
+.plumb-swing svg { position: absolute; left: -7px; top: 32px; width: 14px; height: 24px; overflow: visible; }
 .plumb-tick { position: absolute; right: 0; height: 0; }
-.plumb-tick i { position: absolute; right: -6px; top: 0; width: 12px; height: 1px; background: rgba(226, 236, 248, .22); transition: background-color .6s, width .6s cubic-bezier(.2,.7,.2,1), right .6s cubic-bezier(.2,.7,.2,1); }
-.plumb-tick b { position: absolute; left: 12px; top: -0.45rem; font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: .6rem; letter-spacing: .14em; color: #4f6482; transition: color .6s; }
-.plumb-tick.is-on i { background: #cfae6e; width: 18px; right: -9px; }
-.plumb-tick.is-on b { color: #cfae6e; }
-.plumb-target { position: absolute; left: -9px; width: 18px; height: 18px; border-radius: 18px; border: 1px solid rgba(226, 236, 248, .25); transition: border-color .6s, box-shadow .6s; }
+.plumb-tick i { position: absolute; right: -6px; top: 0; width: 12px; height: 1px; background: #d6d6d2; transition: background-color .6s, width .6s cubic-bezier(.2,.7,.2,1), right .6s cubic-bezier(.2,.7,.2,1); }
+.plumb-tick b { position: absolute; left: 12px; top: -0.5rem; font-weight: 500; font-size: .6rem; letter-spacing: .18em; color: #b0b3b8; font-feature-settings: "tnum"; transition: color .6s; }
+.plumb-tick.is-on i { background: rgb(var(--accent)); width: 18px; right: -9px; }
+.plumb-tick.is-on b { color: rgb(var(--accent)); }
+.plumb-target { position: absolute; left: -9px; width: 18px; height: 18px; border-radius: 18px; border: 1px solid #c9cbce; transition: border-color .6s, box-shadow .6s; }
 .plumb-target::after { content: ""; position: absolute; inset: 6px; border-radius: 6px; background: transparent; transition: background-color .6s; }
-.plumb-target.is-on { border-color: #cfae6e; box-shadow: 0 0 0 6px rgba(207, 174, 110, .1); }
-.plumb-target.is-on::after { background: #cfae6e; }
-.plumb-target em { position: absolute; right: 28px; top: 2px; white-space: nowrap; font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: #cfae6e; opacity: 0; transition: opacity .8s .3s; }
+.plumb-target.is-on { border-color: rgb(var(--accent)); box-shadow: 0 0 0 6px rgb(var(--accent) / .08); }
+.plumb-target.is-on::after { background: rgb(var(--accent)); }
+.plumb-target em { position: absolute; right: 28px; top: 1px; white-space: nowrap; font-style: normal; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: rgb(var(--accent)); opacity: 0; transition: opacity .8s .3s; }
 .plumb-target.is-on em { opacity: 1; }
 @media (max-width: 767px) { .plumb-tick b { display: none; } .plumb-target em { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
   .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
-  .draw { stroke-dashoffset: 0; }
 }
 
 /* Le fil tombe du sommet de la tour Eiffel quand le dessin apparaît */
@@ -184,8 +113,3 @@ details.faq[open] .faq-plus::after { transform: rotate(0deg); }
 .js [data-reveal] .sky-drop { transform: scaleY(0); transition: transform 2.6s cubic-bezier(.6,0,.2,1) .6s; animation: drop-safety 0s 4s forwards; }
 .js [data-reveal].is-in .sky-drop { transform: none; animation: none; }
 @keyframes drop-safety { to { transform: none; } }
-footer .cote > span { background: #050e1b; }
-/* Numéro de question en mono, hors du texte (la FAQ visible reste identique au JSON-LD) */
-.faq-list { counter-reset: q; }
-details.faq { counter-increment: q; }
-details.faq summary::before { content: "Q." counter(q, decimal-leading-zero); flex-shrink: 0; margin-top: .55em; font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .16em; color: rgb(var(--accent-hi)); }

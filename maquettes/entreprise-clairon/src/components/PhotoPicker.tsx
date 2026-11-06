@@ -51,13 +51,13 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden border border-white/20 bg-night-raised">
+          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-night text-lg leading-none text-ink hover:bg-brass hover:text-night"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-accent"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,14 +65,14 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 border border-dashed border-white/30 bg-night-raised px-3 text-ink hover:border-accent hover:text-accent disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-ink/25 bg-white px-3 text-ink hover:border-accent hover:bg-accent-tint disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>
         ) : null}
       </div>
       <input ref={input} type="file" accept="image/*" multiple className="sr-only" tabIndex={-1} onChange={onFiles} aria-label="Choisir des photos à joindre" />
-      <p role="status" aria-live="polite" className="mt-2 text-sm font-medium text-[#ff9b8f]">
+      <p role="status" aria-live="polite" className="mt-2 text-sm font-medium text-[#b42318]">
         {message}
       </p>
     </fieldset>

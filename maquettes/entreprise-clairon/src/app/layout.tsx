@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/ibm-plex-sans/index.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource-variable/hanken-grotesk/index.css";
 import "./globals.css";
 import "./brand.generated.css";
 import { Analytics } from "@/components/Analytics";
@@ -24,7 +22,7 @@ export const metadata: Metadata = {
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#081526" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-[#f1ece1] focus:px-5 focus:py-3 focus:font-medium focus:text-night">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:font-medium focus:text-white">
           Aller au contenu
         </a>
         <Header />

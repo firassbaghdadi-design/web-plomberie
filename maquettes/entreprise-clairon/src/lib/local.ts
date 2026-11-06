@@ -25,7 +25,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Paris 15e",
     crumb: "Plombier Paris 15e",
-    photo: "javel",
+    photo: "plans",
     sections: [
       {
         h2: "Pourquoi choisir un plombier installé dans le 15e ?",
@@ -267,7 +267,7 @@ export const localPages: Local[] = [
     contactType: "syndic",
     service: "Plomberie et couverture pour syndics à Paris 15e",
     crumb: "Syndics Paris 15e",
-    photo: "mairie15",
+    photo: "chantier",
     sections: [
       {
         h2: "Quelles interventions pour une copropriété ?",
@@ -326,7 +326,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Paris 7e",
     crumb: "Plombier Paris 7e",
-    photo: "toits-eiffel",
+    photo: "plans",
     sections: [
       {
         h2: "Quelles particularités pour la plomberie dans le 7e ?",

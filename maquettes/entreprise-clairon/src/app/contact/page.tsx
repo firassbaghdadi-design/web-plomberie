@@ -41,10 +41,10 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
             <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contacter votre plombier, couvreur et chauffagiste à Paris 15e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-4 !text-[1.05rem] sm:!text-[1.3rem] font-light leading-relaxed text-ink sm:text-[1.3rem]" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
             <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
-              <p className="label">Par téléphone · urgence</p>
-              <a href={`tel:${business.phoneTel}`} className="mt-4 block whitespace-nowrap font-mono text-[2rem] font-light tracking-[0.02em] text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="label">Par téléphone</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
               <a href={`mailto:${business.email}`} className="mt-1 inline-block text-sm text-ink-soft hover:text-accent">{business.email}</a>
             </div>
           </div>
@@ -52,10 +52,10 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
             <ContactForm defaultType={demande} />
           </div>
           <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
-            <dl className="cartouche">
-              <div><dt>Adresse</dt><dd className="!font-sans !text-[0.95rem]">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div><dt>Métiers</dt><dd className="!font-sans !text-[0.95rem]">Plomberie, couverture, chauffage, petite maçonnerie</dd></div>
-              <div><dt>Clientèle</dt><dd className="!font-sans !text-[0.95rem]">Particuliers, professionnels et syndics</dd></div>
+            <dl className="space-y-6 border-t border-line pt-6">
+              <div><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
+              <div><dt className="label">Métiers</dt><dd className="mt-2 text-ink">Plomberie, couverture, chauffage, petite maçonnerie</dd></div>
+              <div><dt className="label">Clientèle</dt><dd className="mt-2 text-ink">Particuliers, professionnels et syndics</dd></div>
             </dl>
           </div>
         </div>

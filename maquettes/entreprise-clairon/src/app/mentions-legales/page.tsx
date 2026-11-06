@@ -1,6 +1,6 @@
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Sections";
-import { commonsCredits, pexelsCredits } from "@/lib/photos";
+import { pexelsCredits } from "@/lib/photos";
 import { PATHS, business } from "@/lib/site";
 import { breadcrumbNode, pageMeta, webPageNode } from "@/lib/seo";
 
@@ -36,13 +36,8 @@ export default function LegalPage() {
           </div>
           <div>
             <h2 className="text-[1.6rem]">Crédits photographiques</h2>
-            <p className="mt-4">Photos publiées par l&apos;entreprise sur son site : Entreprise Clairon. Photos de lieux du quartier : Wikimedia Commons, sous licences libres (auteur et licence ci-dessous). Photos d&apos;artisans au travail : Pexels, sous licence Pexels. Dessin du quartier et fil à plomb : réalisés pour ce site.</p>
+            <p className="mt-4">Photos publiées par l&apos;entreprise sur son site : Entreprise Clairon. Photos d&apos;artisans au travail : Pexels, sous licence Pexels. Dessin du quartier : réalisé pour ce site.</p>
             <ul className="mt-5 space-y-2 text-sm">
-              {commonsCredits.map((c) => (
-                <li key={c.id}>
-                  <a href={`https://commons.wikimedia.org/wiki/${c.page}`} target="_blank" rel="noopener" className="underline underline-offset-2">{c.alt}</a> : {c.credit}, Wikimedia Commons ({c.license})
-                </li>
-              ))}
               {pexelsCredits.map((c) => (
                 <li key={c.id}>
                   <a href={`https://www.pexels.com/photo/${c.pexels}/`} target="_blank" rel="noopener" className="underline underline-offset-2">{c.alt}</a> : {c.credit}, Pexels (licence Pexels)
