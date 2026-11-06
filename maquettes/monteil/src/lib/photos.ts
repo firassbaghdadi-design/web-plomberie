@@ -22,7 +22,8 @@ export const accentVars = (hex = ACCENT) => {
   return {
     "--accent": c.join(" "),
     "--accent-deep": mix(c, 0, 0.22).join(" "),
-    "--accent-wash": mix(c, 255, 0.93).join(" "),
+    "--accent-light": mix(c, 255, 0.5).join(" "),
+    "--accent-wash": c.map((v, i) => Math.round(v * 0.14 + [11, 14, 17][i] * 0.86)).join(" "),
   } as Record<string, string>;
 };
 

@@ -12,7 +12,7 @@ export const metadata = pageMeta({ title, description, path });
 export default function LegalPage() {
   return (
     <>
-      <section>
+      <section className="under-head">
         <div className="wrap pb-12 pt-6 sm:pt-10">
           <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Mentions légales" }]} />
           <h1 className="hp hp-load mt-12 text-[2.3rem] sm:text-[3.3rem]">Mentions légales, Paris 11e</h1>
@@ -37,7 +37,7 @@ export default function LegalPage() {
       </Sec>
       <Sec n="03" rubrique="Crédits">
         <div className="prose-mt max-w-3xl">
-          <p>Les photographies des chantiers et de l&apos;équipe sont celles de Monteil &amp; Cie, reprises de son site actuel. La police de caractères Figtree est diffusée sous licence SIL Open Font.</p>
+          <p>Les photographies des chantiers et de l&apos;équipe sont celles de Monteil &amp; Cie, reprises de son site actuel. Les polices de caractères Space Grotesk et Newsreader sont diffusées sous licence SIL Open Font.</p>
         </div>
       </Sec>
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Mentions légales", path }])]} />

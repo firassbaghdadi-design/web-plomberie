@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * Apparitions au défilement, filets de titre qui se tracent, en-tête qui se compacte, et la fiole du niveau :
+ * Apparitions au défilement, plans photo qui se posent, filets de titre qui se tracent, en-tête qui se compacte, et la fiole du niveau :
  * la bulle se rapproche du centre à mesure qu'un titre approche de la ligne de lecture, y reste quand il est d'aplomb,
  * et oscille un peu en le quittant (ressort amorti). Relancé à chaque changement de page.
  */
@@ -23,6 +23,7 @@ export function Motion() {
     const head = document.querySelector<HTMLElement>("[data-head]");
     const vial = document.querySelector<HTMLElement>("[data-vial]");
     const heads = Array.from(document.querySelectorAll<HTMLElement>(".hp:not(.hp-quiet)"));
+    const frames = Array.from(document.querySelectorAll<HTMLElement>("[data-frame]"));
     let x = reduce ? 0 : 0.9; // la bulle arrive de côté puis se pose
     let v = 0;
     let target = 0;
@@ -46,6 +47,13 @@ export function Motion() {
       const y = window.scrollY;
       head?.classList.toggle("is-solid", y > 24);
       const vh = window.innerHeight;
+      // Plans photo : la photo se pose (léger dézoom) à mesure qu'elle entre dans l'écran.
+      if (!reduce) for (const f of frames) {
+        const r = f.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) continue;
+        const p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height * 0.5)));
+        f.style.setProperty("--p", p.toFixed(3));
+      }
       const line = vh * 0.4;
       const atEnd = y + vh >= document.documentElement.scrollHeight - 4;
       let best: number | null = null;

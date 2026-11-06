@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
+import { Img } from "@/components/Img";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs, FaqList, fr } from "@/components/Sections";
 import { PATHS, business, requestTypes, type Faq } from "@/lib/site";
@@ -33,18 +34,21 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   const nodes = [webPageNode({ title, description, path }, "ContactPage"), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Contact", path }]), faqNode(faq)];
   return (
     <>
-      <section>
-        <div className="wrap grid gap-x-14 gap-y-10 pb-16 lg:grid-cols-12 lg:items-start pt-6 sm:pt-8">
+      <section className="frame under-head">
+        {/* La photo de la maison reste en fond, très voilée : le formulaire passe devant. */}
+        <div className="frame-media !transform-none"><Img id="equipe-3" priority className="absolute inset-0" /></div>
+        <div aria-hidden="true" className="frame-veil !bg-[linear-gradient(90deg,rgb(11_14_17/.8)_0%,rgb(11_14_17/.93)_55%,rgb(11_14_17/.97)_100%)]" />
+        <div className="wrap grid gap-x-14 gap-y-8 pb-16 pt-6 lg:grid-cols-12 lg:items-start lg:pb-24 lg:pt-8">
           <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="fade-in mt-6 text-[0.82rem] font-medium uppercase tracking-[0.2em] text-accent sm:mt-6">Contact · devis gratuit</p>
-            <h1 className="hp hp-load mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
-              <span className="line-up"><span>{fr("Contact : plombier chauffagiste à Paris 11e")}</span></span>
+            <p className="fade-in slate mt-7" data-n="Contact"><span aria-hidden="true" />Devis gratuit</p>
+            <h1 className="hp hp-load mt-5 text-[2.2rem] leading-[1] sm:text-[2.9rem] xl:text-[3.4rem]">
+              <span className="line-up"><span>{fr("Contact : plombier chauffagiste ")}<span className="ital whitespace-nowrap">à Paris 11e</span></span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-5 !text-[1.1rem] !leading-relaxed !text-ink/85" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
             <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
-              <p className="label">Téléphone</p>
-              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.3rem] font-extralight tracking-tight text-ink transition hover:text-accent-deep" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="label">Téléphone, urgence</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-3 block whitespace-nowrap text-[2.5rem] font-light tracking-tight text-ink transition hover:text-accent-light" data-track="cta_tel">{business.phoneDisplay}</a>
               <p className="mt-1 text-sm text-ink-faint">{business.address.street}, {business.address.postalCode} Paris</p>
             </div>
           </div>

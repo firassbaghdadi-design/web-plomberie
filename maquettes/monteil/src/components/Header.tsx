@@ -7,6 +7,7 @@ import { PATHS, business, nav } from "@/lib/site";
 import { ArrowIcon } from "./Icons";
 import { Logo } from "./Logo";
 
+/** En-tête posé en surimpression sur la photo d'ouverture ; il prend un fond de nuit dès qu'on défile. */
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -16,13 +17,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header data-head className="head sticky top-0 z-50 bg-white">
+    <header data-head className={`head fixed inset-x-0 top-0 z-50 ${open ? "is-solid" : ""}`}>
       <div className="head-row wrap flex h-[var(--head-h)] items-center justify-between gap-3 sm:gap-6">
         <Link href="/" className="shrink-0" aria-label="Monteil & Cie, accueil">
           <Logo />
         </Link>
         <nav aria-label="Navigation principale" className="hidden xl:block">
-          <ul className="flex items-center gap-8 text-[0.9rem] text-ink">
+          <ul className="flex items-center gap-8 text-[0.88rem] text-ink/85">
             {nav.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} aria-current={pathname === n.href ? "page" : undefined} className="nav-link whitespace-nowrap py-1.5">
@@ -33,10 +34,10 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex shrink-0 items-center gap-3 sm:gap-6">
-          <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] font-medium text-ink transition hover:text-accent-deep sm:block" data-track="cta_tel">
+          <a href={`tel:${business.phoneTel}`} className="num hidden whitespace-nowrap text-[0.95rem] text-ink transition hover:text-accent-light sm:block" data-track="cta_tel">
             {business.phoneDisplay}
           </a>
-          <Link href={PATHS.contact} className="btn-primary !min-h-[2.5rem] !px-4 text-[0.84rem] sm:!px-5 sm:text-[0.88rem]">
+          <Link href={PATHS.contact} className="btn-line !min-h-[2.5rem] !border-ink/35 !px-4 text-[0.84rem] backdrop-blur-sm sm:!px-5 sm:text-[0.86rem]">
             Devis gratuit
           </Link>
           <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="menu-mobile" className="flex h-10 w-8 items-center justify-end xl:hidden" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}>
@@ -47,18 +48,18 @@ export function Header() {
           </button>
         </div>
       </div>
-      {/* La fiole du niveau, posée sur le filet de l'en-tête */}
-      <div className="vial" data-vial data-ready="0" data-true="0" aria-hidden="true">
+      {/* Le détail discret : la fiole du niveau, posée au bas de l'en-tête */}
+      <div className="vial hidden sm:block" data-vial data-ready="0" data-true="0" aria-hidden="true">
         <span className="vial-bubble" />
       </div>
-      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-white xl:hidden">
+      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-night xl:hidden">
         <div className="wrap min-h-full py-8">
           <ul>
             {[{ href: "/", label: "Accueil" }, ...nav].map((n, i) => (
               <li key={n.href} className="border-b border-line">
-                <Link href={n.href} className="flex items-center justify-between py-4 text-[1.55rem] font-light tracking-tight text-ink">
-                  <span><span className="num mr-4 text-xs text-accent">{String(i).padStart(2, "0")}</span>{n.label}</span>
-                  <ArrowIcon className="h-4 w-4 text-accent" />
+                <Link href={n.href} className="flex items-center justify-between py-4 text-[1.6rem] font-light tracking-tight text-ink">
+                  <span><span className="num mr-4 text-xs text-accent-light">{String(i).padStart(2, "0")}</span>{n.label}</span>
+                  <ArrowIcon className="h-4 w-4 text-accent-light" />
                 </Link>
               </li>
             ))}
