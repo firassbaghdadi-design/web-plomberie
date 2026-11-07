@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * EBL v2 « Seventies chic » : olive profond, moutarde, brun tabac, crème.
+ * --accent : brun tabac (canaux RVB). --r : arrondi seventies des cadres photo. --gutter : marge latérale.
+ */
+:root {
+  --accent: 116 70 42;
+  --accent-deep: 79 47 27;
+  --accent-tint: 236 223 194;
+  --gutter: clamp(1.15rem, 4.2vw, 3.5rem);
+  --r: clamp(1.25rem, 2.4vw, 2.4rem);
+  --head-h: 4.25rem;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .14 0 0 0 0 .06 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-cream font-sans text-ink-soft antialiased; font-size: 1.24rem; line-height: 1.5; font-weight: 500; }
+h1, h2, h3 { @apply font-serif text-ink; font-weight: 400; letter-spacing: -0.018em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 700; }
+::selection { background: #c99a2e; color: #222816; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #c99a2e; outline-offset: 3px; border-radius: 4px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* Petites capitales espacées : numéros de section, légendes */
+  .label { @apply text-[0.8rem] font-bold uppercase tracking-[0.2em] text-ink-faint; font-feature-settings: "tnum"; }
+  .num { font-feature-settings: "tnum", "lnum"; }
+  .btn { @apply inline-flex min-h-[3.4rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-8 text-[1.08rem] font-bold tracking-[0.01em] transition duration-300; }
+  .btn-primary { @apply btn bg-olive text-cream-light hover:bg-tabac; }
+  .btn-mustard { @apply btn bg-mustard text-olive-deep hover:bg-mustard-light; }
+  .btn-line { @apply btn border border-ink/20 text-ink hover:border-tabac hover:text-tabac; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-bold text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 1px; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+  .link-line:hover { @apply text-tabac; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.15rem] sm:text-[2.9rem] lg:text-[3.5rem]; }
+  .prose-c p + p { @apply mt-4; }
+  .answer { @apply mt-6 text-[1.4rem] font-semibold leading-snug text-ink sm:text-[1.55rem]; }
+  .reponse-bref { @apply font-serif text-[1.35rem] leading-[1.4] text-ink sm:text-[1.75rem]; letter-spacing: -0.01em; }
+}
+
+/* ————— Signature seventies ————— */
+/* Trois filets parallèles : olive, moutarde, tabac. */
+.stripes { height: 13px; background:
+  linear-gradient(#454d2f, #454d2f) 0 0 / 100% 3px no-repeat,
+  linear-gradient(#c99a2e, #c99a2e) 0 5px / 100% 3px no-repeat,
+  linear-gradient(#74462a, #74462a) 0 10px / 100% 3px no-repeat; }
+.stripes-dark { height: 13px; background:
+  linear-gradient(#c99a2e, #c99a2e) 0 0 / 100% 3px no-repeat,
+  linear-gradient(#e5d6b4, #e5d6b4) 0 5px / 100% 3px no-repeat,
+  linear-gradient(#a06a43, #a06a43) 0 10px / 100% 3px no-repeat; }
+.stripe-dot { display: inline-flex; gap: 3px; }
+.stripe-dot > i { display: block; width: 3px; height: .95em; border-radius: 2px; }
+
+/* Photos : cadre arrondi, grain chaud, léger virage ambré façon tirage 1978. */
+.photo { position: relative; overflow: hidden; border-radius: var(--r); isolation: isolate; background: #e5d6b4; }
+.photo img { filter: sepia(.22) saturate(1.08) contrast(1.04) brightness(.98); }
+.photo::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--grain); opacity: .28; mix-blend-mode: multiply; }
+.photo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(120% 90% at 30% 20%, rgba(227,187,90,.16), transparent 60%), linear-gradient(180deg, transparent 55%, rgba(79,47,27,.22)); }
+.grain-bg { position: relative; isolation: isolate; }
+.grain-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); opacity: .14; mix-blend-mode: multiply; }
+
+/* Cadran : ombre portée de l'objet posé */
+.dial { filter: drop-shadow(0 26px 30px rgba(20,14,6,.42)) drop-shadow(0 6px 8px rgba(20,14,6,.3)); }
+
+/* Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité). */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+/* Photos dévoilées en fondu, avec un léger dézoom */
+.js [data-mask] img { opacity: 0; transform: scale(1.06); transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 2s cubic-bezier(.2,.7,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in img { opacity: 1; transform: none; animation: none; }
+@keyframes mask-safety { to { opacity: 1; transform: none; } }
+
+/* Titre du héros : lignes qui montent */
+.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.dial-in { animation: dial-in 1.4s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes dial-in { from { opacity: 0; transform: translate3d(0, 24px, 0) rotate(-6deg) scale(.94); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.09); } to { transform: scale(1); } }
+
+/* En-tête : se cache en descendant, fond crème une fois la page défilée */
+.head { transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background-color .3s, color .3s; }
+.head.is-hidden { transform: translate3d(0, -100%, 0); }
+.head.is-solid { border-color: rgba(201,154,46,.22); background-color: rgba(34,40,22,.94); backdrop-filter: saturate(1.3) blur(14px); }
+.nav-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #e3bb5a; }
+
+.row-link .row-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: #74462a; }
+.row-link .row-title { transition: color .3s, transform .5s cubic-bezier(.2,.7,.2,1); }
+.row-link:hover .row-title { color: #74462a; transform: translateX(4px); }
+.img-zoom img { transition: transform 1.6s cubic-bezier(.2,.7,.2,1), opacity 1.2s; }
+.img-zoom:hover img { transform: scale(1.035); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 26% auto; height: 1.5px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] img { opacity: 1; transform: none; }
+}
+
+@media (max-width: 639px) { .btn { padding-inline: 1.3rem; font-size: 1rem; gap: .6rem; } }

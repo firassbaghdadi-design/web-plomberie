@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ————— Atelier nuit : bois brûlé, lumière cuivre, texte crème ————— */
+:root {
+  --gutter: clamp(1.1rem, 4.4vw, 4.5rem);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; background: #1d130d; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply font-sans text-creme-soft antialiased; font-size: 1.04rem; line-height: 1.7; font-weight: 400; }
+/* Le bois de l'atelier : un voile de chaleur très lent en haut de page, et un grain fin partout. */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(120% 70% at 85% -10%, rgba(217,130,43,.09), transparent 60%), radial-gradient(90% 60% at -10% 110%, rgba(122,65,25,.12), transparent 60%), #1d130d; }
+h1, h2, h3 { @apply font-serif text-creme; font-weight: 400; letter-spacing: -0.018em; line-height: 1.02; font-optical-sizing: auto; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 600; color: #F2E7D5; }
+::selection { background: #D9822B; color: #140d08; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #EFA75C; outline-offset: 3px; border-radius: 2px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* petites capitales de légende, comme une page de revue */
+  .cap { @apply font-sans text-[0.7rem] uppercase tracking-[0.28em] text-creme-faint; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .num { @apply font-serif italic text-cuivre-light; font-weight: 400; font-variant-numeric: lining-nums; }
+  .disp-i { @apply font-serif italic text-cuivre-light; font-weight: 400; }
+  .rule { @apply h-px w-full bg-creme/15; }
+  .btn { @apply inline-flex min-h-[3.4rem] items-center justify-center gap-3 px-6 py-3 text-center leading-[1.35] sm:whitespace-nowrap sm:px-7 font-sans text-[0.8rem] uppercase tracking-[0.2em] transition duration-500; font-weight: 600; border-radius: 1px; }
+  .btn-cuivre { @apply btn text-nuit-deep; background: linear-gradient(180deg, #F0AC62 0%, #D9822B 55%, #C26F25 100%); box-shadow: inset 0 1px 0 rgba(255,236,206,.55), inset 0 -1px 0 rgba(90,45,10,.45), 0 20px 46px -20px rgba(217,130,43,.75); }
+  .btn-cuivre:hover { filter: brightness(1.08); box-shadow: inset 0 1px 0 rgba(255,236,206,.6), 0 24px 60px -18px rgba(217,130,43,.9); }
+  .btn-line { @apply btn border border-creme/25 text-creme hover:border-cuivre-light hover:text-cuivre-pale; }
+  .link-u { @apply inline-flex items-center gap-2 whitespace-nowrap text-creme; font-weight: 500; background: linear-gradient(#D9822B, #D9822B) 0 100% / 100% 1px no-repeat; padding-bottom: 3px; transition: background-size .5s var(--ease), color .3s; }
+  .link-u:hover { color: #F3C793; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.5rem] leading-[1] sm:text-[3.6rem] lg:text-[4.6rem]; }
+  .prose-f p + p { @apply mt-5; }
+  .answer { @apply mt-8 font-serif text-[1.35rem] leading-[1.45] text-creme sm:text-[1.6rem]; font-weight: 400; }
+  .reponse-bref { @apply font-serif text-[1.45rem] leading-[1.38] text-creme sm:text-[2rem] lg:text-[2.45rem]; font-weight: 400; letter-spacing: -0.012em; }
+  /* Les photos de l'atelier : étalonnées chaudes et sombres, comme sous une lampe. */
+  .tirage img { filter: sepia(.22) saturate(.95) brightness(.8) contrast(1.08); }
+  .tirage-fort img { filter: sepia(.32) saturate(.9) brightness(.6) contrast(1.12); }
+}
+
+/* ————— Grain photographique ————— */
+.grain { isolation: isolate; }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .22; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* Photo absente au build : un panneau de bois sombre éclairé en biais, jamais une zone vide. */
+.photo-vide { background: radial-gradient(90% 80% at 75% 20%, rgba(217,130,43,.16), transparent 60%), repeating-linear-gradient(97deg, rgba(255,220,180,.025) 0 2px, transparent 2px 11px), linear-gradient(160deg, #3a2819, #24170f 60%, #1a110b); }
+
+/* ————— Apparitions douces : invisibles seulement si le JS tourne, toujours visibles après 3 s ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 1.2s var(--ease), transform 1.2s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+.js [data-photo] img { transform: scale(1.12); transition: transform 2.6s cubic-bezier(.2,.65,.2,1); }
+.js [data-photo].is-in img { transform: scale(1); }
+
+.line-up { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.line-up > span { display: block; animation: line-up 1.3s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.3s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom img { animation: slow-zoom 18s cubic-bezier(.2,.6,.3,1) both; transform-origin: 55% 40%; }
+@keyframes slow-zoom { from { transform: scale(1.12); } to { transform: scale(1.0); } }
+
+/* ————— Le halo de l'atelier derrière la mascotte : une lampe orange douce qui respire ————— */
+.halo { background: radial-gradient(closest-side, rgba(243,180,110,.78), rgba(217,130,43,.45) 34%, rgba(180,101,42,.16) 62%, transparent 100%); filter: blur(6px); animation: halo-in 1.8s var(--ease) .1s both, halo-breathe 7s ease-in-out 2s infinite; }
+@keyframes halo-in { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: none; } }
+@keyframes halo-breathe { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: .82; transform: scale(1.04); } }
+.sol { background: radial-gradient(closest-side, rgba(217,130,43,.28), rgba(217,130,43,.08) 55%, transparent); }
+
+/* ————— La ferme de charpente du logo, en trait de cuivre : elle se dessine pièce par pièce ————— */
+.js .ferme .piece { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js .ferme.is-in .piece, .js .ferme-auto .piece { animation: piece-draw 1.2s cubic-bezier(.6,.05,.25,1) both; animation-delay: calc(var(--start, 0s) + var(--i) * 220ms); }
+@keyframes piece-draw { to { stroke-dashoffset: 0; } }
+.js .ferme:not(.is-in):not(.ferme-auto) .piece { animation: piece-draw 0s 3s forwards; }
+
+/* ————— La mascotte en dessin animé (calques : scripts/split-mascot.cjs) —————
+   Entrée : saut depuis le bord (mz-x + mz-y), écrasement à l'atterrissage (mz-sq), ombre qui s'écrase.
+   Pouce : le bras pivote depuis la manche, « tchak », étoiles orange. Puis boucle discrète.
+   Pivots en % du cadre 374 × 495 : bras 77.81% 50.91%, planche 44.12% 48.08%, tête 60.43% 42.83%. */
+.mascotte { cursor: pointer; -webkit-user-select: none; user-select: none; }
+.mz-x { animation: mz-x .68s cubic-bezier(.2,.5,.35,1) .2s both; transform-origin: 60% 100%; }
+.mz-y { animation: mz-y .68s linear .2s both; }
+.mz-sq { transform-origin: 61% 100%; animation: mz-sq 1.3s linear .1s both; }
+.mz-breath { transform-origin: 61% 100%; animation: mz-breath 3.6s ease-in-out 1.6s infinite; }
+.mz-shadow { background: radial-gradient(closest-side, rgba(5,2,0,.85), rgba(5,2,0,.4) 58%, transparent); animation: mz-shadow 1.2s cubic-bezier(.3,.6,.4,1) .2s both; }
+.mz-arm, .mz-arm-idle, .mz-arm-wave { transform-origin: 77.81% 50.91%; }
+.mz-arm { animation: mz-thumb .62s .92s both; }
+.mz-arm-idle { animation: mz-arm-idle 3.6s ease-in-out 1.6s infinite; }
+.mz-plank { transform-origin: 44.12% 48.08%; animation: mz-plank 4.2s ease-in-out 1.7s infinite; }
+.mz-nod, .mz-head { transform-origin: 60.43% 42.83%; }
+.mz-nod { animation: mz-nod .7s cubic-bezier(.3,1.4,.5,1) 1.12s both; }
+.mz-head { animation: mz-tilt 6s ease-in-out 2s infinite; }
+.mz-wink { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); animation: mz-wink 6s 2.55s infinite; }
+@keyframes mz-x { from { transform: translate3d(72%, 0, 0) rotate(-7deg); } 70% { transform: translate3d(6%, 0, 0) rotate(-2deg); } to { transform: none; } }
+@keyframes mz-y {
+  0% { transform: translate3d(0, 0, 0); animation-timing-function: cubic-bezier(.33,.75,.6,1); }
+  48% { transform: translate3d(0, -13%, 0); animation-timing-function: cubic-bezier(.45,0,.75,.35); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes mz-sq {
+  0% { transform: none; } 6% { transform: scale(1.06, .93); } 12% { transform: scale(.93, 1.09); } 31% { transform: none; }
+  52% { transform: scale(.95, 1.06); } 60% { transform: scale(1.19, .81); } 66% { transform: scale(1.13, .87); }
+  75% { transform: scale(.95, 1.06); } 83% { transform: scale(1.03, .97); } 91% { transform: scale(.995, 1.008); } 100% { transform: none; }
+}
+@keyframes mz-shadow {
+  0% { opacity: .8; transform: none; } 28% { opacity: .3; transform: scale(.5); }
+  57% { opacity: 1; transform: scale(1.32, 1.15); } 72% { opacity: .85; transform: scale(.94); } 100% { opacity: .9; transform: none; }
+}
+@keyframes mz-thumb {
+  0% { transform: rotate(58deg); animation-timing-function: cubic-bezier(.55,0,.7,.4); }
+  20% { transform: rotate(52deg); animation-timing-function: cubic-bezier(.3,.8,.4,1); }
+  48% { transform: rotate(-16deg); animation-timing-function: ease-in-out; }
+  66% { transform: rotate(6deg); } 82% { transform: rotate(-2.5deg); } 100% { transform: none; }
+}
+@keyframes mz-wave {
+  0% { transform: none; } 28% { transform: rotate(32deg); animation-timing-function: cubic-bezier(.3,.8,.4,1); }
+  55% { transform: rotate(-14deg); } 72% { transform: rotate(5deg); } 87% { transform: rotate(-2deg); } 100% { transform: none; }
+}
+@keyframes mz-nod { 0% { transform: none; } 35% { transform: rotate(-3.5deg) translateY(-1%); } 100% { transform: none; } }
+@keyframes mz-breath { 0%, 100% { transform: none; } 50% { transform: scale(.996, 1.016); } }
+@keyframes mz-arm-idle { 0%, 100% { transform: none; } 50% { transform: rotate(-1.5deg); } }
+@keyframes mz-plank { 0%, 100% { transform: none; } 30% { transform: rotate(-1.1deg); } 70% { transform: rotate(.8deg); } }
+@keyframes mz-tilt { 0%, 100% { transform: none; } 8%, 16% { transform: rotate(-2.2deg); } 55% { transform: rotate(1.3deg); } }
+@keyframes mz-wink { 0% { transform: scaleY(0); } 3% { transform: scaleY(1); } 11% { transform: scaleY(1); } 14%, 100% { transform: scaleY(0); } }
+/* Éclat du pouce : quatre rayons qui jaillissent et deux étoiles qui pétillent, dans l'orange du logo. */
+.mz-spark .mz-rays line { opacity: 0; }
+.mz-spark .mz-star { opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+.mz-spark-in .mz-rays line { animation: mz-ray .7s cubic-bezier(.2,.8,.3,1) 1.18s both; }
+.mz-spark-in .mz-star-a { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) 1.22s both; }
+.mz-spark-in .mz-star-b { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) 1.34s both; }
+.is-wave .mz-arm-wave { animation: mz-wave .78s both; }
+.is-wave .mz-spark-again .mz-rays line { animation: mz-ray .7s cubic-bezier(.2,.8,.3,1) .36s both; }
+.is-wave .mz-spark-again .mz-star-a { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) .4s both; }
+.is-wave .mz-spark-again .mz-star-b { animation: mz-star .9s cubic-bezier(.3,1.5,.5,1) .5s both; }
+.mz-rays line { transform-box: fill-box; transform-origin: 50% 100%; }
+.mz-rays line:nth-child(2) { transform-origin: 0 100%; }
+.mz-rays line:nth-child(3) { transform-origin: 100% 100%; }
+.mz-rays line:nth-child(4) { transform-origin: 0 50%; }
+@keyframes mz-ray { 0% { opacity: 0; transform: scale(.2); } 30% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(.9) translate3d(0, -20%, 0); } }
+@keyframes mz-star { 0% { opacity: 0; transform: scale(0) rotate(-40deg); } 40% { opacity: 1; transform: scale(1.15) rotate(10deg); } 75% { opacity: 1; transform: scale(.95) rotate(0); } 100% { opacity: 0; transform: scale(.6) rotate(20deg); } }
+
+/* ————— En-tête ————— */
+.head { transition: background-color .4s, box-shadow .4s; }
+.head.is-solid { background-color: rgba(20,13,8,.86); backdrop-filter: saturate(1.2) blur(16px); box-shadow: 0 1px 0 rgba(242,231,213,.1); }
+.nav-link { background: linear-gradient(#D9822B, #D9822B) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; padding-bottom: 3px; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #F3C793; }
+
+/* ————— Cartes photo : la photo s'éclaire au survol ————— */
+.card .card-img img { transition: transform 1.4s var(--ease), filter .8s var(--ease); }
+.card:hover .card-img img, .card:focus-visible .card-img img { transform: scale(1.045); filter: sepia(.12) saturate(1) brightness(.92) contrast(1.06); }
+.card .card-arrow { transition: transform .5s var(--ease); }
+.card:hover .card-arrow { transform: translateX(8px); }
+.row-link .card-arrow { transition: transform .5s var(--ease); }
+.row-link:hover .card-arrow { transform: translateX(8px); }
+.row-link:hover .row-zone { color: #F3C793; }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 24% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Formulaire sur fond sombre ————— */
+select option { background: #24170f; color: #F2E7D5; }
+input::placeholder, textarea::placeholder { color: #A08C75; }
+
+/* ————— Avant / après ————— */
+.ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 48px; height: 100vh; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .mascotte, .mascotte * { animation: none !important; }
+  .mascotte { cursor: default; }
+  .js [data-reveal], .js [data-photo] img { opacity: 1; transform: none; }
+  .ferme .piece { stroke-dashoffset: 0; }
+}

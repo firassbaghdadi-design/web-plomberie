@@ -1,0 +1,29 @@
+{
+  "site": {
+    "couverture": { "path": "4567134e-4c1d-4c26-8e93-b2d2b1846004.jpg", "fallback": "tuiles-pose", "alt": "Travaux de couverture par M. Fabulet en Île-de-France" },
+    "charpente": { "path": "1ed75516-22d2-4911-91af-62930c7c9385.jpg", "fallback": "ferme-bois", "alt": "Travaux de charpente par M. Fabulet" },
+    "tuiles": { "path": "bdb04e75-94d2-4f7d-8352-4bbc457403b2.jpg", "fallback": "tuiles-chantier", "alt": "Toiture en tuiles, ardoises ou zinc refaite par M. Fabulet" },
+    "gouttieres": { "path": "4a3c7da1-c8f9-4919-a860-05305f469fbf.jpg", "fallback": "toit-briques", "alt": "Pose de gouttières en zinc ou en PVC par M. Fabulet" },
+    "ravalement": { "path": "fdae0bfe-018e-4b83-94d8-05d081606bca.jpg", "fallback": "toit-briques", "alt": "Ravalement et peinture extérieure par M. Fabulet" },
+    "isolation": { "path": "54232d6b-8687-4f7c-aeb8-7fdfba04f192.jpg", "fallback": "combles", "alt": "Isolation de grenier posée par M. Fabulet" },
+    "facade": { "path": "8504c86f-8835-487f-8ccb-78377dfb7b2c.jpg", "fallback": "toit-velux", "alt": "Nettoyage et traitement de façade par M. Fabulet" },
+    "interieur": { "path": "21816ee7-358f-4d3c-bddc-b9538c67da39.jpg", "fallback": "combles", "alt": "Travaux d'intérieur réalisés par M. Fabulet" },
+    "real-1": { "path": "PfImgc4a9956f-ad43-49d5-bc50-8b44294470ed.jpg", "fallback": "tuiles-gros-plan", "alt": "Réalisation M. Fabulet : toit traité et peint" },
+    "real-2": { "path": "PfImg2ac0263e-d773-4ef6-b553-de82f0b67f82.jpg", "fallback": "tuiles-chantier", "alt": "Réalisation M. Fabulet : toiture rénovée" },
+    "real-3": { "path": "PfImgadf5d9ff-d0ee-43ef-bf29-c38e891647c1.jpg", "fallback": "ferme-ciel", "alt": "Réalisation M. Fabulet : parties en zinc d'une toiture" },
+    "avant": { "path": "Beforeffcd41f4-968e-44dd-96ff-7471f64a6a65.jpg", "fallback": null, "alt": "Toiture et cheminée avant les travaux de M. Fabulet" },
+    "apres": { "path": "After17f2d688-4d59-4519-a5ba-ac4d62cb4309.jpg", "fallback": null, "alt": "Toiture et cheminée après les travaux de M. Fabulet" }
+  },
+  "pexels": {
+    "heros": { "id": 9431615, "title": "Handyman putting Roof Tiles on Roof", "alt": "Un couvreur pose des tuiles sur un toit en pente" },
+    "tuiles-pose": { "id": 31771167, "title": "Installation of Red Clay Roof Tiles on New Building", "alt": "Tuiles de terre cuite posées une à une sur un toit" },
+    "tuiles-chantier": { "id": 31763541, "title": "Roof Installation with Terracotta Tiles in Progress", "alt": "Toiture en tuiles de terre cuite en cours de pose" },
+    "ferme-bois": { "id": 8491084, "title": "Wooden Frame of A House Ceiling Under Construction", "alt": "Charpente en bois d'une maison en cours de construction" },
+    "ferme-ciel": { "id": 15456627, "title": "Wooden Skeletal Structure of Roof under Blue Sky", "alt": "Ossature de charpente en bois sous un ciel bleu" },
+    "charpentier": { "id": 37499254, "title": "Construction Worker Inspecting Roof Frame Outdoors", "alt": "Un charpentier contrôle une charpente en bois" },
+    "combles": { "id": 18335689, "title": "Attic under Construction", "alt": "Combles en travaux, éclairés par une lampe de chantier" },
+    "toit-velux": { "id": 11912130, "title": "Brown Tiled Roofing", "alt": "Toit de tuiles avec cheminées et fenêtres de toit" },
+    "tuiles-gros-plan": { "id": 31161405, "title": "Close-up of Red Clay Roof Tiles Pattern", "alt": "Gros plan sur des tuiles de terre cuite au soleil" },
+    "toit-briques": { "id": 31762405, "title": "Roofer Performing Maintenance on Red Brick Building", "alt": "Un couvreur entretient la toiture d'un immeuble en briques" }
+  }
+}

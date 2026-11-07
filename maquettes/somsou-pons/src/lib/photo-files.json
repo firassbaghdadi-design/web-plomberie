@@ -1,0 +1,98 @@
+{
+  "facade": {
+    "pexels": 19328898,
+    "alt": "Immeuble parisien de style haussmannien sous un ciel clair"
+  },
+  "immeuble": {
+    "pexels": 16703087,
+    "alt": "Façade d'un immeuble d'habitation parisien traditionnel"
+  },
+  "balcon": {
+    "pexels": 31543031,
+    "alt": "Façade parisienne avec balcon en fer forgé et volets"
+  },
+  "rue": {
+    "pexels": 4946523,
+    "alt": "Détail d'un immeuble ancien dans une rue de Paris"
+  },
+  "toits": {
+    "pexels": 17297265,
+    "alt": "Les toits de Paris et leurs cheminées, vus depuis une terrasse"
+  },
+  "cle-evier": {
+    "pexels": 10961064,
+    "alt": "Une clé de plombier posée sur un évier en inox"
+  },
+  "radiateur": {
+    "pexels": 36344878,
+    "alt": "Un radiateur blanc contre un mur de briques"
+  },
+  "radiateur-blanc": {
+    "pexels": 12034871,
+    "alt": "Un radiateur blanc à ailettes dans une pièce rénovée"
+  },
+  "electricien": {
+    "pexels": 34054464,
+    "alt": "Un électricien contrôle un tableau électrique au multimètre"
+  },
+  "carreleur": {
+    "pexels": 29181494,
+    "alt": "Un ouvrier pose du carrelage lors d'une rénovation"
+  },
+  "enduit": {
+    "pexels": 5691594,
+    "alt": "Un artisan tient des truelles et de l'enduit"
+  },
+  "chantier-interieur": {
+    "pexels": 5691533,
+    "alt": "Un appartement en cours de rénovation, portes ouvertes et outils au sol"
+  },
+  "renovation": {
+    "pexels": 5493656,
+    "alt": "Un homme rénove un logement"
+  },
+  "peintre": {
+    "pexels": 5691597,
+    "alt": "Un homme peint les murs d'un appartement"
+  },
+  "peintres": {
+    "pexels": 5493650,
+    "alt": "Deux hommes peignent une pièce"
+  },
+  "menuisier": {
+    "pexels": 5973919,
+    "alt": "Un artisan mesure une pièce de bois dans son atelier"
+  },
+  "atelier-bois": {
+    "pexels": 5711890,
+    "alt": "Les mains d'un menuisier taillent une pièce de bois au ciseau"
+  },
+  "parquet": {
+    "pexels": 15066939,
+    "alt": "Un parquet en bois à motif"
+  },
+  "plans": {
+    "pexels": 6615095,
+    "alt": "Des mains étudient des plans d'architecte"
+  },
+  "plan-projet": {
+    "pexels": 5922202,
+    "alt": "Une personne montre un plan de projet"
+  },
+  "salle-de-bains": {
+    "pexels": 35527001,
+    "alt": "Salle de bains moderne aux carreaux blancs"
+  },
+  "douche": {
+    "pexels": 7031570,
+    "alt": "Salle de bains moderne avec une cabine de douche"
+  },
+  "carrelage": {
+    "pexels": 4194867,
+    "alt": "Salle de bains carrelée de blanc"
+  },
+  "chauffagiste": {
+    "pexels": 5691536,
+    "alt": "Un chauffagiste prend les mesures d'une installation de chauffage dans un appartement"
+  }
+}

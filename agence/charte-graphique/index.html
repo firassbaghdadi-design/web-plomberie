@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charte graphique · Atelier Truelle</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:"Fraunces Variable";font-weight:100 900;font-style:normal;src:url(fonts/fraunces-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces Variable";font-weight:100 900;font-style:italic;src:url(fonts/fraunces-latin-wght-italic.woff2) format("woff2")}
+@font-face{font-family:"Inter Variable";font-weight:100 900;src:url(fonts/inter-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"Caveat Variable";font-weight:400 700;src:url(fonts/caveat-latin-wght-normal.woff2) format("woff2")}
+:root{--encre:#14191c;--encre2:#1b2328;--papier:#f4eee3;--platre:#eae0ce;--terre:#c8553d;--action:#b24630;--profond:#8f3624;--ardoise:#46545b;--zinc:#8a9ba3;--ligne:#d9cfbb}
+@media (prefers-color-scheme: dark){:root:not([data-theme=light]){--bg:#14191c}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--ardoise);font:17px/1.7 "Inter Variable",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Fraunces Variable",Georgia,serif;color:var(--encre);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{display:flex;gap:.8rem;align-items:center;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--action)}
+.eyebrow:before{content:"";width:2.2rem;height:1px;background:currentColor}
+.hand{font-family:"Caveat Variable",cursive;color:var(--action);font-size:1.6rem;line-height:1}
+section{padding:96px 0;border-top:1px solid var(--ligne)}
+.sec-head{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:48px;align-items:start}
+.sec-num{font-family:"Fraunces Variable",serif;font-size:clamp(3.5rem,8vw,6rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--terre)}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3.4rem);margin-top:.4rem}
+.sec-head p{max-width:60ch;margin:1rem 0 0}
+@media(max-width:700px){.sec-head{grid-template-columns:1fr;gap:4px}}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}}
+.card{background:#fbf7ef;border:1px solid var(--ligne);border-radius:18px;padding:28px;min-width:0}
+.card.dark{background:var(--encre);border-color:var(--encre2);color:#cfc8ba}
+.card.terre{background:var(--terre);border-color:var(--terre);color:#fff}
+.card.plat{background:var(--platre)}
+.cap{font-size:.78rem;letter-spacing:.04em;color:var(--ardoise);margin-top:14px}
+.dark .cap{color:#9aa6ac}.terre .cap{color:#fde4dc}
+
+/* ---------- Couverture ---------- */
+.cover{background:var(--encre);color:var(--papier);min-height:100svh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cover .wrap{width:100%;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding-top:32px;padding-bottom:40px}
+.cover-top{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#8a9ba3}
+.cover-mark{width:clamp(180px,26vw,320px);filter:drop-shadow(0 30px 40px rgba(0,0,0,.35))}
+.cover h1{color:var(--papier);font-size:clamp(3rem,9vw,8rem);line-height:.95;margin:28px 0 0}
+.cover h1 i{color:var(--terre)}
+.cover p{color:#b9b2a3;max-width:48ch;margin:24px 0 0}
+.caret{display:inline-block;width:.07em;height:.85em;background:var(--terre);margin-left:.06em;vertical-align:-.06em;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.caret{animation:none}}
+.cover .glow{position:absolute;right:-12vw;top:-10vw;width:48vw;height:48vw;border-radius:50%;background:radial-gradient(closest-side,rgba(200,85,61,.28),transparent)}
+
+nav.toc{position:sticky;top:0;z-index:5;background:rgba(244,238,227,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--ligne)}
+nav.toc .wrap{display:flex;gap:22px;overflow-x:auto;padding-top:14px;padding-bottom:14px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+nav.toc a{text-decoration:none;color:var(--ardoise)}nav.toc a:hover{color:var(--terre)}
+
+/* ---------- Logo ---------- */
+.stage{display:flex;align-items:center;justify-content:center;border-radius:18px;padding:48px 24px;min-height:260px}
+.stage svg{width:100%;max-width:220px;height:auto}
+.stage img{max-width:100%;height:auto}
+.s-terre{background:var(--terre)}.s-encre{background:var(--encre)}.s-papier{background:var(--papier);border:1px solid var(--ligne)}.s-platre{background:var(--platre)}
+.lock{display:flex;align-items:center;gap:14px}
+.lock .t{line-height:1}
+.lock .a{display:block;font:600 .64rem/1 "Inter Variable",sans-serif;letter-spacing:.3em;text-transform:uppercase}
+.lock .n{display:block;margin-top:5px;font:600 2rem/1 "Fraunces Variable",serif;letter-spacing:-.02em}
+.lock svg{width:56px;height:56px;flex:none}
+.lock.light .a{color:#5a6970}.lock.light .n{color:#1f2a30}
+.lock.dark .a{color:#8a9ba3}.lock.dark .n{color:var(--papier)}
+.big .lock svg{width:84px;height:84px}.big .lock .a{font-size:.9rem}.big .lock .n{font-size:3rem;margin-top:8px}
+.anatomy{position:relative}
+.anatomy ol{margin:18px 0 0;padding-left:1.1rem}
+.anatomy li{margin-bottom:6px}
+.protect{position:relative;display:inline-block;padding:28px;background:
+ linear-gradient(var(--terre),var(--terre)) 0 0/100% 1px no-repeat,linear-gradient(var(--terre),var(--terre)) 0 100%/100% 1px no-repeat,linear-gradient(var(--terre),var(--terre)) 0 0/1px 100% no-repeat,linear-gradient(var(--terre),var(--terre)) 100% 0/1px 100% no-repeat;
+ background-color:rgba(200,85,61,.07)}
+.protect>span{position:absolute;font:700 .7rem "Inter Variable";color:var(--action)}
+.minsizes{display:flex;gap:36px;align-items:flex-end;flex-wrap:wrap}
+.minsizes figure{margin:0;text-align:center;font-size:.75rem}
+.dont{position:relative}
+.dont .stage{min-height:170px;padding:24px}
+.dont .x{position:absolute;top:12px;right:14px;width:26px;height:26px;border-radius:50%;background:#b3261e;color:#fff;font:700 .85rem/26px "Inter Variable";text-align:center}
+
+/* ---------- Couleurs ---------- */
+.sw{border-radius:18px;overflow:hidden;border:1px solid var(--ligne);background:#fbf7ef;min-width:0}
+.sw .chip{height:150px;display:flex;align-items:flex-end;padding:16px;font:600 .8rem "Inter Variable"}
+.sw .info{padding:16px 18px 18px;font-size:.84rem;line-height:1.55}
+.sw b{display:block;font:500 1.25rem "Fraunces Variable",serif;color:var(--encre)}
+.sw code{font:600 .8rem ui-monospace,Menlo,monospace;color:var(--encre)}
+.ratio{display:flex;height:64px;border-radius:14px;overflow:hidden;border:1px solid var(--ligne)}
+.ratio div{display:flex;align-items:center;justify-content:center;font:700 .75rem "Inter Variable"}
+
+/* ---------- Typo ---------- */
+.spec{font-family:"Fraunces Variable",serif;color:var(--encre);line-height:1}
+.glyphs{font-size:1.6rem;letter-spacing:.06em;word-break:break-all}
+.hier>div{padding:22px 0;border-bottom:1px solid var(--ligne);display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline}
+.hier small{font:600 .7rem "Inter Variable";letter-spacing:.14em;text-transform:uppercase;color:var(--ardoise)}
+@media(max-width:620px){.hier>div{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- Motifs digitaux ---------- */
+.rule{height:56px;position:relative;background:repeating-linear-gradient(90deg,var(--encre) 0 1px,transparent 1px 12px) 0 100%/100% 12px no-repeat,repeating-linear-gradient(90deg,var(--encre) 0 1px,transparent 1px 60px) 0 100%/100% 24px no-repeat}
+.pix{width:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:4px;max-width:260px}
+.pix i{aspect-ratio:1;background:var(--terre);border-radius:2px}
+.pix i.o{opacity:.18}
+.cursor-demo{position:relative;height:200px;overflow:hidden}
+.cursor-demo .ptr{position:absolute;width:44px;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.cursor-demo:hover .ptr{transform:translate(120px,50px) rotate(6deg)}
+.btn-demo{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap}
+.b1{background:var(--action);color:#fff}.b2{background:var(--encre);color:var(--papier)}.b3{border:1.5px solid var(--encre);color:var(--encre)}
+
+/* ---------- Applications ---------- */
+.bcard{aspect-ratio:85/55;border-radius:10px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 24px 40px -22px rgba(20,25,28,.55)}
+.bcard.f{background:var(--encre);color:var(--papier)}
+.bcard.b{background:var(--papier);border:1px solid var(--ligne)}
+.bcard small{font-size:.7rem;line-height:1.5}
+.bcard .nm{font:600 1.15rem "Fraunces Variable",serif;color:inherit;line-height:1.1}
+.fav{display:flex;gap:16px;align-items:flex-end}
+.tab{background:#dfe3e6;border-radius:12px 12px 0 0;padding:10px 14px;display:flex;align-items:center;gap:10px;font:500 .8rem "Inter Variable";color:#222;width:min(260px,100%)}
+.tab svg{width:16px;height:16px}
+.mail{background:#fff;border:1px solid var(--ligne);border-radius:14px;padding:22px;font-size:.9rem}
+.mail hr{border:0;border-top:2px solid var(--terre);width:36px;margin:18px 0 14px}
+
+.voice li{margin-bottom:10px}
+.ok,.ko{padding:20px 22px;border-radius:14px;font-size:.95rem}
+.ok{background:#e7efe6;border:1px solid #bfd3bc}.ko{background:#f6e3df;border:1px solid #e1b8ae}
+.ok b,.ko b{display:block;font:700 .72rem "Inter Variable";letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px}
+footer{background:var(--encre);color:#9aa6ac;padding:48px 0;font-size:.85rem}
+.ph{height:200px;border-radius:14px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:12px;color:#fff;font-size:.78rem;font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="cover-top"><span>Charte graphique</span><span>Version 1.0 · Île-de-France</span></div>
+    <div>
+      <svg class="cover-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg>
+      <h1>Atelier<br><i>Truelle</i><span class="caret" aria-hidden="true"></span></h1>
+      <p>La lame d'une truelle et la flèche d'un curseur ne font qu'une. Un artisan du web pour les artisans du bâtiment.</p>
+    </div>
+    <div class="cover-top"><span>atelier truelle · SIREN à compléter</span><span>↓ Faire défiler</span></div>
+  </div>
+</header>
+
+<!-- Définitions réutilisables du symbole -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="sym-terre" transform="rotate(-34 32 32) translate(0 1) translate(32 32) scale(1.1) translate(-32 -32)" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#F4EEE3" stroke="#F4EEE3" stroke-width="2"/>
+      <path d="M32 31 L32 41" stroke="#F4EEE3" stroke-width="3.4"/>
+      <rect x="27.6" y="40" width="8.8" height="16" rx="4.4" fill="#14191C"/>
+    </g>
+    <g id="sym-encre" transform="rotate(-34 32 32) translate(0 1) translate(32 32) scale(1.1) translate(-32 -32)" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#F4EEE3" stroke="#F4EEE3" stroke-width="2"/>
+      <path d="M32 31 L32 41" stroke="#F4EEE3" stroke-width="3.4"/>
+      <rect x="27.6" y="40" width="8.8" height="16" rx="4.4" fill="#C8553D"/>
+    </g>
+    <g id="sym-papier" transform="rotate(-34 32 32) translate(0 1) translate(32 32) scale(1.1) translate(-32 -32)" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#14191C" stroke="#14191C" stroke-width="2"/>
+      <path d="M32 31 L32 41" stroke="#14191C" stroke-width="3.4"/>
+      <rect x="27.6" y="40" width="8.8" height="16" rx="4.4" fill="#C8553D"/>
+    </g>
+    <g id="sym-mono" transform="rotate(-34 32 32) translate(0 1) translate(32 32) scale(1.1) translate(-32 -32)" stroke-linejoin="round" stroke-linecap="round" fill="currentColor" stroke="currentColor">
+      <path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" stroke-width="2"/>
+      <path d="M32 31 L32 41" stroke-width="3.4" fill="none"/>
+      <rect x="27.6" y="40" width="8.8" height="16" rx="4.4" stroke="none"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="toc"><div class="wrap">
+  <a href="#idee">01 L'idée</a><a href="#logo">02 Logo</a><a href="#couleurs">03 Couleurs</a><a href="#typo">04 Typographie</a><a href="#digital">05 Univers digital</a><a href="#photos">06 Photos</a><a href="#voix">07 Ton de voix</a><a href="#applis">08 Applications</a>
+</div></nav>
+
+<!-- 01 -->
+<section id="idee"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">01</div><div><div class="eyebrow">Le concept</div><h2>Une truelle qui sait cliquer.</h2>
+  <p>Nous faisons des sites pour des maçons, des plombiers, des couvreurs. Le logo devait dire les deux : <strong>le geste de l'artisan</strong> et <strong>le web</strong>. Alors la lame de la truelle a pris la forme d'un curseur de souris. Une seule silhouette, deux lectures.</p></div></div>
+  <div class="grid g3">
+    <div class="card"><div class="stage s-papier" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px;color:#14191c"><path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#14191C" stroke="#14191C" stroke-width="2" stroke-linejoin="round"/><path d="M32 31 L32 41" stroke="#14191C" stroke-width="3.4" stroke-linecap="round"/><rect x="27.6" y="40" width="8.8" height="16" rx="4.4" fill="#C8553D"/></svg></div><p class="cap"><b>La truelle.</b> Une lame pointue, un col, un manche. L'outil de celui qui finit le mur proprement.</p></div>
+    <div class="card"><div class="stage s-papier" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px"><g transform="translate(32 32) scale(1.1) translate(-32 -32)"><path d="M32 7 L45.5 37 L32 30.5 L18.5 37 Z" fill="#14191C" stroke="#14191C" stroke-width="2" stroke-linejoin="round" transform="rotate(-34 32 32)"/></g></svg></div><p class="cap"><b>Le curseur.</b> La flèche que chaque client déplace sur l'écran avant de décider d'appeler. Une pointe, une encoche à la base.</p></div>
+    <div class="card"><div class="stage s-terre" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:150px"><use href="#sym-terre"/></svg></div><p class="cap"><b>Atelier Truelle.</b> La lame est la flèche, le manche reste celui d'un outil. On voit le web, on sent le chantier.</p></div>
+  </div>
+  <p class="hand" style="margin-top:36px">« Un outil bien tenu laisse un travail propre. »</p>
+</div></section>
+
+<!-- 02 -->
+<section id="logo"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">02</div><div><div class="eyebrow">Logo</div><h2>Le symbole et sa signature.</h2>
+  <p>Le logo se compose du symbole (la truelle-curseur) et du nom en deux lignes : « ATELIER » en petites capitales espacées, « Truelle » en Fraunces semi-gras. Les deux ne se séparent pas, sauf le symbole seul pour les petits formats.</p></div></div>
+
+  <div class="grid g2">
+    <div class="stage s-papier big"><div class="lock light"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><span class="t"><span class="a">Atelier</span><span class="n">Truelle</span></span></div></div>
+    <div class="stage s-encre big"><div class="lock dark"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><span class="t"><span class="a">Atelier</span><span class="n">Truelle</span></span></div></div>
+  </div>
+  <p class="cap">Fichiers : <code>logos/logo-horizontal-clair.svg</code> (fond clair) · <code>logos/logo-horizontal-sombre.svg</code> (fond sombre). Polices embarquées dans les SVG.</p>
+
+  <h3 style="margin:64px 0 24px;font-size:1.6rem">Le symbole en quatre versions</h3>
+  <div class="grid g4">
+    <div><div class="stage s-papier" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg></div><p class="cap"><b>Terre cuite</b> · version principale</p></div>
+    <div><div class="stage s-papier" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px"><rect width="64" height="64" rx="14" fill="#14191C"/><use href="#sym-encre"/></svg></div><p class="cap"><b>Encre</b> · fonds clairs sobres</p></div>
+    <div><div class="stage s-terre" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px"><rect width="64" height="64" rx="14" fill="#F4EEE3"/><use href="#sym-papier"/></svg></div><p class="cap"><b>Papier</b> · sur terre cuite ou photo</p></div>
+    <div><div class="stage s-encre" style="min-height:200px"><svg viewBox="0 0 64 64" style="max-width:130px;color:#fff"><use href="#sym-mono"/></svg></div><p class="cap"><b>Monochrome</b> · tampon, gravure, fax, broderie</p></div>
+  </div>
+
+  <h3 style="margin:64px 0 24px;font-size:1.6rem">Zone de protection et taille minimale</h3>
+  <div class="grid g2">
+    <div class="card"><div class="stage s-papier" style="min-height:230px;background:transparent;border:0"><div class="protect"><span style="top:6px;left:50%">x</span><span style="bottom:6px;left:50%">x</span><span style="left:9px;top:50%">x</span><span style="right:9px;top:50%">x</span><div class="lock light"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><span class="t"><span class="a">Atelier</span><span class="n">Truelle</span></span></div></div></div><p class="cap">Gardez autour du logo un vide égal à la moitié de la hauteur du symbole (x). Rien n'y entre : ni texte, ni photo chargée, ni bord de page.</p></div>
+    <div class="card"><div class="minsizes" style="min-height:230px">
+      <figure><svg viewBox="0 0 64 64" width="64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><br>64 px</figure>
+      <figure><svg viewBox="0 0 64 64" width="32"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><br>32 px · favicon</figure>
+      <figure><svg viewBox="0 0 64 64" width="16"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><br>16 px · minimum</figure>
+    </div><p class="cap">Symbole : 16 px minimum à l'écran, 6 mm à l'impression. Logo complet : 120 px de large minimum, 25 mm imprimé. En dessous, utilisez le symbole seul.</p></div>
+  </div>
+
+  <h3 style="margin:64px 0 24px;font-size:1.6rem">À ne pas faire</h3>
+  <div class="grid g4 dont">
+    <div class="dont"><span class="x">×</span><div class="stage s-papier"><svg viewBox="0 0 64 64" style="max-width:110px;transform:rotate(40deg)"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg></div><p class="cap">Pas de rotation du symbole.</p></div>
+    <div class="dont"><span class="x">×</span><div class="stage s-papier"><svg viewBox="0 0 64 64" style="max-width:110px;transform:scaleX(1.5)"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg></div><p class="cap">Pas de déformation.</p></div>
+    <div class="dont"><span class="x">×</span><div class="stage s-platre"><svg viewBox="0 0 64 64" style="max-width:110px"><rect width="64" height="64" rx="14" fill="#2f6fd6"/><use href="#sym-terre"/></svg></div><p class="cap">Pas d'autres couleurs que la palette.</p></div>
+    <div class="dont"><span class="x">×</span><div class="stage s-terre"><svg viewBox="0 0 64 64" style="max-width:110px"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg></div><p class="cap">Pas de terre cuite sur terre cuite : prenez la version Papier.</p></div>
+  </div>
+</div></section>
+
+<!-- 03 -->
+<section id="couleurs"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">03</div><div><div class="eyebrow">Couleurs</div><h2>Terre, encre et papier.</h2>
+  <p>Des couleurs de chantier : la terre cuite des briques, l'encre d'un crayon de menuisier, le papier d'un plan. Une couleur forte, le reste est calme.</p></div></div>
+  <div class="grid g4">
+    <div class="sw"><div class="chip" style="background:#C8553D;color:#fff">Aa</div><div class="info"><b>Terre cuite</b><code>#C8553D</code><br>RVB 200 · 85 · 61<br>Marque, accents, symbole</div></div>
+    <div class="sw"><div class="chip" style="background:#14191C;color:#F4EEE3">Aa</div><div class="info"><b>Encre</b><code>#14191C</code><br>RVB 20 · 25 · 28<br>Titres, fonds sombres</div></div>
+    <div class="sw"><div class="chip" style="background:#F4EEE3;color:#14191C">Aa</div><div class="info"><b>Papier</b><code>#F4EEE3</code><br>RVB 244 · 238 · 227<br>Fond principal</div></div>
+    <div class="sw"><div class="chip" style="background:#EAE0CE;color:#14191C">Aa</div><div class="info"><b>Plâtre</b><code>#EAE0CE</code><br>RVB 234 · 224 · 206<br>Fonds de section, cartes</div></div>
+  </div>
+  <div class="grid g4" style="margin-top:24px">
+    <div class="sw"><div class="chip" style="background:#B24630;color:#fff">Aa</div><div class="info"><b>Terre d'action</b><code>#B24630</code><br>Boutons et liens : contraste 5,5:1 avec le blanc.</div></div>
+    <div class="sw"><div class="chip" style="background:#8F3624;color:#fff">Aa</div><div class="info"><b>Terre profonde</b><code>#8F3624</code><br>Survol, ombres chaudes.</div></div>
+    <div class="sw"><div class="chip" style="background:#46545B;color:#fff">Aa</div><div class="info"><b>Ardoise</b><code>#46545B</code><br>Texte courant sur papier.</div></div>
+    <div class="sw"><div class="chip" style="background:#8A9BA3;color:#14191C">Aa</div><div class="info"><b>Zinc</b><code>#8A9BA3</code><br>Légendes, filets, textes secondaires sur fond sombre.</div></div>
+  </div>
+  <h3 style="margin:56px 0 18px;font-size:1.5rem">Les proportions</h3>
+  <div class="ratio"><div style="flex:55;background:#F4EEE3;color:#14191C">Papier 55 %</div><div style="flex:20;background:#14191C;color:#F4EEE3">Encre 20 %</div><div style="flex:15;background:#EAE0CE;color:#14191C">Plâtre 15 %</div><div style="flex:10;background:#C8553D;color:#fff">Terre 10 %</div></div>
+  <p class="cap">La terre cuite reste rare : un bouton, un mot, un symbole par écran. Elle ne sert jamais de fond de texte long.</p>
+  <p class="cap"><b>Accessibilité :</b> texte courant ardoise sur papier = 6,8:1 ; encre sur papier = 15,3:1 ; texte blanc sur Terre d'action = 5,5:1. Le blanc sur Terre cuite (#C8553D) ne fait que 4,4:1 : réservez-le aux grands titres et utilisez la Terre d'action pour les petits textes et les boutons.</p>
+</div></section>
+
+<!-- 04 -->
+<section id="typo"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">04</div><div><div class="eyebrow">Typographie</div><h2>Un serif qui a du caractère, un sans qui lit bien.</h2>
+  <p>Trois polices libres (licence OFL), embarquées dans le dossier <code>fonts/</code> et utilisées sur le site.</p></div></div>
+  <div class="grid g3">
+    <div class="card"><div class="spec" style="font-size:7rem;font-weight:600">Aa</div><h3 style="margin-top:16px;font-size:1.5rem">Fraunces</h3><p class="cap" style="margin-top:6px">Titres · poids 500 à 600 · italique pour les mots à souligner. Ajustez la hauteur de ligne à 1,0 – 1,1.</p><div class="spec glyphs" style="margin-top:16px;font-weight:500">ABCDEFGHIJKLM abcdefghijklm 0123456789 &amp; é è à ç</div></div>
+    <div class="card"><div style="font:600 7rem/1 'Inter Variable';color:var(--encre)">Aa</div><h3 style="margin-top:16px;font-size:1.5rem">Inter</h3><p class="cap" style="margin-top:6px">Texte courant, boutons, menus · poids 400 (texte), 600 (boutons, petites capitales espacées). Corps 17 px, interligne 1,7.</p><div class="glyphs" style="margin-top:16px;font-family:'Inter Variable'">ABCDEFGHIJKLM abcdefghijklm 0123456789 &amp; é è à ç</div></div>
+    <div class="card"><div style="font:500 7rem/1 'Caveat Variable';color:var(--action)">Aa</div><h3 style="margin-top:16px;font-size:1.5rem">Caveat</h3><p class="cap" style="margin-top:6px">Annotations à la main : une note, une signature, un « merci ». Jamais en texte courant, jamais plus d'une phrase.</p><div class="glyphs" style="margin-top:16px;font-family:'Caveat Variable';font-size:2rem">ABCDEFG abcdefg 0123456789 é è à ç</div></div>
+  </div>
+  <div class="hier" style="margin-top:48px">
+    <div><small>Titre H1</small><h1 style="font-size:clamp(2.4rem,6vw,4.4rem)">Vous faites du <i>bon travail.</i></h1></div>
+    <div><small>Titre H2</small><h2 style="font-size:2.2rem">Ce que nous faisons pour vous</h2></div>
+    <div><small>Surtitre</small><div class="eyebrow">Notre méthode</div></div>
+    <div><small>Texte</small><p style="margin:0;max-width:60ch">Nous refaisons le site d'une entreprise du bâtiment à partir de son logo, de ses couleurs et de ses photos. Vous le voyez avant de vous engager.</p></div>
+    <div><small>Annotation</small><span class="hand">c'est fait main, ça se voit</span></div>
+  </div>
+</div></section>
+
+<!-- 05 -->
+<section id="digital"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">05</div><div><div class="eyebrow">Univers digital</div><h2>Trois petits clins d'œil au web.</h2>
+  <p>Le curseur du logo ouvre la porte. Trois motifs, toujours discrets, prolongent l'idée sur tous les supports. Pas plus de deux par écran.</p></div></div>
+  <div class="grid g3">
+    <div class="card"><div class="stage s-papier" style="min-height:180px;font:600 3rem 'Fraunces Variable';color:var(--encre)">Truelle<span class="caret" style="background:var(--terre);width:.08em;height:.8em;vertical-align:-.04em" aria-hidden="true"></span></div><p class="cap"><b>Le point d'insertion.</b> Une barre verticale terre cuite qui clignote, comme dans un champ de saisie. À poser après un titre, un chargement ou une signature : « on écrit votre site ».</p></div>
+    <div class="card"><div class="stage s-papier" style="min-height:180px;align-items:flex-end;padding-bottom:0"><div class="rule" style="width:100%"></div></div><p class="cap"><b>Le mètre ruban.</b> Une règle graduée, pour mesurer et pour faire défiler : la barre de progression du site, un filet sous un titre. Le chantier et la page web se mesurent.</p></div>
+    <div class="card"><div class="stage s-papier" style="min-height:180px"><div class="pix"><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i></div></div><p class="cap"><b>La brique-pixel.</b> Un carré aux angles légèrement arrondis : une brique et un pixel à la fois. En grille pour des motifs de fond, en puce devant une liste.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card dark"><h3 style="color:var(--papier);font-size:1.4rem;margin-bottom:14px">Le curseur vivant</h3><div class="cursor-demo"><svg class="ptr" viewBox="0 0 64 64" style="left:30px;top:70px"><use href="#sym-encre"/></svg></div><p class="cap">Sur le site, le curseur devient une truelle et affiche un mot selon ce qu'il survole (« Voir », « Écrire »). Passez la souris sur ce cadre.</p></div>
+    <div class="card"><h3 style="font-size:1.4rem;margin-bottom:18px">Les boutons</h3><div style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn-demo b1" href="#">Voir mon site refait →</a><a class="btn-demo b2" href="#">Nous écrire</a><a class="btn-demo b3" href="#">Notre méthode</a></div><p class="cap" style="margin-top:22px">Toujours en capsule, sur une seule ligne, avec un verbe d'action. Un seul bouton plein par écran.</p></div>
+  </div>
+</div></section>
+
+<!-- 06 -->
+<section id="photos"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">06</div><div><div class="eyebrow">Photographie</div><h2>Des mains, des chantiers, de la lumière chaude.</h2>
+  <p>Des photos de vrais gestes plutôt que des sourires de banque d'images. Libres de droits (Pexels, Unsplash), chacune utilisée une seule fois par page.</p></div></div>
+  <div class="grid g3">
+    <div class="card plat"><b style="color:var(--encre)">À choisir</b><ul class="voice"><li>Des mains au travail, des outils, de la matière</li><li>Lumière naturelle, tons chauds, grain visible</li><li>Cadrages serrés, un sujet par photo</li><li>Des chantiers d'Île-de-France quand c'est possible</li></ul></div>
+    <div class="card plat"><b style="color:var(--encre)">À éviter</b><ul class="voice"><li>Cadres blancs, poignées de main, costumes</li><li>Casques neufs et sourires figés</li><li>Images trop saturées ou filtrées</li><li>La même photo deux fois sur une page</li></ul></div>
+    <div class="card plat"><b style="color:var(--encre)">Traitement</b><ul class="voice"><li>Format 3:2 ou 4:5, jamais déformé</li><li>Coins arrondis à 18 px pour les photos en carte</li><li>Légende en Caveat si elle apporte un détail</li><li>Texte alternatif décrivant la scène réelle</li></ul></div>
+  </div>
+  <p class="cap">Sur les sites de démonstration pour des entreprises, les photos viennent de l'entreprise elle-même (site, fiche Google) et jamais de la banque d'images quand l'entreprise en possède.</p>
+</div></section>
+
+<!-- 07 -->
+<section id="voix"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">07</div><div><div class="eyebrow">Ton de voix</div><h2>Parler comme un artisan qui explique son devis.</h2>
+  <p>Simple, direct, sans jargon, sans promesse qu'on ne tient pas. On dit ce qu'on fait, ce que ça coûte, et ce qu'on ne sait pas encore.</p></div></div>
+  <div class="grid g2">
+    <div class="ok"><b>On écrit</b>« Vous voyez votre site avant de payer. »<br>« Un seul interlocuteur, qui décroche. »<br>« Votre texte, vos photos, vos adresses : on garde ce qui marche. »</div>
+    <div class="ko"><b>On évite</b>« Nous boostons votre visibilité grâce à des solutions innovantes. »<br>« Leader sur le marché. »<br>« Résultats garantis. »</div>
+  </div>
+  <ul class="voice" style="margin-top:32px;columns:2;column-gap:48px"><li><b>Tutoiement ou vouvoiement :</b> on vouvoie les prospects.</li><li><b>Phrases courtes</b> : un fait, un verbe.</li><li><b>Chiffres et faits vérifiables</b> seulement. Aucune invention, aucune fausse note ou avis.</li><li><b>Un mot manuscrit</b> (Caveat) par page, jamais plus.</li><li><b>Pas d'anglicisme</b> quand le mot français existe : « maquette », pas « mockup ».</li><li><b>Pas de tirets cadratins</b> pour relier les phrases : ça fait texte généré.</li></ul>
+</div></section>
+
+<!-- 08 -->
+<section id="applis"><div class="wrap">
+  <div class="sec-head"><div class="sec-num">08</div><div><div class="eyebrow">Applications</div><h2>Le logo au travail.</h2>
+  <p>Quelques exemples de supports pour vérifier que le système tient partout.</p></div></div>
+  <div class="grid g2">
+    <div class="card plat"><div class="grid g2" style="gap:18px">
+      <div class="bcard f"><div class="lock dark"><svg viewBox="0 0 64 64" style="width:34px;height:34px"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><span class="t"><span class="a" style="font-size:.45rem">Atelier</span><span class="n" style="font-size:1.15rem;margin-top:3px">Truelle</span></span></div><small>Votre site refait<br>avant que vous ne payiez.</small></div>
+      <div class="bcard b"><span class="nm">Prénom Nom</span><small>Fondateur<br>06 00 00 00 00<br>contact@ateliertruelle.fr<br>ateliertruelle.fr</small></div>
+    </div><p class="cap">Carte de visite 85 × 55 mm : papier 350 g, encre noire + terre cuite en ton direct.</p></div>
+    <div class="card plat"><div class="fav"><div><div class="tab"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg>Atelier Truelle · Sites pour le bâtiment</div></div></div>
+    <div class="fav" style="margin-top:28px"><svg viewBox="0 0 64 64" width="72"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><svg viewBox="0 0 64 64" width="72" style="border-radius:50%"><circle cx="32" cy="32" r="32" fill="#C8553D"/><g transform="translate(32 32) scale(.82) translate(-32 -32)"><use href="#sym-terre"/></g></svg><svg viewBox="0 0 64 64" width="72"><rect width="64" height="64" rx="14" fill="#14191C"/><use href="#sym-encre"/></svg></div><p class="cap">Favicon, avatar rond (réseaux sociaux), icône d'application.</p></div>
+    <div class="mail"><b style="font-family:'Fraunces Variable',serif;font-size:1.1rem;color:var(--encre)">Prénom Nom</b><br>Atelier Truelle<hr>06 00 00 00 00 · contact@ateliertruelle.fr<br><span style="color:var(--zinc);font-size:.8rem">Sites web pour les entreprises du bâtiment en Île-de-France · SIREN à compléter</span></div>
+    <div class="card terre" style="display:flex;flex-direction:column;justify-content:space-between;min-height:220px"><svg viewBox="0 0 64 64" width="84"><rect width="64" height="64" rx="14" fill="#F4EEE3"/><use href="#sym-papier"/></svg><div style="margin-top:36px"><div style="font:500 2.4rem/1 'Fraunces Variable',serif;color:#fff">Votre site,<br><i>avant de payer.</i></div><p class="cap">Bandeau réseaux sociaux : symbole Papier sur terre cuite, titre en Fraunces blanc.</p></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+    <div class="lock dark"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#C8553D"/><use href="#sym-terre"/></svg><span class="t"><span class="a">Atelier</span><span class="n">Truelle</span></span></div>
+    <div>Charte v1.0 · Fichiers : <code>logos/</code> · <code>fonts/</code> · <code>build-logos.mjs</code></div>
+  </div>
+</div></footer>
+</body>
+</html>

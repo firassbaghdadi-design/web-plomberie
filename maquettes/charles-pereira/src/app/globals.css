@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gutter: clamp(1rem, 4.4vw, 3.5rem);
+  --rail: 1.75rem;
+  --head-h: 4.25rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (min-width: 1024px) { :root { --head-h: 5rem; --rail: 3.5rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-white font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 500; color: #101a24; }
+::selection { background: #1d4e89; color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #1d4e89; outline-offset: 3px; border-radius: 3px; }
+
+@layer components {
+  /* Le contenu laisse à gauche une gouttière : c'est le couloir du réseau de canalisations. */
+  .wrap { @apply mx-auto w-full max-w-site; padding-right: var(--gutter); padding-left: calc(var(--gutter) + var(--rail)); }
+  .wrap-flat { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-variant-numeric: tabular-nums; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-deep; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent-deep; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { @apply text-accent-deep; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2rem] sm:text-[2.7rem] lg:text-[3.2rem]; }
+  .prose-mt p + p { @apply mt-4; }
+  .answer { @apply mt-6 border-l border-accent pl-5 text-[1.14rem] font-light leading-relaxed text-ink sm:text-[1.24rem]; }
+  .reponse-bref { @apply text-[1.24rem] font-light leading-[1.55] text-ink sm:text-[1.55rem]; letter-spacing: -0.012em; }
+}
+
+/* ————— Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité) ————— */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 16px, 0); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+
+/* ————— En-tête fin qui se compacte ————— */
+.head { transition: background-color .3s, box-shadow .3s; }
+.head .head-row { transition: height .45s var(--ease); }
+.head.is-solid { background-color: rgba(255,255,255,.94); backdrop-filter: saturate(1.3) blur(14px); box-shadow: 0 1px 0 #e2e8ee; }
+.head.is-solid .head-row { height: 3.9rem; }
+.nav-link { background: linear-gradient(#1d4e89, #1d4e89) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #143a69; }
+.row-link .row-arrow { transition: transform .5s var(--ease), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: #1d4e89; }
+.row-link .row-title { transition: color .3s; }
+.row-link:hover .row-title { color: #143a69; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Concept : le schéma isométrique —————
+   Un réseau de canalisations en perspective isométrique, en double trait fin, longe la page à gauche et se dessine au défilement.
+   Chaque section est un raccord : un écrou-union sur la conduite, une dérivation vers le titre. */
+.reseau { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+.reseau path.tube { fill: none; stroke: #1d4e89; stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
+.reseau path.fantome { fill: none; stroke: #e1e8ef; stroke-width: 1; stroke-linejoin: round; }
+.reseau g.raccord-g { opacity: 0; transition: opacity .7s var(--ease); }
+.reseau g.raccord-g.is-on { opacity: 1; }
+.reseau .piece { fill: #fff; stroke: #1d4e89; stroke-width: 1; stroke-linejoin: round; }
+.reseau .trait { fill: none; stroke: #1d4e89; stroke-width: 1; stroke-linecap: round; }
+.reseau .goutte { fill: #1d4e89; }
+
+.raccord-label { display: inline-flex; align-items: center; gap: .65rem; font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #1d4e89; font-variant-numeric: tabular-nums; }
+.raccord-label i { display: block; width: 1.6rem; height: 1px; background: #1d4e89; opacity: .45; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+}

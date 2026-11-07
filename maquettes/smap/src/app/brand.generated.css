@@ -1,0 +1,2 @@
+/* Valeurs par défaut ; réécrit au build par scripts/fetch-site-photos.mjs si le logo du site actuel donne une couleur franche. */
+:root { --accent: 14 98 112; --accent-deep: 8 66 77; --accent-tint: 236 244 245; }

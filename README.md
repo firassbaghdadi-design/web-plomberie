@@ -5,10 +5,11 @@ Projet de prospection B2B : repérer des entreprises de plomberie établies (Îl
 ## Structure du dépôt
 
 - `recherche-marche/` — analyse du marché plombiers IDF (densité, concurrence par département), vivier de cibles.
-- `prospection/` — méthode et grille de scoring, fiches des cibles, classement.
+- `prospection/` — méthode et grille de scoring, fiches des cibles, classement, process par prospect, plan d'action.
 - `offre/` — offre commerciale et grille tarifaire (3 niveaux).
 - `outreach/` — modèles d'email de prospection et séquence de relance.
-- `vitrine/` — (à venir) site personnel de web designer avec réalisations, dont la future maquette pilote.
+- `maquettes/` — maquettes de refonte par prospect (Next.js, SEO/GEO/AEO). Pilote : `maquettes/entreprise-rousseau/`.
+- `vitrine/` — (à venir) site personnel de web designer avec réalisations.
 
 ## Où on en est
 
@@ -16,4 +17,4 @@ Voir `prospection/cibles-paris.md` pour le classement en cours des 10 premières
 
 ## Prochaine étape
 
-Maquette pilote (page d'accueil) sur la cible n°1 du classement, à utiliser comme référence de process et d'argumentaire pour la suite de la prospection.
+Maquette pilote livrée sur la cible n°1 (Entreprise Rousseau) ; à finaliser avec la vraie charte, les avis Google et la vérification des coordonnées (voir `maquettes/entreprise-rousseau/README.md`). Autoriser l'accès réseau aux sites des prospects pour auditer l'existant.

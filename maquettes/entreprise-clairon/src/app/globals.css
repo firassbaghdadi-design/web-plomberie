@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * --accent : couleur de la charte Clairon (canaux RVB). --gutter : marge latérale.
+ * --plumb-x : position du fil à plomb, dans la marge droite, à l'extérieur du contenu.
+ */
+:root {
+  --accent: 30 76 140;
+  --accent-deep: 20 52 98;
+  --accent-tint: 238 243 249;
+  --gutter: clamp(1.4rem, 4.2vw, 3.25rem);
+  --plumb-x: calc(max(0px, (100vw - 84rem) / 2) + var(--gutter) * 0.42);
+  --head-h: 4.25rem;
+}
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-paper font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
+h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.03em; line-height: 1.04; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 500; }
+::selection { background: rgb(var(--accent)); color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* Petites capitales espacées : numéros de section, légendes */
+  .label { @apply text-[0.7rem] font-medium uppercase tracking-[0.22em] text-ink-faint; font-feature-settings: "tnum"; }
+  .num { font-feature-settings: "tnum", "lnum"; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-accent; }
+  .btn-line { @apply btn border border-ink/15 text-ink hover:border-accent hover:text-accent; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+  .link-line:hover { @apply text-accent; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.1rem] sm:text-[2.85rem] lg:text-[3.4rem]; }
+  .prose-c p + p { @apply mt-4; }
+  .answer { @apply mt-6 text-[1.18rem] font-light leading-relaxed text-ink sm:text-[1.3rem]; }
+  .reponse-bref { @apply text-[1.3rem] font-light leading-[1.55] text-ink sm:text-[1.7rem]; letter-spacing: -0.012em; }
+}
+
+/* Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité). */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+/* Photos dévoilées de haut en bas, comme un fil qui descend (masque appliqué aux enfants). */
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+/* Titre du héros : lignes qui montent */
+.line-up { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 14s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+/* En-tête : se cache en descendant, filet fin une fois la page défilée */
+.head { transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background-color .3s; }
+.head.is-hidden { transform: translate3d(0, -100%, 0); }
+.head.is-solid { border-color: #e6e6e3; background-color: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(14px); }
+.nav-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--accent)); }
+
+.row-link .row-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--accent)); }
+.row-link .row-title { transition: color .3s, transform .5s cubic-bezier(.2,.7,.2,1); }
+.row-link:hover .row-title { color: rgb(var(--accent)); transform: translateX(4px); }
+.img-zoom img { transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
+.img-zoom:hover img { transform: scale(1.035); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Le fil à plomb ————— */
+.plumb { position: absolute; top: 0; bottom: 0; right: var(--plumb-x); width: 0; z-index: 20; pointer-events: none; }
+.plumb:not(.is-ready) { visibility: hidden; }
+.plumb-hook { position: absolute; left: -3.5px; top: var(--start, 0px); width: 7px; height: 7px; border: 1px solid #6e737a; border-radius: 7px; background: #fff; }
+.plumb-cord { position: absolute; left: -0.5px; width: 1px; top: calc(var(--start, 0px) + 7px); height: calc(var(--y, 0px) - 7px); background: #9a9ea4; transition: height .7s cubic-bezier(.2,.7,.2,1); }
+.plumb-bob { position: absolute; left: 0; top: calc(var(--start, 0px) + var(--y, 0px)); transition: top .7s cubic-bezier(.2,.7,.2,1); }
+.plumb-swing { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: rotate(var(--a, 0deg)); }
+.plumb-swing i { position: absolute; left: -0.5px; top: 0; width: 1px; height: 34px; background: #9a9ea4; }
+.plumb-swing svg { position: absolute; left: -7px; top: 32px; width: 14px; height: 24px; overflow: visible; }
+.plumb-tick { position: absolute; right: 0; height: 0; }
+.plumb-tick i { position: absolute; right: -6px; top: 0; width: 12px; height: 1px; background: #d6d6d2; transition: background-color .6s, width .6s cubic-bezier(.2,.7,.2,1), right .6s cubic-bezier(.2,.7,.2,1); }
+.plumb-tick b { position: absolute; left: 12px; top: -0.5rem; font-weight: 500; font-size: .6rem; letter-spacing: .18em; color: #b0b3b8; font-feature-settings: "tnum"; transition: color .6s; }
+.plumb-tick.is-on i { background: rgb(var(--accent)); width: 18px; right: -9px; }
+.plumb-tick.is-on b { color: rgb(var(--accent)); }
+.plumb-target { position: absolute; left: -9px; width: 18px; height: 18px; border-radius: 18px; border: 1px solid #c9cbce; transition: border-color .6s, box-shadow .6s; }
+.plumb-target::after { content: ""; position: absolute; inset: 6px; border-radius: 6px; background: transparent; transition: background-color .6s; }
+.plumb-target.is-on { border-color: rgb(var(--accent)); box-shadow: 0 0 0 6px rgb(var(--accent) / .08); }
+.plumb-target.is-on::after { background: rgb(var(--accent)); }
+.plumb-target em { position: absolute; right: 28px; top: 1px; white-space: nowrap; font-style: normal; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: rgb(var(--accent)); opacity: 0; transition: opacity .8s .3s; }
+.plumb-target.is-on em { opacity: 1; }
+@media (max-width: 767px) { .plumb-tick b { display: none; } .plumb-target em { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+}
+
+/* Le fil tombe du sommet de la tour Eiffel quand le dessin apparaît */
+.sky-drop { transform-box: view-box; transform-origin: 600px 12px; }
+.js [data-reveal] .sky-drop { transform: scaleY(0); transition: transform 2.6s cubic-bezier(.6,0,.2,1) .6s; animation: drop-safety 0s 4s forwards; }
+.js [data-reveal].is-in .sky-drop { transform: none; animation: none; }
+@keyframes drop-safety { to { transform: none; } }

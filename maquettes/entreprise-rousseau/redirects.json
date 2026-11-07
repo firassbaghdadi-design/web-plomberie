@@ -1,0 +1,4 @@
+[
+  { "from": "/salle-de-bains", "to": "/salles-de-bains-douches" },
+  { "from": "/page-bains-et-douches", "to": "/salles-de-bains-douches" }
+]

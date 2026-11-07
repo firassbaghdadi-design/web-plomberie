@@ -1,0 +1,9 @@
+{
+  "pexels": {
+    "plombier": { "id": 39885416, "title": "Close-up of Plumber Working with Copper Pipe", "author": "Pexels", "alt": "Les mains d'un plombier qui travaille sur un tuyau de cuivre" },
+    "cle": { "id": 32588548, "title": "Plumber Repairing Pipe with Wrench Indoors", "author": "Pexels", "alt": "Un plombier répare une canalisation à la clé" },
+    "thermostat": { "id": 36077581, "title": "Modern Home Thermostat Adjusted by Hand", "author": "Pexels", "alt": "Une main règle le thermostat d'un logement" },
+    "radiateur": { "id": 4819052, "title": "Old radiator near windowsill at home in daylight", "author": "Pexels", "alt": "Un radiateur ancien près d'une fenêtre, en plein jour" },
+    "immeuble": { "id": 31543027, "title": "Elegant 19th Century Parisian Corner Building", "author": "Pexels", "alt": "Un immeuble d'angle parisien du XIXe siècle" }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "site": {
+    "origin": "https://monteil-info.fr",
+    "logo": "/assets/logos/logo-monteil.png",
+    "photos": {
+      "equipe-paris": { "file": "equipe-paris.jpg", "alt": "Un compagnon de Monteil & Cie dans Paris sous la neige" },
+      "equipe-1": { "file": "equipe-1.jpg", "alt": "Un compagnon de Monteil & Cie en intervention" },
+      "equipe-2": { "file": "equipe-2.jpg", "alt": "Un compagnon de Monteil & Cie en intervention sur un réseau" },
+      "equipe-3": { "file": "equipe-3.jpg", "alt": "Un compagnon de Monteil & Cie à l'atelier" },
+      "equipe-4": { "file": "equipe-4.jpg", "alt": "Un cordiste de Monteil & Cie en équipement de travail sur corde" },
+      "equipe-5": { "file": "equipe-5.jpg", "alt": "Un compagnon de Monteil & Cie en intervention sous un évier" },
+      "equipe-fuite": { "file": "equipe-fuite.jpg", "alt": "Un technicien de Monteil & Cie en recherche de fuite" },
+      "cordiste": { "file": "cordiste-action.jpg", "alt": "Un cordiste de Monteil & Cie en intervention en hauteur" }
+    },
+    "pairs": {
+      "colonne": { "before": "avant-colonne.jpg", "after": "apres-colonne.jpg", "title": "Réhabilitation d'une colonne d'eaux usées", "text": "Colonne en fonte remplacée dans un immeuble de sept étages, en site occupé, par tronçons nocturnes.", "alt": "Colonne d'eaux usées d'un immeuble parisien" },
+      "sdb": { "before": "avant-sdb.jpg", "after": "apres-sdb.jpg", "title": "Salle de bains d'un particulier", "text": "Démolition, reprise des réseaux, douche à l'italienne et carrelage grand format.", "alt": "Salle de bains rénovée à Paris" },
+      "sdb-prestige": { "before": "refait-sdb-avant.jpg", "after": "refait-sdb-apres.jpg", "title": "Salle de bains de standing", "text": "Neuf mètres carrés, balnéo, carrelage travertin et robinetterie haut de gamme.", "alt": "Salle de bains de standing refaite dans une résidence parisienne" },
+      "vannes": { "before": "vanne-avant.jpg", "after": "vanne-apres.jpg", "title": "Vannes générales d'un immeuble", "text": "Douze vannes d'arrêt et disconnecteurs remplacés, réseaux étiquetés.", "alt": "Vannes générales d'un immeuble parisien" },
+      "couloir": { "before": "tuyaux-sol-avant.jpg", "after": "tuyaux-sol-apres.jpg", "title": "Colonne d'eaux usées en parties communes", "text": "Dépose et remplacement d'une colonne vétuste dans un couloir, finitions reprises.", "alt": "Colonne d'eaux usées dans un couloir de copropriété" },
+      "plafond": { "before": "tuyaux-plaf-avant.jpg", "after": "tuyaux-plaf-apres.jpg", "title": "Réseau en plafond d'un parking", "text": "Intervention en présence d'amiante, réseau neuf en PVC avec isolation thermique.", "alt": "Réseau de canalisations en plafond de parking souterrain" },
+      "parking": { "before": "tuyaux-park-avant.jpg", "after": "tuyaux-park-apres.jpg", "title": "Colonnes d'un parking souterrain", "text": "Canalisations vétustes déposées, réseau PVC fixé en paroi, parking resté ouvert.", "alt": "Canalisations d'un parking souterrain remplacées" },
+      "fonte": { "before": "tuyaux-park2-avant.jpg", "after": "tuyaux-park2-apres.jpg", "title": "Réseau en fonte d'un parking", "text": "Fonte dégradée remplacée par du PVC, raccords par manchons inox.", "alt": "Réseau en fonte remplacé dans un parking souterrain" },
+      "toiture": { "before": "toiture-avant.jpg", "after": "toiture-apres.jpg", "title": "Toiture en zinc d'un immeuble haussmannien", "text": "Noues, chatières et couvertines sur cent quatre-vingts mètres carrés, avec intervention sur corde.", "alt": "Toiture en zinc d'un immeuble haussmannien" },
+      "lucarne": { "before": "fenetre-avant.jpg", "after": "fenetre-apres.jpg", "title": "Lucarne en ardoise", "text": "Ardoises dégradées déposées, abergement en zinc refait, repose à neuf.", "alt": "Lucarne en ardoise d'une toiture parisienne" }
+    }
+  }
+}

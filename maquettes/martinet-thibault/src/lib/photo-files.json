@@ -1,0 +1,31 @@
+{
+  "pexels": {
+    "plombier": { "id": 16509869, "title": "Close-up of Man Using a Spanner", "author": "AR Abnoy", "alt": "Un plombier serre un raccord de canalisation à la clé" },
+    "chaudiere": { "id": 7859953, "title": "Plumber Repairing Power Source", "author": "Heiko Ruth", "alt": "Des mains règlent une chaudière pendant une intervention de chauffage" },
+    "couvreur": { "id": 34792149, "title": "Black and White Construction Worker on Rooftop", "author": "Pexels", "alt": "Un couvreur au travail sur un toit, en noir et blanc" },
+    "salle-de-bains": { "id": 32497162, "title": "Senior Man Conducting Bathroom Inspection with Device", "author": "Pexels", "alt": "Un artisan expérimenté contrôle une salle de bains avant travaux" },
+    "toiture": { "id": 34019842, "title": "Construction Worker on Roof Removing Debris", "author": "Pexels", "alt": "Un ouvrier dégage une toiture avant réfection" }
+  },
+  "site": {
+    "logo": { "path": "IMG/logo.gif", "alt": "Logo Martinet-Thibault Entreprise" },
+    "realisation-01": { "path": "IMG/01.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 1" },
+    "realisation-02": { "path": "IMG/02.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 2" },
+    "realisation-03": { "path": "IMG/03.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 3" },
+    "realisation-04": { "path": "IMG/04.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 4" },
+    "realisation-05": { "path": "IMG/05.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 5" },
+    "realisation-06": { "path": "IMG/06.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 6" },
+    "realisation-07": { "path": "IMG/07.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 7" },
+    "realisation-08": { "path": "IMG/08.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 8" },
+    "realisation-09": { "path": "IMG/09.jpg", "alt": "Réalisation Martinet Thibault Entreprise, photo 9" },
+    "historique": { "path": "IMG/historique.jpg", "alt": "Photo de la page Historique de Martinet Thibault Entreprise" },
+    "services": { "path": "IMG/services.jpg", "alt": "Photo de la page Services de Martinet Thibault Entreprise" },
+    "contact": { "path": "IMG/contact.jpg", "alt": "Photo de la page Contact de Martinet Thibault Entreprise" },
+    "logo-qualibat-rge": { "path": "IMG/qualibat-rge.jpg", "alt": "Logo Qualibat RGE" },
+    "logo-qualigaz": { "path": "IMG/qualigaz.jpg", "alt": "Logo Qualigaz" },
+    "logo-ffb": { "path": "IMG/FFB-uncp.png", "alt": "Logo FFB, chambre syndicale de la couverture et de la plomberie" },
+    "logo-velux": { "path": "IMG/logo_velux.jpg", "alt": "Logo Velux" },
+    "logo-qualibat": { "path": "IMG/logo_qualibat.jpg", "alt": "Logo Qualibat" },
+    "logo-pgn": { "path": "IMG/logo_pgn.jpg", "alt": "Logo PGN-PGP, les professionnels du gaz" },
+    "logo-villeroy": { "path": "IMG/logo_villeroy.jpg", "alt": "Logo Villeroy & Boch" }
+  }
+}

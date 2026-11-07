@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * SMAP v2 : « galerie d'architecte d'intérieur ».
+ * --terra : accent terre cuite (canaux RVB). --accent : couleur du logo, réécrite au build (brand.generated.css), réservée au logo.
+ * --gutter : marge latérale.
+ */
+:root {
+  --accent: 14 98 112;
+  --accent-deep: 8 66 77;
+  --accent-tint: 236 244 245;
+  --terra: 168 84 56;
+  --terra-deep: 120 56 36;
+  --terra-tint: 240 226 216;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --head-h: 4.25rem;
+  /* Grain de béton : bruit fractal très léger, posé sur le fond. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .29 0 0 0 0 .25 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (min-width: 1024px) { :root { --head-h: 5rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { @apply bg-paper font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.68; font-weight: 400; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: var(--grain), radial-gradient(120% 80% at 80% 0%, #efebe5 0%, transparent 60%); opacity: .5; }
+h1, h2, h3 { @apply font-serif text-ink; font-weight: 400; letter-spacing: -0.012em; line-height: .98; }
+h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+strong { font-weight: 600; }
+em.serif, .it { @apply font-serif; font-style: italic; }
+::selection { background: rgb(var(--terra)); color: #fff; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--terra)); outline-offset: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
+  /* Légende technique : petites capitales espacées, chiffres tabulaires. */
+  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.2em] text-ink-faint; font-feature-settings: "tnum"; }
+  .num { font-feature-settings: "tnum", "lnum"; }
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 whitespace-nowrap rounded-[2px] px-7 text-[0.92rem] font-medium tracking-[0.01em] transition duration-300; }
+  .btn-primary { @apply btn bg-ink text-chalk hover:bg-accent; }
+  .btn-line { @apply btn border border-ink/20 text-ink hover:border-accent hover:text-accent; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+  .link-line:hover { @apply text-accent; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem]; }
+  .prose-c p + p { @apply mt-4; }
+  .answer { @apply mt-6 font-serif text-[1.45rem] leading-[1.3] text-ink sm:text-[1.75rem]; }
+  .reponse-bref { @apply font-serif text-[1.6rem] leading-[1.28] text-ink sm:text-[2.15rem]; letter-spacing: -0.005em; }
+}
+
+/* Apparitions : invisibles seulement si le JS tourne, toujours visibles après 3 s (filet de sécurité). */
+.js [data-reveal] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); animation: reveal-safety 0s 3s forwards; }
+.js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
+@keyframes reveal-safety { to { opacity: 1; transform: none; } }
+
+/* Planches photo dévoilées comme un tirage qu'on découvre (masque appliqué aux enfants). */
+.js [data-mask] > * { clip-path: inset(0 0 100% 0); transition: clip-path 1.6s cubic-bezier(.7,0,.2,1); animation: mask-safety 0s 3s forwards; }
+.js [data-mask].is-in > * { clip-path: inset(0 0 0 0); animation: none; }
+@keyframes mask-safety { to { clip-path: inset(0 0 0 0); } }
+
+/* Titre du héros : lignes qui montent */
+.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+.fade-in { animation: fade-in 1.2s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes fade-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+.slow-zoom { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+.plate-in { animation: plate-in 1.7s cubic-bezier(.7,0,.2,1) both; animation-delay: var(--d, 0ms); }
+@keyframes plate-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* En-tête : se cache en descendant, filet fin une fois la page défilée */
+.head { transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background-color .3s; }
+.head.is-hidden { transform: translate3d(0, -100%, 0); }
+.head.is-solid { border-color: #cdc5ba; background-color: rgba(232,228,221,.9); backdrop-filter: saturate(1.2) blur(14px); }
+.nav-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: rgb(var(--terra)); }
+
+.row-link .row-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: rgb(var(--terra)); }
+.row-link .row-title { transition: color .3s, transform .5s cubic-bezier(.2,.7,.2,1); }
+.row-link:hover .row-title { color: rgb(var(--terra)); transform: translateX(4px); }
+.img-zoom img { transition: transform 1.8s cubic-bezier(.2,.7,.2,1); }
+.img-zoom:hover img { transform: scale(1.03); }
+
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 22% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+details.faq[open] .faq-plus::after { transform: rotate(0deg); }
+
+/* ————— Planche de portfolio : photo, puis légende technique sur filet fin ————— */
+.plate-cap { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1.4rem; border-top: 1px solid rgb(38 34 30 / .55); padding-top: .7rem; margin-top: .9rem; font-size: .72rem; line-height: 1.45; letter-spacing: .02em; }
+.plate-cap dt { @apply label; font-size: .62rem; padding-top: .1rem; }
+.plate-cap dd { color: #26221e; }
+@media (min-width: 640px) { .plate-cap.is-row { display: flex; flex-wrap: wrap; gap: .3rem 2.2rem; } .plate-cap.is-row > div { display: flex; gap: .7rem; align-items: baseline; } }
+
+/* Repère de section : un petit échantillon carré, le numéro de planche, l'intitulé, un filet. */
+.sec-mark { display: flex; align-items: center; gap: .85rem; }
+.sec-mark .chip-dot { width: .7rem; height: .7rem; flex: none; border-radius: 1px; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .08); }
+.sec-mark .rule { height: 1px; flex: 1; max-width: 9rem; background: rgb(38 34 30 / .35); transform-origin: left; }
+.js [data-reveal] .rule { transform: scaleX(0); transition: transform 1.4s cubic-bezier(.2,.7,.2,1) .25s; animation: line-safety 0s 3s forwards; }
+.js [data-reveal].is-in .rule { transform: none; animation: none; }
+@keyframes line-safety { to { transform: none; } }
+
+/* ————— Le nuancier d'échantillons ————— */
+/*
+ * Un jeu de cartes d'échantillons tenu par un rivet en laiton : fermé au chargement, il s'ouvre en éventail.
+ * --r : angle final de chaque carte ; --i : rang (décale l'ouverture). Sans animation : l'éventail est ouvert.
+ */
+.fan { --w: 5.6rem; --h: 15.5rem; position: relative; width: calc(var(--h) * 1.02); height: calc(var(--h) * 1.06); }
+@media (min-width: 640px) { .fan { --w: 7rem; --h: 19.5rem; } }
+@media (min-width: 1280px) { .fan { --w: 7.6rem; --h: 21.5rem; } }
+.fan-card { position: absolute; left: 0; bottom: 0; width: var(--w); height: var(--h); transform-origin: calc(var(--w) / 2) calc(var(--h) - var(--w) * .34); transform: rotate(var(--r)); border-radius: 3px; background: linear-gradient(180deg, #f7f4ef, #ece7df); padding: .32rem .32rem 0;
+  box-shadow: 0 0 0 .5px rgb(0 0 0 / .08), 0 1px 1px rgb(40 30 20 / .1), 0 6px 14px -4px rgb(40 30 20 / .22), 0 22px 40px -18px rgb(40 30 20 / .35);
+  animation: fan-open 1.9s cubic-bezier(.2,.8,.15,1) both; animation-delay: calc(700ms + var(--i) * 110ms); }
+@keyframes fan-open { from { transform: rotate(calc(var(--r) * 0 - 4deg)); } 60% { transform: rotate(calc(var(--r) + 1.2deg)); } to { transform: rotate(var(--r)); } }
+.fan-face { position: relative; height: 66%; overflow: hidden; border-radius: 1.5px; box-shadow: inset 0 0 0 .5px rgb(0 0 0 / .18); }
+.fan-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgb(255 255 255 / .22), transparent 38%, transparent 70%, rgb(0 0 0 / .1)); }
+.fan-label { padding: .5rem .2rem 0; color: #26221e; }
+.fan-label .n { display: block; font-size: .5rem; font-weight: 600; letter-spacing: .2em; color: rgb(var(--terra)); }
+.fan-label .t { display: block; margin-top: .15rem; font-family: "Instrument Serif", Georgia, serif; font-size: .98rem; line-height: 1; }
+.fan-label .s { display: block; margin-top: .3rem; font-size: .47rem; line-height: 1.35; letter-spacing: .08em; text-transform: uppercase; color: #857e74; }
+@media (min-width: 640px) { .fan-label .t { font-size: 1.18rem; } .fan-label .n { font-size: .56rem; } .fan-label .s { font-size: .52rem; } }
+.fan-hole { position: absolute; left: 50%; bottom: calc(var(--w) * .34); width: calc(var(--w) * .22); height: calc(var(--w) * .22); transform: translate(-50%, 50%); border-radius: 50%; background: #d4ccc1; box-shadow: inset 0 1px 2px rgb(0 0 0 / .35); }
+.fan-rivet { position: absolute; left: calc(var(--w) / 2); bottom: calc(var(--w) * .34); z-index: 10; width: calc(var(--w) * .3); height: calc(var(--w) * .3); transform: translate(-50%, 50%); border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6d8 0 8%, #e6c77e 22%, #b88d3e 52%, #7a5a22 78%, #5d4417 100%);
+  box-shadow: 0 2px 4px rgb(40 25 10 / .45), inset 0 -1px 1px rgb(0 0 0 / .3), inset 0 1px 1px rgb(255 255 255 / .5); }
+.fan-rivet::after { content: ""; position: absolute; inset: 34%; border-radius: 50%; background: radial-gradient(circle at 60% 65%, #c9a457, #6b4f1c); box-shadow: inset 0 1px 1px rgb(0 0 0 / .5); }
+
+/* Matières (dessinées en CSS et SVG dans Nuancier.tsx) */
+.mat-zellige { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; background: #ddd5c7; height: 100%; }
+.mat-zellige i { position: relative; border-radius: 1px; background: var(--c); box-shadow: inset 0 0 0 1px rgb(0 0 0 / .08), inset 1px 1px 3px rgb(255 255 255 / .25), inset -2px -2px 5px rgb(0 0 0 / .22); }
+.mat-zellige i::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 45% at var(--x) var(--y), rgb(255 255 255 / .55), transparent 60%); mix-blend-mode: soft-light; }
+.mat-brass { position: absolute; inset: 0;
+  background:
+    linear-gradient(118deg, transparent 30%, rgb(255 248 220 / .55) 44%, rgb(255 248 220 / .1) 52%, transparent 62%),
+    linear-gradient(180deg, #8e6b2c 0%, #c9a159 22%, #e9cd8c 40%, #c39a50 58%, #a47c37 76%, #7b5b22 100%); }
+.mat-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .js [data-reveal], .js [data-mask] > * { opacity: 1; transform: none; clip-path: none; }
+  .rule { transform: none !important; }
+}

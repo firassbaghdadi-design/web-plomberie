@@ -1,0 +1,34 @@
+{
+  "pexels": {
+    "compteur": { "id": 4494653, "title": "Close Up of Water Meter", "author": "Pexels", "alt": "Compteurs d'eau et canalisations dans un local technique" },
+    "toits": { "id": 16923121, "title": "Roofs of Buildings in Paris", "author": "Pexels", "alt": "Toits d'immeubles parisiens" },
+    "immeubles": { "id": 19328832, "title": "Traditional Tenements in Paris", "author": "Pexels", "alt": "Immeubles parisiens traditionnels" }
+  },
+  "origin": "https://www.bastien-trebulle.com",
+  "logoUrl": "https://www.bastien-trebulle.com/wp-content/uploads/2026/07/logo-BASTIEN-TREBULLE-e1785618589104.png",
+  "pages": [
+    "",
+    "notre-histoire",
+    "particuliers",
+    "quai-voltaire-notre-realisation",
+    "hotel-opera-richepanse",
+    "etoile-couverture",
+    "plomberie-etoile",
+    "rue-de-luniversite",
+    "rue-danton",
+    "quai-de-seine",
+    "garancieres-notre-realisation",
+    "rue-de-grenelle",
+    "avenue-de-messine-notre-realisation",
+    "rue-saint-severin-notre-realisation",
+    "rue-conti",
+    "rue-des-saints-peres-notre-realisation",
+    "place-victor-hugo-notre-realisation",
+    "rue-de-tournon-notre-realisation",
+    "rue-de-la-tour-notre-realisation",
+    "cathedrale-sainte-croix-de-paris-des-armeniens-notre-realisation",
+    "avenue-pierre-1er-de-serbie",
+    "rue-des-jeuneurs-notre-realisation",
+    "rue-des-halles-notre-realisation"
+  ]
+}

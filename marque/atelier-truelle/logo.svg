@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" role="img" aria-label="Atelier Truelle">
+  <g transform="translate(8 8)">
+    <rect width="64" height="64" rx="14" fill="#C8553D"/>
+  <g transform="rotate(38 32 32) translate(0 2)">
+    <path d="M32 6 L46 34 Q32 41 18 34 Z" fill="#F6F1E7"/>
+    <path d="M32 37 L32 45" stroke="#F6F1E7" stroke-width="3.2" stroke-linecap="round"/>
+    <rect x="28.2" y="44" width="7.6" height="13" rx="3.8" fill="#F6F1E7"/>
+  </g>
+  </g>
+  <text x="90" y="36" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="5" fill="#8A9BA3">ATELIER</text>
+  <text x="88" y="64" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="800" fill="#1F2A30" letter-spacing="-0.5">Truelle</text>
+</svg>
