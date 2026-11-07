@@ -18,7 +18,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header data-head className="head sticky top-0 z-50 border-b border-transparent bg-white">
+    <header data-head className="head sticky top-0 z-50 border-b border-transparent bg-paper">
       <div className="wrap flex h-[var(--head-h)] items-center justify-between gap-6">
         <Link href="/" className="shrink-0" aria-label="SMAP, accueil">
           <Logo />
@@ -53,13 +53,13 @@ export function Header() {
           </button>
         </div>
       </div>
-      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-white lg:hidden">
+      <div id="menu-mobile" hidden={!open} className="fixed inset-x-0 bottom-0 top-[var(--head-h)] overflow-y-auto border-t border-line bg-paper lg:hidden">
         <div className="wrap min-h-full py-8">
           <p className="label">Nos métiers</p>
           <ul className="mt-3">
             {nav.map((n, i) => (
               <li key={n.href} className="border-b border-line">
-                <Link href={n.href} className="flex items-center justify-between py-4 text-[1.7rem] font-light tracking-tight text-ink">
+                <Link href={n.href} className="flex items-center justify-between py-4 font-serif text-[2rem] text-ink">
                   <span><span className="num mr-4 text-xs text-ink-faint">0{i + 1}</span>{n.label}</span>
                   <ArrowIcon className="h-4 w-4 text-accent" />
                 </Link>

@@ -13,4 +13,5 @@
 | Martinet Thibault | Artisan haut de gamme | crème pierre + laiton patiné | Fraunces / Karla | plaque de rue émaillée | photo plein cadre, H1 dessus |
 | SPC | Couleur de marque pleine | bleu zinc | Archivo (large) | plaque de zinc gravée | photo bord à bord + aplat bleu |
 | DBP | Affiche suisse | blanc/noir + orange vif | Geist | thermostat rond émaillé | H1 géant + échelle 16→21° + photo |
+| SMAP | Galerie d'architecte d'intérieur (book, planches) | béton clair + gris chauds + terre cuite | Instrument Serif / Familjen Grotesk | nuancier d'échantillons (zellige, terrazzo, laiton brossé, chêne, tomette) en éventail sur rivet laiton | H1 serif 4 lignes à gauche, grande photo de salle de bains qui déborde à droite, nuancier qui s'ouvre sur la photo |
 | Rousseau (référence initiale) | Minimal blanc | blanc + accent logo | (voir package.json) | — | — |

@@ -44,7 +44,7 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
             <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
             <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
               <p className="label">Par téléphone</p>
-              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
+              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap font-serif text-[2.8rem] text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
               <a href={`mailto:${business.email}`} className="mt-1 inline-block text-sm text-ink-soft hover:text-accent">{business.email}</a>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
         </div>
       </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" />
-      <div className="wrap pb-24"><p className="text-[1.6rem] font-extralight text-ink">Merci pour votre confiance.</p></div>
+      <div className="wrap pb-24"><p className="font-serif text-[2rem] italic text-ink">Merci pour votre confiance.</p></div>
       <JsonLd nodes={nodes} />
     </>
   );

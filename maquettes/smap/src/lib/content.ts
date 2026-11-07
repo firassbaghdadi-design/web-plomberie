@@ -39,7 +39,7 @@ const plumbing: Page = {
   contactType: "plomberie",
   service: "Plomberie : fuites, sanitaire, robinetterie, canalisations",
   crumb: "Plomberie",
-  photo: "cuivre",
+  photo: "douche",
   photo2: "bains2",
   facts: [
     { label: "Depuis", value: "2007" },
@@ -108,7 +108,7 @@ const renovation: Page = {
   service: "Aménagement et rénovation de logements et de locaux",
   crumb: "Rénovation",
   photo: "bains",
-  photo2: "chantier",
+  photo2: "cuisine",
   facts: [
     { label: "Depuis", value: "2007" },
     { label: "Atelier", value: "Paris 12e" },

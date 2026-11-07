@@ -5,7 +5,7 @@ import { PATHS, business, nav } from "@/lib/site";
 export function Footer() {
   const link = "transition hover:text-accent";
   return (
-    <footer className="border-t border-line bg-mist pb-24 text-[0.95rem] md:pb-0">
+    <footer className="border-t border-ink/20 bg-mist pb-24 text-[0.95rem] md:pb-0">
       <div className="wrap pt-16 sm:pt-24">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -13,7 +13,7 @@ export function Footer() {
             <p className="mt-6 max-w-sm">
               Plomberie, aménagement et rénovation, maintenance : une entreprise installée à Paris 12e depuis {business.founded}.
             </p>
-            <a href={`tel:${business.phoneTel}`} className="num mt-8 block whitespace-nowrap text-[2rem] font-extralight tracking-tight text-ink transition hover:text-accent sm:text-[2.5rem]" data-track="cta_tel">
+            <a href={`tel:${business.phoneTel}`} className="num mt-8 block whitespace-nowrap font-serif text-[2.4rem] text-ink transition hover:text-accent sm:text-[3.2rem]" data-track="cta_tel">
               {business.phoneDisplay}
             </a>
             <a href={`mailto:${business.email}`} className="mt-1 inline-block break-all text-ink-soft transition hover:text-accent">{business.email}</a>
@@ -45,7 +45,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <p aria-hidden="true" className="mt-20 select-none whitespace-nowrap text-center text-[clamp(4.5rem,24vw,22rem)] font-extralight leading-[0.8] tracking-[0.1em] text-ink/90">
+        <p aria-hidden="true" className="mt-20 select-none whitespace-nowrap text-center font-serif text-[clamp(5rem,30vw,26rem)] leading-[0.8] tracking-[0.02em] text-ink/90">
           SMAP
         </p>
         <div className="mt-10 flex flex-col gap-3 border-t border-line py-8 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">

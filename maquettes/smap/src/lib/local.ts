@@ -80,7 +80,7 @@ export const localPages: Local[] = [
     service: "Rénovation d'appartement et de salle de bains à Paris 12e",
     crumb: "Rénovation Paris 12e",
     photo: "plan",
-    photo2: "bains",
+    photo2: "bains3",
     sections: [
       {
         h2: "Pourquoi rénover un appartement du 12e avec une entreprise de plomberie ?",

@@ -2,8 +2,8 @@ import { business } from "@/lib/site";
 import { logoFile } from "@/lib/photos";
 
 /**
- * Logo d'origine s'il est publié sur le site actuel (téléchargé au build) ; sinon le nom « SMAP » en capitales espacées,
- * précédé d'un petit repère de plan (angle coté), avec la précision Paris 12e.
+ * Logo d'origine s'il est publié sur le site actuel (téléchargé au build) ; sinon le nom « SMAP » en serif,
+ * précédé de trois petits échantillons superposés (terre cuite, zellige, laiton), avec la précision Paris 12e.
  */
 export function Logo({ className = "", tone = "ink" }: { className?: string; tone?: "ink" | "white" }) {
   if (logoFile) {
@@ -12,14 +12,14 @@ export function Logo({ className = "", tone = "ink" }: { className?: string; ton
   }
   return (
     <span className={`inline-flex items-center gap-3.5 ${tone === "white" ? "text-white" : "text-ink"} ${className}`}>
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 text-accent" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <path d="M3 21V3h18" />
-        <path d="M3 15h7v6M10 15V9h11" opacity=".55" />
-        <circle cx="21" cy="3" r="1.4" fill="currentColor" stroke="none" />
-      </svg>
-      <span className="text-[1.15rem] font-normal tracking-[0.3em] lg:text-[1.25rem]">SMAP</span>
-      <span aria-hidden="true" className="hidden h-5 w-px bg-current opacity-25 min-[420px]:block" />
-      <span className="num hidden text-[0.62rem] font-medium uppercase leading-[1.25] tracking-[0.2em] opacity-60 min-[420px]:block">
+      <span aria-hidden="true" className="relative block h-7 w-6 shrink-0">
+        <span className="absolute bottom-0 left-0 h-6 w-3 origin-bottom -rotate-12 rounded-[1px] bg-[#2d5a4d]" />
+        <span className="absolute bottom-0 left-1.5 h-6 w-3 origin-bottom rotate-3 rounded-[1px] bg-[#c9a159]" />
+        <span className="absolute bottom-0 left-3 h-6 w-3 origin-bottom rotate-[18deg] rounded-[1px] bg-accent" />
+      </span>
+      <span className="font-serif text-[1.75rem] leading-none tracking-[0.04em] lg:text-[1.95rem]">SMAP</span>
+      <span aria-hidden="true" className="hidden h-6 w-px bg-current opacity-25 min-[420px]:block" />
+      <span className="num hidden text-[0.6rem] font-medium uppercase leading-[1.3] tracking-[0.2em] opacity-60 min-[420px]:block">
         Paris 12e
         <br />
         Depuis {business.founded}

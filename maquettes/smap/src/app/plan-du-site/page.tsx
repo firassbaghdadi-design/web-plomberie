@@ -46,7 +46,7 @@ export default function PlanPage() {
             </ul>
           </div>
         </div>
-        <div className="wrap"><p className="mt-20 text-[1.4rem] font-extralight text-ink">Du plan au chantier, depuis 2007.</p></div>
+        <div className="wrap"><p className="mt-20 font-serif text-[1.9rem] italic text-ink">Du plan au chantier, depuis 2007.</p></div>
       </section>
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Plan du site", path }])]} />
     </>

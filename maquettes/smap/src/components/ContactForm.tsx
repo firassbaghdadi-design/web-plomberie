@@ -9,7 +9,7 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-mist px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
+const field = "mt-2 w-full rounded-[2px] border border-line bg-paper/60 px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-chalk focus:ring-4 focus:ring-accent/15";
 const label = "block text-sm font-medium text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
@@ -56,7 +56,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[4px] border border-accent/40 bg-accent-tint p-10 text-center">
+      <div role="status" className="rounded-[4px] border border-accent/40 bg-chalk p-10 text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
           <CheckIcon className="h-8 w-8" />
         </span>
@@ -70,7 +70,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[4px] border border-line bg-white p-6 sm:p-12">
+    <form onSubmit={onSubmit} noValidate className="rounded-[2px] border border-ink/15 bg-chalk p-6 shadow-[0_30px_60px_-40px_rgba(40,30,20,.45)] sm:p-12">
       <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail de de SMAP.</p>
 
@@ -134,7 +134,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#15171a]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#a85438]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}

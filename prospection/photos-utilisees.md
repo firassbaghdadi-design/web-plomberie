@@ -149,6 +149,10 @@ EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leu
 - 5691639 : SMAP (renovation) — « Crop man doing renovation in room »
 - 4054542 : SMAP (facade) — « Photo Of Building Exterior During Daytime »
 - 5534767 : SMAP (cuivre) — « Person Holding Wrench »
+- 13248764 : SMAP v2 (bains3) — « White Ceramic Cup on Bathtub »
+- 9801154 : SMAP v2 (douche) — « View of a Bathroom »
+- 7195730 : SMAP v2 (cuisine) — « Modern kitchen with wooden cupboards »
+- 6436751 : SMAP v2 (cuisine2) — « Contemporary kitchen interior and hallway at home »
 
 SMAP utilise d abord les photos de son propre site (récupérées au build) ; les sept photos ci-dessus, choisies par leur titre exact (pages non visibles depuis le container), sont à vérifier à l oeil avant envoi.
 
