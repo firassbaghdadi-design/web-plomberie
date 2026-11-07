@@ -46,7 +46,7 @@ export default function LegalPage() {
             </ul>
           </div>
         </div>
-        <div className="wrap" data-floor="5"><p className="mt-20 text-[1.4rem] font-extralight text-ink">De la cave aux toits, depuis {business.founded}.</p></div>
+        <div className="wrap"><p className="mt-20 text-[1.4rem] font-serif text-ink">De la cave aux toits, depuis {business.founded}.</p></div>
       </section>
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Mentions légales", path }])]} />
     </>

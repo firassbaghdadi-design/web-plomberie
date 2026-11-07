@@ -119,7 +119,7 @@ const gas: Page = {
   contactType: "gaz",
   service: "Gaz : installation, maintenance, fuite de gaz",
   crumb: "Gaz",
-  photo: "outils",
+  photo: "installation",
   facts: [
     { label: "Certification", value: "Professionnel du Gaz" },
     { label: "Depuis", value: "1978" },

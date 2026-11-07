@@ -34,19 +34,19 @@ export default function PlanPage() {
           {groups.map((g) => (
             <div key={g.t}>
               <h2 className="text-[1.6rem]">{g.t}</h2>
-              <ul className="mt-5 space-y-2.5">{g.items.map((p) => <li key={p.path}><Link href={p.path} className="transition hover:text-accent">{p.h1}</Link></li>)}</ul>
+              <ul className="mt-5 space-y-2.5">{g.items.map((p) => <li key={p.path}><Link href={p.path} className="transition hover:text-tabac">{p.h1}</Link></li>)}</ul>
             </div>
           ))}
           <div>
             <h2 className="text-[1.6rem]">EBL</h2>
             <ul className="mt-5 space-y-2.5">
-              <li><Link href="/" className="transition hover:text-accent">Accueil</Link></li>
-              <li><Link href={PATHS.contact} className="transition hover:text-accent">Contact et devis</Link></li>
-              <li><Link href={PATHS.legal} className="transition hover:text-accent">Mentions légales</Link></li>
+              <li><Link href="/" className="transition hover:text-tabac">Accueil</Link></li>
+              <li><Link href={PATHS.contact} className="transition hover:text-tabac">Contact et devis</Link></li>
+              <li><Link href={PATHS.legal} className="transition hover:text-tabac">Mentions légales</Link></li>
             </ul>
           </div>
         </div>
-        <div className="wrap" data-floor="5"><p className="mt-20 text-[1.4rem] font-extralight text-ink">De la cave aux toits, depuis 1978.</p></div>
+        <div className="wrap"><p className="mt-20 text-[1.4rem] font-serif text-ink">De la cave aux toits, depuis 1978.</p></div>
       </section>
       <JsonLd nodes={[webPageNode({ title, description, path }), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Plan du site", path }])]} />
     </>

@@ -42,22 +42,22 @@ export function PhotoPicker({ photos, onChange }: Props) {
 
   return (
     <fieldset className="sm:col-span-2 min-w-0">
-      <legend className="block text-sm font-medium text-ink">
+      <legend className="block text-[1.02rem] font-bold text-ink">
         Photos <span className="font-normal text-ink-soft">(facultatif, {MAX_PHOTOS} maximum)</span>
       </legend>
-      <p id="photos-hint" className="mt-1 text-sm text-ink-soft">
+      <p id="photos-hint" className="mt-1 text-[1rem] text-ink-soft">
         Une photo vaut mieux qu'un long message : l'appareil, son étiquette, la fuite, l'endroit à équiper. Nous les recevons avec votre demande.
       </p>
 
       <div className="mt-4 flex flex-wrap items-start gap-3">
         {photos.map((photo, index) => (
-          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-xl border border-line bg-white">
+          <figure key={photo.id} className="relative h-24 w-24 overflow-hidden rounded-2xl border border-line bg-cream-light">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo.preview} alt={`Photo jointe ${index + 1}`} className="h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(photos.filter((p) => p.id !== photo.id))}
-              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-accent"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-ink text-lg leading-none text-white hover:bg-tabac"
               aria-label={`Retirer la photo ${index + 1}`}
             >
               ×
@@ -65,7 +65,7 @@ export function PhotoPicker({ photos, onChange }: Props) {
           </figure>
         ))}
         {photos.length < MAX_PHOTOS ? (
-          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-ink/25 bg-white px-3 text-ink hover:border-accent hover:bg-accent-tint disabled:opacity-60">
+          <button type="button" onClick={() => input.current?.click()} disabled={busy} aria-describedby="photos-hint" className="flex h-24 min-w-[7.5rem] flex-col items-center justify-center gap-1 rounded-2xl border border-dashed border-ink/25 bg-cream-light px-3 text-ink hover:border-tabac hover:bg-cream disabled:opacity-60">
             <span aria-hidden="true" className="text-3xl leading-none">+</span>
             <span className="text-sm font-medium">{busy ? "Préparation…" : photos.length ? "Ajouter" : "Ajouter une photo"}</span>
           </button>

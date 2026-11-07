@@ -11,7 +11,7 @@ const description =
 export const metadata = pageMeta({ title, description, path });
 
 const brief =
-  "Décrivez votre besoin, joignez jusqu'à quatre photos : EBL vous répond ; en cas d'odeur de gaz, sortez d'abord, puis appelez le 01 43 31 26 77.";
+  "Décrivez votre besoin et l'adresse du lieu, joignez jusqu'à quatre photos : EBL, plombier rue d'Alésia à Paris 14e, vous recontacte pour fixer le rendez-vous. En cas d'odeur de gaz, sortez d'abord, puis appelez le 01 43 31 26 77.";
 
 const faq: Faq[] = [
   {
@@ -33,19 +33,19 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
   const nodes = [webPageNode({ title, description, path }, "ContactPage"), breadcrumbNode([{ name: "Accueil", path: "/" }, { name: "Contact", path }]), faqNode(faq)];
   return (
     <>
-      <section data-floor="0">
+      <section>
         <div className="wrap grid gap-x-14 gap-y-10 pb-16 lg:grid-cols-12 lg:items-start pt-6 sm:pt-8">
           <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
             <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Contact" }]} />
-            <p className="label mt-6 text-accent sm:mt-6">Organisez votre rendez-vous</p>
+            <p className="label mt-6 text-tabac">Organisez votre rendez-vous</p>
             <h1 className="mt-4 text-[2.1rem] sm:text-[2.7rem] xl:text-[3rem]">
               <span className="line-up"><span>Contacter votre plombier à Paris 14e</span></span>
             </h1>
-            <p className="reponse-bref fade-in mt-4" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
+            <p className="reponse-bref fade-in mt-4 !font-sans !text-[1.3rem] !font-semibold !leading-snug sm:!text-[1.4rem]" style={{ ["--d" as string]: "250ms" }}>{brief}</p>
             <div className="fade-in mt-8 hidden border-t border-line pt-5 lg:block" style={{ ["--d" as string]: "400ms" }}>
               <p className="label">Par téléphone</p>
-              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap text-[2.4rem] font-extralight tracking-tight text-ink transition hover:text-accent" data-track="cta_tel">{business.phoneDisplay}</a>
-              <p className="mt-3 text-sm text-ink-soft">{business.hours.map(([d, h]) => <span key={d} className="block">{d} : {h}</span>)}</p>
+              <a href={`tel:${business.phoneTel}`} className="num mt-4 block whitespace-nowrap font-serif text-[2.4rem] text-ink transition hover:text-tabac" data-track="cta_tel">{business.phoneDisplay}</a>
+              <p className="mt-3 text-[1.02rem] font-semibold text-ink-soft">{business.hours.map(([d, h]) => <span key={d} className="block">{d} : {h}</span>)}</p>
             </div>
           </div>
           <div id="formulaire" className="fade-in lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1" style={{ ["--d" as string]: "150ms" }}>
@@ -53,15 +53,15 @@ export default function ContactPage({ searchParams }: { searchParams: { demande?
           </div>
           <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
             <dl className="space-y-6 border-t border-line pt-6">
-              <div><dt className="label">Adresse</dt><dd className="mt-2 text-ink">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-sm">Itinéraire</a></dd></div>
-              <div><dt className="label">Métiers</dt><dd className="mt-2 text-ink">Plomberie, gaz, chauffage</dd></div>
-              <div><dt className="label">Clientèle</dt><dd className="mt-2 text-ink">Particuliers, commerces et syndics</dd></div>
+              <div><dt className="label">Adresse</dt><dd className="mt-2 font-semibold text-ink">{business.address.street}<br />{business.address.postalCode} Paris<br /><a href={business.mapsUrl} target="_blank" rel="noopener" className="link-line mt-2 text-[1rem]">Itinéraire</a></dd></div>
+              <div><dt className="label">Métiers</dt><dd className="mt-2 font-semibold text-ink">Plomberie, gaz, chauffage</dd></div>
+              <div><dt className="label">Clientèle</dt><dd className="mt-2 font-semibold text-ink">Particuliers, commerces et syndics</dd></div>
             </dl>
           </div>
         </div>
       </section>
       <FaqList items={faq} title="Avant d'envoyer votre demande" />
-      <div className="wrap pb-24" data-floor="5"><p className="text-[1.6rem] font-extralight text-ink">Merci pour votre confiance.</p></div>
+      <div className="wrap pb-24"><p className="font-serif text-[1.7rem] text-ink">Merci pour votre confiance.</p></div>
       <JsonLd nodes={nodes} />
     </>
   );

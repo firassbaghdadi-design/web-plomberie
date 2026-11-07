@@ -9,8 +9,8 @@ import { CheckIcon } from "./Icons";
 type Status = "idle" | "sending" | "success" | "error";
 type Errors = Partial<Record<"firstName" | "lastName" | "phone" | "email" | "address" | "message" | "consent", string>>;
 
-const field = "mt-2 w-full rounded-xl border border-line bg-mist px-4 py-4 text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/15";
-const label = "block text-sm font-medium text-ink";
+const field = "mt-2 w-full rounded-2xl border border-line bg-cream-light px-4 py-3.5 text-[1.15rem] font-semibold text-ink outline-none transition focus:border-tabac focus:bg-white focus:ring-4 focus:ring-mustard/25";
+const label = "block text-[1.02rem] font-bold text-ink";
 
 export function ContactForm({ defaultType = "plomberie" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -56,7 +56,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-[4px] border border-accent/40 bg-accent-tint p-10 text-center">
+      <div role="status" className="rounded-[1.75rem] border border-tabac/30 bg-paper p-10 text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
           <CheckIcon className="h-8 w-8" />
         </span>
@@ -70,11 +70,12 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[4px] border border-line bg-white p-6 sm:p-12">
-      <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
+    <form onSubmit={onSubmit} noValidate className="rounded-[1.75rem] border border-line bg-paper p-6 shadow-[0_30px_60px_-40px_rgba(79,47,27,.45)] sm:p-10">
+      <div className="stripes w-16" aria-hidden="true" />
+      <h2 className="mt-5 text-3xl sm:text-[2.5rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre message arrive directement dans la boîte e-mail d'EBL.</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-7 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor="type" className={label}>
             Votre demande
@@ -133,8 +134,8 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
           <input id="website" name="website" tabIndex={-1} autoComplete="off" />
         </div>
         <div className="sm:col-span-2">
-          <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#15171a]" {...aria("consent")} />
+          <label className="flex cursor-pointer items-start gap-3 text-[1rem]">
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#2e3520]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}

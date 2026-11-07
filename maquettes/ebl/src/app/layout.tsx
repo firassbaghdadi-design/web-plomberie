@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import "@fontsource-variable/public-sans/index.css";
+import "@fontsource/young-serif/latin-400.css";
+import "@fontsource/young-serif/latin-ext-400.css";
+import "@fontsource-variable/darker-grotesque/index.css";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
@@ -9,7 +11,6 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { MockupBadge } from "@/components/MockupBadge";
 import { Motion } from "@/components/Motion";
-import { Immeuble } from "@/components/Immeuble";
 import { StickyCall } from "@/components/StickyCall";
 import { home } from "@/lib/content";
 import { businessNode, websiteNode } from "@/lib/seo";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#2e3520" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,14 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
-        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:font-medium focus:text-white">
+        <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-olive focus:px-5 focus:py-3 focus:font-bold focus:text-cream">
           Aller au contenu
         </a>
         <Header />
-        <div className="shell">
-          <main id="contenu">{children}</main>
-          <Immeuble />
-        </div>
+        <main id="contenu">{children}</main>
         <Footer />
         <StickyCall />
         {INDEXABLE ? null : <MockupBadge />}

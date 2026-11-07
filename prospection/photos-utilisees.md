@@ -148,7 +148,11 @@ Photos de l'entreprise en priorité : le logo et les photos de chantiers sont r�
 - 7937299 : EBL (collecteur) — « Steel Underground Heating Manifolds »
 - 12105083 : EBL (outils) — « Close-up of Wrench and Tools »
 
-EBL n'a pas de site : trois photos Pexels de mains et d'outils, choisies par leur titre exact sur pexels.com.
+- 34938442 : EBL v2 (chaufferie, héros) — « Technician Maintaining Heating System in Workshop »
+- 34938439 : EBL v2 (installation) — « Technician installing or repairing a heating system in an indoor workshop setting »
+- 34938446 : EBL v2 (ajustage) — « Engineer adjusting metal pipeline valves in an industrial setting with precision »
+
+EBL n'a pas de site : photos Pexels de chantiers et de mains, choisies par leur titre exact sur pexels.com.
 ## smap
 
 - 11269740 : SMAP (plan) — « Closeup of a Man Drawing a Floor Plan »

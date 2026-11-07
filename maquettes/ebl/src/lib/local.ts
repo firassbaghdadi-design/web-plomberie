@@ -25,7 +25,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Paris 14e",
     crumb: "Plombier Paris 14e",
-    photo: "raccords",
+    photo: "ajustage",
     sections: [
       {
         h2: "Pourquoi choisir un plombier installé dans le 14e ?",
@@ -85,7 +85,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Paris 15e",
     crumb: "Plombier Paris 15e",
-    photo: "collecteur",
+    photo: "installation",
     sections: [
       {
         h2: "Pourquoi appeler un plombier du 14e pour le 15e arrondissement ?",
@@ -266,7 +266,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Montrouge",
     crumb: "Plombier Montrouge",
-    photo: "collecteur",
+    photo: "chaufferie",
     sections: [
       {
         h2: "Pourquoi appeler un plombier de la rue d'Alésia pour Montrouge ?",
@@ -326,7 +326,7 @@ export const localPages: Local[] = [
     contactType: "plomberie",
     service: "Plombier à Malakoff",
     crumb: "Plombier Malakoff",
-    photo: "outils",
+    photo: "collecteur",
     sections: [
       {
         h2: "Quel lien entre Malakoff et le quartier de Plaisance dans le 14e ?",
