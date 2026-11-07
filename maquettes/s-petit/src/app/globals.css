@@ -6,102 +6,126 @@
   --gutter: clamp(1rem, 4.4vw, 3.5rem);
   --head-h: 4.25rem;
   --ease: cubic-bezier(.2, .7, .2, 1);
-  --eau: #1769a3;
-  /* Abscisse du rail de la goutte : dans la marge gauche, alignée sur la colonne de texte du site. */
-  --rail-x: calc(max(0px, (100vw - 88rem) / 2) + var(--gutter) + .4rem);
-  --dot-y: 3.1rem;
+  --sauge: #2f4a3f;
+  --cuivre: #9a5b2e;
+  --creme: #f5efe4;
 }
-@media (min-width: 1024px) { :root { --head-h: 5rem; --dot-y: 6.2rem; } }
+@media (min-width: 1024px) { :root { --head-h: 5.25rem; } }
 
 html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
 html, body { overflow-x: clip; max-width: 100%; }
-body { @apply bg-white font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.7; font-weight: 400; }
-h1, h2, h3 { @apply text-ink; font-weight: 300; letter-spacing: -0.034em; line-height: 1.04; }
+body { @apply bg-creme font-sans text-ink-soft antialiased; font-size: 1.0625rem; line-height: 1.72; font-weight: 400; }
+h1, h2, h3 { @apply font-serif text-sauge-deep; font-weight: 450; letter-spacing: -0.018em; line-height: 1.06; }
 h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
-strong { font-weight: 500; color: #101c27; }
-::selection { background: #1769a3; color: #fff; }
+strong { font-weight: 550; color: #1f2b25; }
+::selection { background: #2f4a3f; color: #f5efe4; }
 a, button { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid #1769a3; outline-offset: 3px; border-radius: 3px; }
+:focus-visible { outline: 2px solid #9a5b2e; outline-offset: 3px; border-radius: 3px; }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-site; padding-inline: var(--gutter); }
-  .tx { padding-left: calc(var(--gutter) + 1.45rem); padding-right: var(--gutter); }
-  @media (min-width: 1024px) { .tx { padding-left: calc(var(--gutter) + 2.6rem); } }
-  .label { @apply text-[0.68rem] font-medium uppercase tracking-[0.24em] text-ink-faint; font-variant-numeric: tabular-nums; }
+  .label { @apply text-[0.7rem] font-medium uppercase tracking-[0.2em] text-ink-faint; font-variant-numeric: tabular-nums; }
   .num { font-variant-numeric: tabular-nums lining-nums; }
-  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
-  .btn-primary { @apply btn bg-eau text-white hover:bg-eau-deep; }
-  .btn-line { @apply btn border border-ink/15 text-ink hover:border-eau hover:text-eau-deep; }
-  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-ink; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
-  .link-line:hover { @apply text-eau-deep; background-size: 0 1px; background-position: 100% 100%; }
-  .h2 { @apply text-[2.1rem] sm:text-[2.8rem] lg:text-[3.3rem]; }
+  .serif-it { @apply font-serif italic; font-weight: 400; }
+  .btn { @apply inline-flex min-h-[3.3rem] items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-[0.95rem] font-medium transition duration-300; }
+  .btn-primary { @apply btn bg-sauge text-creme hover:bg-sauge-deep; box-shadow: inset 0 0 0 1px rgba(200,139,90,.0); }
+  .btn-primary:hover { box-shadow: inset 0 0 0 1px rgba(200,139,90,.55); }
+  .btn-line { @apply btn border border-sauge/25 text-sauge-deep hover:border-cuivre hover:text-cuivre-deep; }
+  .link-line { @apply inline-flex items-center gap-2 whitespace-nowrap font-medium text-sauge-deep; background: linear-gradient(#9a5b2e, #9a5b2e) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .5s var(--ease), color .3s; }
+  .link-line:hover { @apply text-cuivre-deep; background-size: 0 1px; background-position: 100% 100%; }
+  .h2 { @apply text-[2.15rem] sm:text-[2.9rem] lg:text-[3.5rem]; }
   .prose-mt p + p { @apply mt-4; }
-  .answer { @apply mt-6 border-l border-eau pl-5 text-[1.14rem] font-light leading-relaxed text-ink sm:text-[1.24rem]; }
-  .reponse-bref { @apply text-[1.26rem] font-light leading-[1.55] text-ink sm:text-[1.55rem]; letter-spacing: -0.012em; }
+  .answer { @apply mt-6 border-l-2 border-cuivre-light pl-5 font-serif text-[1.16rem] italic leading-relaxed text-sauge-deep sm:text-[1.28rem]; }
+  .reponse-bref { @apply font-serif text-[1.32rem] leading-[1.5] text-sauge-deep sm:text-[1.7rem] lg:text-[1.95rem]; font-weight: 400; letter-spacing: -0.01em; }
+  .folio { @apply font-serif text-[0.95rem] italic text-cuivre; }
+  .photo-cap { @apply mt-3 flex items-center justify-between gap-4 text-[0.78rem] text-ink-faint; }
 }
 
-/* ————— Le concept : la goutte —————
-   Une seule goutte, dans la marge. Elle tombe d'une section à l'autre le long d'un filet qui se remplit derrière elle.
-   À chaque arrivée elle forme une onde fine (deux anneaux), et la section se découvre dans le sillage de l'onde. */
+/* ————— Sections : apparition douce au défilement (fondu + léger glissement) ————— */
+.js .station .rv { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); transition-delay: var(--d, 0ms); }
+.js .station.is-in .rv { opacity: 1; transform: none; }
 
-#rail { position: absolute; inset: 0 auto 0 0; width: 100%; pointer-events: none; z-index: 30; }
-.rail-line { position: absolute; left: var(--rail-x); top: 0; bottom: 0; width: 1px; margin-left: -.5px; background: #e2e8ee; }
-.rail-fill { position: absolute; left: var(--rail-x); top: 0; width: 1px; margin-left: -.5px; height: 0; background: linear-gradient(#1769a3, #1769a3); opacity: .55; will-change: height; }
-.drop { position: absolute; left: var(--rail-x); top: 0; width: 15px; height: 21px; margin-left: -7.5px; margin-top: -14px; will-change: transform; opacity: 0; transition: opacity .6s; }
-.drop.ready { opacity: 1; }
-.drop svg { display: block; width: 100%; height: 100%; transform-origin: 50% 70%; will-change: transform; }
-.drop.splash svg { animation: splash .55s cubic-bezier(.2,.8,.3,1.2); }
-@keyframes splash { 0% { transform: scale(1.5, .55); } 55% { transform: scale(.82, 1.18); } 100% { transform: none; } }
-
-/* Les stations : un point sur le rail, d'où part l'onde. */
-.station { position: relative; }
-.station-pt { position: absolute; left: var(--rail-x); top: var(--dot-y); width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: #fff; border: 1px solid #b9c7d3; z-index: 31; transition: background .5s, border-color .5s; }
-.station.is-in .station-pt { background: #1769a3; border-color: #1769a3; }
-.station-pt::before, .station-pt::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid #1769a3; opacity: 0; }
-.station.is-in .station-pt::before { animation: ring 1.9s cubic-bezier(.15,.6,.25,1) both; }
-.station.is-in .station-pt::after { animation: ring 1.9s cubic-bezier(.15,.6,.25,1) .28s both; }
-.station.quiet .station-pt::before, .station.quiet .station-pt::after { animation: none; }
-@keyframes ring { 0% { inset: -1px; opacity: .8; } 100% { inset: -54px; opacity: 0; } }
-
-/* La section se découvre dans le sillage de l'onde : un disque qui s'élargit depuis le point. */
-.js .wave { clip-path: circle(0px at var(--rail-x) var(--dot-y)); transition: clip-path 1.7s cubic-bezier(.22,.6,.2,1); }
-.js .station.is-in .wave, .js .station.quiet .wave { clip-path: circle(160vmax at var(--rail-x) var(--dot-y)); }
-.js .station.quiet .wave { transition-duration: .01ms; }
-
-.rule { border-top: 1px solid #e2e8ee; }
-.folio { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: #1769a3; font-variant-numeric: tabular-nums; }
-
-/* Héros : lignes révélées au chargement, photo ouverte par l'onde de la première goutte. */
-.line-up { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
-.line-up > span { display: block; animation: line-up 1.2s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
-@keyframes line-up { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+/* Héros : lignes révélées au chargement. */
+.line-up { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
+.line-up > span { display: block; animation: line-up 1.25s cubic-bezier(.2,.75,.15,1) both; animation-delay: var(--d, 0ms); }
+@keyframes line-up { from { transform: translate3d(0, 112%, 0); } to { transform: none; } }
 .fade-in { animation: fade-in 1.2s var(--ease) both; animation-delay: var(--d, 0ms); }
 @keyframes fade-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
-.js .hero-photo { clip-path: circle(0px at 0% 0%); transition: clip-path 1.9s cubic-bezier(.22,.6,.2,1); }
-.js .station.is-in .hero-photo, .js .station.quiet .hero-photo { clip-path: circle(150% at 0% 0%); }
-.hero-photo img { animation: slow-zoom 16s cubic-bezier(.2,.6,.3,1) both; }
-@keyframes slow-zoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+
+/* La photo en arche : une devanture de quartier, très lent zoom à l'arrivée. */
+.arch { border-radius: 999px 999px 0 0; overflow: hidden; isolation: isolate; }
+.arch img { animation: slow-zoom 18s cubic-bezier(.2,.6,.3,1) both; }
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+.arch-frame { position: absolute; inset: -10px -10px 0; border: 1px solid rgba(154,91,46,.45); border-bottom: 0; border-radius: 999px 999px 0 0; pointer-events: none; }
+
+/* ————— L'objet signature : la goutte en verre soufflé —————
+   Elle se forme sous la clé de l'arche, s'étire, tombe (gravité) et touche la ligne d'eau en bas du héros :
+   elle s'écrase, un anneau s'ouvre, puis deux autres plus fins, et une gouttelette rebondit. Puis tout recommence,
+   lentement. Le verre réfracte la photo à l'envers, comme une vraie goutte. Mouvement réduit : la goutte reste posée. */
+.gd { position: absolute; left: 50%; top: 0; bottom: 0; width: 0; pointer-events: none; z-index: 3; }
+.gd-drop { position: absolute; left: 0; top: 0; width: clamp(3.3rem, 6.2vw, 5.8rem); aspect-ratio: 100 / 140; transform-origin: 50% 100%;
+  transform: translate(-50%, -100%); filter: drop-shadow(0 14px 16px rgba(22,36,29,.28)) drop-shadow(0 2px 3px rgba(22,36,29,.25));
+  animation: gd-fall 8.5s infinite; animation-delay: 1.1s; animation-fill-mode: both; }
+.gd-drop svg { display: block; width: 100%; height: 100%; overflow: visible; }
+@keyframes gd-fall {
+  0%   { top: 17%; transform: translate(-50%, -100%) scale(.16, .12); opacity: 0; animation-timing-function: cubic-bezier(.3,.6,.3,1); }
+  7%   { opacity: 1; }
+  30%  { top: 17%; transform: translate(-50%, -94%) scale(.96, .96); animation-timing-function: ease-in-out; }
+  37%  { top: 17%; transform: translate(-50%, -86%) scale(.9, 1.08); animation-timing-function: cubic-bezier(.5,0,1,.5); }
+  49%  { top: 100%; transform: translate(-50%, -100%) scale(.88, 1.14); opacity: 1; animation-timing-function: ease-out; }
+  51%  { top: 100%; transform: translate(-50%, -100%) scale(1.55, .38); opacity: .85; }
+  54%  { top: 100%; transform: translate(-50%, -100%) scale(2.1, .08); opacity: 0; }
+  100% { top: 100%; transform: translate(-50%, -100%) scale(2.1, .08); opacity: 0; }
+}
+.gd-rings { position: absolute; left: 0; top: 100%; width: clamp(16rem, 34vw, 30rem); aspect-ratio: 400 / 120; transform: translate(-50%, -50%); overflow: visible; }
+.gd-rings ellipse, .gd-rings .gd-jet { transform-box: fill-box; transform-origin: 50% 50%; }
+.gd-rings .r1 { animation: gd-ring 8.5s 1.1s infinite both cubic-bezier(.15,.6,.25,1); }
+.gd-rings .r2 { animation: gd-ring 8.5s 1.45s infinite both cubic-bezier(.15,.6,.25,1); }
+.gd-rings .r3 { animation: gd-ring 8.5s 1.85s infinite both cubic-bezier(.15,.6,.25,1); }
+.gd-rings .r0 { animation: gd-pool 8.5s 1.1s infinite both ease-out; }
+.gd-rings .gd-jet { animation: gd-jet 8.5s 1.1s infinite both; }
+@keyframes gd-ring { 0%, 49.5% { transform: scale(.06); opacity: 0; } 51% { opacity: .95; } 82% { transform: scale(1); opacity: 0; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes gd-pool { 0%, 49.5% { transform: scale(.2); opacity: 0; } 52% { transform: scale(.55); opacity: .5; } 75% { transform: scale(1); opacity: 0; } 100% { opacity: 0; } }
+@keyframes gd-jet { 0%, 51% { transform: translateY(0) scale(.3); opacity: 0; } 53% { opacity: 1; } 59% { transform: translateY(-36%) scale(.75); animation-timing-function: ease-in; } 66% { transform: translateY(0) scale(.5); opacity: .9; } 67%, 100% { transform: translateY(0) scale(.3); opacity: 0; } }
+
+/* Petite goutte statique (logo, pied de page, pages intérieures). */
+.gd-mini { filter: drop-shadow(0 3px 3px rgba(22,36,29,.22)); }
 
 /* ————— En-tête fin qui se compacte ————— */
 .head { transition: background-color .3s, box-shadow .3s; }
 .head .head-row { transition: height .45s var(--ease); }
-.head.is-solid { background-color: rgba(255,255,255,.94); backdrop-filter: saturate(1.3) blur(14px); box-shadow: 0 1px 0 #e2e8ee; }
-.head.is-solid .head-row { height: 3.9rem; }
-.nav-link { background: linear-gradient(#1769a3, #1769a3) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
-.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #0f4f7f; }
+.head.is-solid { background-color: rgba(245,239,228,.93); backdrop-filter: saturate(1.2) blur(14px); box-shadow: 0 1px 0 #ddd2bf; }
+.head.is-solid .head-row { height: 4rem; }
+.nav-link { background: linear-gradient(#9a5b2e, #9a5b2e) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease), color .3s; }
+.nav-link:hover, .nav-link[aria-current="page"] { background-size: 100% 1px; color: #22372e; }
 
 .row-link .row-arrow { transition: transform .5s var(--ease), color .3s; }
-.row-link:hover .row-arrow { transform: translateX(6px); color: #1769a3; }
+.row-link:hover .row-arrow { transform: translateX(6px); color: #9a5b2e; }
 .row-link .row-title { transition: color .3s; }
-.row-link:hover .row-title { color: #0f4f7f; }
+.row-link:hover .row-title { color: #7a4421; }
+
+.card-photo img { transition: transform 1.4s var(--ease); }
+.card-photo:hover img { transform: scale(1.04); }
+
+/* Étoiles fines en cuivre, la dernière remplie à 60 %. */
+.stars { display: inline-flex; gap: .35em; }
 
 details.faq summary::-webkit-details-marker { display: none; }
-details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 25% auto; height: 1px; background: currentColor; }
+details.faq .faq-plus::before, details.faq .faq-plus::after { content: ""; position: absolute; inset: 50% 27% auto; height: 1px; background: currentColor; }
 details.faq .faq-plus::after { transform: rotate(90deg); transition: transform .4s var(--ease); }
 details.faq[open] .faq-plus::after { transform: rotate(0deg); }
 
+/* Grain papier très léger sur le crème (sous le contenu). */
+.grain > * { position: relative; z-index: 1; }
+.grain { position: relative; }
+.grain::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .3 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
-  .js .wave, .js .hero-photo { clip-path: none !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .gd-drop { animation: none !important; top: 62%; transform: translate(-50%, -100%); opacity: 1; }
+  .gd-rings ellipse, .gd-rings .gd-jet { animation: none !important; opacity: 0; }
+  .gd-rings .r1 { opacity: .5; transform: scale(.5); }
+  .js .station .rv { opacity: 1; transform: none; }
 }

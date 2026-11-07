@@ -70,7 +70,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
   const aria = (key: keyof Errors) => ({ "aria-invalid": errors[key] ? true : undefined, "aria-describedby": errors[key] ? `${key}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[6px] border border-line bg-white p-6 shadow-soft sm:p-12">
+    <form onSubmit={onSubmit} noValidate className="rounded-[4px] border border-line bg-[#fbf8f2] p-6 shadow-soft sm:p-12">
       <h2 className="text-3xl sm:text-[2.6rem]">Envoyer une demande</h2>
       <p className="mt-2 text-ink-soft">Votre demande arrive directement chez S. Petit, avenue Jean Moulin.</p>
 
@@ -134,7 +134,7 @@ export function ContactForm({ defaultType = "plomberie" }: { defaultType?: strin
         </div>
         <div className="sm:col-span-2">
           <label className="flex cursor-pointer items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#1769a3]" {...aria("consent")} />
+            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 rounded border-line accent-[#2f4a3f]" {...aria("consent")} />
             <span>J'accepte que ces informations soient utilisées pour répondre à ma demande. Elles ne sont ni revendues ni utilisées à d'autres fins.</span>
           </label>
           {err("consent")}

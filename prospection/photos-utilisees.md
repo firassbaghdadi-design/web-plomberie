@@ -123,6 +123,15 @@ Aucune photo de l'entreprise (pas de site). Cinq photos Pexels, choisies par leu
 - 31058041 : S. Petit (facade) — « Elegant Haussmann Building in Paris, France »
 - 34295406 : S. Petit (bain) — « Close-Up of Water Faucet Dripping in Bathroom »
 
+Ajoutées pour la v2 « artisan de quartier » (07/11/2026), choisies par leur titre et leur description Pexels (non vues : à contrôler en ligne avant envoi) :
+
+- 35290675 : S. Petit (artisan, héros) — « Focused Technician Working with Water Pump »
+- 39885422 : S. Petit (ajuste, mains) — « Skilled Worker Adjusting Pipes with Precision »
+- 9606949 : S. Petit (outils, mains) — « A Person Holding Steel Tool and a Bolt »
+- 29459133 : S. Petit (clef, main en noir et blanc) — « Close-up of a hand gripping an adjustable wrench »
+- 38169183 : S. Petit (rue) — « Street View of Vibrant Parisian Neighborhood »
+- 19071684 : S. Petit (cafe) — « Sunshade over Entrance on Cafe in Paris »
+
 ## SPC (Société Plomberie Couverture, Paris 12e)
 
 Photos de l'entreprise en priorité : le logo et les photos de chantiers sont récupérés au build sur spc-services.fr (page d'accueil, galerie photo, médiathèque WordPress), rangés dans l'ordre du site et choisis par mots-clés du nom de fichier (à vérifier sur la maquette en ligne). Deux photos Pexels de repli, affichées seulement si les photos de l'entreprise manquent, choisies par leur titre (non vues : à contrôler avant envoi) :

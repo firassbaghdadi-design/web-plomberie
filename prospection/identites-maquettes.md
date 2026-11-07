@@ -14,4 +14,5 @@
 | SPC | Couleur de marque pleine | bleu zinc | Archivo (large) | plaque de zinc gravée | photo bord à bord + aplat bleu |
 | DBP | Affiche suisse | blanc/noir + orange vif | Geist | thermostat rond émaillé | H1 géant + échelle 16→21° + photo |
 | SMAP | Galerie d'architecte d'intérieur (book, planches) | béton clair + gris chauds + terre cuite | Instrument Serif / Familjen Grotesk | nuancier d'échantillons (zellige, terrazzo, laiton brossé, chêne, tomette) en éventail sur rivet laiton | H1 serif 4 lignes à gauche, grande photo de salle de bains qui déborde à droite, nuancier qui s'ouvre sur la photo |
+| S. Petit | Artisan de quartier, chaleureux et humain (devanture) | vert sauge profond + crème + touches de cuivre | Lora / Work Sans | goutte d'eau en verre soufflé (réfraction de la photo, reflets, caustique) qui tombe et forme un anneau | H1 Lora à gauche, photo d'artisan dans une arche de devanture à droite, la goutte tombe de la clé jusqu'à la ligne d'eau ; note 4,6 en chiffre géant sur aplat sauge |
 | Rousseau (référence initiale) | Minimal blanc | blanc + accent logo | (voir package.json) | — | — |

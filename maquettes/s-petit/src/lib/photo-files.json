@@ -1,9 +1,15 @@
 {
   "pexels": {
-    "robinet": { "id": 7836293, "title": "Close Up Photo of Tap Faucet", "author": "Pexels", "alt": "Un robinet et une goutte d'eau sur fond noir" },
+    "artisan": { "id": 35290675, "title": "Focused Technician Working with Water Pump", "author": "Pexels", "alt": "Un artisan concentré règle une installation d'eau" },
     "mains": { "id": 7220892, "title": "A Person Holding Brown Doorknob", "author": "Pexels", "alt": "Les mains d'un plombier qui ajuste une canalisation sous un évier" },
+    "ajuste": { "id": 39885422, "title": "Skilled Worker Adjusting Pipes with Precision", "author": "Pexels", "alt": "Gros plan sur les mains d'un artisan qui aligne des tuyaux" },
+    "outils": { "id": 9606949, "title": "A Person Holding Steel Tool and a Bolt", "author": "Pexels", "alt": "Les mains d'un artisan, un outil et un boulon" },
+    "clef": { "id": 29459133, "title": "Close-up of a hand gripping an adjustable wrench", "author": "Pexels", "alt": "Une main serre une clé à molette, en noir et blanc" },
+    "robinet": { "id": 7836293, "title": "Close Up Photo of Tap Faucet", "author": "Pexels", "alt": "Un robinet et une goutte d'eau sur fond noir" },
     "cuivre": { "id": 4494662, "title": "Faucet Connected with Blue Pipe", "author": "Pexels", "alt": "Un robinet raccordé à un tuyau bleu" },
+    "bain": { "id": 34295406, "title": "Close-Up of Water Faucet Dripping in Bathroom", "author": "Pexels", "alt": "Un robinet de salle de bains d'où tombe une goutte" },
     "facade": { "id": 31058041, "title": "Elegant Haussmann Building in Paris, France", "author": "Pexels", "alt": "Façade d'un immeuble haussmannien à Paris" },
-    "bain": { "id": 34295406, "title": "Close-Up of Water Faucet Dripping in Bathroom", "author": "Pexels", "alt": "Un robinet de salle de bains d'où tombe une goutte" }
+    "rue": { "id": 38169183, "title": "Street View of Vibrant Parisian Neighborhood", "author": "Pexels", "alt": "Une rue de quartier parisien, ses immeubles et ses commerces" },
+    "cafe": { "id": 19071684, "title": "Sunshade over Entrance on Cafe in Paris", "author": "Pexels", "alt": "La terrasse d'un café parisien sous son store" }
   }
 }

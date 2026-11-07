@@ -13,9 +13,8 @@ export const metadata = pageMeta({ title, description, path });
 export default function LegalPage() {
   return (
     <>
-      <section data-station className="station" style={{ ["--dot-y" as string]: "2.55rem" }}>
-        <span className="station-pt" aria-hidden="true" />
-        <div className="wrap tx pb-12 pt-6 sm:pt-10">
+      <section data-station className="station is-in bg-creme">
+        <div className="wrap pb-12 pt-6 sm:pt-10">
           <Breadcrumbs items={[{ name: "Accueil", href: "/" }, { name: "Mentions légales" }]} />
           <h1 className="mt-12 text-[2.4rem] sm:text-[3.4rem]">Mentions légales, Paris 14e</h1>
           <p className="reponse-bref mt-8 max-w-4xl">

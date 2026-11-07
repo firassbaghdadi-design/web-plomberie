@@ -6,12 +6,12 @@ type Props = { id: string; alt: string; className?: string; imgClassName?: strin
 export function Img({ id, alt, className = "", imgClassName = "", priority, position }: Props) {
   const src = imgSrc(id);
   return (
-    <div className={`${/\babsolute\b/.test(className) ? "" : "relative"} overflow-hidden bg-eau-wash ${className}`}>
+    <div className={`${/\babsolute\b/.test(className) ? "" : "relative"} overflow-hidden bg-creme-3 ${className}`}>
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} decoding="async" style={position ? { objectPosition: position } : undefined} className={`absolute inset-0 h-full w-full object-cover ${imgClassName}`} />
       ) : (
-        <div role="img" aria-label={alt} className="absolute inset-0 flex items-end bg-gradient-to-br from-paper to-paper-2 p-6">
+        <div role="img" aria-label={alt} className="absolute inset-0 flex items-end bg-gradient-to-br from-creme-2 to-creme-3 p-6">
           <span className="label">{alt}</span>
         </div>
       )}

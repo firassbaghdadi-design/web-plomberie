@@ -1,9 +1,7 @@
 // Télécharge, au build Vercel (qui a accès à internet), les photos de la maquette vers public/photos/.
-// Le site actuel (kuschnick.fr) est un modèle WordPress « Divi Electrician » jamais personnalisé : ses images sont
-// celles du modèle (électriciens, lustres), pas des photos de l'entreprise. On ne les reprend donc pas, et il n'y a
-// ni logo ni montage avant/après à récupérer. Les photos sont des photos Pexels choisies par leur titre exact
-// (registre : prospection/photos-utilisees.md). Une photo déjà présente n'est pas retéléchargée ; une photo qui échoue
-// n'arrête pas le build (le site affiche alors un aplat légendé).
+// S. Petit n'a ni site ni photos publiques de chantier : les photos sont des photos Pexels choisies par leur titre
+// exact (registre : prospection/photos-utilisees.md) : artisans au travail, gros plans sur les mains, scènes de quartier.
+// Une photo déjà présente n'est pas retéléchargée ; une photo qui échoue n'arrête pas le build (aplat légendé).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const files = JSON.parse(readFileSync(new URL("../src/lib/photo-files.json", import.meta.url), "utf8"));
